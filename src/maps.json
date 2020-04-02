@@ -1,0 +1,1134 @@
+{
+    "ENTRANCE": {
+        "name": "ENTRANCE",
+        "imageName": "./images/1CENTRANCE.jpg",
+        "up": "SECURITY",
+        "eggs": [{
+            "eggX": 327,
+            "eggY": 1152,
+            "eggRadius": 18
+        }, {
+            "eggX": 422,
+            "eggY": 370,
+            "eggRadius": 18
+        }, {
+            "eggX": 1511,
+            "eggY": 1143,
+            "eggRadius": 18
+        }, {
+            "eggX": 2000,
+            "eggY": 1022,
+            "eggRadius": 12
+        }, {
+            "eggX": 1787,
+            "eggY": 224,
+            "eggRadius": 17
+        }]
+    },
+    "SECURITY": {
+        "name": "SECURITY",
+        "imageName": "./images/1CSECURITY.jpg",
+        "right": "BADGES",
+        "up": "TURNSTILES",
+        "down": "ENTRANCE",
+        "eggs": [{
+            "eggX": 461,
+            "eggY": 967,
+            "eggRadius": 17
+        }, {
+            "eggX": 1363,
+            "eggY": 1211,
+            "eggRadius": 17
+        }, {
+            "eggX": 1522,
+            "eggY": 662,
+            "eggRadius": 15
+        }]
+    },
+    "BADGES": {
+        "name": "BADGES",
+        "imageName": "./images/1CBADGES.jpg",
+        "left": "SECURITY",
+        "eggs": [{
+            "eggX": 1929,
+            "eggY": 259,
+            "eggRadius": 17
+        }, {
+            "eggX": 1769,
+            "eggY": 668,
+            "eggRadius": 15
+        }, {
+            "eggX": 667,
+            "eggY": 131,
+            "eggRadius": 15
+        }, {
+            "eggX": 1150,
+            "eggY": 1261,
+            "eggRadius": 17
+        }]
+    },
+    "TURNSTILES": {
+        "name": "TURNSTILES",
+        "imageName": "./images/1CTURNSTILES.jpg",
+        "up": "LOBBY",
+        "down": "SECURITY",
+        "eggs": [{
+            "eggX": 1213,
+            "eggY": 603,
+            "eggRadius": 20
+        }, {
+            "eggX": 1951,
+            "eggY": 1256,
+            "eggRadius": 26
+        }, {
+            "eggX": 241,
+            "eggY": 662,
+            "eggRadius": 21
+        }, {
+            "eggX": 974,
+            "eggY": 512,
+            "eggRadius": 15
+        }, {
+            "eggX": 1852,
+            "eggY": 355,
+            "eggRadius": 15
+        }, {
+            "eggX": 1704,
+            "eggY": 50,
+            "eggRadius": 19
+        }]
+    },
+    "LOBBY": {
+        "name": "LOBBY",
+        "imageName": "./images/1CLOBBY.jpg",
+        "down": "TURNSTILES",
+        "left": "1NENTRANCE",
+        "right": "1S1",
+        "elevatorUp": "2N1",
+        "eggs": [{
+            "eggX": 175,
+            "eggY": 1028,
+            "eggRadius": 23
+        }, {
+            "eggX": 412,
+            "eggY": 611,
+            "eggRadius": 16
+        }, {
+            "eggX": 1433,
+            "eggY": 503,
+            "eggRadius": 20
+        }, {
+            "eggX": 1822,
+            "eggY": 780,
+            "eggRadius": 25
+        }, {
+            "eggX": 1904,
+            "eggY": 1056,
+            "eggRadius": 27
+        }, {
+            "eggX": 928,
+            "eggY": 89,
+            "eggRadius": 18
+        }, {
+            "eggX": 1731,
+            "eggY": 50,
+            "eggRadius": 18
+        }]
+    },
+    "1NENTRANCE": {
+        "name": "1NENTRANCE",
+        "imageName": "./images/1NEntrance.jpg",
+        "down": "LOBBY",
+        "up": "1NGALLEY",
+        "right": "1NOMDESKS",
+        "eggs": [{
+            "eggX": 2068,
+            "eggY": 1248,
+            "eggRadius": 30
+        }, {
+            "eggX": 2389,
+            "eggY": 1906,
+            "eggRadius": 33
+        }, {
+            "eggX": 2219,
+            "eggY": 408,
+            "eggRadius": 25
+        }, {
+            "eggX": 548,
+            "eggY": 2655,
+            "eggRadius": 41
+        }]
+    },
+    "1NDESKS": {
+        "name": "1NDESKS",
+        "imageName": "./images/1NDesks.jpg",
+        "down": "1NGALLEY",
+        "eggs": [{
+            "eggX": 815,
+            "eggY": 2041,
+            "eggRadius": 35
+        }, {
+            "eggX": 1149,
+            "eggY": 1289,
+            "eggRadius": 35
+        }, {
+            "eggX": 702,
+            "eggY": 956,
+            "eggRadius": 35
+        }, {
+            "eggX": 3034,
+            "eggY": 1223,
+            "eggRadius": 27
+        }]
+    },
+    "1NGALLEY": {
+        "name": "1NGALLEY",
+        "imageName": "./images/1NGalley.jpg",
+        "down": "1NENTRANCE",
+        "up": "1NDESKS",
+        "eggs": [{
+            "eggX": 865,
+            "eggY": 1469,
+            "eggRadius": 33
+        }, {
+            "eggX": 2058,
+            "eggY": 968,
+            "eggRadius": 30
+        }, {
+            "eggX": 3311,
+            "eggY": 1928,
+            "eggRadius": 35
+        }, {
+            "eggX": 362,
+            "eggY": 1459,
+            "eggRadius": 30
+        }, {
+            "eggX": 1618,
+            "eggY": 2334,
+            "eggRadius": 35
+        }]
+    },
+    "1NOMCLASS": {
+        "name": "1NOMCLASS",
+        "imageName": "./images/1NOMClass.jpg",
+        "down": "1NOMHALL",
+        "eggs": [{
+            "eggX": 230,
+            "eggY": 248,
+            "eggRadius": 230
+        }, {
+            "eggX": 2612,
+            "eggY": 440,
+            "eggRadius": 39
+        }, {
+            "eggX": 3285,
+            "eggY": 1264,
+            "eggRadius": 47
+        }, {
+            "eggX": 3553,
+            "eggY": 1012,
+            "eggRadius": 36
+        }]
+    },
+    "1NOMDESKS": {
+        "name": "1NOMDESKS",
+        "imageName": "./images/1NOMDesks.jpg",
+        "down": "1NENTRANCE",
+        "left": "1NOMHALL",
+        "eggs": [{
+            "eggX": 164,
+            "eggY": 2369,
+            "eggRadius": 450
+        }, {
+            "eggX": 2788,
+            "eggY": 1352,
+            "eggRadius": 28
+        }, {
+            "eggX": 3537,
+            "eggY": 1409,
+            "eggRadius": 30
+        }, {
+            "eggX": 2398,
+            "eggY": 1204,
+            "eggRadius": 33
+        }]
+    },
+    "1NOMGALLEY": {
+        "name": "1NOMGALLEY",
+        "imageName": "./images/1NOMGalley.jpg",
+        "down": "1NOMHALL",
+        "eggs": [{
+            "eggX": 954,
+            "eggY": 1327,
+            "eggRadius": 43
+        }, {
+            "eggX": 2310,
+            "eggY": 1812,
+            "eggRadius": 36
+        }, {
+            "eggX": 2574,
+            "eggY": 1041,
+            "eggRadius": 42
+        }]
+    },
+    "1NOMHALL": {
+        "name": "1NOMHALL",
+        "imageName": "./images/1NOMHall.jpg",
+        "down": "1NOMDESKS",
+        "up": "1NOMCLASS",
+        "right": "1NOMGALLEY",
+        "eggs": [{
+            "eggX": 1498,
+            "eggY": 871,
+            "eggRadius": 22
+        }, {
+            "eggX": 2294,
+            "eggY": 1513,
+            "eggRadius": 28
+        }, {
+            "eggX": 3213,
+            "eggY": 503,
+            "eggRadius": 38
+        }]
+    },
+    "1S1": {
+        "name": "1S1",
+        "imageName": "./images/1S 1 eggs.jpg",
+        "up": "1S2",
+        "down": "LOBBY",
+        "right": "1S5",
+        "eggs": [{
+            "eggX": 304,
+            "eggY": 828,
+            "eggRadius": 166
+        }, {
+            "eggX": 233,
+            "eggY": 114,
+            "eggRadius": 24
+        }, {
+            "eggX": 1799,
+            "eggY": 871,
+            "eggRadius": 31
+        }, {
+            "eggX": 1950,
+            "eggY": 503,
+            "eggRadius": 21
+        }, {
+            "eggX": 1309,
+            "eggY": 183,
+            "eggRadius": 15
+        }]
+    },
+    "1S2": {
+        "name": "1S2",
+        "imageName": "./images/1S 2 eggs.jpg",
+        "right": "1S3",
+        "down": "1S1",
+        "eggs": [{
+            "eggX": 249,
+            "eggY": 1231,
+            "eggRadius": 33
+        }, {
+            "eggX": 1473,
+            "eggY": 605,
+            "eggRadius": 37
+        }, {
+            "eggX": 1315,
+            "eggY": 1165,
+            "eggRadius": 28
+        }, {
+            "eggX": 453,
+            "eggY": 1628,
+            "eggRadius": 35
+        }, {
+            "eggX": 3616,
+            "eggY": 1077,
+            "eggRadius": 31
+        }, {
+            "eggX": 4006,
+            "eggY": 1039,
+            "eggRadius": 31
+        }]
+    },
+    "1S3": {
+        "name": "1S3",
+        "imageName": "./images/1S 3 eggs.jpg",
+        "down": "1S2",
+        "right": "1S4",
+        "eggs": [{
+            "eggX": 578,
+            "eggY": 1006,
+            "eggRadius": 21
+        }, {
+            "eggX": 979,
+            "eggY": 602,
+            "eggRadius": 17
+        }, {
+            "eggX": 1229,
+            "eggY": 496,
+            "eggRadius": 17
+        }, {
+            "eggX": 1663,
+            "eggY": 627,
+            "eggRadius": 17
+        }, {
+            "eggX": 2011,
+            "eggY": 1414,
+            "eggRadius": 17
+        }]
+    },
+    "1S4": {
+        "name": "1S4",
+        "imageName": "./images/1S 4 eggs.jpg",
+        "up": "1S3",
+        "down": "1S5",
+        "eggs": [{
+            "eggX": 1613,
+            "eggY": 537,
+            "eggRadius": 111
+        }, {
+            "eggX": 1865,
+            "eggY": 526,
+            "eggRadius": 29
+        }, {
+            "eggX": 1216,
+            "eggY": 369,
+            "eggRadius": 17
+        }, {
+            "eggX": 672,
+            "eggY": 402,
+            "eggRadius": 21
+        }, {
+            "eggX": 505,
+            "eggY": 396,
+            "eggRadius": 21
+        }, {
+            "eggX": 206,
+            "eggY": 591,
+            "eggRadius": 19
+        }]
+    },
+    "1S5": {
+        "name": "1S5",
+        "imageName": "./images/1S 5 eggs.jpg",
+        "down": "1S1",
+        "left": "1S4",
+        "eggs": [{
+            "eggX": 27,
+            "eggY": 1398,
+            "eggRadius": 138
+        }, {
+            "eggX": 192,
+            "eggY": 750,
+            "eggRadius": 21
+        }, {
+            "eggX": 612,
+            "eggY": 822,
+            "eggRadius": 15
+        }, {
+            "eggX": 441,
+            "eggY": 646,
+            "eggRadius": 15
+        }, {
+            "eggX": 707,
+            "eggY": 539,
+            "eggRadius": 19
+        }, {
+            "eggX": 1012,
+            "eggY": 863,
+            "eggRadius": 19
+        }, {
+            "eggX": 1534,
+            "eggY": 814,
+            "eggRadius": 19
+        }]
+    },
+    "2N1": {
+        "name": "2N1",
+        "imageName": "./images/2N 1 eggs.jpg",
+        "left": "2N2",
+        "right": "2S1",
+        "elevatorDown": "LOBBY",
+        "elevatorUp": "3N1",
+        "eggs": [{
+            "eggX": 534,
+            "eggY": 389,
+            "eggRadius": 22
+        }, {
+            "eggX": 1010,
+            "eggY": 835,
+            "eggRadius": 24
+        }, {
+            "eggX": 1232,
+            "eggY": 315,
+            "eggRadius": 13
+        }, {
+            "eggX": 1366,
+            "eggY": 219,
+            "eggRadius": 17
+        }, {
+            "eggX": 1725,
+            "eggY": 668,
+            "eggRadius": 17
+        }, {
+            "eggX": 1937,
+            "eggY": 76,
+            "eggRadius": 33
+        }]
+    },
+    "2N2": {
+        "name": "2N2",
+        "imageName": "./images/2N 2 eggs.jpg",
+        "up": "2N5",
+        "down": "2N1",
+        "left": "2N3",
+        "eggs": [{
+            "eggX": 913,
+            "eggY": 682,
+            "eggRadius": 86
+        }, {
+            "eggX": 298,
+            "eggY": 1327,
+            "eggRadius": 51
+        }, {
+            "eggX": 1901,
+            "eggY": 839,
+            "eggRadius": 38
+        }, {
+            "eggX": 556,
+            "eggY": 537,
+            "eggRadius": 19
+        }, {
+            "eggX": 1073,
+            "eggY": 706,
+            "eggRadius": 22
+        }]
+    },
+    "2N3": {
+        "name": "2N3",
+        "imageName": "./images/2N 3 eggs.jpg",
+        "down": "2N2",
+        "right": "2N4",
+        "eggs": [{
+            "eggX": 41,
+            "eggY": 780,
+            "eggRadius": 22
+        }, {
+            "eggX": 416,
+            "eggY": 909,
+            "eggRadius": 22
+        }, {
+            "eggX": 453,
+            "eggY": 676,
+            "eggRadius": 22
+        }, {
+            "eggX": 963,
+            "eggY": 503,
+            "eggRadius": 22
+        }, {
+            "eggX": 1811,
+            "eggY": 742,
+            "eggRadius": 13
+        }, {
+            "eggX": 1872,
+            "eggY": 1327,
+            "eggRadius": 240
+        }]
+    },
+    "2N4": {
+        "name": "2N4",
+        "imageName": "./images/2N 4 eggs.jpg",
+        "down": "2N3",
+        "eggs": [{
+            "eggX": 842,
+            "eggY": 507,
+            "eggRadius": 31
+        }, {
+            "eggX": 1152,
+            "eggY": 545,
+            "eggRadius": 26
+        }, {
+            "eggX": 1896,
+            "eggY": 665,
+            "eggRadius": 33
+        }, {
+            "eggX": 11,
+            "eggY": 852,
+            "eggRadius": 56
+        }, {
+            "eggX": 1352,
+            "eggY": 1340,
+            "eggRadius": 26
+        }]
+    },
+    "2N5": {
+        "name": "2N5",
+        "imageName": "./images/2N 5 eggs.jpg",
+        "up": "2N6",
+        "down": "2N2",
+        "right": "2N8",
+        "eggs": [{
+            "eggX": 216,
+            "eggY": 702,
+            "eggRadius": 26
+        }, {
+            "eggX": 563,
+            "eggY": 438,
+            "eggRadius": 40
+        }, {
+            "eggX": 1128,
+            "eggY": 168,
+            "eggRadius": 17
+        }, {
+            "eggX": 1773,
+            "eggY": 468,
+            "eggRadius": 24
+        }, {
+            "eggX": 1114,
+            "eggY": 451,
+            "eggRadius": 29
+        }]
+    },
+    "2N6": {
+        "name": "2N6",
+        "imageName": "./images/2N 6 eggs.jpg",
+        "up": "2N7",
+        "down": "2N5",
+        "eggs": [{
+            "eggX": 894,
+            "eggY": 758,
+            "eggRadius": 26
+        }, {
+            "eggX": 1020,
+            "eggY": 534,
+            "eggRadius": 26
+        }, {
+            "eggX": 1920,
+            "eggY": 537,
+            "eggRadius": 26
+        }, {
+            "eggX": 1998,
+            "eggY": 1041,
+            "eggRadius": 156
+        }]
+    },
+    "2N7": {
+        "name": "2N7",
+        "imageName": "./images/2N 7 eggs.jpg",
+        "down": "2N6",
+        "eggs": [{
+            "eggX": 275,
+            "eggY": 751,
+            "eggRadius": 120
+        }, {
+            "eggX": 382,
+            "eggY": 325,
+            "eggRadius": 29
+        }, {
+            "eggX": 1180,
+            "eggY": 433,
+            "eggRadius": 29
+        }, {
+            "eggX": 1374,
+            "eggY": 499,
+            "eggRadius": 35
+        }, {
+            "eggX": 1787,
+            "eggY": 825,
+            "eggRadius": 35
+        }]
+    },
+    "2N8": {
+        "name": "2N8",
+        "imageName": "./images/2N 8 eggs.jpg",
+        "down": "2N5",
+        "eggs": [{
+            "eggX": 1607,
+            "eggY": 361,
+            "eggRadius": 28
+        }, {
+            "eggX": 1028,
+            "eggY": 270,
+            "eggRadius": 28
+        }, {
+            "eggX": 982,
+            "eggY": 426,
+            "eggRadius": 35
+        }, {
+            "eggX": 707,
+            "eggY": 400,
+            "eggRadius": 26
+        }]
+    },
+    "2S1": {
+        "name": "2S1",
+        "imageName": "./images/2S 1 eggs.jpg",
+        "up": "2S2",
+        "down": "2N1",
+        "right": "2S3",
+        "eggs": [{
+            "eggX": 823,
+            "eggY": 613,
+            "eggRadius": 17
+        }, {
+            "eggX": 1158,
+            "eggY": 323,
+            "eggRadius": 17
+        }, {
+            "eggX": 672,
+            "eggY": 1145,
+            "eggRadius": 28
+        }]
+    },
+    "2S2": {
+        "name": "2S2",
+        "imageName": "./images/2S 2 eggs.jpg",
+        "up": "2S4",
+        "down": "2S1",
+        "eggs": [{
+            "eggX": 161,
+            "eggY": 1154,
+            "eggRadius": 170
+        }, {
+            "eggX": 581,
+            "eggY": 699,
+            "eggRadius": 28
+        }, {
+            "eggX": 1904,
+            "eggY": 470,
+            "eggRadius": 17
+        }, {
+            "eggX": 1522,
+            "eggY": 850,
+            "eggRadius": 12
+        }]
+    },
+    "2S3": {
+        "name": "2S3",
+        "imageName": "./images/2S 3 eggs.jpg",
+        "up": "2S5",
+        "down": "2S1",
+        "eggs": [{
+            "eggX": 1427,
+            "eggY": 1165,
+            "eggRadius": 13
+        }, {
+            "eggX": 1539,
+            "eggY": 715,
+            "eggRadius": 35
+        }, {
+            "eggX": 1150,
+            "eggY": 677,
+            "eggRadius": 19
+        }, {
+            "eggX": 1358,
+            "eggY": 526,
+            "eggRadius": 19
+        }]
+    },
+    "2S4": {
+        "name": "2S4",
+        "imageName": "./images/2S 4 eggs.jpg",
+        "down": "2S2",
+        "eggs": [{
+            "eggX": 1608,
+            "eggY": 624,
+            "eggRadius": 19
+        }, {
+            "eggX": 132,
+            "eggY": 1030,
+            "eggRadius": 26
+        }, {
+            "eggX": 1490,
+            "eggY": 550,
+            "eggRadius": 15
+        }]
+    },
+    "2S5": {
+        "name": "2S5",
+        "imageName": "./images/2S 5 eggs.jpg",
+        "down": "2S3",
+        "eggs": [{
+            "eggX": 272,
+            "eggY": 684,
+            "eggRadius": 150
+        }, {
+            "eggX": 936,
+            "eggY": 419,
+            "eggRadius": 21
+        }, {
+            "eggX": 1344,
+            "eggY": 767,
+            "eggRadius": 21
+        }]
+    },
+    "3N1": {
+        "name": "3N1",
+        "imageName": "./images/3N 1 eggs.jpg",
+        "left": "3N2",
+        "right": "3S1",
+        "elevatorDown": "2N1",
+        "eggs": [{
+            "eggX": 305,
+            "eggY": 686,
+            "eggRadius": 200
+        }, {
+            "eggX": 1078,
+            "eggY": 249,
+            "eggRadius": 74
+        }, {
+            "eggX": 1333,
+            "eggY": 634,
+            "eggRadius": 26
+        }, {
+            "eggX": 1953,
+            "eggY": 111,
+            "eggRadius": 26
+        }]
+    },
+    "3N2": {
+        "name": "3N2",
+        "imageName": "./images/3N 2 eggs.jpg",
+        "down": "3N1",
+        "up": "3N5",
+        "left": "3N3",
+        "eggs": [{
+            "eggX": 1598,
+            "eggY": 1066,
+            "eggRadius": 19
+        }, {
+            "eggX": 646,
+            "eggY": 670,
+            "eggRadius": 19
+        }, {
+            "eggX": 647,
+            "eggY": 449,
+            "eggRadius": 15
+        }, {
+            "eggX": 396,
+            "eggY": 38,
+            "eggRadius": 29
+        }, {
+            "eggX": 1114,
+            "eggY": 678,
+            "eggRadius": 21
+        }]
+    },
+    "3N3": {
+        "name": "3N3",
+        "imageName": "./images/3N 3 eggs.jpg",
+        "down": "3N2",
+        "right": "3N4",
+        "eggs": [{
+            "eggX": 56,
+            "eggY": 1071,
+            "eggRadius": 28
+        }, {
+            "eggX": 1981,
+            "eggY": 1291,
+            "eggRadius": 61
+        }, {
+            "eggX": 2002,
+            "eggY": 738,
+            "eggRadius": 29
+        }, {
+            "eggX": 1578,
+            "eggY": 761,
+            "eggRadius": 33
+        }, {
+            "eggX": 998,
+            "eggY": 571,
+            "eggRadius": 13
+        }]
+    },
+    "3N4": {
+        "name": "3N4",
+        "imageName": "./images/3N 4 eggs.jpg",
+        "down": "3N2",
+        "left": "3N3",
+        "eggs": [{
+            "eggX": 1943,
+            "eggY": 798,
+            "eggRadius": 200
+        }, {
+            "eggX": 27,
+            "eggY": 779,
+            "eggRadius": 21
+        }, {
+            "eggX": 631,
+            "eggY": 954,
+            "eggRadius": 15
+        }, {
+            "eggX": 958,
+            "eggY": 742,
+            "eggRadius": 15
+        }, {
+            "eggX": 802,
+            "eggY": 240,
+            "eggRadius": 15
+        }]
+    },
+    "3N5": {
+        "name": "3N5",
+        "imageName": "./images/3N 5 eggs.jpg",
+        "down": "3N2",
+        "up": "3N6",
+        "eggs": [{
+            "eggX": 912,
+            "eggY": 485,
+            "eggRadius": 17
+        }, {
+            "eggX": 1916,
+            "eggY": 1036,
+            "eggRadius": 17
+        }, {
+            "eggX": 777,
+            "eggY": 668,
+            "eggRadius": 22
+        }, {
+            "eggX": 1934,
+            "eggY": 717,
+            "eggRadius": 17
+        }, {
+            "eggX": 1047,
+            "eggY": 591,
+            "eggRadius": 26
+        }]
+    },
+    "3N6": {
+        "name": "3N6",
+        "imageName": "./images/3N 6 eggs.jpg",
+        "down": "3N5",
+        "up": "3N7",
+        "eggs": [{
+            "eggX": 112,
+            "eggY": 863,
+            "eggRadius": 200
+        }, {
+            "eggX": 202,
+            "eggY": 404,
+            "eggRadius": 29
+        }, {
+            "eggX": 415,
+            "eggY": 597,
+            "eggRadius": 24
+        }, {
+            "eggX": 1620,
+            "eggY": 423,
+            "eggRadius": 24
+        }]
+    },
+    "3N7": {
+        "name": "3N7",
+        "imageName": "./images/3N 7 eggs.jpg",
+        "down": "3N6",
+        "up": "3N8",
+        "eggs": [{
+            "eggX": 1005,
+            "eggY": 672,
+            "eggRadius": 37
+        }, {
+            "eggX": 1208,
+            "eggY": 867,
+            "eggRadius": 19
+        }, {
+            "eggX": 1758,
+            "eggY": 597,
+            "eggRadius": 33
+        }, {
+            "eggX": 1705,
+            "eggY": 815,
+            "eggRadius": 26
+        }, {
+            "eggX": 608,
+            "eggY": 491,
+            "eggRadius": 22
+        }]
+    },
+    "3N8": {
+        "name": "3N8",
+        "imageName": "./images/3N 8 eggs.jpg",
+        "down": "3N7",
+        "up": "3N2",
+        "eggs": [{
+            "eggX": 183,
+            "eggY": 691,
+            "eggRadius": 22
+        }, {
+            "eggX": 9,
+            "eggY": 427,
+            "eggRadius": 22
+        }, {
+            "eggX": 985,
+            "eggY": 363,
+            "eggRadius": 24
+        }, {
+            "eggX": 1253,
+            "eggY": 456,
+            "eggRadius": 24
+        }, {
+            "eggX": 1948,
+            "eggY": 1045,
+            "eggRadius": 28
+        }, {
+            "eggX": 1474,
+            "eggY": 1417,
+            "eggRadius": 250
+        }]
+    },
+    "3S1": {
+        "name": "3S1",
+        "imageName": "./images/3S 1 eggs.jpg",
+        "down": "3N1",
+        "up": "3S2",
+        "right": "3S6",
+        "eggs": [{
+            "eggX": 103,
+            "eggY": 82,
+            "eggRadius": 200
+        }, {
+            "eggX": 243,
+            "eggY": 680,
+            "eggRadius": 28
+        }, {
+            "eggX": 630,
+            "eggY": 818,
+            "eggRadius": 28
+        }, {
+            "eggX": 1032,
+            "eggY": 581,
+            "eggRadius": 28
+        }, {
+            "eggX": 1589,
+            "eggY": 50,
+            "eggRadius": 28
+        }]
+    },
+    "3S2": {
+        "name": "3S2",
+        "imageName": "./images/3S 2 eggs.jpg",
+        "down": "3S1",
+        "up": "3S3",
+        "eggs": [{
+            "eggX": 678,
+            "eggY": 805,
+            "eggRadius": 28
+        }, {
+            "eggX": 1128,
+            "eggY": 326,
+            "eggRadius": 22
+        }, {
+            "eggX": 1812,
+            "eggY": 1088,
+            "eggRadius": 22
+        }, {
+            "eggX": 608,
+            "eggY": 552,
+            "eggRadius": 22
+        }]
+    },
+    "3S3": {
+        "name": "3S3",
+        "imageName": "./images/3S 3 eggs.jpg",
+        "down": "3S2",
+        "right": "3S4",
+        "eggs": [{
+            "eggX": 1386,
+            "eggY": 910,
+            "eggRadius": 200
+        }, {
+            "eggX": 833,
+            "eggY": 849,
+            "eggRadius": 33
+        }, {
+            "eggX": 48,
+            "eggY": 727,
+            "eggRadius": 24
+        }, {
+            "eggX": 1023,
+            "eggY": 266,
+            "eggRadius": 24
+        }, {
+            "eggX": 1752,
+            "eggY": 657,
+            "eggRadius": 37
+        }]
+    },
+    "3S4": {
+        "name": "3S4",
+        "imageName": "./images/3S 4 eggs.jpg",
+        "down": "3S3",
+        "up": "3S5",
+        "eggs": [{
+            "eggX": 73,
+            "eggY": 350,
+            "eggRadius": 37
+        }, {
+            "eggX": 591,
+            "eggY": 657,
+            "eggRadius": 26
+        }, {
+            "eggX": 989,
+            "eggY": 681,
+            "eggRadius": 22
+        }, {
+            "eggX": 867,
+            "eggY": 976,
+            "eggRadius": 21
+        }]
+    },
+    "3S5": {
+        "name": "3S5",
+        "imageName": "./images/3S 5 eggs.jpg",
+        "down": "3S4",
+        "up": "3S6",
+        "eggs": [{
+            "eggX": 183,
+            "eggY": 462,
+            "eggRadius": 29
+        }, {
+            "eggX": 659,
+            "eggY": 839,
+            "eggRadius": 29
+        }, {
+            "eggX": 1279,
+            "eggY": 704,
+            "eggRadius": 29
+        }, {
+            "eggX": 867,
+            "eggY": 504,
+            "eggRadius": 26
+        }]
+    },
+    "3S6": {
+        "name": "3S6",
+        "imageName": "./images/3S 6 eggs.jpg",
+        "down": "3S5",
+        "up": "3S1",
+        "eggs": [{
+            "eggX": 540,
+            "eggY": 668,
+            "eggRadius": 28
+        }, {
+            "eggX": 97,
+            "eggY": 769,
+            "eggRadius": 26
+        }, {
+            "eggX": 462,
+            "eggY": 886,
+            "eggRadius": 21
+        }, {
+            "eggX": 734,
+            "eggY": 638,
+            "eggRadius": 21
+        }, {
+            "eggX": 1726,
+            "eggY": 552,
+            "eggRadius": 28
+        }, {
+            "eggX": 1924,
+            "eggY": 982,
+            "eggRadius": 28
+        }]
+    }
+}

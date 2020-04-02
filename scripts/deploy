@@ -1,0 +1,34 @@
+#!/bin/bash
+
+yarn build
+echo Deploy to NP
+
+# Check if we're logged in to anywhere
+cf apps >> /dev/null
+if [[ $? == 1 ]]; then
+    echo "Logging into NP data-pipeline RoomFinder"
+    cf login -a api.run-np.homedepot.com -o data-pipeline -s RoomFinder
+fi
+if [ $? == 1 ]; then 
+    echo "Failed to login and target PCF deploy location. Please see above errors for more info."
+    exit 1
+fi
+
+# Ensure that we're pointing to the right location
+target=$(cf target)
+endpoint=$(echo $target | grep "api endpoint:")
+org=$(echo $target | grep "org:")
+space=$(echo $target | grep "space:")
+if [[ ! $endpoint =~ ^.*run-np.*$ ]]; then
+    echo "Logging into NP data-pipeline RoomFinder"
+    cf login -a api.run-np.homedepot.com -o data-pipeline -s RoomFinder
+elif [[ ! $org =~ ^.*data-pipeline.*$  || ! $space =~ ^.*RoomFinder.*$ ]]; then
+    echo "Targeting data-pipeline RoomFinder"
+    cf target -o data-pipeline -s RoomFinder
+fi
+if [ $? == 1 ]; then 
+    echo "Failed to login and target PCF deploy location. Please see above errors for more info."
+    exit 1
+fi
+
+cf push
