@@ -12,7 +12,7 @@ import useImage from 'use-image';
 import maps from './maps.json'
 
 // Turn off HUNT_MODE to enable tools to get the x/y/radius of the eggs
-const HUNT_MODE = true
+const HUNT_MODE = true;
 
 // Preload all the maps
 Object.keys(maps).forEach(key => {
@@ -39,7 +39,7 @@ function App() {
   const [eggX, setEggX] = useState(576)
   const [eggY, setEggY] = useState(446)
   const [eggRadius, setEggRadius] = useState(30)
-  
+
   const [landingPage] = useImage('ATNEggHunt.png')
   const [arrowUp] = useImage('ArrowUp.png')
   const [arrowDown] = useImage('ArrowDown.png')
@@ -47,6 +47,16 @@ function App() {
   const [arrowRight] = useImage('ArrowRight.png')
   const [elevatorUp] = useImage('ElevatorUp.png')
   const [elevatorDown] = useImage('ElevatorDown.png')
+  const [mystery] = useImage('question mark icon.jpg')
+  const [invisible] = useImage('invisible.png')
+
+  let mysteryOrInvisible;
+
+  if (score > 2) {
+    mysteryOrInvisible = mystery;
+  } else {
+    mysteryOrInvisible = invisible;
+  }
 
   let handleImageDrag = event => {
     setEggX((event.target.attrs.x- imageX) / scale )
@@ -63,7 +73,7 @@ function App() {
 
   useEffect(() => {
     if(status === 'hunting'){
-      alert(`Homer has hidden eggs all over the ATN! Can you find them all?\nClick on any eggs that you can spot. Use the arrows at the bottom of the screen to navigate the building.\nClick "Submit Score" when you think you've found them all.`)
+      alert(`Have yourself an Easter egg hunt without leaving the safety and comfort of your own home! There are 36 eggs hidden inside the house. Use the arrows to navigate, and click on the egg when you find it! Have fun, and try to collect them all!`)
     }
   }, [status])
 
@@ -99,7 +109,7 @@ function App() {
       <>
       <input
         type="text"
-        placeholder="Enter your name/ldap"
+        placeholder="What is your name?"
         value={name}
         autoFocus
         style={{
@@ -128,7 +138,7 @@ function App() {
           }}
           disabled={name === ''}
           onClick={() => setStatus('hunting')}
-      /> 
+      />
       <Stage
         width={window.innerWidth}
         height={window.innerHeight}
@@ -137,7 +147,7 @@ function App() {
           <Image
             image={image}
             x={imageX}
-    
+
             scaleX={scale}
             scaleY={scale}
           />
@@ -152,7 +162,7 @@ function App() {
         <>
         <input
           type="Button"
-          value="Submit Score"
+          value="Give Up"
           style={{
             position: "absolute",
             top: `60px`,
@@ -174,7 +184,7 @@ function App() {
             })
             .then((resp) => {
               if (resp.ok) {
-                alert(`${name} submitted a score of ${score} eggs!\nThanks for playing!`)
+                alert(`${name} found ${score} out of 36 eggs!\nThanks for playing!`)
                 setStatus('landing')
                 setName('')
                 setScore(0)
@@ -183,10 +193,10 @@ function App() {
               }
             })
           }}
-        /> 
+        />
         </> :
         <>
-          <textarea 
+          <textarea
               style={{position: "absolute", top: '0px', left: '0px', zIndex: 999}}
             rows="4" cols="13" readOnly
             value={`{"eggX": ${eggX.toFixed(0)},\n"eggY": ${eggY.toFixed(0)},\n"eggRadius": ${eggRadius}}`}
@@ -198,7 +208,7 @@ function App() {
               value={eggRadius}
               style={{position: "absolute", top: '70px', left: '0px', zIndex: 999}}
               onChange={(e) => setEggRadius(e.target.value)}
-          /> 
+          />
         </>
       }
       <Stage
@@ -206,7 +216,7 @@ function App() {
         height={window.innerHeight}
       >
         <Layer>
-          <Rect 
+          <Rect
             width={width}
             height={height}
             fill='#999999'
@@ -214,13 +224,13 @@ function App() {
           <Image
             image={image}
             x={imageX}
-    
+
             scaleX={scale}
             scaleY={scale}
           />
         </Layer>
         <Layer>
-          <Rect 
+          <Rect
             x={5}
             stroke={'#555'}
             strokeWidth={5}
@@ -241,8 +251,8 @@ function App() {
             text={`Current Score: ${score}`}
             fontSize={30}
           />
-    
-          {currentLocation.up && 
+
+          {currentLocation.up &&
           <Image
             image={arrowUp}
             x={window.innerWidth * 0.5 - (arrowUp ? arrowUp.width : 0) * 0.5 * 0.1}
@@ -251,7 +261,7 @@ function App() {
             scaleY={0.1}
             onClick={() => changeLocation(currentLocation.up)}
           />}
-          { currentLocation.down && 
+          { currentLocation.down &&
           <Image
             image={arrowDown}
             x={window.innerWidth * 0.5 - (arrowDown ? arrowDown.width : 0) * 0.5 * 0.1}
@@ -260,7 +270,7 @@ function App() {
             scaleY={0.1}
             onClick={() => changeLocation(currentLocation.down)}
           />}
-          { currentLocation.left && 
+          { currentLocation.left &&
           <Image
             image={arrowLeft}
             x={window.innerWidth * 0.47 - (arrowLeft ? arrowLeft.width : 0) * 0.5 * 0.1}
@@ -269,7 +279,7 @@ function App() {
             scaleY={0.1}
             onClick={() => changeLocation(currentLocation.left)}
           />}
-          { currentLocation.right && 
+          { currentLocation.right &&
           <Image
             image={arrowRight}
             x={window.innerWidth * 0.53 - (arrowRight ? arrowRight.width : 0) * 0.5 * 0.1}
@@ -279,7 +289,7 @@ function App() {
             onClick={() => changeLocation(currentLocation.right)}
           />}
 
-          { currentLocation.elevatorUp && 
+          { currentLocation.elevatorUp &&
           <Image
             image={elevatorUp}
             x={window.innerWidth * 0.47 - (arrowLeft ? arrowLeft.width : 0) * 0.5 * 0.1}
@@ -288,7 +298,7 @@ function App() {
             scaleY={0.5}
             onClick={() => changeLocation(currentLocation.elevatorUp)}
           />}
-          { currentLocation.elevatorDown && 
+          { currentLocation.elevatorDown &&
           <Image
             image={elevatorDown}
             x={window.innerWidth * 0.53 - (elevatorDown ? elevatorDown.width : 0) * 0.5 * 0.1}
@@ -297,12 +307,21 @@ function App() {
             scaleY={0.5}
             onClick={() => changeLocation(currentLocation.elevatorDown)}
           />}
-    
+          { currentLocation.mystery &&
+          <Image
+              image={mysteryOrInvisible}
+              x={window.innerWidth * 0.53 - (elevatorDown ? elevatorDown.width : 0) * 0.5 * 0.1}
+              y={window.innerHeight * 0.76 - (arrowUp ? arrowUp.height : 0) * 0.5 * 0.1}
+              scaleX={0.5}
+              scaleY={0.5}
+              onClick={() => changeLocation(currentLocation.mystery)}
+          />}
+
           {// If in HUNT_MODE, put invisible circles on unfound eggs and stars on found eggs
             HUNT_MODE ?
               currentLocation.eggs.map((egg, i) => (
                 foundEggs.indexOf(`${currentLocation.name}egg${i}`) === -1 ?
-                  <Circle 
+                  <Circle
                     x={ imageX + (egg.eggX * scale)}
                     y={ (egg.eggY * scale)}
                     radius={ egg.eggRadius * scale}
@@ -313,7 +332,7 @@ function App() {
                     key={`${currentLocation.name}egg${i}`}
                   />
                 :
-                  <Star 
+                  <Star
                       x={ imageX + (egg.eggX * scale)}
                       y={ (egg.eggY * scale)}
                       innerRadius={ egg.eggRadius * scale * 0.7}
@@ -324,18 +343,18 @@ function App() {
                       stroke='black'
                       strokeWidth={2 * scale}
                       key={`${currentLocation.name}egg${i}`}
-                  /> 
+                  />
                 )
               )
             :
-              <Circle 
+              <Circle
                 x={ imageX + (eggX * scale)}
                 y={ (eggY * scale)}
                 radius={ eggRadius * scale}
-    
+
                 draggable
                 onDragMove={handleImageDrag}
-    
+
                 stroke={ 'red'}
                 strokeWidth={ 2}
               />
@@ -346,7 +365,7 @@ function App() {
   } else {
     return (<div>Something done broke</div>)
   }
-  
+
 }
 
 export default App;

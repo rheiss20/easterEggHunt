@@ -3,6 +3,7 @@
         "name": "ENTRANCE",
         "imageName": "./images/1CENTRANCE.jpg",
         "up": "SECURITY",
+        "mystery": "SECRET",
         "eggs": [{
             "eggX": 327,
             "eggY": 1152,
@@ -1129,6 +1130,16 @@
             "eggX": 1924,
             "eggY": 982,
             "eggRadius": 28
+        }]
+    },
+    "SECRET": {
+        "name": "SECRET",
+        "imageName": "./images/hallway.jpg",
+        "down": "ENTRANCE",
+        "eggs": [{
+            "eggX": 395,
+            "eggY": 237,
+            "eggRadius": 7
         }]
     }
 }
