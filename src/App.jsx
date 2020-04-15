@@ -7,49 +7,67 @@ import {
     Stage,
     Star,
     Text
-} from 'react-konva'
+} from 'react-konva';
 import useImage from 'use-image';
-import maps from './maps.json'
+import maps from './maps.json';
+
+import soundfile from './sounds/splashPageMusic.mp3';
 
 // Turn off HUNT_MODE to enable tools to get the x/y/radius of the eggs
 const HUNT_MODE = true;
 
 // Preload all the maps
 Object.keys(maps).forEach(key => {
-  let image = new window.Image()
-  image.src = maps[key].imageName
+  let image = new window.Image();
+  image.src = maps[key].imageName;
   maps[key].image = image
-})
+});
 
-const height = window.innerHeight
-const width = window.innerWidth
+const height = window.innerHeight;
+const width = window.innerWidth;
+
+// AUDIO SETTINGS
+
+const audioElement = new Audio(soundfile);
+
+const controlAudio = (command) => {
+  if (command === 'play'){
+    audioElement.loop = true;
+    audioElement.volume = 0.2;
+    audioElement.play();
+  } else if (command === 'stop'){
+    audioElement.pause();
+    audioElement.currentTime = 0;
+  }
+};
 
 function App() {
-  const [status, setStatus] = useState('loading')
+  const [status, setStatus] = useState('loading');
 
-  const [name, setName] = useState('')
-  const [score, setScore] = useState(0)
-  const [foundEggs, setFoundEggs] = useState([])
+  const [name, setName] = useState('');
+  const [score, setScore] = useState(0);
+  const [foundEggs, setFoundEggs] = useState([]);
 
-  const [scale, setScale] = useState(0.2)
-  const [image, setImage] = useState()
-  const [imageX, setImageX] = useState(0)
-  const [currentLocation, setCurrentLocation] = useState(maps.ENTRANCE)
+  const [scale, setScale] = useState(0.2);
+  const [image, setImage] = useState();
+  const [imageX, setImageX] = useState(0);
+  const [currentLocation, setCurrentLocation] = useState(maps.ENTRANCE);
 
-  const [eggX, setEggX] = useState(576)
-  const [eggY, setEggY] = useState(446)
-  const [eggRadius, setEggRadius] = useState(30)
+  const [eggX, setEggX] = useState(576);
+  const [eggY, setEggY] = useState(446);
+  const [eggRadius, setEggRadius] = useState(30);
 
-  const [landingPage] = useImage('ATNEggHunt.png')
-  const [arrowUp] = useImage('ArrowUp.png')
-  const [arrowDown] = useImage('ArrowDown.png')
-  const [arrowLeft] = useImage('ArrowLeft.png')
-  const [arrowRight] = useImage('ArrowRight.png')
-  const [elevatorUp] = useImage('ElevatorUp.png')
-  const [elevatorDown] = useImage('ElevatorDown.png')
-  const [mystery] = useImage('question mark icon.jpg')
-  const [invisible] = useImage('invisible.png')
+  const [landingPage] = useImage('ATNEggHunt.png');
+  const [arrowUp] = useImage('ArrowUp.png');
+  const [arrowDown] = useImage('ArrowDown.png');
+  const [arrowLeft] = useImage('ArrowLeft.png');
+  const [arrowRight] = useImage('ArrowRight.png');
+  const [elevatorUp] = useImage('ElevatorUp.png');
+  const [elevatorDown] = useImage('ElevatorDown.png');
+  const [mystery] = useImage('question mark icon.jpg');
+  const [invisible] = useImage('invisible.png');
 
+  // THIS WILL BE THE TRIGGER THAT MAKES THE SECRET TUNNEL ACCESSIBLE
   let mysteryOrInvisible;
 
   if (score > 2) {
@@ -57,6 +75,7 @@ function App() {
   } else {
     mysteryOrInvisible = invisible;
   }
+  // *****************************************************************
 
   let handleImageDrag = event => {
     setEggX((event.target.attrs.x- imageX) / scale )
@@ -137,7 +156,11 @@ function App() {
             background: `${name === '' ? '' : 'yellow'}`
           }}
           disabled={name === ''}
-          onClick={() => setStatus('hunting')}
+          onClick={() => {
+            setStatus('hunting');
+            controlAudio('play');
+            }
+          }
       />
       <Stage
         width={window.innerWidth}
@@ -174,25 +197,15 @@ function App() {
             background: 'yellow'
           }}
           onClick={() => {
-            fetch('https://atn-egg-hunt.apps-np.homedepot.com/newScore',
-            {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({name, score})
-            })
-            .then((resp) => {
-              if (resp.ok) {
-                alert(`${name} found ${score} out of 36 eggs!\nThanks for playing!`)
-                setStatus('landing')
-                setName('')
-                setScore(0)
-                setFoundEggs([])
-                setCurrentLocation(maps.ENTRANCE)
-              }
-            })
-          }}
+            controlAudio('stop');
+            alert(`${name} found ${score} out of 36 eggs!\nThanks for playing!`);
+            setStatus('landing');
+            setName('');
+            setScore(0);
+            setFoundEggs([]);
+            setCurrentLocation(maps.ENTRANCE);
+          }
+        }
         />
         </> :
         <>
