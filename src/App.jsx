@@ -147,13 +147,13 @@ function App() {
           value="Start!"
           style={{
             position: "absolute",
-            top: `${1000 * scale}px`,
+            top: `${975 * scale}px`,
             left: `${imageX + (image.width / 2 * scale) - (150* scale)}px`,
             zIndex: 999,
             height: `${120 * scale}px`,
             width: `${300 * scale}px`,
             fontSize: `${90 * scale}px`,
-            background: `${name === '' ? '' : 'yellow'}`
+            background: `${name === '' ? '' : '#F9FC9D'}`
           }}
           disabled={name === ''}
           onClick={() => {
