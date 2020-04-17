@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/easterEggHunt/static/css/main.5ecd60fb.chunk.css",
+    "main.js": "/easterEggHunt/static/js/main.ba523d98.chunk.js",
+    "main.js.map": "/easterEggHunt/static/js/main.ba523d98.chunk.js.map",
+    "runtime-main.js": "/easterEggHunt/static/js/runtime-main.afa28a1b.js",
+    "runtime-main.js.map": "/easterEggHunt/static/js/runtime-main.afa28a1b.js.map",
+    "static/js/2.db843e67.chunk.js": "/easterEggHunt/static/js/2.db843e67.chunk.js",
+    "static/js/2.db843e67.chunk.js.map": "/easterEggHunt/static/js/2.db843e67.chunk.js.map",
+    "index.html": "/easterEggHunt/index.html",
+    "precache-manifest.8d8cc5401c7e25791f55a38dd32260ab.js": "/easterEggHunt/precache-manifest.8d8cc5401c7e25791f55a38dd32260ab.js",
+    "service-worker.js": "/easterEggHunt/service-worker.js",
+    "static/css/main.5ecd60fb.chunk.css.map": "/easterEggHunt/static/css/main.5ecd60fb.chunk.css.map",
+    "static/js/2.db843e67.chunk.js.LICENSE.txt": "/easterEggHunt/static/js/2.db843e67.chunk.js.LICENSE.txt",
+    "static/media/splashPageMusic.mp3": "/easterEggHunt/static/media/splashPageMusic.bc2ef3e1.mp3"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.afa28a1b.js",
+    "static/js/2.db843e67.chunk.js",
+    "static/css/main.5ecd60fb.chunk.css",
+    "static/js/main.ba523d98.chunk.js"
+  ]
+}
