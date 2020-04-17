@@ -327,7 +327,10 @@ function App() {
               y={window.innerHeight * 0.76 - (arrowUp ? arrowUp.height : 0) * 0.5 * 0.1}
               scaleX={0.5}
               scaleY={0.5}
-              onClick={() => changeLocation(currentLocation.mystery)}
+              onClick={() => {
+                changeLocation(currentLocation.mystery)
+                controlAudio('stop');
+              }}
           />}
 
           {// If in HUNT_MODE, put invisible circles on unfound eggs and stars on found eggs

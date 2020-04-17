@@ -1,5 +1,5 @@
 {
-  "name": "atn-egg-hunt",
+  "name": "easter-egg-hunt",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -39,7 +39,7 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://rheiss20.github.io/easterEggHunt/",
+  "homepage": ".",
   "devDependencies": {
     "gh-pages": "^2.2.0"
   }
