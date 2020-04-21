@@ -26,7 +26,7 @@ Object.keys(maps).forEach(key => {
 const height = window.innerHeight;
 const width = window.innerWidth;
 
-// AUDIO SETTINGS
+// AUDIO SETTINGS **************************
 
 const audioElement = new Audio(soundfile);
 
@@ -41,12 +41,15 @@ const controlAudio = (command) => {
   }
 };
 
+// *****************************************
+
 function App() {
   const [status, setStatus] = useState('loading');
 
   const [name, setName] = useState('');
   const [score, setScore] = useState(0);
   const [foundEggs, setFoundEggs] = useState([]);
+  const [foundKeys, setFoundKeys] = useState([]);
 
   const [scale, setScale] = useState(0.2);
   const [image, setImage] = useState();
@@ -77,6 +80,36 @@ function App() {
   }
   // *****************************************************************
 
+  // THIS IS THE CODE TO CHANGE THE JPEG FILE FOR ROOMS WITH CLOSED THEN OPEN DOORS
+  const triggerRoomUnlock = (room) => {
+    switch(room) {
+      case 'studio':
+        alert('You found the key that unlocks the door in the living room! Go check it out!');
+        // code to switch room jpeg and add the navigations to go through the previously closed door
+        break;
+      case 'closet':
+        alert('You found the key that unlocks the door in the bedroom! Go check it out!');
+        // code to switch room jpeg and add the navigations to go through the previously closed door
+        break;
+      default:
+        alert('You have found the test trigger. You should now be able to go left in the next room.');
+        // code to add an additional direction to the next room and have it lead into a different room
+        maps.SECURITY.left = '1NOMGALLEY';
+        maps.TEST_ROOM_CHANGE.tempField1 = maps.SECURITY.image;
+        maps.SECURITY.image = maps.TEST_ROOM_CHANGE.image;
+    }
+  };
+  // ***************************************************************
+
+  // revert all the changes that could be made in triggerRoomUnlock
+  const resetTriggers = () => {
+    maps.SECURITY.image = maps.TEST_ROOM_CHANGE.tempField1;
+    delete maps.SECURITY.left;
+    delete maps.TEST_ROOM_CHANGE.tempField1;
+  };
+
+  // ******************************************************************
+
   let handleImageDrag = event => {
     setEggX((event.target.attrs.x- imageX) / scale )
     setEggY((event.target.attrs.y  / scale))
@@ -92,15 +125,18 @@ function App() {
 
   useEffect(() => {
     if(status === 'hunting'){
-      alert(`Have yourself an Easter egg hunt without leaving the safety and comfort of your own home! There are 36 eggs hidden inside the house. Use the arrows to navigate, and click on the egg when you find it! Have fun, and try to collect them all!`)
+      alert(`Have yourself an Easter egg hunt without leaving the safety and comfort of your own home! There are 50 eggs hidden inside this house. Use the arrows to navigate, and click on an egg when you find it! Have fun, and try to collect them all!
+      (Click "Give Up" when you are done playing.)`)
     }
   }, [status])
 
   useEffect(() => {
     switch(status) {
       case 'landing':
-        setImage(landingPage); break
-      case 'hunting': setImage(currentLocation.image); break
+        setImage(landingPage);
+        break;
+      case 'hunting': setImage(currentLocation.image);
+      break;
       default:
     }
   }, [status, currentLocation, landingPage])
@@ -203,6 +239,8 @@ function App() {
             setName('');
             setScore(0);
             setFoundEggs([]);
+            setFoundKeys([]);
+            resetTriggers();
             setCurrentLocation(maps.ENTRANCE);
           }
         }
@@ -374,6 +412,36 @@ function App() {
                 stroke={ 'red'}
                 strokeWidth={ 2}
               />
+          }
+          {
+            currentLocation.keys ?
+            currentLocation.keys.map((key, i) => (
+                foundKeys.indexOf(`${currentLocation.name}key${i}`) === -1 ?
+                    <Circle
+                        x={imageX + (key.keyX * scale)}
+                        y={(key.keyY * scale)}
+                        radius={key.keyRadius * scale}
+                        onClick={() => {
+                          triggerRoomUnlock('test')
+                          setFoundKeys([`${currentLocation.name}key${i}`, ...foundKeys])
+                        }}
+                        key={`${currentLocation.name}key${i}`}
+                    />
+                    :
+                    <Star
+                        x={imageX + (key.keyX * scale)}
+                        y={(key.keyY * scale)}
+                        innerRadius={key.keyRadius * scale * 0.7}
+                        outerRadius={key.keyRadius * scale * 1.5}
+                        rotation={10}
+                        numPoints={5}
+                        fill='blue'
+                        stroke='black'
+                        strokeWidth={2 * scale}
+                        key={`${currentLocation.name}key${i}`}
+                    />
+                    )
+            ) : null
           }
         </Layer>
       </Stage>

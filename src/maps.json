@@ -24,6 +24,11 @@
             "eggX": 1787,
             "eggY": 224,
             "eggRadius": 17
+        }],
+        "keys": [{
+            "keyX": 617,
+            "keyY": 915,
+            "keyRadius": 52
         }]
     },
     "SECURITY": {
@@ -1141,5 +1146,9 @@
             "eggY": 237,
             "eggRadius": 7
         }]
+    },
+    "TEST_ROOM_CHANGE": {
+        "name": "TEST_ROOM_CHANGE",
+        "imageName": "./images/hallway.jpg"
     }
 }
