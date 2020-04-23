@@ -11,17 +11,29 @@ import {
 import useImage from 'use-image';
 import maps from './maps.json';
 
-import soundfile from './sounds/splashPageMusic.mp3';
+import soundfile from './sounds/huntingMusic.mp3';
+
+// *****************************************************
 
 // Turn off HUNT_MODE to enable tools to get the x/y/radius of the eggs
 const HUNT_MODE = true;
 
-// Preload all the maps
-Object.keys(maps).forEach(key => {
+// *****************************************************
+
+const setImageForRoom = (roomToChange, imageToChangeTo) => {
   let image = new window.Image();
-  image.src = maps[key].imageName;
-  maps[key].image = image
+  image.src = imageToChangeTo;
+  roomToChange.image = image;
+};
+
+// Preload all the maps, also how the images are generated
+Object.keys(maps).forEach(key => {
+  // Fake images for populating the inspect element with junk
+  setImageForRoom(maps[key], maps[key].fakeImageName)
+  setImageForRoom(maps[key], maps[key].imageName)
 });
+
+// *****************************************************
 
 const height = window.innerHeight;
 const width = window.innerWidth;
@@ -41,94 +53,93 @@ const controlAudio = (command) => {
   }
 };
 
-// *****************************************
+// ******************************************
 
-function App() {
+export function App() {
   const [status, setStatus] = useState('loading');
 
   const [name, setName] = useState('');
   const [score, setScore] = useState(0);
+  const [maxScore, setMaxScore] = useState(50);
   const [foundEggs, setFoundEggs] = useState([]);
   const [foundKeys, setFoundKeys] = useState([]);
 
   const [scale, setScale] = useState(0.2);
   const [image, setImage] = useState();
   const [imageX, setImageX] = useState(0);
-  const [currentLocation, setCurrentLocation] = useState(maps.ENTRANCE);
+  const [currentLocation, setCurrentLocation] = useState(maps.LIVINGROOM);
 
   const [eggX, setEggX] = useState(576);
   const [eggY, setEggY] = useState(446);
   const [eggRadius, setEggRadius] = useState(30);
 
-  const [landingPage] = useImage('ATNEggHunt.png');
+  const [landingPage] = useImage('SplashPage.jpg');
   const [arrowUp] = useImage('ArrowUp.png');
   const [arrowDown] = useImage('ArrowDown.png');
   const [arrowLeft] = useImage('ArrowLeft.png');
   const [arrowRight] = useImage('ArrowRight.png');
-  const [elevatorUp] = useImage('ElevatorUp.png');
-  const [elevatorDown] = useImage('ElevatorDown.png');
-  const [mystery] = useImage('question mark icon.jpg');
-  const [invisible] = useImage('invisible.png');
+  const [checkmark] = useImage('checkmark.gif');
+  const [congratulations] = useImage('Congratulations.png');
 
-  // THIS WILL BE THE TRIGGER THAT MAKES THE SECRET TUNNEL ACCESSIBLE
-  let mysteryOrInvisible;
-
-  if (score > 2) {
-    mysteryOrInvisible = mystery;
-  } else {
-    mysteryOrInvisible = invisible;
-  }
-  // *****************************************************************
-
+  //************************************************************
   // THIS IS THE CODE TO CHANGE THE JPEG FILE FOR ROOMS WITH CLOSED THEN OPEN DOORS
-  const triggerRoomUnlock = (room) => {
-    switch(room) {
-      case 'studio':
+  const triggerRoomUnlock = (roomWhereKeyIsFound) => {
+    switch(roomWhereKeyIsFound) {
+      case 'BEDROOMCLOSET':
         alert('You found the key that unlocks the door in the living room! Go check it out!');
-        // code to switch room jpeg and add the navigations to go through the previously closed door
+        setImageForRoom(maps.LIVINGROOM, maps.IMAGECHANGES.livingRoomUnlockedImage);
+        maps.LIVINGROOM.up = 'LIVINGROOMCLOSET';
         break;
-      case 'closet':
+      case 'KITCHENCORNER':
         alert('You found the key that unlocks the door in the bedroom! Go check it out!');
-        // code to switch room jpeg and add the navigations to go through the previously closed door
+        setImageForRoom(maps.BEDROOMCORNER, maps.IMAGECHANGES.bedroomCornerUnlockedImage);
+        maps.BEDROOMCORNER.up = 'BEDROOMCLOSET';
+        break;
+      case 'MYSTERY':
+        maps.KITCHENCORNER.mystery = 'MYDOOR';
         break;
       default:
-        alert('You have found the test trigger. You should now be able to go left in the next room.');
-        // code to add an additional direction to the next room and have it lead into a different room
-        maps.SECURITY.left = '1NOMGALLEY';
-        maps.TEST_ROOM_CHANGE.tempField1 = maps.SECURITY.image;
-        maps.SECURITY.image = maps.TEST_ROOM_CHANGE.image;
+        alert('You have found the test trigger. This alert is all that happens because of it. You really shouldn\'t be seeing this.');
     }
   };
-  // ***************************************************************
 
-  // revert all the changes that could be made in triggerRoomUnlock
+// revert all the changes that could be made in triggerRoomUnlock
   const resetTriggers = () => {
-    maps.SECURITY.image = maps.TEST_ROOM_CHANGE.tempField1;
-    delete maps.SECURITY.left;
-    delete maps.TEST_ROOM_CHANGE.tempField1;
+    setImageForRoom(maps.LIVINGROOM, maps.IMAGECHANGES.livingRoomLockedImage);
+    setImageForRoom(maps.BEDROOMCORNER, maps.IMAGECHANGES.bedroomCornerLockedImage);
+
+    if (maps.LIVINGROOM.up) {
+      delete maps.LIVINGROOM.up;
+    }
+    if (maps.BEDROOMCORNER.up) {
+      delete maps.BEDROOMCORNER.up;
+    }
+    if (maps.KITCHENCORNER.mystery) {
+      delete maps.KITCHENCORNER.mystery;
+    }
   };
 
   // ******************************************************************
 
+
   let handleImageDrag = event => {
-    setEggX((event.target.attrs.x- imageX) / scale )
-    setEggY((event.target.attrs.y  / scale))
-  }
+    setEggX((event.target.attrs.x- imageX) / scale );
+    setEggY((event.target.attrs.y  / scale));
+  };
 
   useEffect(() => {
     if(landingPage){
-      setStatus('landing')
+      setStatus('landing');
       setImage(landingPage)
     }
-  }, [landingPage])
+  }, [landingPage]);
 
 
   useEffect(() => {
     if(status === 'hunting'){
-      alert(`Have yourself an Easter egg hunt without leaving the safety and comfort of your own home! There are 50 eggs hidden inside this house. Use the arrows to navigate, and click on an egg when you find it! Have fun, and try to collect them all!
-      (Click "Give Up" when you are done playing.)`)
+      alert(`Have yourself an Easter egg hunt without leaving the safety and comfort of your own home! There are 50 eggs hidden inside this house. Click on the arrows to navigate, and click on an egg when you find it to add it to your score! Have fun, and try to collect them all!\n(Click "Give Up" when you are done playing.)`)
     }
-  }, [status])
+  }, [status]);
 
   useEffect(() => {
     switch(status) {
@@ -139,26 +150,53 @@ function App() {
       break;
       default:
     }
-  }, [status, currentLocation, landingPage])
+  }, [status, currentLocation, landingPage]);
 
   // On first mount, check if we need to load up a map
   useEffect(() => {
     if (image) {
-      let scaleX = width / image.width
-      let scaleY = height / image.height
-      let scale = Math.min(scaleX, scaleY)
-      let imageX = (window.innerWidth/2) - (image.width * scale * 0.5)
-      setScale(scale)
+      let scaleX = width / image.width;
+      let scaleY = height / image.height;
+      let scale = Math.min(scaleX, scaleY);
+      let imageX = (window.innerWidth/2) - (image.width * scale * 0.5);
+      setScale(scale);
       setImageX(imageX)
     }
-  }, [image])
+  }, [image]);
 
   let changeLocation = (newLocationName) => {
     setCurrentLocation(maps[newLocationName])
+  };
+
+  const generateGiveUpMessage = () => {
+    if (score === 50) {
+      alert(`${name} is a super hunter who found all 50 eggs!\nWOW!! Thanks for playing, and hope to see you again, soon!`);
+    } else {
+      alert(`${name} found ${score} out of 50 eggs!\nThanks for playing!`);
+    }
+  };
+
+  function renderLoadingScreen() {
+    let screen = [];
+    for (let i = 0; i < 13; i++) {
+      screen.push(<div
+        style={{
+          position: "absolute",
+          top: `${Math.floor((Math.random() * 1000))}px`,
+          left: `${Math.floor((Math.random() * 1000))}px`,
+          transform: `rotate(${Math.floor((Math.random() * 360))}deg) 
+          scale(${Math.floor((Math.random() * 10))}, ${Math.floor((Math.random() * 10))}`,
+        }}>
+        LOADING
+      </div>);
+    }
+    return screen;
   }
 
   if (status === 'loading') {
-    return (<div>Loading</div>)
+    return (<div>
+      {renderLoadingScreen()}
+    </div>)
   } else if (status === 'landing'  || status === 'checking name') {
     return (
       <>
@@ -169,7 +207,7 @@ function App() {
         autoFocus
         style={{
           position: "absolute",
-          top: `${870 * scale}px`,
+          top: `${870 * scale - 30}px`,
           left: `${imageX + (image.width / 2 * scale) - (200* scale)}px`,
           zIndex: 999,
           height: `${70 * scale}px`,
@@ -183,7 +221,7 @@ function App() {
           value="Start!"
           style={{
             position: "absolute",
-            top: `${975 * scale}px`,
+            top: `${975 * scale - 30}px`,
             left: `${imageX + (image.width / 2 * scale) - (150* scale)}px`,
             zIndex: 999,
             height: `${120 * scale}px`,
@@ -234,14 +272,14 @@ function App() {
           }}
           onClick={() => {
             controlAudio('stop');
-            alert(`${name} found ${score} out of 36 eggs!\nThanks for playing!`);
+            generateGiveUpMessage();
             setStatus('landing');
             setName('');
             setScore(0);
             setFoundEggs([]);
             setFoundKeys([]);
             resetTriggers();
-            setCurrentLocation(maps.ENTRANCE);
+            setCurrentLocation(maps.LIVINGROOM);
           }
         }
         />
@@ -255,7 +293,7 @@ function App() {
           <input
               type="range"
               min="1"
-              max="200"
+              max="1000"
               value={eggRadius}
               style={{position: "absolute", top: '70px', left: '0px', zIndex: 999}}
               onChange={(e) => setEggRadius(e.target.value)}
@@ -299,7 +337,7 @@ function App() {
             x={15}
             y={10}
             wrap
-            text={`Current Score: ${score}`}
+            text={`Eggs Found: ${score}/50`}
             fontSize={30}
           />
 
@@ -307,7 +345,7 @@ function App() {
           <Image
             image={arrowUp}
             x={window.innerWidth * 0.5 - (arrowUp ? arrowUp.width : 0) * 0.5 * 0.1}
-            y={window.innerHeight * 0.8 - (arrowUp ? arrowUp.height : 0) * 0.5 * 0.1}
+            y={window.innerHeight * 0.8 - (arrowUp ? arrowUp.height : 0) * 0.5 * 0.2}
             scaleX={0.1}
             scaleY={0.1}
             onClick={() => changeLocation(currentLocation.up)}
@@ -324,7 +362,7 @@ function App() {
           { currentLocation.left &&
           <Image
             image={arrowLeft}
-            x={window.innerWidth * 0.47 - (arrowLeft ? arrowLeft.width : 0) * 0.5 * 0.1}
+            x={window.innerWidth * 0.47 - (arrowLeft ? arrowLeft.width : 0) * 0.5 * 0.2}
             y={window.innerHeight * 0.78 + (arrowLeft ? arrowLeft.height : 0) * 0.5 * 0.1}
             scaleX={0.1}
             scaleY={0.1}
@@ -333,43 +371,26 @@ function App() {
           { currentLocation.right &&
           <Image
             image={arrowRight}
-            x={window.innerWidth * 0.53 - (arrowRight ? arrowRight.width : 0) * 0.5 * 0.1}
+            x={window.innerWidth * 0.53}
             y={window.innerHeight * 0.78 + (arrowRight ? arrowRight.height : 0) * 0.5 * 0.1}
             scaleX={0.1}
             scaleY={0.1}
             onClick={() => changeLocation(currentLocation.right)}
           />}
-
-          { currentLocation.elevatorUp &&
-          <Image
-            image={elevatorUp}
-            x={window.innerWidth * 0.47 - (arrowLeft ? arrowLeft.width : 0) * 0.5 * 0.1}
-            y={window.innerHeight * 0.74 - (arrowUp ? arrowUp.height : 0) * 0.5 * 0.1}
-            scaleX={0.5}
-            scaleY={0.5}
-            onClick={() => changeLocation(currentLocation.elevatorUp)}
-          />}
-          { currentLocation.elevatorDown &&
-          <Image
-            image={elevatorDown}
-            x={window.innerWidth * 0.53 - (elevatorDown ? elevatorDown.width : 0) * 0.5 * 0.1}
-            y={window.innerHeight * 0.76 - (arrowUp ? arrowUp.height : 0) * 0.5 * 0.1}
-            scaleX={0.5}
-            scaleY={0.5}
-            onClick={() => changeLocation(currentLocation.elevatorDown)}
-          />}
           { currentLocation.mystery &&
           <Image
-              image={mysteryOrInvisible}
-              x={window.innerWidth * 0.53 - (elevatorDown ? elevatorDown.width : 0) * 0.5 * 0.1}
-              y={window.innerHeight * 0.76 - (arrowUp ? arrowUp.height : 0) * 0.5 * 0.1}
-              scaleX={0.5}
-              scaleY={0.5}
-              onClick={() => {
-                changeLocation(currentLocation.mystery)
-                controlAudio('stop');
-              }}
+            image={arrowRight}
+            x={window.innerWidth * 0.53}
+            y={window.innerHeight * 0.78 + (arrowRight ? arrowRight.height : 0) * 0.5 * 0.1}
+            scaleX={0.1}
+            scaleY={0.1}
+            onClick={() => {
+              changeLocation(currentLocation.mystery);
+              controlAudio('stop');
+              }
+            }
           />}
+
 
           {// If in HUNT_MODE, put invisible circles on unfound eggs and stars on found eggs
             HUNT_MODE ?
@@ -391,9 +412,9 @@ function App() {
                       y={ (egg.eggY * scale)}
                       innerRadius={ egg.eggRadius * scale * 0.7}
                       outerRadius={ egg.eggRadius * scale * 1.5}
-                      rotation={10}
+                      rotation={10 * egg.eggRadius}
                       numPoints={5}
-                      fill='#F96302'
+                      fill='#F7BEA0'
                       stroke='black'
                       strokeWidth={2 * scale}
                       key={`${currentLocation.name}egg${i}`}
@@ -418,30 +439,39 @@ function App() {
             currentLocation.keys.map((key, i) => (
                 foundKeys.indexOf(`${currentLocation.name}key${i}`) === -1 ?
                     <Circle
-                        x={imageX + (key.keyX * scale)}
-                        y={(key.keyY * scale)}
-                        radius={key.keyRadius * scale}
-                        onClick={() => {
-                          triggerRoomUnlock('test')
-                          setFoundKeys([`${currentLocation.name}key${i}`, ...foundKeys])
-                        }}
-                        key={`${currentLocation.name}key${i}`}
+                      x={imageX + (key.keyX * scale)}
+                      y={(key.keyY * scale)}
+                      radius={key.keyRadius * scale}
+                      onClick={() => {
+                        triggerRoomUnlock(currentLocation.name)
+                        setFoundKeys([`${currentLocation.name}key${i}`, ...foundKeys])
+                      }}
+                      key={`${currentLocation.name}key${i}`}
                     />
                     :
-                    <Star
-                        x={imageX + (key.keyX * scale)}
-                        y={(key.keyY * scale)}
-                        innerRadius={key.keyRadius * scale * 0.7}
-                        outerRadius={key.keyRadius * scale * 1.5}
-                        rotation={10}
-                        numPoints={5}
-                        fill='blue'
-                        stroke='black'
-                        strokeWidth={2 * scale}
-                        key={`${currentLocation.name}key${i}`}
+                    <Image
+                      image={checkmark}
+                      x={imageX + (key.keyX * scale) - (scale * key.keyRadius)}
+                      y={(key.keyY * scale) - (scale * key.keyRadius)}
+                      width={ scale * key.keyRadius * 2}
+                      height={ scale * key.keyRadius * 2}
+                      key={`${currentLocation.name}key${i}`}
                     />
                     )
             ) : null
+          }
+          {score === maxScore ?
+            <Image
+              image={congratulations}
+              x={window.innerWidth * 0.5 - 250}
+              y={window.innerHeight * 0.5 - 250}
+              scaleX={0.5}
+              scaleY={0.5}
+              onClick={() => {
+                triggerRoomUnlock('MYSTERY')
+                setMaxScore(250)
+              }}
+            /> : null
           }
         </Layer>
       </Stage>
