@@ -11,7 +11,7 @@ import {
 import useImage from 'use-image';
 import maps from './maps.json';
 
-import soundfile from './sounds/splashPageMusic.mp3';
+import soundfile from './sounds/huntingMusic.mp3';
 
 // Turn off HUNT_MODE to enable tools to get the x/y/radius of the eggs
 const HUNT_MODE = true;
@@ -60,7 +60,7 @@ function App() {
   const [eggY, setEggY] = useState(446);
   const [eggRadius, setEggRadius] = useState(30);
 
-  const [landingPage] = useImage('ATNEggHunt.png');
+  const [landingPage] = useImage('SplashPage.jpg');
   const [arrowUp] = useImage('ArrowUp.png');
   const [arrowDown] = useImage('ArrowDown.png');
   const [arrowLeft] = useImage('ArrowLeft.png');
@@ -169,7 +169,7 @@ function App() {
         autoFocus
         style={{
           position: "absolute",
-          top: `${870 * scale}px`,
+          top: `${870 * scale - 30}px`,
           left: `${imageX + (image.width / 2 * scale) - (200* scale)}px`,
           zIndex: 999,
           height: `${70 * scale}px`,
@@ -183,7 +183,7 @@ function App() {
           value="Start!"
           style={{
             position: "absolute",
-            top: `${975 * scale}px`,
+            top: `${975 * scale - 30}px`,
             left: `${imageX + (image.width / 2 * scale) - (150* scale)}px`,
             zIndex: 999,
             height: `${120 * scale}px`,
