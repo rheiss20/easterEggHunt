@@ -1,7 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-# ATN Egg Hunt
-A fun application for hunting down easter eggs hidden throughout the ATN
+# Easter Egg Hunt
+A fun application for hunting down easter eggs in a house
 
 ## Images
 All images for the rooms are in the `public/images` folder. 
