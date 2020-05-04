@@ -108,6 +108,10 @@ export function App() {
     setImageForRoom(maps.LIVINGROOM, maps.IMAGECHANGES.livingRoomLockedImage);
     setImageForRoom(maps.BEDROOMCORNER, maps.IMAGECHANGES.bedroomCornerLockedImage);
 
+    if (maxScore === 250) {
+      setMaxScore(50);
+    }
+
     if (maps.LIVINGROOM.up) {
       delete maps.LIVINGROOM.up;
     }
