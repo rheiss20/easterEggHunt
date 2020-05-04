@@ -13,7 +13,7 @@ class QuizApp extends Component {
     totalQuestions: PropTypes.number.isRequired
   };
 
-  getInitialState(totalQuestions) {
+  getInitialState (totalQuestions) {
     const QUESTIONS = QUESTION_DATA.slice(0, 10);
     totalQuestions = Math.min(totalQuestions, QUESTION_DATA.length);
 
@@ -23,7 +23,7 @@ class QuizApp extends Component {
       userAnswers: QUESTIONS.map(() => {
         return {
           tries: 0
-        }
+        };
       }),
       step: 1,
       modal: {
@@ -55,9 +55,7 @@ class QuizApp extends Component {
       });
 
       setTimeout(this.nextStep, 1000);
-    }
-
-    else if (e.target.nodeName === 'LI') {
+    } else if (e.target.nodeName === 'LI') {
       e.target.style.pointerEvents = 'none';
       e.target.classList.add('wrong');
 
@@ -96,7 +94,7 @@ class QuizApp extends Component {
     });
   };
 
-  render() {
+  render () {
     const { step, questions, userAnswers, totalQuestions } = this.state;
 
     if (step >= totalQuestions + 1) {
@@ -106,16 +104,18 @@ class QuizApp extends Component {
           userAnswers={userAnswers}
         />
       );
-    } else return (
-      <Fragment>
-        <Quiz
-          step={step}
-          questions={questions}
-          handleAnswerClick={this.handleAnswerClick}
-          handleEnterPress={this.handleEnterPress}
-        />
-      </Fragment>
-    );
+    } else {
+      return (
+        <Fragment>
+          <Quiz
+            step={step}
+            questions={questions}
+            handleAnswerClick={this.handleAnswerClick}
+            handleEnterPress={this.handleEnterPress}
+          />
+        </Fragment>
+      );
+    }
   }
 }
 
