@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import tally from '../helpers/tally';
+import { Layer, Portal } from 'konva';
 
 const Results = ({ userAnswers, restartQuiz }) => {
   const triesTotal = tally(userAnswers);
@@ -10,15 +11,15 @@ const Results = ({ userAnswers, restartQuiz }) => {
   const fourTries = triesTotal[4] && <div><strong>{triesTotal[4]}</strong> on the fourth try.</div>;
 
   return (
-    <div className="results-container">
-      <h2>Quiz Results</h2>
-      <div>You answered...</div>
+    <Layer className="results-container">
+      <Portal>Quiz Results</Portal>
+      <Portal>You answered...</Portal>
       {oneTry}
       {twoTries}
       {threeTries}
       {fourTries}
-      <a onClick={restartQuiz}>Restart Quiz</a>
-    </div>
+      <Portal onClick={restartQuiz}>Restart Quiz</Portal>
+    </Layer>
   );
 };
 

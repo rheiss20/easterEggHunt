@@ -12,6 +12,7 @@ import useImage from 'use-image';
 import maps from './maps.json';
 
 import soundfile from './sounds/huntingMusic.mp3';
+import { QuizSection } from './quiz/main';
 
 // *****************************************************
 
@@ -43,14 +44,14 @@ const width = window.innerWidth;
 const audioElement = new Audio(soundfile);
 
 const controlAudio = (command) => {
-  if (command === 'play'){
-    audioElement.loop = true;
-    audioElement.volume = 0.2;
-    audioElement.play();
-  } else if (command === 'stop'){
-    audioElement.pause();
-    audioElement.currentTime = 0;
-  }
+  // if (command === 'play'){
+  //   audioElement.loop = true;
+  //   audioElement.volume = 0.2;
+  //   audioElement.play();
+  // } else if (command === 'stop'){
+  //   audioElement.pause();
+  //   audioElement.currentTime = 0;
+  // }
 };
 
 // ******************************************
@@ -59,7 +60,7 @@ export function App() {
   const [status, setStatus] = useState('loading');
 
   const [name, setName] = useState('');
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useState(49);
   const [maxScore, setMaxScore] = useState(50);
   const [foundEggs, setFoundEggs] = useState([]);
   const [foundKeys, setFoundKeys] = useState([]);
@@ -124,7 +125,6 @@ export function App() {
   };
 
   // ******************************************************************
-
 
   let handleImageDrag = event => {
     setEggX((event.target.attrs.x- imageX) / scale );
@@ -394,7 +394,15 @@ export function App() {
               }
             }
           />}
-
+          {currentLocation.quiz &&
+          <Image
+            image={arrowUp}
+            x={window.innerWidth * 0.5 - (arrowUp ? arrowUp.width : 0) * 0.5 * 0.1}
+            y={window.innerHeight * 0.8 - (arrowUp ? arrowUp.height : 0) * 0.5 * 0.2}
+            scaleX={0.1}
+            scaleY={0.1}
+            onClick={() => {setStatus('quiz')}}
+          />}
 
           {// If in HUNT_MODE, put invisible circles on unfound eggs and stars on found eggs
             HUNT_MODE ?
@@ -480,7 +488,31 @@ export function App() {
         </Layer>
       </Stage>
       </>);
-  } else {
+  } else if (status === 'quiz') {
+    return (
+      <>
+        <Stage
+          width={window.innerWidth}
+          height={window.innerHeight}
+          style={{
+            height: '100%',
+            width: '100%',
+            fontFamily: `'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif`,
+            background: `rgb(249,219,61)`,
+            color: `#222`,
+            margin: `0`,
+            padding: `0`,
+            overflowY: `scroll`,
+            fontSize: `16px`,
+          }}
+        >
+          <Layer>
+            <QuizSection/>
+          </Layer>
+        </Stage>
+      </>
+      )
+  }else {
     return (<div>Something done broke</div>)
   }
 

@@ -1,106 +1,108 @@
 import React from 'react';
+import { Text } from 'react-konva';
+
 
 const QUESTION_DATA = [
   {
-    question: <span>Do you love Easter?</span>,
+    question: <Text text="Do you love Easter?" key={'q1'}/>,
     answers: [
-      <span key={'ans1'}>It&apos;s okay, I guess.</span>,
-      <span key={'ans2'}>I love it more than my own life!</span>,
-      <span key={'ans3'}>Easter sucks</span>,
-      <span key={'ans4'}>I like Easter</span>
-    ],
-    correct: 1
+    <Text text="It's okay, I guess." key={'ans1'}/>,
+    <Text text="I love it more than my own life!" key={'ans2'}/>,
+    <Text text="Easter sucks" key={'ans3'}/>,
+    <Text text="I like Easter" key={'ans4'}/>
+  ],
+  correct: 1
   },
   {
-    question: <span>How many eggs were in the second house?</span>,
+    question: <Text text="How many eggs were in the first house?" key={'q2'}/>,
     answers: [
-      <span key={'ans1'}>5</span>,
-      <span key={'ans2'}>10</span>,
-      <span key={'ans3'}>15</span>,
-      <span key={'ans4'}>20</span>
-    ],
-    correct: 2
-  },
-  {
-    question: <span>What room in the first house had the most eggs?</span>,
-    answers: [
-      <span key={'ans1'}>Bathroom</span>,
-      <span key={'ans2'}>Kitchen</span>,
-      <span key={'ans3'}>Living Room</span>,
-      <span key={'ans4'}>Bedroom</span>
+    <Text text="36" key={'ans1'}/>,
+    <Text text="2" key={'ans2'}/>,
+    <Text text="23" key={'ans3'}/>,
+    <Text text="50" key={'ans4'}/>
     ],
     correct: 3
   },
   {
-    question: <span>What is the family name of the couple that lives in the second house?</span>,
+    question: <Text text="How many eggs were in the second house?" key={'q3'}/>,
     answers: [
-      <span key={'ans1'}>NAME INPUT FROM BEGINNING</span>,
-      <span key={'ans2'}>Tobias</span>,
-      <span key={'ans3'}>Coneys</span>,
-      <span key={'ans4'}>Peters</span>
-    ],
-    correct: 1
-  },
-  {
-    question: <span>What was the family name of the family that lived in the first house?</span>,
-    answers: [
-      <span key={'ans1'}>Cirillo</span>,
-      <span key={'ans2'}>Zeng</span>,
-      <span key={'ans3'}>Olegário</span>,
-      <span key={'ans4'}>Fernandez-Beleta</span>
-    ],
+    <Text text="5" key={'ans1'}/>,
+    <Text text="10" key={'ans2'}/>,
+    <Text text="15" key={'ans3'}/>,
+    <Text text="20" key={'ans4'}/>
+  ],
     correct: 2
   },
   {
-    question: <span>Which house was your favorite?</span>,
+    question: <Text text="What room in the first house had the fewest eggs?" key={'q4'}/>,
     answers: [
-      <span key={'ans1'}>Second house (no pets, works days, leaves door unlocked)</span>,
-      <span key={'ans2'}>First house (<s>always gone</s> NO!!)</span>,
-      <span key={'ans3'}>Third house (heavy sleeper, )</span>,
-      <span key={'ans4'}>Fifth house (didn&apos;t need camera, didn&apos;t need to clean)</span>
-    ],
+    <Text text="Bathroom" key={'ans1'}/>,
+    <Text text="Living Room" key={'ans2'}/>,
+    <Text text="Laundry Hall" key={'ans3'}/>,
+    <Text text="Bedroom" key={'ans4'}/>
+  ],
+    correct: 2
+  },
+  {
+    question: <Text text="What is the last name of the family that lives in the second house?" key={'q5'}/>,
+    answers: [
+    <Text text="NAME INPUT FROM BEGINNING" key={'ans1'}/>,
+    <Text text="Tobias" key={'ans2'}/>,
+    <Text text="Coneys" key={'ans3'}/>,
+    <Text text="Peters" key={'ans4'}/>
+  ],
+    correct: 1
+  },
+  {
+    question: <Text text="What was the last name of the couple that lived in the first house?," key={'q6'}/>,
+    answers: [
+    <Text text="Cirillo" key={'ans1'}/>,
+    <Text text="Zeng" key={'ans2'}/>,
+    <Text text="Olegário" key={'ans3'}/>,
+    <Text text="Fernandez-Beleta" key={'ans4'}/>
+  ],
+    correct: 2
+  },
+  {
+    question: <Text text="Which house was your favorite?" key={'q7'}/>,
+    answers: [
+    <Text text="Second house (no pets, works days, leaves door unlocked)" key={'ans1'}/>,
+    <Text text={`First house (<s>always gone</s>) NO!!`} key={'ans2'}/>,
+    <Text text="Third house (heavy sleeper)" key={'ans3'}/>,
+    <Text text="Fifth house (didn't need camera, didn't need to clean up)" key={'ans4'}/>
+  ],
     correct: 0
   },
   {
-    question: <span>What happened to the family in the first house?</span>,
+    question: <Text text="What happened to the family in the first house?" key={'q8'}/>,
     answers: [
-      <span key={'ans1'}>I don&apos;t know</span>,
-      <span key={'ans2'}>Nothing, they&apos;re fine</span>,
-      <span key={'ans3'}>               </span>,
-      <span key={'ans4'}>It was either you or them</span>
-    ],
+    <Text text="I don't know," key={'ans1'}/>,
+    <Text text="Nothing, they're fine," key={'ans2'}/>,
+    <Text text="               " key={'ans3'}/>,
+    <Text text="It was either you or them" key={'ans4'}/>
+  ],
     correct: 2
   },
   {
-    question: <span>Will they find anything?</span>,
+    question: <Text text="" key={'q9'}/>,
     answers: [
-      <span key={'ans1'}>No, I collected all the pieces</span>,
-      <span key={'ans2'}>No, I searched everywhere</span>,
-      <span key={'ans3'}>No, I changed the photos</span>,
-      <span key={'ans4'}>All of the above.</span>
-    ],
+    <Text text="No, I collected all the pieces," key={'ans1'}/>,
+    <Text text="No, I searched everywhere" key={'ans2'}/>,
+    <Text text="No, I covered my tracks" key={'ans3'}/>,
+    <Text text="All of the above" key={'ans4'}/>
+  ],
     correct: 3
   },
   {
-    question: <span>What is CORS?</span>,
-    answers: [
-      <span key={'ans1'}>Cross-Origin Resource Sharing</span>,
-      <span key={'ans2'}>Allows restricted resources (e.g. fonts) on a web page to be requested from an outside domain.</span>,
-      <span key={'ans3'}>Allows scripts to interact more openly with content outside of the original domain, leading to better integration between web services.</span>,
-      <span key={'ans4'}>All of the above.</span>
-    ],
+    question: <Text text="Where in the first house did IT happen?" key={'q10'}/>,
+      answers: [
+    <Text text="Bathroom" key={'ans1'}/>,
+    <Text text="Bathroom" key={'ans2'}/>,
+    <Text text="Bathroom" key={'ans3'}/>,
+    <Text text="Bathroom" key={'ans4'}/>,
+  ],
     correct: 3
   },
-  {
-    question: <span>What is an Angular expression?</span>,
-    answers: [
-      <span key={'ans1'}>A JavaScript-like code snippet that is evaluated by Angular.</span>,
-      <span key={'ans2'}>A code snippet that is evaluated in the context of the current model scope, rather than within the scope of the global context (window).</span>,
-      <span key={'ans3'}>A binding in double curly brackets that gets evaluated and the results appear in the DOM in place of it.</span>,
-      <span key={'ans4'}>All of the above.</span>
-    ],
-    correct: 3
-  }
 ];
 
 export default QUESTION_DATA;

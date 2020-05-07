@@ -1,9 +1,13 @@
-import React from 'react';
-import { render } from 'react-dom';
+import React, { Component } from 'react';
 import QuizApp from './components/QuizApp';
-import './style.css';
 
-render(
-  <QuizApp totalQuestions={10} />,
-  document.getElementById('app')
-);
+export class QuizSection extends Component {
+  render() {
+    console.log('It actually renders the QuizSection component');
+    return (
+      <QuizApp
+        totalQuestions={10}
+      />
+    )
+  }
+}

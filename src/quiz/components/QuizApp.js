@@ -1,8 +1,9 @@
-import React, { Fragment, Component } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Quiz from './Quiz';
 import Results from './Results';
 import QUESTION_DATA from '../data/quiz-data';
+import { Group } from 'react-konva';
 
 class QuizApp extends Component {
   state = {
@@ -106,14 +107,15 @@ class QuizApp extends Component {
       );
     } else {
       return (
-        <Fragment>
+        <Group>
           <Quiz
             step={step}
             questions={questions}
             handleAnswerClick={this.handleAnswerClick}
             handleEnterPress={this.handleEnterPress}
+            totalQuestions={totalQuestions}
           />
-        </Fragment>
+        </Group>
       );
     }
   }
