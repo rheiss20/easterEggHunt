@@ -15,6 +15,7 @@ const Answer = ({ answer, handleAnswerClick, handleEnterPress }) => {
         padding: '.3em',
         marginBottom: '.3em',
         border: '5px solid transparent',
+        display: 'list-item',
       }}
     >
       {answer}

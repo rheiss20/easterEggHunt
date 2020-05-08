@@ -54,7 +54,7 @@ const QUESTION_DATA = [
     correct: 1
   },
   {
-    question: <Text text="What was the last name of the couple that lived in the first house?," key={'q6'}/>,
+    question: <Text text="What was the last name of the couple that lived in the first house?" key={'q6'}/>,
     answers: [
     <Text text="Cirillo" key={'ans1'}/>,
     <Text text="Zeng" key={'ans2'}/>,

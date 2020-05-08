@@ -7,9 +7,9 @@ const QuestionList = ({ questions, handleAnswerClick, handleEnterPress }) => {
   return (
     <Group
       className="question-list"
-      style={{
-        padding: 0,
-      }}
+      // style={{
+      //   padding: 0,
+      // }}
     >
       {questions.map(question => {
         return (

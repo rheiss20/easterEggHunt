@@ -44,7 +44,7 @@ const Quiz = ({ step, questions, totalQuestions, handleAnswerClick, handleEnterP
           text="Custom Quiz"
           style={{
             fontWeight: 'normal',
-            fontSize: `2.25em`,
+            fontSize: `3em`,
             textTransform: `uppercase`,
             letterSpacing: `-1px`,
             textAlign: `center`,
@@ -56,7 +56,7 @@ const Quiz = ({ step, questions, totalQuestions, handleAnswerClick, handleEnterP
       <Group
         className="questions"
         style={{
-          width: '85%',
+          width: '75%',
           margin: '35px auto 0',
         }}
       >

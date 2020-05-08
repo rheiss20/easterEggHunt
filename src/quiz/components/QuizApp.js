@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Quiz from './Quiz';
 import Results from './Results';
 import QUESTION_DATA from '../data/quiz-data';
-import { Group } from 'react-konva';
+import { Group, Layer } from 'react-konva';
 
 class QuizApp extends Component {
   state = {

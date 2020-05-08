@@ -25,10 +25,10 @@ h1 {
   text-align: center;
 }
 
-h2 {
-  font-size: 1.25em;
-  margin: 0 0 15px;
-}
+/*h2 {*/
+/*  font-size: 1.25em;*/
+/*  margin: 0 0 15px;*/
+/*}*/
 
 /*header {*/
 /*  display: flex;*/
@@ -95,9 +95,9 @@ code {
 /*  border: 5px solid transparent;*/
 /*}*/
 
-.question-answer span {
-  line-height: 1.3;
-}
+/*.question-answer span {*/
+/*  line-height: 1.3;*/
+/*}*/
 
 .answer {
   font-size: 1em;
@@ -111,18 +111,18 @@ code {
   display: block;
 }
 
-.results-container {
-  width: 100%;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  height: 100%;
-  font-size: 1.75em;
-  line-height: 1.75em;
-  animation: slide-in .4s ease;
-}
+/*.results-container {*/
+/*  width: 100%;*/
+/*  margin: 0 auto;*/
+/*  display: flex;*/
+/*  align-items: center;*/
+/*  justify-content: center;*/
+/*  flex-direction: column;*/
+/*  height: 100%;*/
+/*  font-size: 1.75em;*/
+/*  line-height: 1.75em;*/
+/*  animation: slide-in .4s ease;*/
+/*}*/
 
 .results-total {
   margin-top: 15px;

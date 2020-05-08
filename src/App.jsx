@@ -6,7 +6,8 @@ import {
     Rect,
     Stage,
     Star,
-    Text
+    Text,
+    Group,
 } from 'react-konva';
 import useImage from 'use-image';
 import maps from './maps.json';
@@ -490,13 +491,10 @@ export function App() {
       </>);
   } else if (status === 'quiz') {
     return (
-      <>
         <Stage
           width={window.innerWidth}
           height={window.innerHeight}
           style={{
-            height: '100%',
-            width: '100%',
             fontFamily: `'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif`,
             background: `rgb(249,219,61)`,
             color: `#222`,
@@ -506,11 +504,13 @@ export function App() {
             fontSize: `16px`,
           }}
         >
-          <Layer>
+          <Layer
+            width={window.innerWidth}
+            height={window.innerHeight}
+          >
             <QuizSection/>
           </Layer>
         </Stage>
-      </>
       )
   }else {
     return (<div>Something done broke</div>)
