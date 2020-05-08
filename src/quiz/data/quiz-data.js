@@ -4,7 +4,7 @@ const QUESTION_DATA = [
   {
     question: <span key={'q1'}>Do you love Easter?</span>,
     answers: [
-      <span key={'a'}>It&apos;s okay, I guess.</span>,
+      <span key={'a'}>It's okay, I guess.</span>,
       <span key={'b'}>I love it more than my own life!</span>,
       <span key={'c'}>Easter sucks</span>,
       <span key={'d'}>I like Easter</span>
@@ -29,10 +29,10 @@ const QUESTION_DATA = [
       <span key={'c'}>15</span>,
       <span key={'d'}>20</span>
     ],
-    correct: 2
+    correct: 1
   },
   {
-    question: <span key={'q4'}>What room in the first house had the fewest eggs?</span>,
+    question: <span key={'q4'}>Which room in the first house had the fewest eggs?</span>,
     answers: [
       <span key={'a'}>Bathroom</span>,
       <span key={'b'}>Living Room</span>,
@@ -52,7 +52,7 @@ const QUESTION_DATA = [
     correct: 1
   },
   {
-    question: <span key={'q6'}>What was the family name of the couple that lived in the first house?</span>,
+    question: <span key={'q6'}>What <strong>was</strong> the last name of the couple that lived in the first house?</span>,
     answers: [
       <span key={'a'}>Cirillo</span>,
       <span key={'b'}>Zeng</span>,
@@ -65,34 +65,34 @@ const QUESTION_DATA = [
     question: <span key={'q7'}>Which house was your favorite?</span>,
     answers: [
       <span key={'a'}>Second house (no pets, works days, leaves door unlocked)</span>,
-      <span key={'b'}>First house (<s>always gone</s> NO!!)</span>,
+      <span key={'b'}>First house <s>(always gone)</s></span>,
       <span key={'c'}>Third house (heavy sleeper, )</span>,
-      <span key={'d'}>Fifth house (didn&apos;t need camera, didn&apos;t need to clean)</span>
+      <span key={'d'}>Fifth house (didn't need camera, didn't need to clean)</span>
     ],
     correct: 0
   },
   {
-    question: <span key={'q8'}>What happened to the family in the first house?</span>,
+    question: <span key={'q8'}>What happened to the Olegário couple?</span>,
     answers: [
-      <span key={'a'}>I don&apos;t know</span>,
-      <span key={'b'}>Nothing, they&apos;re fine</span>,
+      <span key={'a'}>I don't know</span>,
+      <span key={'b'}>Nothing, they're fine</span>,
       <span key={'c'}>               </span>,
       <span key={'d'}>It was either you or them</span>
     ],
     correct: 2
   },
   {
-    question: <span key={'q9'}></span>,
+    question: <span key={'q9'}>                             </span>,
     answers: [
-      <span key={'a'}>No, I collected all the pieces</span>,
-      <span key={'b'}>No, I searched everywhere</span>,
-      <span key={'c'}>No, I covered my tracks</span>,
+      <span key={'a'}>No, I'm much too smart for them</span>,
+      <span key={'b'}>No, I put everything back EXACTLY the way I found it</span>,
+      <span key={'c'}>No, I covered up the important parts of the pictures</span>,
       <span key={'d'}>All of the above.</span>
     ],
     correct: 3
   },
   {
-    question: <span key={'q10'}>Where in the first house did IT happen?</span>,
+    question: <span key={'q10'}>Where did you leave them?</span>,
     answers: [
       <span key={'a'}>Bathroom</span>,
       <span key={'b'}>Bathroom</span>,
