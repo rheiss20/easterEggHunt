@@ -126,8 +126,6 @@ export function App() {
 
   // ******************************************************************
 
-  let nameInputFromBeginning = 'David S. Pumpkins';
-
   let handleImageDrag = event => {
     setEggX((event.target.attrs.x- imageX) / scale );
     setEggY((event.target.attrs.y  / scale));
@@ -258,7 +256,7 @@ export function App() {
       </Stage>
       </>
     )
-  } else if (status === 'hunting') {
+  } else if (status === 'hunting' || status === 'resume hunting') {
     return (<>
       {
         HUNT_MODE ?
@@ -493,7 +491,7 @@ export function App() {
   } else if (status === 'quiz') {
     return (
     <div className={'quiz'}>
-      {QuizSection(name)}
+      {QuizSection(name, setStatus)}
     </div>
       )
   }else {

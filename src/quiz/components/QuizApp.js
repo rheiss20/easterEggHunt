@@ -102,6 +102,7 @@ class QuizApp extends Component {
           restartQuiz={this.restartQuiz}
           userAnswers={userAnswers}
           name={this.props.name}
+          setStatus={this.props.setStatus}
         />
       );
     } else {
@@ -114,6 +115,7 @@ class QuizApp extends Component {
             handleEnterPress={this.handleEnterPress}
             totalQuestions={totalQuestions}
             name={this.props.name}
+            setStatus={this.props.setStatus}
           />
         </Fragment>
       );

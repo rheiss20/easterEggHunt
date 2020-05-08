@@ -33,6 +33,13 @@ h2 {
   margin: 0 0 15px;
 }
 
+button {
+  height: 60px;
+  width: 200px;
+  font-size: 30px;
+  background: yellow;
+}
+
 header {
   display: flex;
   justify-content: space-between;
