@@ -1,8 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Group } from 'react-konva';
 
-const Answer = ({ answer, handleAnswerClick, handleEnterPress }) => {
+const Answer = ({ answer, handleAnswerClick, handleEnterPress, name }) => {
+  let generateAnswerToQuestion = () => {
+    if (answer.props.children === 'nameInputFromBeginning') {
+      return name;
+    } else {
+      return answer;
+    }
+  };
+
   return (
     <li
       className="question-answer"
@@ -10,7 +17,7 @@ const Answer = ({ answer, handleAnswerClick, handleEnterPress }) => {
       onClick={handleAnswerClick}
       onKeyDown={handleEnterPress}
     >
-      {answer}
+      {generateAnswerToQuestion()}
     </li>
   );
 };

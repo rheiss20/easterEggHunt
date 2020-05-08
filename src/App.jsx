@@ -7,7 +7,6 @@ import {
     Stage,
     Star,
     Text,
-    Group,
 } from 'react-konva';
 import useImage from 'use-image';
 import maps from './maps.json';
@@ -126,6 +125,8 @@ export function App() {
   };
 
   // ******************************************************************
+
+  let nameInputFromBeginning = 'David S. Pumpkins';
 
   let handleImageDrag = event => {
     setEggX((event.target.attrs.x- imageX) / scale );
@@ -491,8 +492,8 @@ export function App() {
       </>);
   } else if (status === 'quiz') {
     return (
-    <div>
-      <QuizSection/>
+    <div className={'quiz'}>
+      {QuizSection(name)}
     </div>
       )
   }else {

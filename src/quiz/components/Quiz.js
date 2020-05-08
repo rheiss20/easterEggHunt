@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import QuestionList from './QuestionList';
 
-const Quiz = ({ step, questions, totalQuestions, handleAnswerClick, handleEnterPress }) => {
+const Quiz = ({ step, questions, totalQuestions, handleAnswerClick, handleEnterPress, name }) => {
   return (
     <div className="wrapper">
       <header>
@@ -19,6 +19,7 @@ const Quiz = ({ step, questions, totalQuestions, handleAnswerClick, handleEnterP
           questions={questions}
           handleAnswerClick={handleAnswerClick}
           handleEnterPress={handleEnterPress}
+          name={name}
         />
       </div>
     </div>

@@ -44,7 +44,7 @@ const QUESTION_DATA = [
   {
     question: <span key={'q5'}>What is the last name of the family that lives in the second house?</span>,
     answers: [
-      <span key={'a'}>NAME INPUT FROM BEGINNING</span>,
+      <span key={'a'}>nameInputFromBeginning</span>,
       <span key={'b'}>Tobias</span>,
       <span key={'c'}>Coneys</span>,
       <span key={'d'}>Peters</span>

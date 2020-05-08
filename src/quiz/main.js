@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import QuizApp from './components/QuizApp';
+import './style.css';
 
-export class QuizSection extends Component {
-  render() {
-    return (
-      <QuizApp
-        totalQuestions={10}
-      />
-    )
-  }
-}
+export const QuizSection = (name) => {
+  return (
+    <QuizApp
+      totalQuestions={10}
+      name={name}
+    />
+  )
+};

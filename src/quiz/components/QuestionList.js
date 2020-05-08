@@ -2,14 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Question from './Question';
 
-const QuestionList = ({ questions, handleAnswerClick, handleEnterPress }) => {
+const QuestionList = ({ questions, handleAnswerClick, handleEnterPress, name }) => {
   return (
     <ul className="question-list">
       {questions.map(question => {
-        console.log('question: ', question);
-        console.log('question.question: ', question.question);
-        console.log('question.question.props: ', question.question.props);
-        console.log('question.question.props.children: ', question.question.props.children);
         return (
           <Question
             key={question.question.key}
@@ -17,6 +13,7 @@ const QuestionList = ({ questions, handleAnswerClick, handleEnterPress }) => {
             answers={question.answers}
             handleAnswerClick={handleAnswerClick}
             handleEnterPress={handleEnterPress}
+            name={name}
           />
         );
       })}
