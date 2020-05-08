@@ -1,107 +1,105 @@
 import React from 'react';
-import { Text } from 'react-konva';
-
 
 const QUESTION_DATA = [
   {
-    question: <Text text="Do you love Easter?" key={'q1'}/>,
+    question: <span key={'q1'}>Do you love Easter?</span>,
     answers: [
-    <Text text="It's okay, I guess." key={'ans1'}/>,
-    <Text text="I love it more than my own life!" key={'ans2'}/>,
-    <Text text="Easter sucks" key={'ans3'}/>,
-    <Text text="I like Easter" key={'ans4'}/>
-  ],
-  correct: 1
+      <span key={'a'}>It&apos;s okay, I guess.</span>,
+      <span key={'b'}>I love it more than my own life!</span>,
+      <span key={'c'}>Easter sucks</span>,
+      <span key={'d'}>I like Easter</span>
+    ],
+    correct: 1
   },
   {
-    question: <Text text="How many eggs were in the first house?" key={'q2'}/>,
+    question: <span key={'q2'}>How many eggs were in the first house?</span>,
     answers: [
-    <Text text="36" key={'ans1'}/>,
-    <Text text="2" key={'ans2'}/>,
-    <Text text="23" key={'ans3'}/>,
-    <Text text="50" key={'ans4'}/>
+      <span key={'a'}>36</span>,
+      <span key={'b'}>2</span>,
+      <span key={'c'}>23</span>,
+      <span key={'d'}>50</span>
     ],
     correct: 3
   },
   {
-    question: <Text text="How many eggs were in the second house?" key={'q3'}/>,
+    question: <span key={'q3'}>How many eggs were in the second house?</span>,
     answers: [
-    <Text text="5" key={'ans1'}/>,
-    <Text text="10" key={'ans2'}/>,
-    <Text text="15" key={'ans3'}/>,
-    <Text text="20" key={'ans4'}/>
-  ],
+      <span key={'a'}>5</span>,
+      <span key={'b'}>10</span>,
+      <span key={'c'}>15</span>,
+      <span key={'d'}>20</span>
+    ],
     correct: 2
   },
   {
-    question: <Text text="What room in the first house had the fewest eggs?" key={'q4'}/>,
+    question: <span key={'q4'}>What room in the first house had the fewest eggs?</span>,
     answers: [
-    <Text text="Bathroom" key={'ans1'}/>,
-    <Text text="Living Room" key={'ans2'}/>,
-    <Text text="Laundry Hall" key={'ans3'}/>,
-    <Text text="Bedroom" key={'ans4'}/>
-  ],
+      <span key={'a'}>Bathroom</span>,
+      <span key={'b'}>Living Room</span>,
+      <span key={'c'}>Laundry Hall</span>,
+      <span key={'d'}>Bedroom</span>
+    ],
     correct: 2
   },
   {
-    question: <Text text="What is the last name of the family that lives in the second house?" key={'q5'}/>,
+    question: <span key={'q5'}>What is the last name of the family that lives in the second house?</span>,
     answers: [
-    <Text text="NAME INPUT FROM BEGINNING" key={'ans1'}/>,
-    <Text text="Tobias" key={'ans2'}/>,
-    <Text text="Coneys" key={'ans3'}/>,
-    <Text text="Peters" key={'ans4'}/>
-  ],
+      <span key={'a'}>NAME INPUT FROM BEGINNING</span>,
+      <span key={'b'}>Tobias</span>,
+      <span key={'c'}>Coneys</span>,
+      <span key={'d'}>Peters</span>
+    ],
     correct: 1
   },
   {
-    question: <Text text="What was the last name of the couple that lived in the first house?" key={'q6'}/>,
+    question: <span key={'q6'}>What was the family name of the couple that lived in the first house?</span>,
     answers: [
-    <Text text="Cirillo" key={'ans1'}/>,
-    <Text text="Zeng" key={'ans2'}/>,
-    <Text text="Olegário" key={'ans3'}/>,
-    <Text text="Fernandez-Beleta" key={'ans4'}/>
-  ],
+      <span key={'a'}>Cirillo</span>,
+      <span key={'b'}>Zeng</span>,
+      <span key={'c'}>Olegário</span>,
+      <span key={'d'}>Fernandez-Beleta</span>
+    ],
     correct: 2
   },
   {
-    question: <Text text="Which house was your favorite?" key={'q7'}/>,
+    question: <span key={'q7'}>Which house was your favorite?</span>,
     answers: [
-    <Text text="Second house (no pets, works days, leaves door unlocked)" key={'ans1'}/>,
-    <Text text={`First house (<s>always gone</s>) NO!!`} key={'ans2'}/>,
-    <Text text="Third house (heavy sleeper)" key={'ans3'}/>,
-    <Text text="Fifth house (didn't need camera, didn't need to clean up)" key={'ans4'}/>
-  ],
+      <span key={'a'}>Second house (no pets, works days, leaves door unlocked)</span>,
+      <span key={'b'}>First house (<s>always gone</s> NO!!)</span>,
+      <span key={'c'}>Third house (heavy sleeper, )</span>,
+      <span key={'d'}>Fifth house (didn&apos;t need camera, didn&apos;t need to clean)</span>
+    ],
     correct: 0
   },
   {
-    question: <Text text="What happened to the family in the first house?" key={'q8'}/>,
+    question: <span key={'q8'}>What happened to the family in the first house?</span>,
     answers: [
-    <Text text="I don't know," key={'ans1'}/>,
-    <Text text="Nothing, they're fine," key={'ans2'}/>,
-    <Text text="               " key={'ans3'}/>,
-    <Text text="It was either you or them" key={'ans4'}/>
-  ],
+      <span key={'a'}>I don&apos;t know</span>,
+      <span key={'b'}>Nothing, they&apos;re fine</span>,
+      <span key={'c'}>               </span>,
+      <span key={'d'}>It was either you or them</span>
+    ],
     correct: 2
   },
   {
-    question: <Text text="" key={'q9'}/>,
+    question: <span key={'q9'}></span>,
     answers: [
-    <Text text="No, I collected all the pieces," key={'ans1'}/>,
-    <Text text="No, I searched everywhere" key={'ans2'}/>,
-    <Text text="No, I covered my tracks" key={'ans3'}/>,
-    <Text text="All of the above" key={'ans4'}/>
-  ],
+      <span key={'a'}>No, I collected all the pieces</span>,
+      <span key={'b'}>No, I searched everywhere</span>,
+      <span key={'c'}>No, I covered my tracks</span>,
+      <span key={'d'}>All of the above.</span>
+    ],
     correct: 3
   },
   {
-    question: <Text text="Where in the first house did IT happen?" key={'q10'}/>,
-      answers: [
-    <Text text="Bathroom" key={'ans1'}/>,
-    <Text text="Bathroom" key={'ans2'}/>,
-    <Text text="Bathroom" key={'ans3'}/>,
-    <Text text="Bathroom" key={'ans4'}/>,
-  ],
-    correct: 3
+    question: <span key={'q10'}>Where in the first house did IT happen?</span>,
+    answers: [
+      <span key={'a'}>Bathroom</span>,
+      <span key={'b'}>Bathroom</span>,
+      <span key={'c'}>Bathroom</span>,
+      <span key={'d'}>Bathroom</span>
+    ],
+    correct: 2
   },
 ];
 

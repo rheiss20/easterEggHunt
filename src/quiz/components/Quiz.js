@@ -1,72 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Text,
-  Group,
-} from 'react-konva';
 import QuestionList from './QuestionList';
 
 const Quiz = ({ step, questions, totalQuestions, handleAnswerClick, handleEnterPress }) => {
   return (
-    <Group className="wrapper">
-      <Group
-      style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        paddingTop: '20px',
-      }}
-      >
-        <Group className="question-count">
-          <Text
-            text="Question"
-            style={{
-              fontSize: `1.25em`,
-              margin: `0 0 15px`,
-            }}
-          />
-          <Text
-            className="question-number"
-            text={step}
-            style={{
-              fontSize: '4em',
-              fontWeight: '100',
-            }}
-          />
-          <Text
-            className="description"
-            text={`of ${totalQuestions}`}
-            style={{
-              fontSize: '1.5em',
-            }}
-          />
-        <Text
-          text="Custom Quiz"
-          style={{
-            fontWeight: 'normal',
-            fontSize: `3em`,
-            textTransform: `uppercase`,
-            letterSpacing: `-1px`,
-            textAlign: `center`,
-          }}
-        />
-        </Group>
-      </Group>
+    <div className="wrapper">
+      <header>
+        <div className="question-count">
+          <h2>Question</h2>
+          <div className="question-number">{step}</div>
+          <div className="description">of <span>{totalQuestions}</span></div>
+        </div>
+        <h1>Custom Quiz</h1>
+      </header>
 
-      <Group
-        className="questions"
-        style={{
-          width: '75%',
-          margin: '35px auto 0',
-        }}
-      >
+      <div className="questions">
         <QuestionList
           questions={questions}
           handleAnswerClick={handleAnswerClick}
           handleEnterPress={handleEnterPress}
         />
-      </Group>
-    </Group>
+      </div>
+    </div>
   );
 };
 

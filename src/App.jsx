@@ -491,26 +491,9 @@ export function App() {
       </>);
   } else if (status === 'quiz') {
     return (
-        <Stage
-          width={window.innerWidth}
-          height={window.innerHeight}
-          style={{
-            fontFamily: `'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif`,
-            background: `rgb(249,219,61)`,
-            color: `#222`,
-            margin: `0`,
-            padding: `0`,
-            overflowY: `scroll`,
-            fontSize: `16px`,
-          }}
-        >
-          <Layer
-            width={window.innerWidth}
-            height={window.innerHeight}
-          >
-            <QuizSection/>
-          </Layer>
-        </Stage>
+    <div>
+      <QuizSection/>
+    </div>
       )
   }else {
     return (<div>Something done broke</div>)

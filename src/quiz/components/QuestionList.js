@@ -1,17 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Question from './Question';
-import { Group } from 'react-konva';
 
 const QuestionList = ({ questions, handleAnswerClick, handleEnterPress }) => {
   return (
-    <Group
-      className="question-list"
-      // style={{
-      //   padding: 0,
-      // }}
-    >
+    <ul className="question-list">
       {questions.map(question => {
+        console.log('question: ', question);
+        console.log('question.question: ', question.question);
+        console.log('question.question.props: ', question.question.props);
+        console.log('question.question.props.children: ', question.question.props.children);
         return (
           <Question
             key={question.question.key}
@@ -22,7 +20,7 @@ const QuestionList = ({ questions, handleAnswerClick, handleEnterPress }) => {
           />
         );
       })}
-    </Group>
+    </ul>
   );
 };
 

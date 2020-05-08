@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Quiz from './Quiz';
 import Results from './Results';
@@ -107,7 +107,7 @@ class QuizApp extends Component {
       );
     } else {
       return (
-        <Group>
+        <Fragment>
           <Quiz
             step={step}
             questions={questions}
@@ -115,7 +115,7 @@ class QuizApp extends Component {
             handleEnterPress={this.handleEnterPress}
             totalQuestions={totalQuestions}
           />
-        </Group>
+        </Fragment>
       );
     }
   }
