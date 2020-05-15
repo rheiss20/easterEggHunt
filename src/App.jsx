@@ -6,12 +6,13 @@ import {
     Rect,
     Stage,
     Star,
-    Text
+    Text,
 } from 'react-konva';
 import useImage from 'use-image';
 import maps from './maps.json';
 
 import soundfile from './sounds/huntingMusic.mp3';
+import { QuizSection } from './quiz/main';
 
 // *****************************************************
 
@@ -124,7 +125,6 @@ export function App() {
   };
 
   // ******************************************************************
-
 
   let handleImageDrag = event => {
     setEggX((event.target.attrs.x- imageX) / scale );
@@ -256,7 +256,7 @@ export function App() {
       </Stage>
       </>
     )
-  } else if (status === 'hunting') {
+  } else if (status === 'hunting' || status === 'resume hunting') {
     return (<>
       {
         HUNT_MODE ?
@@ -394,7 +394,15 @@ export function App() {
               }
             }
           />}
-
+          {currentLocation.quiz &&
+          <Image
+            image={arrowUp}
+            x={window.innerWidth * 0.5 - (arrowUp ? arrowUp.width : 0) * 0.5 * 0.1}
+            y={window.innerHeight * 0.8 - (arrowUp ? arrowUp.height : 0) * 0.5 * 0.2}
+            scaleX={0.1}
+            scaleY={0.1}
+            onClick={() => {setStatus('quiz')}}
+          />}
 
           {// If in HUNT_MODE, put invisible circles on unfound eggs and stars on found eggs
             HUNT_MODE ?
@@ -480,7 +488,13 @@ export function App() {
         </Layer>
       </Stage>
       </>);
-  } else {
+  } else if (status === 'quiz') {
+    return (
+    <div className={'quiz'}>
+      {QuizSection(name, setStatus)}
+    </div>
+      )
+  }else {
     return (<div>Something done broke</div>)
   }
 
