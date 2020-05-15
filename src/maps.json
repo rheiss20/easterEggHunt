@@ -57,7 +57,6 @@
         "imageName": "./images/bathroom.jpg",
         "fakeImageName": "./fake_images/bathroom.jpg",
         "down": "LAUNDRYHALL",
-        "quiz": "QUIZ",
         "eggs": [{
             "eggX": 3749,
             "eggY": 773,

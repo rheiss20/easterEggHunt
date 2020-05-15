@@ -44,14 +44,14 @@ const width = window.innerWidth;
 const audioElement = new Audio(soundfile);
 
 const controlAudio = (command) => {
-  // if (command === 'play'){
-  //   audioElement.loop = true;
-  //   audioElement.volume = 0.2;
-  //   audioElement.play();
-  // } else if (command === 'stop'){
-  //   audioElement.pause();
-  //   audioElement.currentTime = 0;
-  // }
+  if (command === 'play'){
+    audioElement.loop = true;
+    audioElement.volume = 0.2;
+    audioElement.play();
+  } else if (command === 'stop'){
+    audioElement.pause();
+    audioElement.currentTime = 0;
+  }
 };
 
 // ******************************************
@@ -60,7 +60,7 @@ export function App() {
   const [status, setStatus] = useState('loading');
 
   const [name, setName] = useState('');
-  const [score, setScore] = useState(49);
+  const [score, setScore] = useState(0);
   const [maxScore, setMaxScore] = useState(50);
   const [foundEggs, setFoundEggs] = useState([]);
   const [foundKeys, setFoundKeys] = useState([]);
