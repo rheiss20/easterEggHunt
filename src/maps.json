@@ -327,9 +327,9 @@
         "fakeImageName": "./fake_images/secret2.jpg",
         "up": "DARKPATH",
         "eggs": [{
-            "eggX": 0,
-            "eggY": 0,
-            "eggRadius": 0
+            "eggX": 1495,
+            "eggY": 518,
+            "eggRadius": 114
         }]
     },
     "DARKPATH": {

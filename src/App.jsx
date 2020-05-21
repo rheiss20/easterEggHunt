@@ -60,7 +60,7 @@ export function App() {
   const [status, setStatus] = useState('loading');
 
   const [name, setName] = useState('');
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useState(50);
   const [maxScore, setMaxScore] = useState(50);
   const [foundEggs, setFoundEggs] = useState([]);
   const [foundKeys, setFoundKeys] = useState([]);
