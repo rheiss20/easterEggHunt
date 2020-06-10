@@ -66,7 +66,7 @@ const QUESTION_DATA = [
     answers: [
       <span key={'a'}>Second house (no pets, works days, leaves door unlocked)</span>,
       <span key={'b'}>First house <s>(always gone)</s></span>,
-      <span key={'c'}>Third house (heavy sleeper, )</span>,
+      <span key={'c'}>Third house (heavy sleeper)</span>,
       <span key={'d'}>Fifth house (didn't need camera, didn't need to clean)</span>
     ],
     correct: 0

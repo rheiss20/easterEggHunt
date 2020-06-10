@@ -95,6 +95,21 @@ export function App() {
     }
   }, [image]);
 
+  // CHEATS ************************************************
+
+  if (name === 'CHEAT_howie') {
+    triggerRoomUnlock('MYSTERY');
+    setName('Howie, dear');
+    setStatus('hunting');
+    controlAudio('play');
+    setCurrentLocation(maps.LIVINGROOM);
+  } else if (name === 'CHEAT_quiz') {
+    setName('You little cheater, boy');
+    setStatus('quiz');
+  }
+
+  // *******************************************************
+
   const changeLocation = (newLocationName) => {
     setCurrentLocation(maps[newLocationName])
   };
@@ -158,7 +173,7 @@ export function App() {
       </Stage>
       </>
     )
-  } else if (status === 'hunting' || status === 'resume hunting') {
+  } else if (status === 'hunting') {
     return (<>
       {
         HUNT_MODE ?
