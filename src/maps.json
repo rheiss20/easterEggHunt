@@ -347,6 +347,220 @@
         "name": "DOORINDARK",
         "imageName": "./images/door_in_dark.jpg",
         "fakeImageName": "./fake_images/secret4.jpg",
+        "up": "TUNNELSTART",
+        "eggs": [{
+            "eggX": 0,
+            "eggY": 0,
+            "eggRadius": 0
+        }]
+    },
+    "TUNNELSTART": {
+        "name": "TUNNELSTART",
+        "imageName": "./images/tunnel_start_finished.jpg",
+        "fakeImageName": "./fake_images/tunnel_start_finished.jpg",
+        "up": "WINDOWHALL",
+        "left": "MAINHALLWAY",
+        "eggs": [{
+            "eggX": 0,
+            "eggY": 0,
+            "eggRadius": 0
+        }]
+    },
+    "WINDOWHALL": {
+        "name": "WINDOWHALL",
+        "imageName": "./images/window_hall_finished.jpg",
+        "fakeImageName": "./fake_images/window_hall_finished.jpg",
+        "right": "OPENCEILING",
+        "down": "TUNNELSTART",
+        "eggs": [{
+            "eggX": 0,
+            "eggY": 0,
+            "eggRadius": 0
+        }]
+    },
+    "OPENCEILING": {
+        "name": "OPENCEILING",
+        "imageName": "./images/open_ceiling_finished.jpg",
+        "fakeImageName": "./fake_images/open_ceiling_finished.jpg",
+        "down": "WINDOWHALL",
+        "eggs": [{
+            "eggX": 0,
+            "eggY": 0,
+            "eggRadius": 0
+        }]
+    },
+    "MAINHALLWAY": {
+        "name": "MAINHALLWAY",
+        "imageName": "./images/main_hallway_finished.jpg",
+        "fakeImageName": "./fake_images/main_hallway_finished.jpg",
+        "up": "DOORHALLWAY",
+        "down": "TUNNELSTART",
+        "left": "DOUBLEDOOR",
+        "eggs": [{
+            "eggX": 0,
+            "eggY": 0,
+            "eggRadius": 0
+        }]
+    },
+    "DOORHALLWAY": {
+        "name": "DOORHALLWAY",
+        "imageName": "./images/door_hallway_finished.jpg",
+        "fakeImageName": "./fake_images/door_hallway_finished.jpg",
+        "up": "DEADEND",
+        "down": "MAINHALLWAY",
+        "right": "DOWNSTAIRS",
+        "eggs": [{
+            "eggX": 0,
+            "eggY": 0,
+            "eggRadius": 0
+        }]
+    },
+    "DOUBLEDOOR": {
+        "name": "DOUBLEDOOR",
+        "imageName": "./images/double_door_finished.jpg",
+        "fakeImageName": "./fake_images/double_door_finished.jpg",
+        "up": "BROKENLIGHT",
+        "upTwo": "CHAIRHALLWAY",
+        "down": "MAINHALLWAY",
+        "eggs": [{
+            "eggX": 0,
+            "eggY": 0,
+            "eggRadius": 0
+        }]
+    },
+    "DEADEND": {
+        "name": "DEADEND",
+        "imageName": "./images/dead_end_finished.jpg",
+        "fakeImageName": "./fake_images/dead_end_finished.jpg",
+        "down": "DOORHALLWAY",
+        "eggs": [{
+            "eggX": 0,
+            "eggY": 0,
+            "eggRadius": 0
+        }]
+    },
+    "DOWNSTAIRS": {
+        "name": "DOWNSTAIRS",
+        "imageName": "./images/downstairs_finished.jpg",
+        "fakeImageName": "./fake_images/downstairs_finished.jpg",
+        "down": "DOORHALLWAY",
+        "left": "STAIRCORNER",
+        "eggs": [{
+            "eggX": 0,
+            "eggY": 0,
+            "eggRadius": 0
+        }]
+    },
+    "BROKENLIGHT": {
+        "name": "BROKENLIGHT",
+        "imageName": "./images/broken_light_finished.jpg",
+        "fakeImageName": "./fake_images/broken_light_finished.jpg",
+        "down": "DOUBLEDOOR",
+        "eggs": [{
+            "eggX": 0,
+            "eggY": 0,
+            "eggRadius": 0
+        }]
+    },
+    "CHAIRHALLWAY": {
+        "name": "CHAIRHALLWAY",
+        "imageName": "./images/chair_hallway_finished.jpg",
+        "fakeImageName": "./fake_images/chair_hallway_finished.jpg",
+        "up": "REDHALLWAY",
+        "down": "DOUBLEDOOR",
+        "right": "DIRTYHALLWAY",
+        "eggs": [{
+            "eggX": 0,
+            "eggY": 0,
+            "eggRadius": 0
+        }]
+    },
+    "STAIRCORNER": {
+        "name": "STAIRCORNER",
+        "imageName": "./images/stair_corner_finished.jpg",
+        "fakeImageName": "./fake_images/stair_corner_finished.jpg",
+        "up": "FINALDOOR",
+        "down": "DOWNSTAIRS",
+        "eggs": [{
+            "eggX": 0,
+            "eggY": 0,
+            "eggRadius": 0
+        }]
+    },
+    "REDHALLWAY": {
+        "name": "REDHALLWAY",
+        "imageName": "./images/red_hallway_finished.jpg",
+        "fakeImageName": "./fake_images/red_hallway_finished.jpg",
+        "left": "BRIGHTCORNER",
+        "down": "CHAIRHALLWAY",
+        "eggs": [{
+            "eggX": 0,
+            "eggY": 0,
+            "eggRadius": 0
+        }]
+    },
+    "DIRTYHALLWAY": {
+        "name": "DIRTYHALLWAY",
+        "imageName": "./images/dirty_hallway_finished.jpg",
+        "fakeImageName": "./fake_images/dirty_hallway_finished.jpg",
+        "up": "DIRTYCORNER",
+        "down": "CHAIRHALLWAY",
+        "eggs": [{
+            "eggX": 0,
+            "eggY": 0,
+            "eggRadius": 0
+        }]
+    },
+    "FINALDOOR": {
+        "name": "FINALDOOR",
+        "imageName": "./images/final_door_locked_finished.jpg",
+        "fakeImageName": "./fake_images/final_door_locked_finished.jpg",
+        "down": "STAIRCORNER",
+        "eggs": [{
+            "eggX": 0,
+            "eggY": 0,
+            "eggRadius": 0
+        }]
+    },
+    "BRIGHTCORNER": {
+        "name": "BRIGHTCORNER",
+        "imageName": "./images/bright_corner_finished.jpg",
+        "fakeImageName": "./fake_images/bright_corner_finished.jpg",
+        "down": "REDHALLWAY",
+        "right": "STAIRTOSECONDHOUSE",
+        "eggs": [{
+            "eggX": 0,
+            "eggY": 0,
+            "eggRadius": 0
+        }]
+    },
+    "DIRTYCORNER": {
+        "name": "DIRTYCORNER",
+        "imageName": "./images/dirty_corner_locked_finished.jpg",
+        "fakeImageName": "./fake_images/dirty_corner_locked_finished.jpg",
+        "down": "DIRTYHALLWAY",
+        "eggs": [{
+            "eggX": 0,
+            "eggY": 0,
+            "eggRadius": 0
+        }]
+    },
+    "STAIRTOSECONDHOUSE": {
+        "name": "STAIRTOSECONDHOUSE",
+        "imageName": "./images/stair_to_second_house_finished.jpg",
+        "fakeImageName": "./fake_images/stair_to_second_house_finished.jpg",
+        "down": "BRIGHTCORNER",
+        "eggs": [{
+            "eggX": 0,
+            "eggY": 0,
+            "eggRadius": 0
+        }]
+    },
+    "STAIRTOTHIRDHOUSE": {
+        "name": "STAIRTOTHIRDHOUSE",
+        "imageName": "./images/stair_to_third_house_finished.jpg",
+        "fakeImageName": "./fake_images/stair_to_third_house_finished.jpg",
+        "down": "DIRTYCORNER",
         "eggs": [{
             "eggX": 0,
             "eggY": 0,

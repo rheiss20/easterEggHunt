@@ -271,6 +271,15 @@ export function App() {
             scaleY={0.1}
             onClick={() => changeLocation(currentLocation.up)}
           />}
+          {currentLocation.upTwo &&
+          <Image
+            image={arrowUp}
+            x={window.innerWidth * 0.53}
+            y={window.innerHeight * 0.8 - (arrowUp ? arrowUp.height : 0) * 0.5 * 0.2}
+            scaleX={0.1}
+            scaleY={0.1}
+            onClick={() => changeLocation(currentLocation.upTwo)}
+          />}
           { currentLocation.down &&
           <Image
             image={arrowDown}
