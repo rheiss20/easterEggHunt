@@ -23,9 +23,10 @@ import {
 // *****************************************************
 
 // Turn off HUNT_MODE to enable tools to get the x/y/radius of the eggs
-const HUNT_MODE = true;
-const height = window.innerHeight;
-const width = window.innerWidth;
+let HUNT_MODE = true;
+
+let height = window.innerHeight;
+let width = window.innerWidth;
 
 export function App() {
   const [status, setStatus] = useState('loading');
@@ -36,13 +37,13 @@ export function App() {
   const [foundEggs, setFoundEggs] = useState([]);
   const [foundKeys, setFoundKeys] = useState([]);
 
-  const [scale, setScale] = useState(0.2);
-  const [image, setImage] = useState();
-  const [imageX, setImageX] = useState(0);
+  const [image, setImage] = useState(useImage('SplashPage.jpg'));
+  const [scale, setScale] = useState(Math.min((width / image.width), (height / image.height)));
+  const [imageX, setImageX] = useState((width / 2) - (image.width * scale * 0.5));
   const [currentLocation, setCurrentLocation] = useState(maps.LIVINGROOM);
 
-  const [eggX, setEggX] = useState(576);
-  const [eggY, setEggY] = useState(446);
+  const [eggX, setEggX] = useState(500);
+  const [eggY, setEggY] = useState(500);
   const [eggRadius, setEggRadius] = useState(30);
 
   const [landingPage] = useImage('SplashPage.jpg');
@@ -57,6 +58,18 @@ export function App() {
     setEggX((event.target.attrs.x- imageX) / scale );
     setEggY((event.target.attrs.y  / scale));
   };
+
+  // On first mount, check if we need to load up a map
+  useEffect(() => {
+    if (image) {
+      let scaleX = width / image.width;
+      let scaleY = height / image.height;
+      let scale = Math.min(scaleX, scaleY);
+      let imageX = (width/2) - (image.width * scale * 0.5);
+      setScale(scale);
+      setImageX(imageX)
+    }
+  }, [image]);
 
   useEffect(() => {
     if(landingPage){
@@ -83,18 +96,6 @@ export function App() {
     }
   }, [status, currentLocation, landingPage]);
 
-  // On first mount, check if we need to load up a map
-  useEffect(() => {
-    if (image) {
-      let scaleX = width / image.width;
-      let scaleY = height / image.height;
-      let scale = Math.min(scaleX, scaleY);
-      let imageX = (window.innerWidth/2) - (image.width * scale * 0.5);
-      setScale(scale);
-      setImageX(imageX)
-    }
-  }, [image]);
-
   // CHEATS ************************************************
 
   if (name === 'CHEAT_howie') {
@@ -106,6 +107,11 @@ export function App() {
   } else if (name === 'CHEAT_quiz') {
     setName('You little cheater, boy');
     setStatus('quiz');
+  } else if (name === 'CHEAT_nohunt') {
+    setName('Doesn\'t matter');
+    setStatus('hunting');
+    HUNT_MODE = false;
+    setCurrentLocation(maps.LIVINGROOM);
   }
 
   // *******************************************************
@@ -158,8 +164,8 @@ export function App() {
           }
       />
       <Stage
-        width={window.innerWidth}
-        height={window.innerHeight}
+        width={width}
+        height={height}
       >
         <Layer>
           <Image
@@ -222,8 +228,8 @@ export function App() {
         </>
       }
       <Stage
-        width={window.innerWidth}
-        height={window.innerHeight}
+        width={width}
+        height={height}
       >
         <Layer>
           <Rect
@@ -262,74 +268,6 @@ export function App() {
             fontSize={30}
           />
 
-          {currentLocation.up &&
-          <Image
-            image={arrowUp}
-            x={window.innerWidth * 0.5 - (arrowUp ? arrowUp.width : 0) * 0.5 * 0.1}
-            y={window.innerHeight * 0.8 - (arrowUp ? arrowUp.height : 0) * 0.5 * 0.2}
-            scaleX={0.1}
-            scaleY={0.1}
-            onClick={() => changeLocation(currentLocation.up)}
-          />}
-          {currentLocation.upTwo &&
-          <Image
-            image={arrowUp}
-            x={window.innerWidth * 0.53}
-            y={window.innerHeight * 0.8 - (arrowUp ? arrowUp.height : 0) * 0.5 * 0.2}
-            scaleX={0.1}
-            scaleY={0.1}
-            onClick={() => changeLocation(currentLocation.upTwo)}
-          />}
-          { currentLocation.down &&
-          <Image
-            image={arrowDown}
-            x={window.innerWidth * 0.5 - (arrowDown ? arrowDown.width : 0) * 0.5 * 0.1}
-            y={window.innerHeight * 0.8 + (arrowDown ? arrowDown.height : 0) * 0.5 * 0.1}
-            scaleX={0.1}
-            scaleY={0.1}
-            onClick={() => changeLocation(currentLocation.down)}
-          />}
-          { currentLocation.left &&
-          <Image
-            image={arrowLeft}
-            x={window.innerWidth * 0.47 - (arrowLeft ? arrowLeft.width : 0) * 0.5 * 0.2}
-            y={window.innerHeight * 0.78 + (arrowLeft ? arrowLeft.height : 0) * 0.5 * 0.1}
-            scaleX={0.1}
-            scaleY={0.1}
-            onClick={() => changeLocation(currentLocation.left)}
-          />}
-          { currentLocation.right &&
-          <Image
-            image={arrowRight}
-            x={window.innerWidth * 0.53}
-            y={window.innerHeight * 0.78 + (arrowRight ? arrowRight.height : 0) * 0.5 * 0.1}
-            scaleX={0.1}
-            scaleY={0.1}
-            onClick={() => changeLocation(currentLocation.right)}
-          />}
-          { currentLocation.mystery &&
-          <Image
-            image={arrowRight}
-            x={window.innerWidth * 0.53}
-            y={window.innerHeight * 0.78 + (arrowRight ? arrowRight.height : 0) * 0.5 * 0.1}
-            scaleX={0.1}
-            scaleY={0.1}
-            onClick={() => {
-              changeLocation(currentLocation.mystery);
-              controlAudio('stop');
-              }
-            }
-          />}
-          {currentLocation.quiz &&
-          <Image
-            image={arrowUp}
-            x={window.innerWidth * 0.5 - (arrowUp ? arrowUp.width : 0) * 0.5 * 0.1}
-            y={window.innerHeight * 0.8 - (arrowUp ? arrowUp.height : 0) * 0.5 * 0.2}
-            scaleX={0.1}
-            scaleY={0.1}
-            onClick={() => {setStatus('quiz')}}
-          />}
-
           {// If in HUNT_MODE, put invisible circles on unfound eggs and stars on found eggs
             HUNT_MODE ?
               currentLocation.eggs.map((egg, i) => (
@@ -339,6 +277,10 @@ export function App() {
                     y={ (egg.eggY * scale)}
                     radius={ egg.eggRadius * scale}
                     onClick={() => {
+                      setScore(score+1);
+                      setFoundEggs([`${currentLocation.name}egg${i}`, ...foundEggs])
+                    }}
+                    onTouchStart={() => {
                       setScore(score+1);
                       setFoundEggs([`${currentLocation.name}egg${i}`, ...foundEggs])
                     }}
@@ -368,7 +310,7 @@ export function App() {
                 draggable
                 onDragMove={handleImageDrag}
 
-                stroke={ 'red'}
+                stroke={'red'}
                 strokeWidth={ 2}
               />
           }
@@ -381,6 +323,10 @@ export function App() {
                       y={(key.keyY * scale)}
                       radius={key.keyRadius * scale}
                       onClick={() => {
+                        triggerRoomUnlock(currentLocation.name);
+                        setFoundKeys([`${currentLocation.name}key${i}`, ...foundKeys])
+                      }}
+                      onTouchStart={() => {
                         triggerRoomUnlock(currentLocation.name);
                         setFoundKeys([`${currentLocation.name}key${i}`, ...foundKeys])
                       }}
@@ -398,14 +344,94 @@ export function App() {
                     )
             ) : null
           }
+          {currentLocation.up &&
+          <Image
+            image={arrowUp}
+            x={width * 0.5 - (arrowUp ? arrowUp.width : 0) * 0.5 * 0.1}
+            y={height * 0.8 - (arrowUp ? arrowUp.height : 0) * 0.5 * 0.2}
+            scaleX={0.1}
+            scaleY={0.1}
+            onClick={() => changeLocation(currentLocation.up)}
+            onTouchStart={() => changeLocation(currentLocation.up)}
+          />}
+          {currentLocation.upTwo &&
+          <Image
+            image={arrowUp}
+            x={width * 0.53}
+            y={height * 0.8 - (arrowUp ? arrowUp.height : 0) * 0.5 * 0.2}
+            scaleX={0.1}
+            scaleY={0.1}
+            onClick={() => changeLocation(currentLocation.upTwo)}
+            onTouchStart={() => changeLocation(currentLocation.upTwo)}
+          />}
+          { currentLocation.down &&
+          <Image
+            image={arrowDown}
+            x={width * 0.5 - (arrowDown ? arrowDown.width : 0) * 0.5 * 0.1}
+            y={height * 0.8 + (arrowDown ? arrowDown.height : 0) * 0.5 * 0.1}
+            scaleX={0.1}
+            scaleY={0.1}
+            onClick={() => changeLocation(currentLocation.down)}
+            onTouchStart={() => changeLocation(currentLocation.down)}
+          />}
+          { currentLocation.left &&
+          <Image
+            image={arrowLeft}
+            x={width * 0.47 - (arrowLeft ? arrowLeft.width : 0) * 0.5 * 0.2}
+            y={height * 0.78 + (arrowLeft ? arrowLeft.height : 0) * 0.5 * 0.1}
+            scaleX={0.1}
+            scaleY={0.1}
+            onClick={() => changeLocation(currentLocation.left)}
+            onTouchStart={() => changeLocation(currentLocation.left)}
+          />}
+          { currentLocation.right &&
+          <Image
+            image={arrowRight}
+            x={width * 0.53}
+            y={height * 0.78 + (arrowRight ? arrowRight.height : 0) * 0.5 * 0.1}
+            scaleX={0.1}
+            scaleY={0.1}
+            onClick={() => changeLocation(currentLocation.right)}
+            onTouchStart={() => changeLocation(currentLocation.right)}
+          />}
+          { currentLocation.mystery &&
+          <Image
+            image={arrowRight}
+            x={width * 0.53}
+            y={height * 0.78 + (arrowRight ? arrowRight.height : 0) * 0.5 * 0.1}
+            scaleX={0.1}
+            scaleY={0.1}
+            onClick={() => {
+              changeLocation(currentLocation.mystery);
+              controlAudio('stop');
+            }}
+            onTouchStart={() => {
+              changeLocation(currentLocation.mystery);
+              controlAudio('stop');
+            }}
+          />}
+          {currentLocation.quiz &&
+          <Image
+            image={arrowUp}
+            x={width * 0.5 - (arrowUp ? arrowUp.width : 0) * 0.5 * 0.1}
+            y={height * 0.8 - (arrowUp ? arrowUp.height : 0) * 0.5 * 0.2}
+            scaleX={0.1}
+            scaleY={0.1}
+            onClick={() => {setStatus('quiz')}}
+            onTouchStart={() => {setStatus('quiz')}}
+          />}
           {score === maxScore ?
             <Image
               image={congratulations}
-              x={window.innerWidth * 0.5 - 250}
-              y={window.innerHeight * 0.5 - 250}
+              x={width * 0.5 - 250}
+              y={height * 0.5 - 250}
               scaleX={0.5}
               scaleY={0.5}
               onClick={() => {
+                triggerRoomUnlock('MYSTERY');
+                setMaxScore(250)
+              }}
+              onTouchStart={() => {
                 triggerRoomUnlock('MYSTERY');
                 setMaxScore(250)
               }}

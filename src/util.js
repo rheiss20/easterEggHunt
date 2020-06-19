@@ -18,14 +18,14 @@ Object.keys(maps).forEach(key => {
 });
 
 export const controlAudio = (command) => {
-  if (command === 'play'){
-    audioElement.loop = true;
-    audioElement.volume = 0.2;
-    audioElement.play();
-  } else if (command === 'stop'){
-    audioElement.pause();
-    audioElement.currentTime = 0;
-  }
+  // if (command === 'play'){
+  //   audioElement.loop = true;
+  //   audioElement.volume = 0.2;
+  //   audioElement.play();
+  // } else if (command === 'stop'){
+  //   audioElement.pause();
+  //   audioElement.currentTime = 0;
+  // }
 };
 
 // THIS IS THE CODE TO CHANGE THE JPEG FILE FOR ROOMS WITH CLOSED THEN OPEN DOORS
@@ -68,11 +68,6 @@ export const resetTriggers = (maxScore, setMaxScore) => {
     delete maps.KITCHENCORNER.mystery;
   }
 };
-
-// export const handleImageDrag = event => {
-//   setEggX((event.target.attrs.x- imageX) / scale );
-//   setEggY((event.target.attrs.y  / scale));
-// };
 
 export const generateGiveUpMessage = (score, name) => {
   if (score === 50) {
