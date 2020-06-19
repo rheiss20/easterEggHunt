@@ -32,7 +32,7 @@ export function App() {
   const [status, setStatus] = useState('loading');
 
   const [name, setName] = useState('');
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useState(49);
   const [maxScore, setMaxScore] = useState(50);
   const [foundEggs, setFoundEggs] = useState([]);
   const [foundKeys, setFoundKeys] = useState([]);
@@ -53,6 +53,8 @@ export function App() {
   const [arrowRight] = useImage('ArrowRight.png');
   const [checkmark] = useImage('checkmark.gif');
   const [congratulations] = useImage('Congratulations.png');
+
+  let elementScale = scale * 3;
 
   const handleImageDrag = event => {
     setEggX((event.target.attrs.x- imageX) / scale );
@@ -134,7 +136,7 @@ export function App() {
         autoFocus
         style={{
           position: "absolute",
-          top: `${870 * scale - 30}px`,
+          top: `${(870 * scale) - (30* scale)}px`,
           left: `${imageX + (image.width / 2 * scale) - (200* scale)}px`,
           zIndex: 999,
           height: `${70 * scale}px`,
@@ -148,7 +150,7 @@ export function App() {
           value="Start!"
           style={{
             position: "absolute",
-            top: `${975 * scale - 30}px`,
+            top: `${975 * scale - (30* scale)}px`,
             left: `${imageX + (image.width / 2 * scale) - (150* scale)}px`,
             zIndex: 999,
             height: `${120 * scale}px`,
@@ -189,12 +191,12 @@ export function App() {
           value="Give Up"
           style={{
             position: "absolute",
-            top: `60px`,
-            left: `10px`,
+            top: `${60 * elementScale}px`,
+            left: `${10 * elementScale}px`,
             zIndex: 999,
-            height: `${60}px`,
-            width: `${200}px`,
-            fontSize: `${30}px`,
+            height: `${60 * elementScale}px`,
+            width: `${200 * elementScale}px`,
+            fontSize: `${30 * elementScale}px`,
             background: 'yellow'
           }}
           onClick={() => {
@@ -247,25 +249,25 @@ export function App() {
         </Layer>
         <Layer>
           <Rect
-            x={5}
+            x={5 * elementScale}
             stroke={'#555'}
-            strokeWidth={5}
+            strokeWidth={5 * elementScale}
             fill={'#ddd'}
-            width={280}
-            height={50}
+            width={280 * elementScale}
+            height={50 * elementScale}
             shadowColor={'black'}
             shadowBlur={10}
             shadowOffsetX={10}
             shadowOffsetY={10}
             shadowOpacity={0.2}
-            cornerRadius={10}
+            cornerRadius={10 * elementScale}
           />
           <Text
-            x={15}
-            y={10}
+            x={15 * elementScale}
+            y={10 * elementScale}
             wrap
             text={`Eggs Found: ${score}/50`}
-            fontSize={30}
+            fontSize={30 * elementScale}
           />
 
           {// If in HUNT_MODE, put invisible circles on unfound eggs and stars on found eggs
@@ -347,8 +349,8 @@ export function App() {
           {currentLocation.up &&
           <Image
             image={arrowUp}
-            x={width * 0.5 - (arrowUp ? arrowUp.width : 0) * 0.5 * 0.1}
-            y={height * 0.8 - (arrowUp ? arrowUp.height : 0) * 0.5 * 0.2}
+            x={width * 0.5 - arrowUp.width * 0.05}
+            y={height * 0.8 - arrowUp.height * 0.1}
             scaleX={0.1}
             scaleY={0.1}
             onClick={() => changeLocation(currentLocation.up)}
@@ -358,7 +360,7 @@ export function App() {
           <Image
             image={arrowUp}
             x={width * 0.53}
-            y={height * 0.8 - (arrowUp ? arrowUp.height : 0) * 0.5 * 0.2}
+            y={height * 0.8 + arrowUp.height * 0.1}
             scaleX={0.1}
             scaleY={0.1}
             onClick={() => changeLocation(currentLocation.upTwo)}
@@ -367,8 +369,8 @@ export function App() {
           { currentLocation.down &&
           <Image
             image={arrowDown}
-            x={width * 0.5 - (arrowDown ? arrowDown.width : 0) * 0.5 * 0.1}
-            y={height * 0.8 + (arrowDown ? arrowDown.height : 0) * 0.5 * 0.1}
+            x={width * 0.5 - arrowDown.width * 0.05}
+            y={height * 0.8 + arrowDown.height * 0.05}
             scaleX={0.1}
             scaleY={0.1}
             onClick={() => changeLocation(currentLocation.down)}
@@ -377,8 +379,8 @@ export function App() {
           { currentLocation.left &&
           <Image
             image={arrowLeft}
-            x={width * 0.47 - (arrowLeft ? arrowLeft.width : 0) * 0.5 * 0.2}
-            y={height * 0.78 + (arrowLeft ? arrowLeft.height : 0) * 0.5 * 0.1}
+            x={width * 0.47 - arrowLeft.width * 0.1}
+            y={height * 0.78 + arrowLeft.height * 0.05}
             scaleX={0.1}
             scaleY={0.1}
             onClick={() => changeLocation(currentLocation.left)}
@@ -388,7 +390,7 @@ export function App() {
           <Image
             image={arrowRight}
             x={width * 0.53}
-            y={height * 0.78 + (arrowRight ? arrowRight.height : 0) * 0.5 * 0.1}
+            y={height * 0.78 + arrowRight.height * 0.05}
             scaleX={0.1}
             scaleY={0.1}
             onClick={() => changeLocation(currentLocation.right)}
@@ -398,7 +400,7 @@ export function App() {
           <Image
             image={arrowRight}
             x={width * 0.53}
-            y={height * 0.78 + (arrowRight ? arrowRight.height : 0) * 0.5 * 0.1}
+            y={height * 0.78 + arrowRight.height * 0.05}
             scaleX={0.1}
             scaleY={0.1}
             onClick={() => {
@@ -413,8 +415,8 @@ export function App() {
           {currentLocation.quiz &&
           <Image
             image={arrowUp}
-            x={width * 0.5 - (arrowUp ? arrowUp.width : 0) * 0.5 * 0.1}
-            y={height * 0.8 - (arrowUp ? arrowUp.height : 0) * 0.5 * 0.2}
+            x={width * 0.5 - arrowUp.width * 0.05}
+            y={height * 0.8 - arrowUp.height * 0.1}
             scaleX={0.1}
             scaleY={0.1}
             onClick={() => {setStatus('quiz')}}
@@ -423,10 +425,10 @@ export function App() {
           {score === maxScore ?
             <Image
               image={congratulations}
-              x={width * 0.5 - 250}
-              y={height * 0.5 - 250}
-              scaleX={0.5}
-              scaleY={0.5}
+              x={(width * 0.5) - (congratulations.width * 0.375 * elementScale)}
+              y={(height * 0.5) - (congratulations.height * 0.375 * elementScale)}
+              scaleX={elementScale * 0.75}
+              scaleY={elementScale * 0.75}
               onClick={() => {
                 triggerRoomUnlock('MYSTERY');
                 setMaxScore(250)
