@@ -550,6 +550,7 @@
         "imageName": "./images/stair_to_second_house_finished.jpg",
         "fakeImageName": "./fake_images/stair_to_second_house_finished.jpg",
         "down": "BRIGHTCORNER",
+        "end": "STAIRTOSECONDHOUSE",
         "eggs": [{
             "eggX": 0,
             "eggY": 0,

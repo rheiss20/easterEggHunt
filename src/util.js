@@ -18,14 +18,14 @@ Object.keys(maps).forEach(key => {
 });
 
 export const controlAudio = (command) => {
-  // if (command === 'play'){
-  //   audioElement.loop = true;
-  //   audioElement.volume = 0.2;
-  //   audioElement.play();
-  // } else if (command === 'stop'){
-  //   audioElement.pause();
-  //   audioElement.currentTime = 0;
-  // }
+  if (command === 'play'){
+    audioElement.loop = true;
+    audioElement.volume = 0.2;
+    audioElement.play();
+  } else if (command === 'stop'){
+    audioElement.pause();
+    audioElement.currentTime = 0;
+  }
 };
 
 // THIS IS THE CODE TO CHANGE THE JPEG FILE FOR ROOMS WITH CLOSED THEN OPEN DOORS

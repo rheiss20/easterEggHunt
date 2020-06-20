@@ -25,19 +25,18 @@ import {
 // Turn off HUNT_MODE to enable tools to get the x/y/radius of the eggs
 let HUNT_MODE = true;
 
-let height = window.innerHeight;
-let width = window.innerWidth;
-
 export function App() {
   const [status, setStatus] = useState('loading');
 
   const [name, setName] = useState('');
-  const [score, setScore] = useState(49);
+  const [score, setScore] = useState(0);
   const [maxScore, setMaxScore] = useState(50);
   const [foundEggs, setFoundEggs] = useState([]);
   const [foundKeys, setFoundKeys] = useState([]);
 
   const [image, setImage] = useState(useImage('SplashPage.jpg'));
+  const [width, setWidth] = React.useState(window.innerWidth);
+  const [height, setHeight] = React.useState(window.innerHeight);
   const [scale, setScale] = useState(Math.min((width / image.width), (height / image.height)));
   const [imageX, setImageX] = useState((width / 2) - (image.width * scale * 0.5));
   const [currentLocation, setCurrentLocation] = useState(maps.LIVINGROOM);
@@ -61,17 +60,12 @@ export function App() {
     setEggY((event.target.attrs.y  / scale));
   };
 
+  const updateWidthAndHeight = () => {
+    setWidth(window.innerWidth);
+    setHeight(window.innerHeight);
+  };
+
   // On first mount, check if we need to load up a map
-  useEffect(() => {
-    if (image) {
-      let scaleX = width / image.width;
-      let scaleY = height / image.height;
-      let scale = Math.min(scaleX, scaleY);
-      let imageX = (width/2) - (image.width * scale * 0.5);
-      setScale(scale);
-      setImageX(imageX)
-    }
-  }, [image]);
 
   useEffect(() => {
     if(landingPage){
@@ -80,6 +74,18 @@ export function App() {
     }
   }, [landingPage]);
 
+  useEffect(() => {
+    window.addEventListener("resize", updateWidthAndHeight);
+    if (image) {
+      let scaleX = width / image.width;
+      let scaleY = height / image.height;
+      let scale = Math.min(scaleX, scaleY);
+      let imageX = (width/2) - (image.width * scale * 0.5);
+      setScale(scale);
+      setImageX(imageX)
+    }
+    return () => window.removeEventListener("resize", updateWidthAndHeight);
+  }, [height, width, image]);
 
   useEffect(() => {
     if(status === 'hunting'){
@@ -421,6 +427,16 @@ export function App() {
             scaleY={0.1}
             onClick={() => {setStatus('quiz')}}
             onTouchStart={() => {setStatus('quiz')}}
+          />}
+          {currentLocation.end &&
+          <Image
+            image={arrowUp}
+            x={width * 0.5 - arrowUp.width * 0.05}
+            y={height * 0.8 - arrowUp.height * 0.1}
+            scaleX={0.1}
+            scaleY={0.1}
+            onClick={() => {alert(`That's all we got for now! Tune in next time to see more about this project and where its going! Make sure you tell Ryan that you got here when you get the chance ;)`)}}
+            onTouchStart={() => {alert(`That's all we got for now! Tune in next time to see more about this project and where its going! Make sure you tell Ryan that you got here when you get the chance ;)`)}}
           />}
           {score === maxScore ?
             <Image
