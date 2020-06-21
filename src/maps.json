@@ -23,7 +23,7 @@
             {
                 "eggX":1372,
                 "eggY":713,
-                "eggRadius":25
+                "eggRadius":33
             },
             {
                 "eggX":1944,
@@ -33,7 +33,7 @@
             {
                 "eggX":1754,
                 "eggY":185,
-                "eggRadius":32
+                "eggRadius":33
             }
         ]
     },
@@ -77,7 +77,7 @@
             {
                 "eggX":733,
                 "eggY":1149,
-                "eggRadius":23
+                "eggRadius":33
             },
             {
                 "eggX":1076,
@@ -126,7 +126,7 @@
             {
                 "eggX":1417,
                 "eggY":514,
-                "eggRadius":24
+                "eggRadius":33
             },
             {
                 "eggX":1612,
@@ -248,7 +248,7 @@
             {
                 "eggX":1406,
                 "eggY":478,
-                "eggRadius":31
+                "eggRadius":33
             },
             {
                 "eggX":648,
