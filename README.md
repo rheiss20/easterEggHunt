@@ -1,3 +1,8 @@
+Play the game here:
+https://rheiss20.github.io/easterEggHunt/
+
+Should now work on mobile!
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 # Easter Egg Hunt
