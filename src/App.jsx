@@ -53,7 +53,7 @@ export function App() {
   const [checkmark] = useImage('checkmark.gif');
   const [congratulations] = useImage('Congratulations.png');
 
-  let elementScale = scale * 3;
+  let elementScale = scale * 1.5;
 
   const handleImageDrag = event => {
     setEggX((event.target.attrs.x- imageX) / scale );
@@ -198,7 +198,7 @@ export function App() {
           style={{
             position: "absolute",
             top: `${60 * elementScale}px`,
-            left: `${10 * elementScale}px`,
+            left: `${5 * elementScale}px`,
             zIndex: 999,
             height: `${60 * elementScale}px`,
             width: `${200 * elementScale}px`,
@@ -366,7 +366,7 @@ export function App() {
           <Image
             image={arrowUp}
             x={width * 0.53}
-            y={height * 0.8 + arrowUp.height * 0.1}
+            y={height * 0.8 - arrowUp.height * 0.1}
             scaleX={0.1}
             scaleY={0.1}
             onClick={() => changeLocation(currentLocation.upTwo)}
