@@ -11,7 +11,7 @@ const Quiz = ({ step, questions, totalQuestions, handleAnswerClick, handleEnterP
           <div className="question-number">{step}</div>
           <div className="description">of <span>{totalQuestions}</span></div>
         </div>
-        <button onClick={() => {setStatus('resume hunting')}}>GO BACK</button>
+        <button onClick={() => {setStatus('hunting')}}>GO BACK</button>
       </header>
 
       <div className="questions">
