@@ -1,8 +1,8 @@
 {
     "LIVINGROOM":{
         "name":"LIVINGROOM",
-        "imageName":"./WEBP/living_room_closed.webp",
-        "fakeImageName":"./fake_images/living_room_closed.webp",
+        "imageName":"./images/living_room_closed.jpg",
+        "fakeImageName":"./fake_images/living_room_closed.jpg",
         "right":"LAUNDRYHALL",
         "eggs":[
             {
@@ -39,8 +39,8 @@
     },
     "LAUNDRYHALL":{
         "name":"LAUNDRYHALL",
-        "imageName":"./WEBP/laundry_hall.webp",
-        "fakeImageName":"./fake_images/laundry_hall.webp",
+        "imageName":"./images/laundry_hall.jpg",
+        "fakeImageName":"./fake_images/laundry_hall.jpg",
         "up":"BATHROOM",
         "down":"LIVINGROOM",
         "left":"BEDROOM",
@@ -65,8 +65,8 @@
     },
     "BATHROOM":{
         "name":"BATHROOM",
-        "imageName":"./WEBP/bathroom.webp",
-        "fakeImageName":"./fake_images/bathroom.webp",
+        "imageName":"./images/bathroom.jpg",
+        "fakeImageName":"./fake_images/bathroom.jpg",
         "down":"LAUNDRYHALL",
         "eggs":[
             {
@@ -103,8 +103,8 @@
     },
     "BEDROOM":{
         "name":"BEDROOM",
-        "imageName":"./WEBP/bedroom.webp",
-        "fakeImageName":"./fake_images/bedroom.webp",
+        "imageName":"./images/bedroom.jpg",
+        "fakeImageName":"./fake_images/bedroom.jpg",
         "left":"BEDROOMCORNER",
         "down":"LAUNDRYHALL",
         "eggs":[
@@ -142,8 +142,8 @@
     },
     "BEDROOMCORNER":{
         "name":"BEDROOMCORNER",
-        "imageName":"./WEBP/bedroom_corner_closed.webp",
-        "fakeImageName":"./fake_images/bedroom_corner_closed.webp",
+        "imageName":"./images/bedroom_corner_closed.jpg",
+        "fakeImageName":"./fake_images/bedroom_corner_closed.jpg",
         "down":"BEDROOM",
         "eggs":[
             {
@@ -180,8 +180,8 @@
     },
     "BEDROOMCLOSET":{
         "name":"BEDROOMCLOSET",
-        "imageName":"./WEBP/bedroom_closet.webp",
-        "fakeImageName":"./fake_images/bedroom_closet.webp",
+        "imageName":"./images/bedroom_closet.jpg",
+        "fakeImageName":"./fake_images/bedroom_closet.jpg",
         "down":"BEDROOMCORNER",
         "eggs":[
             {
@@ -220,8 +220,8 @@
     },
     "KITCHEN":{
         "name":"KITCHEN",
-        "imageName":"./WEBP/kitchen.webp",
-        "fakeImageName":"./fake_images/kitchen.webp",
+        "imageName":"./images/kitchen.jpg",
+        "fakeImageName":"./fake_images/kitchen.jpg",
         "down":"LAUNDRYHALL",
         "left":"KITCHENCORNER",
         "eggs":[
@@ -259,8 +259,8 @@
     },
     "KITCHENCORNER":{
         "name":"KITCHENCORNER",
-        "imageName":"./WEBP/kitchen_corner.webp",
-        "fakeImageName":"./fake_images/kitchen_corner.webp",
+        "imageName":"./images/kitchen_corner.jpg",
+        "fakeImageName":"./fake_images/kitchen_corner.jpg",
         "down":"KITCHEN",
         "eggs":[
             {
@@ -304,8 +304,8 @@
     },
     "LIVINGROOMCLOSET":{
         "name":"LIVINGROOMCLOSET",
-        "imageName":"./WEBP/living_room_closet.webp",
-        "fakeImageName":"./fake_images/living_room_closet.webp",
+        "imageName":"./images/living_room_closet.jpg",
+        "fakeImageName":"./fake_images/living_room_closet.jpg",
         "down":"LIVINGROOM",
         "eggs":[
             {
@@ -342,8 +342,8 @@
     },
     "MYDOOR":{
         "name":"MYDOOR",
-        "imageName":"./WEBP/my_door.webp",
-        "fakeImageName":"./fake_images/my_door.webp",
+        "imageName":"./images/my_door.jpg",
+        "fakeImageName":"./fake_images/my_door.jpg",
         "up":"STAIRS",
         "eggs":[
             {
@@ -355,8 +355,8 @@
     },
     "STAIRS":{
         "name":"STAIRS",
-        "imageName":"./WEBP/stairs.webp",
-        "fakeImageName":"./fake_images/secret_stairs.webp",
+        "imageName":"./images/stairs.jpg",
+        "fakeImageName":"./fake_images/secret_stairs.jpg",
         "up":"STAIRSDOOR",
         "eggs":[
             {
@@ -368,8 +368,8 @@
     },
     "STAIRSDOOR":{
         "name":"STAIRSDOOR",
-        "imageName":"./WEBP/stairs_door.webp",
-        "fakeImageName":"./fake_images/secret_stairs2.webp",
+        "imageName":"./images/stairs_door.jpg",
+        "fakeImageName":"./fake_images/secret_stairs2.jpg",
         "up":"BASEMENT",
         "eggs":[
             {
@@ -381,8 +381,8 @@
     },
     "BASEMENT":{
         "name":"BASEMENT",
-        "imageName":"./WEBP/basement.webp",
-        "fakeImageName":"./fake_images/secret1.webp",
+        "imageName":"./images/basement.jpg",
+        "fakeImageName":"./fake_images/secret1.jpg",
         "up":"BASEMENTPATH",
         "eggs":[
             {
@@ -394,8 +394,8 @@
     },
     "BASEMENTPATH":{
         "name":"BASEMENTPATH",
-        "imageName":"./WEBP/basement_path.jpg",
-        "fakeImageName":"./fake_images/secret2.webp",
+        "imageName":"./images/basement_path.jpg",
+        "fakeImageName":"./fake_images/secret2.jpg",
         "up":"DARKPATH",
         "eggs":[
             {
@@ -407,8 +407,8 @@
     },
     "DARKPATH":{
         "name":"DARKPATH",
-        "imageName":"./WEBP/dark_path.webp",
-        "fakeImageName":"./fake_images/secret3.webp",
+        "imageName":"./images/dark_path.jpg",
+        "fakeImageName":"./fake_images/secret3.jpg",
         "right":"DOORINDARK",
         "eggs":[
             {
@@ -420,8 +420,8 @@
     },
     "DOORINDARK":{
         "name":"DOORINDARK",
-        "imageName":"./WEBP/door_in_dark.webp",
-        "fakeImageName":"./fake_images/secret4.webp",
+        "imageName":"./images/door_in_dark.jpg",
+        "fakeImageName":"./fake_images/secret4.jpg",
         "up":"TUNNELSTART",
         "eggs":[
             {
@@ -433,8 +433,8 @@
     },
     "TUNNELSTART":{
         "name":"TUNNELSTART",
-        "imageName":"./WEBP/tunnel_start_finished.webp",
-        "fakeImageName":"./fake_images/tunnel_start_finished.webp",
+        "imageName":"./images/tunnel_start_finished.jpg",
+        "fakeImageName":"./fake_images/tunnel_start_finished.jpg",
         "up":"WINDOWHALL",
         "left":"MAINHALLWAY",
         "eggs":[
@@ -447,8 +447,8 @@
     },
     "WINDOWHALL":{
         "name":"WINDOWHALL",
-        "imageName":"./WEBP/window_hall_finished.webp",
-        "fakeImageName":"./fake_images/window_hall_finished.webp",
+        "imageName":"./images/window_hall_finished.jpg",
+        "fakeImageName":"./fake_images/window_hall_finished.jpg",
         "right":"OPENCEILING",
         "down":"TUNNELSTART",
         "eggs":[
@@ -461,8 +461,8 @@
     },
     "OPENCEILING":{
         "name":"OPENCEILING",
-        "imageName":"./WEBP/open_ceiling_finished.webp",
-        "fakeImageName":"./fake_images/open_ceiling_finished.webp",
+        "imageName":"./images/open_ceiling_finished.jpg",
+        "fakeImageName":"./fake_images/open_ceiling_finished.jpg",
         "down":"WINDOWHALL",
         "eggs":[
             {
@@ -474,8 +474,8 @@
     },
     "MAINHALLWAY":{
         "name":"MAINHALLWAY",
-        "imageName":"./WEBP/main_hallway_finished.webp",
-        "fakeImageName":"./fake_images/main_hallway_finished.webp",
+        "imageName":"./images/main_hallway_finished.jpg",
+        "fakeImageName":"./fake_images/main_hallway_finished.jpg",
         "up":"DOORHALLWAY",
         "down":"TUNNELSTART",
         "left":"DOUBLEDOOR",
@@ -489,8 +489,8 @@
     },
     "DOORHALLWAY":{
         "name":"DOORHALLWAY",
-        "imageName":"./WEBP/door_hallway_finished.webp",
-        "fakeImageName":"./fake_images/door_hallway_finished.webp",
+        "imageName":"./images/door_hallway_finished.jpg",
+        "fakeImageName":"./fake_images/door_hallway_finished.jpg",
         "up":"DEADEND",
         "down":"MAINHALLWAY",
         "right":"DOWNSTAIRS",
@@ -504,8 +504,8 @@
     },
     "DOUBLEDOOR":{
         "name":"DOUBLEDOOR",
-        "imageName":"./WEBP/double_door_finished.webp",
-        "fakeImageName":"./fake_images/double_door_finished.webp",
+        "imageName":"./images/double_door_finished.jpg",
+        "fakeImageName":"./fake_images/double_door_finished.jpg",
         "up":"BROKENLIGHT",
         "upTwo":"CHAIRHALLWAY",
         "down":"MAINHALLWAY",
@@ -519,8 +519,8 @@
     },
     "DEADEND":{
         "name":"DEADEND",
-        "imageName":"./WEBP/dead_end_finished.webp",
-        "fakeImageName":"./fake_images/dead_end_finished.webp",
+        "imageName":"./images/dead_end_finished.jpg",
+        "fakeImageName":"./fake_images/dead_end_finished.jpg",
         "down":"DOORHALLWAY",
         "eggs":[
             {
@@ -532,8 +532,8 @@
     },
     "DOWNSTAIRS":{
         "name":"DOWNSTAIRS",
-        "imageName":"./WEBP/downstairs_finished.webp",
-        "fakeImageName":"./fake_images/downstairs_finished.webp",
+        "imageName":"./images/downstairs_finished.jpg",
+        "fakeImageName":"./fake_images/downstairs_finished.jpg",
         "down":"DOORHALLWAY",
         "left":"STAIRCORNER",
         "eggs":[
@@ -546,8 +546,8 @@
     },
     "BROKENLIGHT":{
         "name":"BROKENLIGHT",
-        "imageName":"./WEBP/broken_light_finished.webp",
-        "fakeImageName":"./fake_images/broken_light_finished.webp",
+        "imageName":"./images/broken_light_finished.jpg",
+        "fakeImageName":"./fake_images/broken_light_finished.jpg",
         "down":"DOUBLEDOOR",
         "eggs":[
             {
@@ -559,8 +559,8 @@
     },
     "CHAIRHALLWAY":{
         "name":"CHAIRHALLWAY",
-        "imageName":"./WEBP/chair_hallway_finished.webp",
-        "fakeImageName":"./fake_images/chair_hallway_finished.webp",
+        "imageName":"./images/chair_hallway_finished.jpg",
+        "fakeImageName":"./fake_images/chair_hallway_finished.jpg",
         "up":"REDHALLWAY",
         "down":"DOUBLEDOOR",
         "right":"DIRTYHALLWAY",
@@ -574,8 +574,8 @@
     },
     "STAIRCORNER":{
         "name":"STAIRCORNER",
-        "imageName":"./WEBP/stair_corner_finished.webp",
-        "fakeImageName":"./fake_images/stair_corner_finished.webp",
+        "imageName":"./images/stair_corner_finished.jpg",
+        "fakeImageName":"./fake_images/stair_corner_finished.jpg",
         "up":"FINALDOOR",
         "down":"DOWNSTAIRS",
         "eggs":[
@@ -588,8 +588,8 @@
     },
     "REDHALLWAY":{
         "name":"REDHALLWAY",
-        "imageName":"./WEBP/red_hallway_finished.webp",
-        "fakeImageName":"./fake_images/red_hallway_finished.webp",
+        "imageName":"./images/red_hallway_finished.jpg",
+        "fakeImageName":"./fake_images/red_hallway_finished.jpg",
         "left":"BRIGHTCORNER",
         "down":"CHAIRHALLWAY",
         "eggs":[
@@ -602,8 +602,8 @@
     },
     "DIRTYHALLWAY":{
         "name":"DIRTYHALLWAY",
-        "imageName":"./WEBP/dirty_hallway_finished.webp",
-        "fakeImageName":"./fake_images/dirty_hallway_finished.webp",
+        "imageName":"./images/dirty_hallway_finished.jpg",
+        "fakeImageName":"./fake_images/dirty_hallway_finished.jpg",
         "up":"DIRTYCORNER",
         "down":"CHAIRHALLWAY",
         "eggs":[
@@ -616,8 +616,8 @@
     },
     "FINALDOOR":{
         "name":"FINALDOOR",
-        "imageName":"./WEBP/final_door_locked_finished.webp",
-        "fakeImageName":"./fake_images/final_door_locked_finished.webp",
+        "imageName":"./images/final_door_locked_finished.jpg",
+        "fakeImageName":"./fake_images/final_door_locked_finished.jpg",
         "down":"STAIRCORNER",
         "eggs":[
             {
@@ -629,8 +629,8 @@
     },
     "BRIGHTCORNER":{
         "name":"BRIGHTCORNER",
-        "imageName":"./WEBP/bright_corner_finished.webp",
-        "fakeImageName":"./fake_images/bright_corner_finished.webp",
+        "imageName":"./images/bright_corner_finished.jpg",
+        "fakeImageName":"./fake_images/bright_corner_finished.jpg",
         "down":"REDHALLWAY",
         "right":"STAIRTOSECONDHOUSE",
         "eggs":[
@@ -643,8 +643,8 @@
     },
     "DIRTYCORNER":{
         "name":"DIRTYCORNER",
-        "imageName":"./WEBP/dirty_corner_locked_finished.webp",
-        "fakeImageName":"./fake_images/dirty_corner_locked_finished.webp",
+        "imageName":"./images/dirty_corner_locked_finished.jpg",
+        "fakeImageName":"./fake_images/dirty_corner_locked_finished.jpg",
         "down":"DIRTYHALLWAY",
         "eggs":[
             {
@@ -656,8 +656,8 @@
     },
     "STAIRTOSECONDHOUSE":{
         "name":"STAIRTOSECONDHOUSE",
-        "imageName":"./WEBP/stair_to_second_house_finished.webp",
-        "fakeImageName":"./fake_images/stair_to_second_house_finished.webp",
+        "imageName":"./images/stair_to_second_house_finished.jpg",
+        "fakeImageName":"./fake_images/stair_to_second_house_finished.jpg",
         "down":"BRIGHTCORNER",
         "end":"STAIRTOSECONDHOUSE",
         "eggs":[
@@ -670,8 +670,8 @@
     },
     "STAIRTOTHIRDHOUSE":{
         "name":"STAIRTOTHIRDHOUSE",
-        "imageName":"./WEBP/stair_to_third_house_finished.webp",
-        "fakeImageName":"./fake_images/stair_to_third_house_finished.webp",
+        "imageName":"./images/stair_to_third_house_finished.jpg",
+        "fakeImageName":"./fake_images/stair_to_third_house_finished.jpg",
         "down":"DIRTYCORNER",
         "eggs":[
             {
@@ -685,10 +685,10 @@
         "name":"IMAGECHANGES",
         "imageName":"./invisible.png",
         "fakeImageName":"./invisible.png",
-        "livingRoomUnlockedImage":"./WEBP/living_room_open.webp",
-        "livingRoomLockedImage":"./WEBP/living_room_closed.webp",
-        "bedroomCornerUnlockedImage":"./WEBP/bedroom_corner_open.webp",
-        "bedroomCornerLockedImage":"./WEBP/bedroom_corner_closed.webp",
+        "livingRoomUnlockedImage":"./images/living_room_open.jpg",
+        "livingRoomLockedImage":"./images/living_room_closed.jpg",
+        "bedroomCornerUnlockedImage":"./images/bedroom_corner_open.jpg",
+        "bedroomCornerLockedImage":"./images/bedroom_corner_closed.jpg",
         "eggs":[
             {
                 "eggX":0,
