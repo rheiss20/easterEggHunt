@@ -49,7 +49,10 @@ export function App() {
   const [arrowUp] = useImage('ArrowUp.png');
   const [arrowDown] = useImage('ArrowDown.png');
   const [arrowLeft] = useImage('ArrowLeft.png');
-  const [arrowRight] = useImage('ArrowRight.png');
+  const [arrowTurnLeft] = useImage('LeftTurnArrow.png');
+  const [arrowRight] = useImage('RightTurnArrow.png');
+  const [arrowTurnRight] = useImage('RightTurnArrow.png');
+  const [goBack] = useImage('GoBack.png');
   const [checkmark] = useImage('checkmark.gif');
   const [congratulations] = useImage('Congratulations.png');
 
@@ -116,6 +119,7 @@ export function App() {
     setName('You little cheater, boy');
     setStatus('quiz');
   } else if (name === 'CHEAT_nohunt') {
+    triggerRoomUnlock('MYSTERY');
     setName('Doesn\'t matter');
     setStatus('hunting');
     HUNT_MODE = false;
@@ -352,25 +356,25 @@ export function App() {
                     )
             ) : null
           }
-          {currentLocation.up &&
+          { currentLocation.up &&
           <Image
             image={arrowUp}
-            x={width * 0.5 - arrowUp.width * 0.05}
-            y={height * 0.8 - arrowUp.height * 0.1}
+            x={imageX + (currentLocation.up.arrowX * scale)}
+            y={currentLocation.up.arrowY * scale}
             scaleX={0.1}
             scaleY={0.1}
-            onClick={() => changeLocation(currentLocation.up)}
-            onTouchStart={() => changeLocation(currentLocation.up)}
+            onClick={() => changeLocation(currentLocation.up.transferTo)}
+            onTouchStart={() => changeLocation(currentLocation.up.transferTo)}
           />}
-          {currentLocation.upTwo &&
+          { currentLocation.upTwo &&
           <Image
             image={arrowUp}
-            x={width * 0.53}
-            y={height * 0.8 - arrowUp.height * 0.1}
+            x={imageX + (currentLocation.upTwo.arrowX * scale)}
+            y={currentLocation.upTwo.arrowY * scale}
             scaleX={0.1}
             scaleY={0.1}
-            onClick={() => changeLocation(currentLocation.upTwo)}
-            onTouchStart={() => changeLocation(currentLocation.upTwo)}
+            onClick={() => changeLocation(currentLocation.upTwo.transferTo)}
+            onTouchStart={() => changeLocation(currentLocation.upTwo.transferTo)}
           />}
           { currentLocation.down &&
           <Image
@@ -382,47 +386,77 @@ export function App() {
             onClick={() => changeLocation(currentLocation.down)}
             onTouchStart={() => changeLocation(currentLocation.down)}
           />}
+          { currentLocation.goBack &&
+          <Image
+            image={goBack}
+            x={width * 0.5 - arrowDown.width * 0.05}
+            y={height * 0.8 + arrowDown.height * 0.05}
+            scaleX={0.1}
+            scaleY={0.1}
+            onClick={() => changeLocation(currentLocation.goBack)}
+            onTouchStart={() => changeLocation(currentLocation.goBack)}
+          />}
           { currentLocation.left &&
           <Image
             image={arrowLeft}
-            x={width * 0.47 - arrowLeft.width * 0.1}
-            y={height * 0.78 + arrowLeft.height * 0.05}
+            x={imageX + (currentLocation.left.arrowX * scale)}
+            y={currentLocation.left.arrowY * scale}
             scaleX={0.1}
             scaleY={0.1}
-            onClick={() => changeLocation(currentLocation.left)}
-            onTouchStart={() => changeLocation(currentLocation.left)}
+            onClick={() => changeLocation(currentLocation.left.transferTo)}
+            onTouchStart={() => changeLocation(currentLocation.left.transferTo)}
+          />}
+          { currentLocation.turnLeft &&
+          <Image
+            image={arrowTurnLeft}
+            x={imageX + (currentLocation.turnLeft.arrowX * scale)}
+            y={currentLocation.turnLeft.arrowY * scale}
+            scaleX={0.1}
+            scaleY={0.1}
+            onClick={() => changeLocation(currentLocation.turnLeft.transferTo)}
+            onTouchStart={() => changeLocation(currentLocation.turnLeft.transferTo)}
           />}
           { currentLocation.right &&
           <Image
             image={arrowRight}
-            x={width * 0.53}
-            y={height * 0.78 + arrowRight.height * 0.05}
+            x={imageX + (currentLocation.right.arrowX * scale)}
+            y={currentLocation.right.arrowY * scale}
             scaleX={0.1}
             scaleY={0.1}
-            onClick={() => changeLocation(currentLocation.right)}
-            onTouchStart={() => changeLocation(currentLocation.right)}
+            onClick={() => changeLocation(currentLocation.right.transferTo)}
+            onTouchStart={() => changeLocation(currentLocation.right.transferTo)}
+          />}
+          { currentLocation.turnRight &&
+          <Image
+            image={arrowTurnRight}
+            x={imageX + (currentLocation.turnRight.arrowX * scale)}
+            y={currentLocation.turnRight.arrowY * scale}
+            scaleX={0.1}
+            scaleY={0.1}
+            onClick={() => changeLocation(currentLocation.turnRight.transferTo)}
+            onTouchStart={() => changeLocation(currentLocation.turnRight.transferTo)}
           />}
           { currentLocation.mystery &&
           <Image
             image={arrowRight}
-            x={width * 0.53}
-            y={height * 0.78 + arrowRight.height * 0.05}
+            x={imageX + (currentLocation.mystery.arrowX * scale)}
+            y={currentLocation.mystery.arrowY * scale}
             scaleX={0.1}
             scaleY={0.1}
             onClick={() => {
-              changeLocation(currentLocation.mystery);
+              changeLocation(currentLocation.mystery.transferTo);
               controlAudio('stop');
             }}
             onTouchStart={() => {
-              changeLocation(currentLocation.mystery);
+              changeLocation(currentLocation.mystery.transferTo);
               controlAudio('stop');
             }}
           />}
           {currentLocation.quiz &&
           <Image
             image={arrowUp}
-            x={width * 0.5 - arrowUp.width * 0.05}
-            y={height * 0.8 - arrowUp.height * 0.1}
+            x={imageX + (currentLocation.quiz.arrowX * scale)}
+            y={currentLocation.quiz.arrowY * scale}
             scaleX={0.1}
             scaleY={0.1}
             onClick={() => {setStatus('quiz')}}

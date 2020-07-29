@@ -34,15 +34,27 @@ export const triggerRoomUnlock = (roomWhereKeyIsFound) => {
     case 'BEDROOMCLOSET':
       alert('You found the key that unlocks the door in the living room! Go check it out!');
       setImageForRoom(maps.LIVINGROOM, maps.IMAGECHANGES.livingRoomUnlockedImage);
-      maps.LIVINGROOM.up = 'LIVINGROOMCLOSET';
+      maps.LIVINGROOM.up = {
+        "transferTo": "LIVINGROOMCLOSET",
+        "arrowX":753,
+        "arrowY":619
+      };
       break;
     case 'KITCHENCORNER':
       alert('You found the key that unlocks the door in the bedroom! Go check it out!');
       setImageForRoom(maps.BEDROOMCORNER, maps.IMAGECHANGES.bedroomCornerUnlockedImage);
-      maps.BEDROOMCORNER.up = 'BEDROOMCLOSET';
+      maps.BEDROOMCORNER.up = {
+        "transferTo": "BEDROOMCLOSET",
+        "arrowX":1342,
+        "arrowY":1146
+      };
       break;
     case 'MYSTERY':
-      maps.KITCHENCORNER.mystery = 'MYDOOR';
+      maps.KITCHENCORNER.mystery = {
+        "transferTo": "MYDOOR",
+        "arrowX":1762,
+        "arrowY":1206
+      };
       break;
     default:
       alert('You have found the test trigger. This alert is all that happens because of it. You really shouldn\'t be seeing this.');
