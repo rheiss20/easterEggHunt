@@ -33,6 +33,9 @@ In `src/App.jsx`, there is a variable `HUNT_MODE` setting this to false will add
 Drag the red circle over the egg, adjust the radius, and copy the values in the text box into the eggs array in `maps.json`.  
 Note: Be sure to set `HUNT_MODE` to true before releasing the app out to the players.
 
+## Adding Navigation Icons
+Its the same way as adding the eggs, except you are actually adding it over the image rather than placing an invisible circle over an image that is part of the background.
+
 ## Behavior
 `src/maps.json` is loaded and parsed in `src/App.jsx`. The starting location is defaulted to the `ENTRANCE` value.  
 Based on the up/down/left/right/elevatorUp/elevatorDown properties of the location, the corresponding arrows are made visible on the image. Based on the eggs array, invisible circles are placed throughout the image.  
