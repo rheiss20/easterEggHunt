@@ -52,6 +52,7 @@ export function App() {
   const [arrowTurnLeft] = useImage('LeftTurnArrow.png');
   const [arrowRight] = useImage('RightTurnArrow.png');
   const [arrowTurnRight] = useImage('RightTurnArrow.png');
+  const [turnAroundArrow] = useImage('TurnAroundArrow.png');
   const [goBack] = useImage('GoBack.png');
   const [checkmark] = useImage('checkmark.gif');
   const [congratulations] = useImage('Congratulations.png');
@@ -435,6 +436,26 @@ export function App() {
             scaleY={0.1}
             onClick={() => changeLocation(currentLocation.turnRight.transferTo)}
             onTouchStart={() => changeLocation(currentLocation.turnRight.transferTo)}
+          />}
+          { currentLocation.turnAroundRight &&
+          <Image
+            image={turnAroundArrow}
+            x={imageX + (currentLocation.turnAroundRight.arrowX * scale)}
+            y={currentLocation.turnAroundRight.arrowY * scale}
+            scaleX={0.1}
+            scaleY={0.1}
+            onClick={() => changeLocation(currentLocation.turnAroundRight.transferTo)}
+            onTouchStart={() => changeLocation(currentLocation.turnAroundRight.transferTo)}
+          />}
+          { currentLocation.turnAroundLeft &&
+          <Image
+            image={turnAroundArrow}
+            x={imageX + (currentLocation.turnAroundLeft.arrowX * scale)}
+            y={currentLocation.turnAroundLeft.arrowY * scale}
+            scaleX={-0.1}
+            scaleY={0.1}
+            onClick={() => changeLocation(currentLocation.turnAroundLeft.transferTo)}
+            onTouchStart={() => changeLocation(currentLocation.turnAroundLeft.transferTo)}
           />}
           { currentLocation.mystery &&
           <Image
