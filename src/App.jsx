@@ -119,6 +119,10 @@ export function App() {
   } else if (name === 'CHEAT_quiz') {
     setName('You little cheater, boy');
     setStatus('quiz');
+  } else if (name === 'CHEAT_nick') {
+    setName('Nick Bruhnke');
+    setStatus('hunting');
+    setCurrentLocation(maps.LIVINGROOM2);
   } else if (name === 'CHEAT_nohunt') {
     triggerRoomUnlock('MYSTERY');
     setName('Doesn\'t matter');
@@ -442,7 +446,7 @@ export function App() {
             image={turnAroundArrow}
             x={imageX + (currentLocation.turnAroundRight.arrowX * scale)}
             y={currentLocation.turnAroundRight.arrowY * scale}
-            scaleX={0.1}
+            scaleX={-0.1}
             scaleY={0.1}
             onClick={() => changeLocation(currentLocation.turnAroundRight.transferTo)}
             onTouchStart={() => changeLocation(currentLocation.turnAroundRight.transferTo)}
@@ -452,7 +456,7 @@ export function App() {
             image={turnAroundArrow}
             x={imageX + (currentLocation.turnAroundLeft.arrowX * scale)}
             y={currentLocation.turnAroundLeft.arrowY * scale}
-            scaleX={-0.1}
+            scaleX={0.1}
             scaleY={0.1}
             onClick={() => changeLocation(currentLocation.turnAroundLeft.transferTo)}
             onTouchStart={() => changeLocation(currentLocation.turnAroundLeft.transferTo)}
