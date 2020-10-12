@@ -50,7 +50,7 @@ export function App() {
   const [arrowDown] = useImage('ArrowDown.png');
   const [arrowLeft] = useImage('ArrowLeft.png');
   const [arrowTurnLeft] = useImage('LeftTurnArrow.png');
-  const [arrowRight] = useImage('RightTurnArrow.png');
+  const [arrowRight] = useImage('ArrowRight.png');
   const [arrowTurnRight] = useImage('RightTurnArrow.png');
   const [turnAroundArrow] = useImage('TurnAroundArrow.png');
   const [goBack] = useImage('GoBack.png');
@@ -122,6 +122,7 @@ export function App() {
   } else if (name === 'CHEAT_nick') {
     setName('Nick Bruhnke');
     setStatus('hunting');
+    HUNT_MODE = false;
     setCurrentLocation(maps.LIVINGROOM2);
   } else if (name === 'CHEAT_nohunt') {
     triggerRoomUnlock('MYSTERY');
@@ -364,7 +365,7 @@ export function App() {
           { currentLocation.up &&
           <Image
             image={arrowUp}
-            x={imageX + (currentLocation.up.arrowX * scale)}
+            x={(imageX + (currentLocation.up.arrowX * scale)) - 30}
             y={currentLocation.up.arrowY * scale}
             scaleX={0.1}
             scaleY={0.1}
@@ -374,7 +375,7 @@ export function App() {
           { currentLocation.upTwo &&
           <Image
             image={arrowUp}
-            x={imageX + (currentLocation.upTwo.arrowX * scale)}
+            x={(imageX + (currentLocation.upTwo.arrowX * scale)) - 30}
             y={currentLocation.upTwo.arrowY * scale}
             scaleX={0.1}
             scaleY={0.1}
@@ -384,7 +385,7 @@ export function App() {
           { currentLocation.down &&
           <Image
             image={arrowDown}
-            x={width * 0.5 - arrowDown.width * 0.05}
+            x={(width * 0.5 - arrowDown.width * 0.05) - 30}
             y={height * 0.8 + arrowDown.height * 0.05}
             scaleX={0.1}
             scaleY={0.1}
@@ -394,7 +395,7 @@ export function App() {
           { currentLocation.goBack &&
           <Image
             image={goBack}
-            x={width * 0.5 - arrowDown.width * 0.05}
+            x={(width * 0.5 - arrowDown.width * 0.05) - 30}
             y={height * 0.8 + arrowDown.height * 0.05}
             scaleX={0.1}
             scaleY={0.1}
@@ -404,7 +405,7 @@ export function App() {
           { currentLocation.left &&
           <Image
             image={arrowLeft}
-            x={imageX + (currentLocation.left.arrowX * scale)}
+            x={(imageX + (currentLocation.left.arrowX * scale)) - 30}
             y={currentLocation.left.arrowY * scale}
             scaleX={0.1}
             scaleY={0.1}
@@ -414,7 +415,7 @@ export function App() {
           { currentLocation.turnLeft &&
           <Image
             image={arrowTurnLeft}
-            x={imageX + (currentLocation.turnLeft.arrowX * scale)}
+            x={(imageX + (currentLocation.turnLeft.arrowX * scale)) - 30}
             y={currentLocation.turnLeft.arrowY * scale}
             scaleX={0.1}
             scaleY={0.1}
@@ -424,7 +425,7 @@ export function App() {
           { currentLocation.right &&
           <Image
             image={arrowRight}
-            x={imageX + (currentLocation.right.arrowX * scale)}
+            x={(imageX + (currentLocation.right.arrowX * scale)) - 30}
             y={currentLocation.right.arrowY * scale}
             scaleX={0.1}
             scaleY={0.1}
@@ -434,7 +435,7 @@ export function App() {
           { currentLocation.turnRight &&
           <Image
             image={arrowTurnRight}
-            x={imageX + (currentLocation.turnRight.arrowX * scale)}
+            x={(imageX + (currentLocation.turnRight.arrowX * scale)) - 30}
             y={currentLocation.turnRight.arrowY * scale}
             scaleX={0.1}
             scaleY={0.1}
@@ -444,7 +445,7 @@ export function App() {
           { currentLocation.turnAroundRight &&
           <Image
             image={turnAroundArrow}
-            x={imageX + (currentLocation.turnAroundRight.arrowX * scale)}
+            x={(imageX + (currentLocation.turnAroundRight.arrowX * scale)) - 30}
             y={currentLocation.turnAroundRight.arrowY * scale}
             scaleX={-0.1}
             scaleY={0.1}
@@ -454,7 +455,7 @@ export function App() {
           { currentLocation.turnAroundLeft &&
           <Image
             image={turnAroundArrow}
-            x={imageX + (currentLocation.turnAroundLeft.arrowX * scale)}
+            x={(imageX + (currentLocation.turnAroundLeft.arrowX * scale)) - 30}
             y={currentLocation.turnAroundLeft.arrowY * scale}
             scaleX={0.1}
             scaleY={0.1}
@@ -464,7 +465,7 @@ export function App() {
           { currentLocation.mystery &&
           <Image
             image={arrowRight}
-            x={imageX + (currentLocation.mystery.arrowX * scale)}
+            x={(imageX + (currentLocation.mystery.arrowX * scale)) - 30}
             y={currentLocation.mystery.arrowY * scale}
             scaleX={0.1}
             scaleY={0.1}
@@ -480,7 +481,7 @@ export function App() {
           {currentLocation.quiz &&
           <Image
             image={arrowUp}
-            x={imageX + (currentLocation.quiz.arrowX * scale)}
+            x={(imageX + (currentLocation.quiz.arrowX * scale)) - 30}
             y={currentLocation.quiz.arrowY * scale}
             scaleX={0.1}
             scaleY={0.1}
@@ -490,8 +491,8 @@ export function App() {
           {currentLocation.end &&
           <Image
             image={arrowUp}
-            x={width * 0.5 - arrowUp.width * 0.05}
-            y={height * 0.8 - arrowUp.height * 0.1}
+            x={(imageX + (currentLocation.end.arrowX * scale)) - 30}
+            y={currentLocation.end.arrowY * scale}
             scaleX={0.1}
             scaleY={0.1}
             onClick={() => {alert(`That's all we got for now! Tune in next time to see more about this project and where its going! Make sure you tell Ryan that you got here when you get the chance ;)`)}}

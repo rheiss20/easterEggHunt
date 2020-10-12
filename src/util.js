@@ -36,8 +36,8 @@ export const triggerRoomUnlock = (roomWhereKeyIsFound) => {
       setImageForRoom(maps.LIVINGROOM, maps.IMAGECHANGES.livingRoomUnlockedImage);
       maps.LIVINGROOM.up = {
         "transferTo": "LIVINGROOMCLOSET",
-        "arrowX":753,
-        "arrowY":619
+        "arrowX":823,
+        "arrowY":669
       };
       break;
     case 'KITCHENCORNER':
@@ -45,15 +45,15 @@ export const triggerRoomUnlock = (roomWhereKeyIsFound) => {
       setImageForRoom(maps.BEDROOMCORNER, maps.IMAGECHANGES.bedroomCornerUnlockedImage);
       maps.BEDROOMCORNER.up = {
         "transferTo": "BEDROOMCLOSET",
-        "arrowX":1342,
-        "arrowY":1146
+        "arrowX":1392,
+        "arrowY":1196
       };
       break;
     case 'MYSTERY':
       maps.KITCHENCORNER.mystery = {
         "transferTo": "MYDOOR",
-        "arrowX":1762,
-        "arrowY":1206
+        "arrowX":1782,
+        "arrowY":1226
       };
       break;
     default:
