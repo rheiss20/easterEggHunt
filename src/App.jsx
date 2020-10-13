@@ -14,7 +14,7 @@ import maps from './maps.json';
 import { QuizSection } from './quiz/main';
 import {
   controlAudio,
-  generateGiveUpMessage,
+  generateGiveUpMessage, mysteryTrigger,
   navySealCopypasta,
   renderLoadingScreen,
   resetTriggers,
@@ -122,7 +122,7 @@ export function App() {
     triggerRoomUnlock('MYSTERY');
     setName('Howie, dear');
     setStatus('hunting');
-    controlAudio('play');
+    controlAudio('play', 'hunting');
     setCurrentLocation(maps.LIVINGROOM);
   } else if (name === 'CHEAT_quiz') {
     setName('You little cheater, boy');
@@ -132,7 +132,7 @@ export function App() {
     setStatus('hunting');
     setCurrentLocation(maps.LIVINGROOM2);
     setLevel(2);
-    secondHouseTrigger();
+    secondHouseTrigger('in');
   } else if (name === 'CHEAT_nohunt') {
     triggerRoomUnlock('MYSTERY');
     setName('Doesn\'t matter');
@@ -186,7 +186,7 @@ export function App() {
           disabled={name === ''}
           onClick={() => {
             setStatus('hunting');
-            controlAudio('play');
+            controlAudio('play', 'hunting');
             }
           }
       />
@@ -225,7 +225,8 @@ export function App() {
             background: 'yellow'
           }}
           onClick={() => {
-            controlAudio('stop');
+            controlAudio('stop', 'hunting');
+            controlAudio('stop', '2nd');
             generateGiveUpMessage(score, name, level);
             setStatus('landing');
             setName('');
@@ -480,12 +481,12 @@ export function App() {
             scaleX={0.1}
             scaleY={0.1}
             onClick={() => {
+              mysteryTrigger();
               changeLocation(currentLocation.mystery.transferTo);
-              controlAudio('stop');
             }}
             onTouchStart={() => {
+              mysteryTrigger();
               changeLocation(currentLocation.mystery.transferTo);
-              controlAudio('stop');
             }}
           />}
           { currentLocation.secondHouse &&
@@ -497,15 +498,31 @@ export function App() {
             scaleY={0.1}
             onClick={() => {
               changeLocation(currentLocation.secondHouse.transferTo);
-              secondHouseTrigger();
+              secondHouseTrigger('in');
               setScore(0);
               setMaxScore(50);
             }}
             onTouchStart={() => {
               changeLocation(currentLocation.secondHouse.transferTo);
-              secondHouseTrigger();
+              secondHouseTrigger('in');
               setScore(0);
               setMaxScore(50);
+            }}
+          />}
+          { currentLocation.exitSecondHouse &&
+          <Image
+            image={arrowRight}
+            x={(imageX + (currentLocation.exitSecondHouse.arrowX * scale)) - 30}
+            y={currentLocation.exitSecondHouse.arrowY * scale}
+            scaleX={0.1}
+            scaleY={0.1}
+            onClick={() => {
+              changeLocation(currentLocation.exitSecondHouse.transferTo);
+              secondHouseTrigger('out')
+            }}
+            onTouchStart={() => {
+              changeLocation(currentLocation.exitSecondHouse.transferTo);
+              secondHouseTrigger('out')
             }}
           />}
           {currentLocation.quiz &&

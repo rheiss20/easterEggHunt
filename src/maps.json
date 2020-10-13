@@ -1292,7 +1292,7 @@
             "arrowX":1427,
             "arrowY":1010
         },
-        "right":{
+        "exitSecondHouse":{
             "transferTo":"STAIRTOSECONDHOUSE",
             "arrowX":2005,
             "arrowY":1211
