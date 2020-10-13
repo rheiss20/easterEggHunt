@@ -56,15 +56,39 @@ export const triggerRoomUnlock = (roomWhereKeyIsFound) => {
         "arrowY":1226
       };
       break;
+    case 'SECONDMYSTERY':
+      alert('This isn\'t right. The lights were off then. You remember. The switch in the bedroom.');
+      maps.BEDROOMCORNER2.turnLeft = {
+        "transferTo":"LIGHTSWITCHCORNER",
+        "arrowX":732,
+        "arrowY":984
+      };
+      break;
+    case 'LIGHTSWITCHCORNER':
+      controlAudio('stop');
+      maps.LIGHTSWITCHCORNER.down = "BEDROOMCORNERMESSY";
+      alert('You hear something... Are you sure you\'re alone?');
+      break;
+    case 'KITCHENCUPBOARD':
+      // CHANGE THIS AFTER PLAYTESTING CHANGE THIS AFTER PLAYTESTING CHANGE THIS AFTER PLAYTESTING
+      alert('If you found this, tell Ryan. He\'s trying to track how many people find this by accident.');
+      break;
     default:
       alert('You have found the test trigger. This alert is all that happens because of it. You really shouldn\'t be seeing this.');
   }
+};
+
+export const secondHouseTrigger = () => {
+  controlAudio('play');
+  setImageForRoom(maps.STAIRTOSECONDHOUSE, maps.IMAGECHANGES.stairToSecondHouseLockedImage);
+  delete maps.STAIRTOSECONDHOUSE.secondHouse;
 };
 
 // revert all the changes that could be made in triggerRoomUnlock
 export const resetTriggers = (maxScore, setMaxScore) => {
   setImageForRoom(maps.LIVINGROOM, maps.IMAGECHANGES.livingRoomLockedImage);
   setImageForRoom(maps.BEDROOMCORNER, maps.IMAGECHANGES.bedroomCornerLockedImage);
+  setImageForRoom(maps.STAIRTOSECONDHOUSE, maps.IMAGECHANGES.stairToSecondHouseUnlockedImage);
 
   if (maxScore === 250) {
     setMaxScore(50);
@@ -79,11 +103,28 @@ export const resetTriggers = (maxScore, setMaxScore) => {
   if (maps.KITCHENCORNER.mystery) {
     delete maps.KITCHENCORNER.mystery;
   }
+  if (maps.BEDROOMCORNER2.turnLeft) {
+    delete maps.BEDROOMCORNER.turnLeft;
+  }
+  if (maps.LIGHTSWITCHCORNER.down) {
+    delete maps.LIGHTSWITCHCORNER.down;
+  }
+  if (!maps.STAIRTOSECONDHOUSE.secondHouse) {
+    maps.STAIRTOSECONDHOUSE.secondHouse = {
+      "transferTo": "LIVINGROOM2",
+      "arrowX":1069,
+      "arrowY":917
+    };
+  }
 };
 
-export const generateGiveUpMessage = (score, name) => {
-  if (score === 50) {
+export const generateGiveUpMessage = (score, name, level) => {
+  if (score === 50 && level === 1) {
     alert(`${name} is a super hunter who found all 50 eggs!\nWOW!! Thanks for playing, and hope to see you again, soon!`);
+  } else if (level === 2) {
+    alert(`${score} EGGS\n1 HOUSE\nWhere did you go, ${name}?\nWhat did you see?`);
+  } else if (score === 50 && level === 3) {
+    alert(`2 HOUSES\nWhere did you go, ${name}?\nWhat did you see?`);
   } else {
     alert(`${name} found ${score} out of 50 eggs!\nThanks for playing!`);
   }

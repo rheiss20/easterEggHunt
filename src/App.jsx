@@ -17,6 +17,7 @@ import {
   generateGiveUpMessage,
   renderLoadingScreen,
   resetTriggers,
+  secondHouseTrigger,
   triggerRoomUnlock
 } from './util';
 
@@ -30,6 +31,7 @@ export function App() {
 
   const [name, setName] = useState('');
   const [score, setScore] = useState(0);
+  const [level, setLevel] = useState(1);
   const [maxScore, setMaxScore] = useState(50);
   const [foundEggs, setFoundEggs] = useState([]);
   const [foundKeys, setFoundKeys] = useState([]);
@@ -122,8 +124,9 @@ export function App() {
   } else if (name === 'CHEAT_nick') {
     setName('Nick Bruhnke');
     setStatus('hunting');
-    HUNT_MODE = false;
     setCurrentLocation(maps.LIVINGROOM2);
+    setLevel(2);
+    secondHouseTrigger();
   } else if (name === 'CHEAT_nohunt') {
     triggerRoomUnlock('MYSTERY');
     setName('Doesn\'t matter');
@@ -217,10 +220,11 @@ export function App() {
           }}
           onClick={() => {
             controlAudio('stop');
-            generateGiveUpMessage(score, name);
+            generateGiveUpMessage(score, name, level);
             setStatus('landing');
             setName('');
             setScore(0);
+            setLevel(1);
             setFoundEggs([]);
             setFoundKeys([]);
             resetTriggers(maxScore, setMaxScore);
@@ -478,6 +482,26 @@ export function App() {
               controlAudio('stop');
             }}
           />}
+          { currentLocation.secondHouse &&
+          <Image
+            image={arrowUp}
+            x={(imageX + (currentLocation.secondHouse.arrowX * scale)) - 30}
+            y={currentLocation.secondHouse.arrowY * scale}
+            scaleX={0.1}
+            scaleY={0.1}
+            onClick={() => {
+              changeLocation(currentLocation.secondHouse.transferTo);
+              secondHouseTrigger();
+              setScore(0);
+              setMaxScore(50);
+            }}
+            onTouchStart={() => {
+              changeLocation(currentLocation.secondHouse.transferTo);
+              secondHouseTrigger();
+              setScore(0);
+              setMaxScore(50);
+            }}
+          />}
           {currentLocation.quiz &&
           <Image
             image={arrowUp}
@@ -498,7 +522,7 @@ export function App() {
             onClick={() => {alert(`That's all we got for now! Tune in next time to see more about this project and where its going! Make sure you tell Ryan that you got here when you get the chance ;)`)}}
             onTouchStart={() => {alert(`That's all we got for now! Tune in next time to see more about this project and where its going! Make sure you tell Ryan that you got here when you get the chance ;)`)}}
           />}
-          {score === maxScore ?
+          {score === maxScore && level === 1 ?
             <Image
               image={congratulations}
               x={(width * 0.5) - (congratulations.width * 0.375 * elementScale)}
@@ -507,10 +531,31 @@ export function App() {
               scaleY={elementScale * 0.75}
               onClick={() => {
                 triggerRoomUnlock('MYSTERY');
+                setLevel(2);
                 setMaxScore(250)
               }}
               onTouchStart={() => {
                 triggerRoomUnlock('MYSTERY');
+                setLevel(2);
+                setMaxScore(250)
+              }}
+            /> : null
+          }
+          {score === maxScore && level === 2 ?
+            <Image
+              image={congratulations}
+              x={(width * 0.5) - (congratulations.width * 0.375 * elementScale)}
+              y={(height * 0.5) - (congratulations.height * 0.375 * elementScale)}
+              scaleX={elementScale * 0.75}
+              scaleY={elementScale * 0.75}
+              onClick={() => {
+                triggerRoomUnlock('SECONDMYSTERY');
+                setLevel(3);
+                setMaxScore(250)
+              }}
+              onTouchStart={() => {
+                triggerRoomUnlock('SECONDMYSTERY');
+                setLevel(3);
                 setMaxScore(250)
               }}
             /> : null

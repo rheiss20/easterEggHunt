@@ -775,7 +775,7 @@
         "imageName":"./images/tunnels/stair_to_second_house_finished.jpg",
         "fakeImageName":"./fake_images/stair_to_second_house_finished.jpg",
         "goBack":"BRIGHTCORNER",
-        "up":{
+        "secondHouse":{
             "transferTo":"LIVINGROOM2",
             "arrowX":1069,
             "arrowY":917
@@ -1133,11 +1133,6 @@
         "imageName":"./images/second_house/light/bedroom_corner_2finished.jpg",
         "fakeImageName":"./fake_images/bedroom_corner_2finished.jpg",
         "goBack":"BEDROOM2",
-        "turnLeft":{
-            "transferTo":"LIGHTSWITCHCORNER",
-            "arrowX":732,
-            "arrowY":984
-        },
         "eggs":[
             {
                 "eggX":761,
@@ -1175,7 +1170,6 @@
         "name":"LIGHTSWITCHCORNER",
         "imageName":"./images/second_house/light/light_switch_corner_finished.jpg",
         "fakeImageName":"./fake_images/light_switch_corner_finished.jpg",
-        "down":"BEDROOMCORNERMESSY",
         "eggs":[
             {
                 "eggX":0,
@@ -1375,6 +1369,8 @@
         "livingRoomLockedImage":"./images/first_house/living_room_closed.jpg",
         "bedroomCornerUnlockedImage":"./images/first_house/bedroom_corner_open.jpg",
         "bedroomCornerLockedImage":"./images/first_house/bedroom_corner_closed.jpg",
+        "stairToSecondHouseUnlockedImage":"./images/tunnels/stair_to_second_house_finished.jpg",
+        "stairToSecondHouseLockedImage":"./images/tunnels/stair_to_second_house_finished_locked.jpg",
         "eggs":[
             {
                 "eggX":0,
