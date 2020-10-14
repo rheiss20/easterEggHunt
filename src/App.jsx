@@ -14,11 +14,14 @@ import maps from './maps.json';
 import { QuizSection } from './quiz/main';
 import {
   controlAudio,
-  generateGiveUpMessage,
+  generateGiveUpMessage, mysteryTrigger,
+  navySealCopypasta,
   renderLoadingScreen,
   resetTriggers,
+  secondHouseTrigger,
   triggerRoomUnlock
 } from './util';
+import { responseMeme } from './responseMeme';
 
 // *****************************************************
 
@@ -30,6 +33,7 @@ export function App() {
 
   const [name, setName] = useState('');
   const [score, setScore] = useState(0);
+  const [level, setLevel] = useState(1);
   const [maxScore, setMaxScore] = useState(50);
   const [foundEggs, setFoundEggs] = useState([]);
   const [foundKeys, setFoundKeys] = useState([]);
@@ -50,8 +54,9 @@ export function App() {
   const [arrowDown] = useImage('ArrowDown.png');
   const [arrowLeft] = useImage('ArrowLeft.png');
   const [arrowTurnLeft] = useImage('LeftTurnArrow.png');
-  const [arrowRight] = useImage('RightTurnArrow.png');
+  const [arrowRight] = useImage('ArrowRight.png');
   const [arrowTurnRight] = useImage('RightTurnArrow.png');
+  const [turnAroundArrow] = useImage('TurnAroundArrow.png');
   const [goBack] = useImage('GoBack.png');
   const [checkmark] = useImage('checkmark.gif');
   const [congratulations] = useImage('Congratulations.png');
@@ -92,7 +97,11 @@ export function App() {
 
   useEffect(() => {
     if(status === 'hunting'){
-      alert(`Have yourself an Easter egg hunt without leaving the safety and comfort of your own home! There are 50 eggs hidden inside this house. Click on the arrows to navigate, and click on an egg when you find it to add it to your score! Have fun, and try to collect them all!\n(Click "Give Up" when you are done playing.)`)
+      if (name === navySealCopypasta) {
+        alert(responseMeme);
+      } else {
+        alert(`Have yourself an Easter egg hunt without leaving the safety and comfort of your own home! There are 50 eggs hidden inside this house. Click on the arrows to navigate, and click on an egg when you find it to add it to your score! Have fun, and try to collect them all!\n(Click "Give Up" when you are done playing.)`)
+      }
     }
   }, [status]);
 
@@ -113,11 +122,17 @@ export function App() {
     triggerRoomUnlock('MYSTERY');
     setName('Howie, dear');
     setStatus('hunting');
-    controlAudio('play');
+    controlAudio('play', 'hunting');
     setCurrentLocation(maps.LIVINGROOM);
   } else if (name === 'CHEAT_quiz') {
     setName('You little cheater, boy');
     setStatus('quiz');
+  } else if (name === 'CHEAT_nick') {
+    setName('Nick Bruhnke');
+    setStatus('hunting');
+    setCurrentLocation(maps.LIVINGROOM2);
+    setLevel(2);
+    secondHouseTrigger('in');
   } else if (name === 'CHEAT_nohunt') {
     triggerRoomUnlock('MYSTERY');
     setName('Doesn\'t matter');
@@ -171,7 +186,7 @@ export function App() {
           disabled={name === ''}
           onClick={() => {
             setStatus('hunting');
-            controlAudio('play');
+            controlAudio('play', 'hunting');
             }
           }
       />
@@ -210,11 +225,13 @@ export function App() {
             background: 'yellow'
           }}
           onClick={() => {
-            controlAudio('stop');
-            generateGiveUpMessage(score, name);
+            controlAudio('stop', 'hunting');
+            controlAudio('stop', '2nd');
+            generateGiveUpMessage(score, name, level);
             setStatus('landing');
             setName('');
             setScore(0);
+            setLevel(1);
             setFoundEggs([]);
             setFoundKeys([]);
             resetTriggers(maxScore, setMaxScore);
@@ -359,7 +376,7 @@ export function App() {
           { currentLocation.up &&
           <Image
             image={arrowUp}
-            x={imageX + (currentLocation.up.arrowX * scale)}
+            x={(imageX + (currentLocation.up.arrowX * scale)) - 30}
             y={currentLocation.up.arrowY * scale}
             scaleX={0.1}
             scaleY={0.1}
@@ -369,7 +386,7 @@ export function App() {
           { currentLocation.upTwo &&
           <Image
             image={arrowUp}
-            x={imageX + (currentLocation.upTwo.arrowX * scale)}
+            x={(imageX + (currentLocation.upTwo.arrowX * scale)) - 30}
             y={currentLocation.upTwo.arrowY * scale}
             scaleX={0.1}
             scaleY={0.1}
@@ -379,7 +396,7 @@ export function App() {
           { currentLocation.down &&
           <Image
             image={arrowDown}
-            x={width * 0.5 - arrowDown.width * 0.05}
+            x={(width * 0.5 - arrowDown.width * 0.05) - 30}
             y={height * 0.8 + arrowDown.height * 0.05}
             scaleX={0.1}
             scaleY={0.1}
@@ -389,7 +406,7 @@ export function App() {
           { currentLocation.goBack &&
           <Image
             image={goBack}
-            x={width * 0.5 - arrowDown.width * 0.05}
+            x={(width * 0.5 - arrowDown.width * 0.05) - 30}
             y={height * 0.8 + arrowDown.height * 0.05}
             scaleX={0.1}
             scaleY={0.1}
@@ -399,7 +416,7 @@ export function App() {
           { currentLocation.left &&
           <Image
             image={arrowLeft}
-            x={imageX + (currentLocation.left.arrowX * scale)}
+            x={(imageX + (currentLocation.left.arrowX * scale)) - 30}
             y={currentLocation.left.arrowY * scale}
             scaleX={0.1}
             scaleY={0.1}
@@ -409,7 +426,7 @@ export function App() {
           { currentLocation.turnLeft &&
           <Image
             image={arrowTurnLeft}
-            x={imageX + (currentLocation.turnLeft.arrowX * scale)}
+            x={(imageX + (currentLocation.turnLeft.arrowX * scale)) - 30}
             y={currentLocation.turnLeft.arrowY * scale}
             scaleX={0.1}
             scaleY={0.1}
@@ -419,7 +436,7 @@ export function App() {
           { currentLocation.right &&
           <Image
             image={arrowRight}
-            x={imageX + (currentLocation.right.arrowX * scale)}
+            x={(imageX + (currentLocation.right.arrowX * scale)) - 30}
             y={currentLocation.right.arrowY * scale}
             scaleX={0.1}
             scaleY={0.1}
@@ -429,33 +446,89 @@ export function App() {
           { currentLocation.turnRight &&
           <Image
             image={arrowTurnRight}
-            x={imageX + (currentLocation.turnRight.arrowX * scale)}
+            x={(imageX + (currentLocation.turnRight.arrowX * scale)) - 30}
             y={currentLocation.turnRight.arrowY * scale}
             scaleX={0.1}
             scaleY={0.1}
             onClick={() => changeLocation(currentLocation.turnRight.transferTo)}
             onTouchStart={() => changeLocation(currentLocation.turnRight.transferTo)}
           />}
+          { currentLocation.turnAroundRight &&
+          <Image
+            image={turnAroundArrow}
+            x={(imageX + (currentLocation.turnAroundRight.arrowX * scale)) - 30}
+            y={currentLocation.turnAroundRight.arrowY * scale}
+            scaleX={-0.1}
+            scaleY={0.1}
+            onClick={() => changeLocation(currentLocation.turnAroundRight.transferTo)}
+            onTouchStart={() => changeLocation(currentLocation.turnAroundRight.transferTo)}
+          />}
+          { currentLocation.turnAroundLeft &&
+          <Image
+            image={turnAroundArrow}
+            x={(imageX + (currentLocation.turnAroundLeft.arrowX * scale)) - 30}
+            y={currentLocation.turnAroundLeft.arrowY * scale}
+            scaleX={0.1}
+            scaleY={0.1}
+            onClick={() => changeLocation(currentLocation.turnAroundLeft.transferTo)}
+            onTouchStart={() => changeLocation(currentLocation.turnAroundLeft.transferTo)}
+          />}
           { currentLocation.mystery &&
           <Image
             image={arrowRight}
-            x={imageX + (currentLocation.mystery.arrowX * scale)}
+            x={(imageX + (currentLocation.mystery.arrowX * scale)) - 30}
             y={currentLocation.mystery.arrowY * scale}
             scaleX={0.1}
             scaleY={0.1}
             onClick={() => {
+              mysteryTrigger();
               changeLocation(currentLocation.mystery.transferTo);
-              controlAudio('stop');
             }}
             onTouchStart={() => {
+              mysteryTrigger();
               changeLocation(currentLocation.mystery.transferTo);
-              controlAudio('stop');
+            }}
+          />}
+          { currentLocation.secondHouse &&
+          <Image
+            image={arrowUp}
+            x={(imageX + (currentLocation.secondHouse.arrowX * scale)) - 30}
+            y={currentLocation.secondHouse.arrowY * scale}
+            scaleX={0.1}
+            scaleY={0.1}
+            onClick={() => {
+              changeLocation(currentLocation.secondHouse.transferTo);
+              secondHouseTrigger('in');
+              setScore(0);
+              setMaxScore(50);
+            }}
+            onTouchStart={() => {
+              changeLocation(currentLocation.secondHouse.transferTo);
+              secondHouseTrigger('in');
+              setScore(0);
+              setMaxScore(50);
+            }}
+          />}
+          { currentLocation.exitSecondHouse &&
+          <Image
+            image={arrowRight}
+            x={(imageX + (currentLocation.exitSecondHouse.arrowX * scale)) - 30}
+            y={currentLocation.exitSecondHouse.arrowY * scale}
+            scaleX={0.1}
+            scaleY={0.1}
+            onClick={() => {
+              changeLocation(currentLocation.exitSecondHouse.transferTo);
+              secondHouseTrigger('out')
+            }}
+            onTouchStart={() => {
+              changeLocation(currentLocation.exitSecondHouse.transferTo);
+              secondHouseTrigger('out')
             }}
           />}
           {currentLocation.quiz &&
           <Image
             image={arrowUp}
-            x={imageX + (currentLocation.quiz.arrowX * scale)}
+            x={(imageX + (currentLocation.quiz.arrowX * scale)) - 30}
             y={currentLocation.quiz.arrowY * scale}
             scaleX={0.1}
             scaleY={0.1}
@@ -465,14 +538,14 @@ export function App() {
           {currentLocation.end &&
           <Image
             image={arrowUp}
-            x={width * 0.5 - arrowUp.width * 0.05}
-            y={height * 0.8 - arrowUp.height * 0.1}
+            x={(imageX + (currentLocation.end.arrowX * scale)) - 30}
+            y={currentLocation.end.arrowY * scale}
             scaleX={0.1}
             scaleY={0.1}
             onClick={() => {alert(`That's all we got for now! Tune in next time to see more about this project and where its going! Make sure you tell Ryan that you got here when you get the chance ;)`)}}
             onTouchStart={() => {alert(`That's all we got for now! Tune in next time to see more about this project and where its going! Make sure you tell Ryan that you got here when you get the chance ;)`)}}
           />}
-          {score === maxScore ?
+          {score === maxScore && level === 1 ?
             <Image
               image={congratulations}
               x={(width * 0.5) - (congratulations.width * 0.375 * elementScale)}
@@ -481,10 +554,31 @@ export function App() {
               scaleY={elementScale * 0.75}
               onClick={() => {
                 triggerRoomUnlock('MYSTERY');
+                setLevel(2);
                 setMaxScore(250)
               }}
               onTouchStart={() => {
                 triggerRoomUnlock('MYSTERY');
+                setLevel(2);
+                setMaxScore(250)
+              }}
+            /> : null
+          }
+          {score === maxScore && level === 2 ?
+            <Image
+              image={congratulations}
+              x={(width * 0.5) - (congratulations.width * 0.375 * elementScale)}
+              y={(height * 0.5) - (congratulations.height * 0.375 * elementScale)}
+              scaleX={elementScale * 0.75}
+              scaleY={elementScale * 0.75}
+              onClick={() => {
+                triggerRoomUnlock('SECONDMYSTERY');
+                setLevel(3);
+                setMaxScore(250)
+              }}
+              onTouchStart={() => {
+                triggerRoomUnlock('SECONDMYSTERY');
+                setLevel(3);
                 setMaxScore(250)
               }}
             /> : null
