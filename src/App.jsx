@@ -14,8 +14,10 @@ import maps from './maps.json';
 import { QuizSection } from './quiz/main';
 import {
   controlAudio,
-  generateGiveUpMessage, mysteryTrigger,
+  generateGiveUpMessage,
+  mysteryTrigger,
   navySealCopypasta,
+  playEggClickSound,
   renderLoadingScreen,
   resetTriggers,
   secondHouseTrigger,
@@ -59,7 +61,8 @@ export function App() {
   const [turnAroundArrow] = useImage('TurnAroundArrow.png');
   const [goBack] = useImage('GoBack.png');
   const [checkmark] = useImage('checkmark.gif');
-  const [congratulations] = useImage('Congratulations.png');
+  const [congratulationsLevel1] = useImage('Congratulations.png');
+  const [congratulationsLevel2] = useImage('CongratulationsLevel2.jpg');
 
   let elementScale = scale * 1.5;
 
@@ -98,7 +101,7 @@ export function App() {
   useEffect(() => {
     if(status === 'hunting'){
       if (name === navySealCopypasta) {
-        alert(responseMeme);
+        alert(`I bet you think you are pretty cool, don't you?`);
       } else {
         alert(`Have yourself an Easter egg hunt without leaving the safety and comfort of your own home! There are 50 eggs hidden inside this house. Click on the arrows to navigate, and click on an egg when you find it to add it to your score! Have fun, and try to collect them all!\n(Click "Give Up" when you are done playing.)`)
       }
@@ -306,10 +309,12 @@ export function App() {
                     y={ (egg.eggY * scale)}
                     radius={ egg.eggRadius * scale}
                     onClick={() => {
+                      playEggClickSound();
                       setScore(score+1);
                       setFoundEggs([`${currentLocation.name}egg${i}`, ...foundEggs])
                     }}
                     onTouchStart={() => {
+                      playEggClickSound();
                       setScore(score+1);
                       setFoundEggs([`${currentLocation.name}egg${i}`, ...foundEggs])
                     }}
@@ -547,9 +552,9 @@ export function App() {
           />}
           {score === maxScore && level === 1 ?
             <Image
-              image={congratulations}
-              x={(width * 0.5) - (congratulations.width * 0.375 * elementScale)}
-              y={(height * 0.5) - (congratulations.height * 0.375 * elementScale)}
+              image={congratulationsLevel1}
+              x={(width * 0.5) - (congratulationsLevel1.width * 0.375 * elementScale)}
+              y={(height * 0.5) - (congratulationsLevel1.height * 0.375 * elementScale)}
               scaleX={elementScale * 0.75}
               scaleY={elementScale * 0.75}
               onClick={() => {
@@ -566,9 +571,9 @@ export function App() {
           }
           {score === maxScore && level === 2 ?
             <Image
-              image={congratulations}
-              x={(width * 0.5) - (congratulations.width * 0.375 * elementScale)}
-              y={(height * 0.5) - (congratulations.height * 0.375 * elementScale)}
+              image={congratulationsLevel2}
+              x={(width * 0.5) - (congratulationsLevel2.width * 0.375 * elementScale)}
+              y={(height * 0.5) - (congratulationsLevel2.height * 0.375 * elementScale)}
               scaleX={elementScale * 0.75}
               scaleY={elementScale * 0.75}
               onClick={() => {
