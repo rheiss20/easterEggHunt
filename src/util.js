@@ -3,12 +3,16 @@ import huntingMusicFile from './sounds/huntingMusic.mp3';
 import secondHouseSoundsFile from './sounds/secondHouseSounds.mp3';
 import eggPopSoundFile from './sounds/pop1.mp3';
 import keySoundFile from './sounds/key.mp3';
+import congratsFile from './sounds/congratulations.mp3';
+import congratsFile2 from './sounds/congratulations2.mp3';
 import React from 'react';
 
 const huntingMusic = new Audio(huntingMusicFile);
 const secondHouseSounds = new Audio(secondHouseSoundsFile);
 const eggPopSound = new Audio(eggPopSoundFile);
 const keySound = new Audio(keySoundFile);
+const congratsSound = new Audio(congratsFile);
+const congratsSound2 = new Audio(congratsFile2);
 
 export const setImageForRoom = (roomToChange, imageToChangeTo) => {
   const image = new window.Image();
@@ -121,6 +125,16 @@ export const playKeyClickSound = () => {
   keySound.play();
 };
 
+export const playCongratulationsSound = () => {
+  congratsSound.volume = 0.6;
+  congratsSound.play();
+};
+
+export const playCongratulations2Sound = () => {
+  congratsSound2.volume = 0.6;
+  congratsSound2.play();
+};
+
 // revert all the changes that could be made in triggerRoomUnlock
 export const resetTriggers = (maxScore, setMaxScore) => {
   setImageForRoom(maps.LIVINGROOM, maps.IMAGECHANGES.livingRoomLockedImage);
@@ -159,9 +173,9 @@ export const generateGiveUpMessage = (score, name, level) => {
   if (score === 50 && level === 1) {
     alert(`${name} is a super hunter who found all 50 eggs!\nWOW!! Thanks for playing, and hope to see you again, soon!`);
   } else if (level === 2) {
-    alert(`${score} EGGS\n1 HOUSE\nWhere did you go, ${name}?\nWhat did you see?`);
+    alert(`${score + 50} EGGS\n1 HOUSE\nWhere did you go, ${name}?\nWhat did you see?`);
   } else if (score === 50 && level === 3) {
-    alert(`2 HOUSES\nWhere did you go, ${name}?\nWhat did you see?`);
+    alert(`${score + 50} EGGS\n2 HOUSES\nWhere did you go, ${name}?\nWhat did you see?`);
   } else {
     alert(`${name} found ${score} out of 50 eggs!\nThanks for playing!`);
   }

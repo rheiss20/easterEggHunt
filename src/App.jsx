@@ -15,7 +15,7 @@ import { QuizSection } from './quiz/main';
 import {
   controlAudio,
   generateGiveUpMessage,
-  mysteryTrigger,
+  mysteryTrigger, playCongratulations2Sound, playCongratulationsSound,
   playEggClickSound,
   renderLoadingScreen,
   resetTriggers,
@@ -496,12 +496,14 @@ export function App() {
             scaleX={0.1}
             scaleY={0.1}
             onClick={() => {
+              setLevel(2);
               changeLocation(currentLocation.secondHouse.transferTo);
               secondHouseTrigger('in');
               setScore(0);
               setMaxScore(50);
             }}
             onTouchStart={() => {
+              setLevel(2);
               changeLocation(currentLocation.secondHouse.transferTo);
               secondHouseTrigger('in');
               setScore(0);
@@ -553,14 +555,9 @@ export function App() {
               scaleY={elementScale * 0.75}
               onClick={() => {
                 triggerRoomUnlock('MYSTERY');
-                setLevel(2);
                 setMaxScore(250)
               }}
-              onTouchStart={() => {
-                triggerRoomUnlock('MYSTERY');
-                setLevel(2);
-                setMaxScore(250)
-              }}
+              onTouchStart={playCongratulationsSound()}
             /> : null
           }
           {score === maxScore && level === 2 ?
@@ -575,11 +572,7 @@ export function App() {
                 setLevel(3);
                 setMaxScore(250)
               }}
-              onTouchStart={() => {
-                triggerRoomUnlock('SECONDMYSTERY');
-                setLevel(3);
-                setMaxScore(250)
-              }}
+              onTouchStart={playCongratulations2Sound()}
             /> : null
           }
         </Layer>
