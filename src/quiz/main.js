@@ -9,5 +9,5 @@ export const QuizSection = (name, setStatus) => {
       name={name}
       setStatus={setStatus}
     />
-  )
+  );
 };

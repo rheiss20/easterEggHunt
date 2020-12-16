@@ -123,4 +123,9 @@ class QuizApp extends Component {
   }
 }
 
+QuizApp.propTypes = {
+  name: PropTypes.string.isRequired,
+  setStatus: PropTypes.func.isRequired
+};
+
 export default QuizApp;
