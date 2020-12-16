@@ -4,7 +4,7 @@ const QUESTION_DATA = [
   {
     question: <span key={'q1'}>Do you love Easter?</span>,
     answers: [
-      <span key={'a'}>It's okay, I guess.</span>,
+      <span key={'a'}>It&#39;s okay, I guess.</span>,
       <span key={'b'}>I love it more than my own life!</span>,
       <span key={'c'}>Easter sucks</span>,
       <span key={'d'}>I like Easter</span>
@@ -24,12 +24,12 @@ const QUESTION_DATA = [
   {
     question: <span key={'q3'}>How many eggs were in the second house?</span>,
     answers: [
-      <span key={'a'}>5</span>,
-      <span key={'b'}>10</span>,
-      <span key={'c'}>15</span>,
-      <span key={'d'}>20</span>
+      <span key={'a'}>50</span>,
+      <span key={'b'}>45</span>,
+      <span key={'c'}>30</span>,
+      <span key={'d'}>I don&#39;t remember</span>
     ],
-    correct: 1
+    correct: 0
   },
   {
     question: <span key={'q4'}>Which room in the first house had the fewest eggs?</span>,
@@ -67,15 +67,15 @@ const QUESTION_DATA = [
       <span key={'a'}>Second house (no pets, works days, leaves door unlocked)</span>,
       <span key={'b'}>First house <s>(always gone)</s></span>,
       <span key={'c'}>Third house (heavy sleeper)</span>,
-      <span key={'d'}>Fifth house (didn't need camera, didn't need to clean)</span>
+      <span key={'d'}>Fourth house (didn&#39;t need camera, didn&#39;t need to clean)</span>
     ],
     correct: 0
   },
   {
     question: <span key={'q8'}>What happened to the Olegário couple?</span>,
     answers: [
-      <span key={'a'}>I don't know</span>,
-      <span key={'b'}>Nothing, they're fine</span>,
+      <span key={'a'}>I don&#39;t know</span>,
+      <span key={'b'}>Nothing, they&#39;re fine</span>,
       <span key={'c'}>               </span>,
       <span key={'d'}>It was either you or them</span>
     ],
@@ -84,7 +84,7 @@ const QUESTION_DATA = [
   {
     question: <span key={'q9'}>                             </span>,
     answers: [
-      <span key={'a'}>No, I'm much too smart for them</span>,
+      <span key={'a'}>No, I&#39;m much too smart for them</span>,
       <span key={'b'}>No, I put everything back EXACTLY the way I found it</span>,
       <span key={'c'}>No, I covered up the important parts of the pictures</span>,
       <span key={'d'}>All of the above.</span>
@@ -100,7 +100,7 @@ const QUESTION_DATA = [
       <span key={'d'}>Bathroom</span>
     ],
     correct: 2
-  },
+  }
 ];
 
 export default QUESTION_DATA;

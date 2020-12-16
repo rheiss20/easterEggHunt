@@ -16,14 +16,12 @@ import {
   controlAudio,
   generateGiveUpMessage,
   mysteryTrigger,
-  navySealCopypasta,
   playEggClickSound,
   renderLoadingScreen,
   resetTriggers,
   secondHouseTrigger,
   triggerRoomUnlock
 } from './util';
-import { responseMeme } from './responseMeme';
 
 // *****************************************************
 
@@ -100,11 +98,7 @@ export function App() {
 
   useEffect(() => {
     if(status === 'hunting'){
-      if (name === navySealCopypasta) {
-        alert(`I bet you think you are pretty cool, don't you?`);
-      } else {
-        alert(`Have yourself an Easter egg hunt without leaving the safety and comfort of your own home! There are 50 eggs hidden inside this house. Click on the arrows to navigate, and click on an egg when you find it to add it to your score! Have fun, and try to collect them all!\n(Click "Give Up" when you are done playing.)`)
-      }
+      alert(`Have yourself an Easter egg hunt without leaving the safety and comfort of your own home! There are 50 eggs hidden inside this house. Click on the arrows to navigate, and click on an egg when you find it to add it to your score! Have fun, and try to collect them all!\n(Click "Give Up" when you are done playing.)`)
     }
   }, [status]);
 

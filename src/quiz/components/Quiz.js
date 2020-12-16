@@ -11,7 +11,7 @@ const Quiz = ({ step, questions, totalQuestions, handleAnswerClick, handleEnterP
           <div className="question-number">{step}</div>
           <div className="description">of <span>{totalQuestions}</span></div>
         </div>
-        <button onClick={() => {setStatus('hunting')}}>GO BACK</button>
+        <button onClick={ () => { setStatus('hunting'); } }>GO BACK</button>
       </header>
 
       <div className="questions">
@@ -31,7 +31,9 @@ Quiz.propTypes = {
   questions: PropTypes.array.isRequired,
   totalQuestions: PropTypes.number.isRequired,
   handleAnswerClick: PropTypes.func.isRequired,
-  handleEnterPress: PropTypes.func.isRequired
+  handleEnterPress: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  setStatus: PropTypes.func.isRequired
 };
 
 export default Quiz;

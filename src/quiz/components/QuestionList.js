@@ -24,7 +24,8 @@ const QuestionList = ({ questions, handleAnswerClick, handleEnterPress, name }) 
 QuestionList.propTypes = {
   questions: PropTypes.array.isRequired,
   handleAnswerClick: PropTypes.func.isRequired,
-  handleEnterPress: PropTypes.func.isRequired
+  handleEnterPress: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired
 };
 
 export default QuestionList;

@@ -30,6 +30,7 @@ Question.propTypes = {
   answers: PropTypes.array.isRequired,
   handleAnswerClick: PropTypes.func.isRequired,
   handleEnterPress: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired
 };
 
 export default Question;

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Answer = ({ answer, handleAnswerClick, handleEnterPress, name }) => {
-  let generateAnswerToQuestion = () => {
+  const generateAnswerToQuestion = () => {
     if (answer.props.children === 'nameInputFromBeginning') {
       return name;
     } else {
@@ -25,7 +25,8 @@ const Answer = ({ answer, handleAnswerClick, handleEnterPress, name }) => {
 Answer.propTypes = {
   answer: PropTypes.element.isRequired,
   handleAnswerClick: PropTypes.func.isRequired,
-  handleEnterPress: PropTypes.func.isRequired
+  handleEnterPress: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired
 };
 
 export default Answer;
