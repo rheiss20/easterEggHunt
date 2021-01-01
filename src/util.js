@@ -105,14 +105,56 @@ export const mysteryTrigger = () => {
   controlAudio('stop', 'hunting');
 };
 
-export const secondHouseTrigger = (direction) => {
+export const secondHouseTrigger = (direction, startCountdown, setStartCountdown) => {
   if (direction === 'in') {
     controlAudio('play', 'hunting');
     setImageForRoom(maps.STAIRTOSECONDHOUSE, maps.IMAGECHANGES.stairToSecondHouseLockedImage);
     delete maps.STAIRTOSECONDHOUSE.secondHouse;
   } else if (direction === 'out') {
     controlAudio('stop', '2nd');
+    levelThreeTriggers(startCountdown, setStartCountdown);
   }
+};
+
+export const levelThreeTriggers = (startCountdown, setStartCountdown) => {
+  if (startCountdown === false) {
+    setStartCountdown(true);
+  }
+};
+
+export const startCountdownClock = (setIsCountdownRunning) => {
+  setIsCountdownRunning(true);
+  let barWidth = 0;
+  const totalSecondsForCountdown = 1500;
+  const barFrameRateInFPS = 10;
+  const timeIncrement = 1000 / barFrameRateInFPS;
+  const percentIncrement = (100 * timeIncrement)/(totalSecondsForCountdown*1000);
+
+  setInterval(() => {
+    if (barWidth >= 100) {
+      clearInterval();
+      document.getElementById("myP").innerHTML = `Connection Successfully Terminated. Goodbye!`;
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000);
+    } else {
+      const progressBar = document.getElementById("progressBar");
+      barWidth += percentIncrement;
+      progressBar.style.width = barWidth + '%';
+      let barPercentLeft = 100 - barWidth;
+      let secondsLeftInCountdown = ((timeIncrement * (barPercentLeft / percentIncrement)) / 1000).toFixed(0);
+      document.getElementById("counter").innerHTML = secondsLeftInCountdown;
+    }
+  }, timeIncrement);
+};
+
+export const startDragging = ({ clientX, clientY }) => {
+  this.handleRef.style.transform = `translate(${this.dragStartLeft + clientX - this.dragStartX}px, ${this.dragStartTop + clientY - this.dragStartY}px)`;
+};
+
+export const stopDragging = () => {
+  window.removeEventListener('mousemove', this.startDragging, false);
+  window.removeEventListener('mouseup', this.stopDragging, false);
 };
 
 export const playEggClickSound = () => {
@@ -169,13 +211,14 @@ export const resetTriggers = (maxScore, setMaxScore) => {
   }
 };
 
-export const generateGiveUpMessage = (score, name, level) => {
+export const generateGiveUpMessage = (score, name, level, startTime) => {
+  const totalTime = Date.now() - startTime;
   if (score === 50 && level === 1) {
     alert(`${name} is a super hunter who found all 50 eggs!\nWOW!! Thanks for playing, and hope to see you again, soon!`);
   } else if (level === 2) {
     alert(`${score + 50} EGGS\n1 HOUSE\nWhere did you go, ${name}?\nWhat did you see?`);
   } else if (score === 50 && level === 3) {
-    alert(`${score + 50} EGGS\n2 HOUSES\nWhere did you go, ${name}?\nWhat did you see?`);
+    alert(`${score + 50} EGGS\n2 HOUSES\nWhere did you go, ${name}?\nWhat did you see? ${totalTime}ms`);
   } else {
     alert(`${name} found ${score} out of 50 eggs!\nThanks for playing!`);
   }

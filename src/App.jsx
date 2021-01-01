@@ -10,18 +10,24 @@ import {
 } from 'react-konva';
 import useImage from 'use-image';
 import maps from './maps.json';
+import Portal from './Portal';
 
 import { QuizSection } from './quiz/main';
 import {
   controlAudio,
   generateGiveUpMessage,
-  mysteryTrigger, playCongratulations2Sound, playCongratulationsSound,
+  levelThreeTriggers,
+  mysteryTrigger,
+  playCongratulations2Sound,
+  playCongratulationsSound,
   playEggClickSound,
   renderLoadingScreen,
   resetTriggers,
   secondHouseTrigger,
+  startCountdownClock,
   triggerRoomUnlock
 } from './util';
+import { PopUpWindow } from './PopUpWindow';
 
 // *****************************************************
 
@@ -37,6 +43,9 @@ export function App() {
   const [maxScore, setMaxScore] = useState(50);
   const [foundEggs, setFoundEggs] = useState([]);
   const [foundKeys, setFoundKeys] = useState([]);
+  const [startTime, setStartTime] = useState('');
+  const [startCountdown, setStartCountdown] = useState(false);
+  const [isCountdownRunning, setIsCountdownRunning] = useState(false);
 
   const [image, setImage] = useState(useImage('SplashPage.jpg'));
   const [width, setWidth] = React.useState(window.innerWidth);
@@ -100,6 +109,7 @@ export function App() {
     if(status === 'hunting'){
       alert(`Have yourself an Easter egg hunt without leaving the safety and comfort of your own home! There are 50 eggs hidden inside this house. Click on the arrows to navigate, and click on an egg when you find it to add it to your score! Have fun, and try to collect them all!\n(Click "Give Up" when you are done playing.)`)
     }
+    setStartTime(Date.now());
   }, [status]);
 
   useEffect(() => {
@@ -130,6 +140,11 @@ export function App() {
     setCurrentLocation(maps.LIVINGROOM2);
     setLevel(2);
     secondHouseTrigger('in');
+  } else if (name === 'CHEAT_clock') {
+    setName('Clockman');
+    setStatus('hunting');
+    levelThreeTriggers(startCountdown, setStartCountdown);
+    setCurrentLocation(maps.LIVINGROOM);
   } else if (name === 'CHEAT_nohunt') {
     triggerRoomUnlock('MYSTERY');
     setName('Doesn\'t matter');
@@ -224,7 +239,7 @@ export function App() {
           onClick={() => {
             controlAudio('stop', 'hunting');
             controlAudio('stop', '2nd');
-            generateGiveUpMessage(score, name, level);
+            generateGiveUpMessage(score, name, level, startTime);
             setStatus('landing');
             setName('');
             setScore(0);
@@ -519,11 +534,11 @@ export function App() {
             scaleY={0.1}
             onClick={() => {
               changeLocation(currentLocation.exitSecondHouse.transferTo);
-              secondHouseTrigger('out')
+              secondHouseTrigger('out', startCountdown, setStartCountdown)
             }}
             onTouchStart={() => {
               changeLocation(currentLocation.exitSecondHouse.transferTo);
-              secondHouseTrigger('out')
+              secondHouseTrigger('out', startCountdown, setStartCountdown)
             }}
           />}
           {currentLocation.quiz &&
@@ -574,6 +589,12 @@ export function App() {
               }}
               onTouchStart={playCongratulations2Sound()}
             /> : null
+          }
+          {startCountdown === true ?
+            <Portal isOpened={true}>
+              {isCountdownRunning ? null : startCountdownClock(setIsCountdownRunning)}
+              <PopUpWindow/>
+            </Portal> : null
           }
         </Layer>
       </Stage>
