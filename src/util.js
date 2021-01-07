@@ -122,21 +122,22 @@ export const levelThreeTriggers = (startCountdown, setStartCountdown) => {
   }
 };
 
-export const startCountdownClock = (setIsCountdownRunning) => {
+export const generateCountdownClock = (setIsCountdownRunning, stop = false) => {
   setIsCountdownRunning(true);
   let barWidth = 0;
-  const totalSecondsForCountdown = 1500;
+  const totalSecondsForCountdown = 5;
   const barFrameRateInFPS = 10;
   const timeIncrement = 1000 / barFrameRateInFPS;
   const percentIncrement = (100 * timeIncrement)/(totalSecondsForCountdown*1000);
 
-  setInterval(() => {
-    if (barWidth >= 100) {
-      clearInterval();
-      document.getElementById("myP").innerHTML = `Connection Successfully Terminated. Goodbye!`;
-      setTimeout(() => {
-        window.location.reload();
-      }, 3000);
+  const countdown = setInterval(() => {
+    if (stop === true) {
+      setIsCountdownRunning(false);
+      clearInterval(countdown);
+    } else if (barWidth >= 100) {
+      clearInterval(countdown);
+      document.getElementById("loadingBarSubtext").innerHTML = `Connection Successfully Terminated. Goodbye!`;
+      setTimeout(() => {window.location.reload();}, 3000);
     } else {
       const progressBar = document.getElementById("progressBar");
       barWidth += percentIncrement;
@@ -146,15 +147,6 @@ export const startCountdownClock = (setIsCountdownRunning) => {
       document.getElementById("counter").innerHTML = secondsLeftInCountdown;
     }
   }, timeIncrement);
-};
-
-export const startDragging = ({ clientX, clientY }) => {
-  this.handleRef.style.transform = `translate(${this.dragStartLeft + clientX - this.dragStartX}px, ${this.dragStartTop + clientY - this.dragStartY}px)`;
-};
-
-export const stopDragging = () => {
-  window.removeEventListener('mousemove', this.startDragging, false);
-  window.removeEventListener('mouseup', this.stopDragging, false);
 };
 
 export const playEggClickSound = () => {

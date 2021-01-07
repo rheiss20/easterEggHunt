@@ -24,7 +24,7 @@ import {
   renderLoadingScreen,
   resetTriggers,
   secondHouseTrigger,
-  startCountdownClock,
+  generateCountdownClock,
   triggerRoomUnlock
 } from './util';
 import { PopUpWindow } from './PopUpWindow';
@@ -226,6 +226,7 @@ export function App() {
         <input
           type="Button"
           value="Give Up"
+          id="giveUpButton"
           style={{
             position: "absolute",
             top: `${60 * elementScale}px`,
@@ -239,6 +240,7 @@ export function App() {
           onClick={() => {
             controlAudio('stop', 'hunting');
             controlAudio('stop', '2nd');
+            generateCountdownClock(setIsCountdownRunning, true);
             generateGiveUpMessage(score, name, level, startTime);
             setStatus('landing');
             setName('');
@@ -592,8 +594,8 @@ export function App() {
           }
           {startCountdown === true ?
             <Portal isOpened={true}>
-              {isCountdownRunning ? null : startCountdownClock(setIsCountdownRunning)}
-              <PopUpWindow/>
+              {isCountdownRunning ? null : generateCountdownClock(setIsCountdownRunning)}
+              <PopUpWindow windowHeight={height} windowWidth={width} elementScale={elementScale}/>
             </Portal> : null
           }
         </Layer>

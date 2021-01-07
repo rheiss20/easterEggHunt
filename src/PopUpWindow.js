@@ -1,24 +1,44 @@
 import React from 'react';
 
 export class PopUpWindow extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      dimensions: {
+        width: 0,
+        height: 0,
+      }
+    }
+  }
+
+  componentDidMount() {
+    this.setState({
+      dimensions: {
+        width: this.handleRef.getBoundingClientRect().width,
+        height: this.handleRef.getBoundingClientRect().height,
+      },
+    });
+  }
+
   setHandleRef = ref => {
     this.handleRef = ref;
   };
 
   initialiseDrag = event => {
-    const {target, clientX, clientY} = event;
-    const { offsetTop, offsetLeft } = target;
-    const { left, top } = this.handleRef.getBoundingClientRect();
-    this.dragStartLeft = left - offsetLeft;
+    const {clientX, clientY} = event;
+    const { left, top, width, height } = this.handleRef.getBoundingClientRect();
+    this.dragStartLeft = left;
     this.dragStartTop = top;
     this.dragStartX = clientX;
     this.dragStartY = clientY;
+    this.initialLeft = (this.props.windowWidth * 0.5) - (width * 0.375);
+    this.initialTop = (this.props.windowHeight * 0.5) - (height * 0.375);
     window.addEventListener('mousemove', this.startDragging, false);
     window.addEventListener('mouseup', this.stopDragging, false);
   };
 
   startDragging = ({ clientX, clientY }) => {
-    this.handleRef.style.transform = `translate(${this.dragStartLeft + clientX - this.dragStartX}px, ${this.dragStartTop + clientY - this.dragStartY}px)`;
+    this.handleRef.style.transform = `translate(${this.dragStartLeft + clientX - this.dragStartX - this.initialLeft}px, ${this.dragStartTop + clientY - this.dragStartY - this.initialTop}px)`;
   };
 
   stopDragging = () => {
@@ -27,10 +47,14 @@ export class PopUpWindow extends React.Component {
   };
 
   render(){
+    const left = (this.props.windowWidth * 0.5) - (this.state.dimensions.width * 0.5);
+    const top = (this.props.windowHeight * 0.5) - (this.state.dimensions.height * 0.5);
+
     return <div
       style={{
-        position: "absolute",
-        top: 0,
+        position: 'absolute',
+        left: `${left}px`,
+        top: `${top}px`,
         zIndex: 999,
         backgroundColor: 'white',
         borderColor: 'black',
@@ -54,7 +78,7 @@ export class PopUpWindow extends React.Component {
         margin: '10px 10px 20px 10px',
         fontSize: 16,
       }}>Unauthorized access of forbidden files has been detected. Please stand by as we attempt to terminate your connection… <br/><br/>
-        Do not attempt to access files that were previously forbidden while this warning is active.<br/><br/>
+        Do not attempt to access files that were previously locked while this warning is active.<br/><br/>
         Do not move this box by clicking and dragging it.</p>
       <div style={{
         height: '2px',
@@ -78,7 +102,7 @@ export class PopUpWindow extends React.Component {
         </div>
       </div>
 
-      <p id="myP" style={{
+      <p id="loadingBarSubtext" style={{
         display: 'flex',
         justifyContent: 'flex-end',
         margin: '10px',
