@@ -12,6 +12,7 @@ export class PopUpWindow extends React.Component {
   }
 
   componentDidMount() {
+    document.getElementById('giveUpButton').style.display = 'none';
     this.setState({
       dimensions: {
         width: this.handleRef.getBoundingClientRect().width,
@@ -51,6 +52,7 @@ export class PopUpWindow extends React.Component {
     const top = (this.props.windowHeight * 0.5) - (this.state.dimensions.height * 0.5);
 
     return <div
+      id='popUpWindow'
       style={{
         position: 'absolute',
         left: `${left}px`,
@@ -66,6 +68,7 @@ export class PopUpWindow extends React.Component {
       ref={this.setHandleRef}
     >
       <h2
+        id='popUpWindowHeader'
       style={{
         margin: '0px',
         padding: '10px',
@@ -74,11 +77,13 @@ export class PopUpWindow extends React.Component {
         fontSize: 24,
       }}
       >WARNING</h2>
-      <p style={{
+      <p
+        id='popUpWindowParagraph'
+        style={{
         margin: '10px 10px 20px 10px',
         fontSize: 16,
       }}>Unauthorized access of forbidden files has been detected. Please stand by as we attempt to terminate your connection… <br/><br/>
-        Do not attempt to access files that were previously locked while this warning is active.<br/><br/>
+        Do not attempt to close this prompt by clicking X. <br/><br/>
         Do not move this box by clicking and dragging it.</p>
       <div style={{
         height: '2px',
@@ -93,7 +98,7 @@ export class PopUpWindow extends React.Component {
         borderStyle: 'inset',
         margin: '20px 10px 10px 10px',
       }}>
-        <div id="progressBar"
+        <div id="popUpWindowProgressBar"
              style={{
                height: "24px",
                width: "0%",
@@ -102,12 +107,12 @@ export class PopUpWindow extends React.Component {
         </div>
       </div>
 
-      <p id="loadingBarSubtext" style={{
+      <p id="popUpWindowLoadingBarSubtext" style={{
         display: 'flex',
         justifyContent: 'flex-end',
         margin: '10px',
         fontSize: 16,
-      }}>You have <span id="counter" style={{margin: '0px 5px'}}>60</span> seconds remaining before you are disconnected</p>
+      }}>You have <span id="popUpWindowCounter" style={{margin: '0px 5px'}}>60</span> seconds remaining before you are disconnected</p>
     </div>
   }
 }

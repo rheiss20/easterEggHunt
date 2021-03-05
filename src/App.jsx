@@ -25,7 +25,8 @@ import {
   resetTriggers,
   secondHouseTrigger,
   generateCountdownClock,
-  triggerRoomUnlock
+  triggerRoomUnlock,
+  stopCountdownClock
 } from './util';
 import { PopUpWindow } from './PopUpWindow';
 
@@ -46,6 +47,7 @@ export function App() {
   const [startTime, setStartTime] = useState('');
   const [startCountdown, setStartCountdown] = useState(false);
   const [isCountdownRunning, setIsCountdownRunning] = useState(false);
+  const [renderStopClockButton, setRenderStopClockButton] = useState(false);
 
   const [image, setImage] = useState(useImage('SplashPage.jpg'));
   const [width, setWidth] = React.useState(window.innerWidth);
@@ -144,6 +146,7 @@ export function App() {
     setName('Clockman');
     setStatus('hunting');
     levelThreeTriggers(startCountdown, setStartCountdown);
+    setRenderStopClockButton(true);
     setCurrentLocation(maps.LIVINGROOM);
   } else if (name === 'CHEAT_nohunt') {
     triggerRoomUnlock('MYSTERY');
@@ -248,11 +251,32 @@ export function App() {
             setLevel(1);
             setFoundEggs([]);
             setFoundKeys([]);
+            // Bring back the next line if you want to add something upon quitting
             resetTriggers(maxScore, setMaxScore);
             setCurrentLocation(maps.LIVINGROOM);
           }
         }
         />
+          { renderStopClockButton ?
+          <input
+            type="Button"
+            value="Stop Clock"
+            id="stopClockButton"
+            style={{
+              position: "absolute",
+              top: `${120 * elementScale}px`,
+              left: `${5 * elementScale}px`,
+              zIndex: 999,
+              height: `${60 * elementScale}px`,
+              width: `${200 * elementScale}px`,
+              fontSize: `${30 * elementScale}px`,
+              background: 'yellow'
+            }}
+            onClick={() => {
+              stopCountdownClock();
+            }
+            }
+          /> : null}
         </> :
         <>
           <textarea
@@ -595,7 +619,7 @@ export function App() {
           {startCountdown === true ?
             <Portal isOpened={true}>
               {isCountdownRunning ? null : generateCountdownClock(setIsCountdownRunning)}
-              <PopUpWindow windowHeight={height} windowWidth={width} elementScale={elementScale}/>
+              <PopUpWindow id='popUpWindow' windowHeight={height} windowWidth={width} elementScale={elementScale}/>
             </Portal> : null
           }
         </Layer>

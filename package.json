@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "immer": "^8.0.1",
     "konva": "^4.2.2",
     "nodemon": "^2.0.3",
     "object-path": "^0.11.5",
@@ -14,7 +15,7 @@
     "react-konva": "^16.8.7-0",
     "react-modal": "3.11.2",
     "react-portal": "^4.2.1",
-    "react-scripts": "^3.4.3",
+    "react-scripts": "^4.0.3",
     "use-image": "1.0.5"
   },
   "scripts": {

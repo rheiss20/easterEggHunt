@@ -122,31 +122,67 @@ export const levelThreeTriggers = (startCountdown, setStartCountdown) => {
   }
 };
 
-export const generateCountdownClock = (setIsCountdownRunning, stop = false) => {
+export const generateCountdownClock = (setIsCountdownRunning) => {
   setIsCountdownRunning(true);
   let barWidth = 0;
-  const totalSecondsForCountdown = 5;
+  const totalSecondsForCountdown = 30;
   const barFrameRateInFPS = 10;
   const timeIncrement = 1000 / barFrameRateInFPS;
   const percentIncrement = (100 * timeIncrement)/(totalSecondsForCountdown*1000);
 
-  const countdown = setInterval(() => {
-    if (stop === true) {
-      setIsCountdownRunning(false);
+  clockCountdown(barWidth, totalSecondsForCountdown, barFrameRateInFPS, timeIncrement, percentIncrement);
+};
+
+let isCounting = true;
+
+export const clockCountdown = (barWidth, totalSecondsForCountdown, barFrameRateInFPS,
+timeIncrement, percentIncrement) => {
+    let countdown = setInterval(() => {
+    if (barWidth >= 100) {
       clearInterval(countdown);
-    } else if (barWidth >= 100) {
+      document.getElementById('popUpWindowLoadingBarSubtext').innerHTML = `Connection Successfully Terminated. Goodbye!`;
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000);
+    } else if (!isCounting){
       clearInterval(countdown);
-      document.getElementById("loadingBarSubtext").innerHTML = `Connection Successfully Terminated. Goodbye!`;
-      setTimeout(() => {window.location.reload();}, 3000);
-    } else {
-      const progressBar = document.getElementById("progressBar");
+      document.getElementById('popUpWindowLoadingBarSubtext').innerHTML = `ERROR: LOGOUT ATTEMPT HALTED`;
+      document.getElementById('giveUpButton').style.display = 'inline-block';
+      document.getElementById('stopClockButton').style.display = 'none';
+      setTimeout(() => {
+        document.getElementById('popUpWindowHeader').innerHTML = `WATCH OUT`;
+        }, 60000);
+      setTimeout(() => {
+        document.getElementById('popUpWindowParagraph').innerHTML = `You don't know who you can trust! Not even Mrs. Tobias. Please stand by as we attempt to terminate your connection…
+        Do not attempt to access files that were previously locked while this warning is active.
+        Do not move this box by clicking and dragging it.`;
+        }, 90000);
+      setTimeout(() => {
+        document.getElementById('popUpWindowParagraph').innerHTML = `You don't know who you can trust! Not even Mrs. Tobias.
+        She didn't tell the police or her husband.
+        Do not attempt to access files that were previously locked while this warning is active.
+        Do not move this box by clicking and dragging it.`;
+        }, 120000);
+      setTimeout(() => {
+        document.getElementById('popUpWindowParagraph').innerHTML = `You don't know who you can trust! Not even Mrs. Tobias.
+        She didn't tell the police or her husband.
+        And now he's gone... I don't know why you covered for me, Mrs. Tobias, but if you see this, try logging in as your name. There's something I've hidden for you. `;
+        document.getElementById('popUpWindowLoadingBarSubtext').innerHTML = `IT WAS AN ACCIDENT`;
+        }, 150000);
+  } else {
+      const progressBar = document.getElementById('popUpWindowProgressBar');
       barWidth += percentIncrement;
       progressBar.style.width = barWidth + '%';
       let barPercentLeft = 100 - barWidth;
       let secondsLeftInCountdown = ((timeIncrement * (barPercentLeft / percentIncrement)) / 1000).toFixed(0);
-      document.getElementById("counter").innerHTML = secondsLeftInCountdown;
+      document.getElementById('popUpWindowCounter').innerHTML = secondsLeftInCountdown;
     }
-  }, timeIncrement);
+  }, timeIncrement)
+};
+
+export const stopCountdownClock = () => {
+  console.log('stop the clock, chief');
+  isCounting = false;
 };
 
 export const playEggClickSound = () => {
@@ -170,37 +206,43 @@ export const playCongratulations2Sound = () => {
 };
 
 // revert all the changes that could be made in triggerRoomUnlock
-export const resetTriggers = (maxScore, setMaxScore) => {
-  setImageForRoom(maps.LIVINGROOM, maps.IMAGECHANGES.livingRoomLockedImage);
-  setImageForRoom(maps.BEDROOMCORNER, maps.IMAGECHANGES.bedroomCornerLockedImage);
-  setImageForRoom(maps.STAIRTOSECONDHOUSE, maps.IMAGECHANGES.stairToSecondHouseUnlockedImage);
-
-  if (maxScore === 250) {
-    setMaxScore(50);
-  }
-
-  if (maps.LIVINGROOM.up) {
-    delete maps.LIVINGROOM.up;
-  }
-  if (maps.BEDROOMCORNER.up) {
-    delete maps.BEDROOMCORNER.up;
-  }
-  if (maps.KITCHENCORNER.mystery) {
-    delete maps.KITCHENCORNER.mystery;
-  }
-  if (maps.BEDROOMCORNER2.turnLeft) {
-    delete maps.BEDROOMCORNER.turnLeft;
-  }
-  if (maps.LIGHTSWITCHCORNER.down) {
-    delete maps.LIGHTSWITCHCORNER.down;
-  }
-  if (!maps.STAIRTOSECONDHOUSE.secondHouse) {
-    maps.STAIRTOSECONDHOUSE.secondHouse = {
-      transferTo: 'LIVINGROOM2',
-      arrowX: 1069,
-      arrowY: 917
-    };
-  }
+// Bring all this back in if you want a cool feature where it saves when you give up, but otherwise, just have it refresh the game.
+export const resetTriggers = (maxScore, setMaxScore, startCountdown, setStartCountdown, setIsCountdownRunning) => {
+  // setImageForRoom(maps.LIVINGROOM, maps.IMAGECHANGES.livingRoomLockedImage);
+  // setImageForRoom(maps.BEDROOMCORNER, maps.IMAGECHANGES.bedroomCornerLockedImage);
+  // setImageForRoom(maps.STAIRTOSECONDHOUSE, maps.IMAGECHANGES.stairToSecondHouseUnlockedImage);
+  // if (startCountdown === true) {
+  //   setStartCountdown(false);
+  // }
+  // setIsCountdownRunning(false);
+  //
+  // if (maxScore === 250) {
+  //   setMaxScore(50);
+  // }
+  //
+  // if (maps.LIVINGROOM.up) {
+  //   delete maps.LIVINGROOM.up;
+  // }
+  // if (maps.BEDROOMCORNER.up) {
+  //   delete maps.BEDROOMCORNER.up;
+  // }
+  // if (maps.KITCHENCORNER.mystery) {
+  //   delete maps.KITCHENCORNER.mystery;
+  // }
+  // if (maps.BEDROOMCORNER2.turnLeft) {
+  //   delete maps.BEDROOMCORNER.turnLeft;
+  // }
+  // if (maps.LIGHTSWITCHCORNER.down) {
+  //   delete maps.LIGHTSWITCHCORNER.down;
+  // }
+  // if (!maps.STAIRTOSECONDHOUSE.secondHouse) {
+  //   maps.STAIRTOSECONDHOUSE.secondHouse = {
+  //     transferTo: 'LIVINGROOM2',
+  //     arrowX: 1069,
+  //     arrowY: 917
+  //   };
+  // }
+  window.location.reload();
 };
 
 export const generateGiveUpMessage = (score, name, level, startTime) => {
