@@ -1,16 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 
 export default class Portal extends React.Component {
-  componentDidMount() {
+  componentDidMount () {
     this.renderPortal();
   }
 
-  componentDidUpdate(props) {
+  componentDidUpdate (props) {
     this.renderPortal();
   }
 
-  componentWillUnmount() {
+  componentWillUnmount () {
     ReactDOM.unmountComponentAtNode(this.defaultNode || this.props.node);
     if (this.defaultNode) {
       document.body.removeChild(this.defaultNode);
@@ -18,7 +19,7 @@ export default class Portal extends React.Component {
     this.defaultNode = null;
   }
 
-  renderPortal(props) {
+  renderPortal (props) {
     if (!this.props.node && !this.defaultNode) {
       this.defaultNode = document.createElement('div');
       document.body.appendChild(this.defaultNode);
@@ -32,7 +33,12 @@ export default class Portal extends React.Component {
     ReactDOM.render(children, this.props.node || this.defaultNode);
   }
 
-  render() {
+  render () {
     return null;
   }
 }
+
+Portal.propTypes = {
+  node: PropTypes.string,
+  children: PropTypes.string
+};

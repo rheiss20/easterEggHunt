@@ -1,23 +1,25 @@
+/* eslint-disable indent */
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export class PopUpWindow extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
       dimensions: {
         width: 0,
-        height: 0,
+        height: 0
       }
-    }
+    };
   }
 
-  componentDidMount() {
+  componentDidMount () {
     document.getElementById('giveUpButton').style.display = 'none';
     this.setState({
       dimensions: {
         width: this.handleRef.getBoundingClientRect().width,
-        height: this.handleRef.getBoundingClientRect().height,
-      },
+        height: this.handleRef.getBoundingClientRect().height
+      }
     });
   }
 
@@ -26,7 +28,7 @@ export class PopUpWindow extends React.Component {
   };
 
   initialiseDrag = event => {
-    const {clientX, clientY} = event;
+    const { clientX, clientY } = event;
     const { left, top, width, height } = this.handleRef.getBoundingClientRect();
     this.dragStartLeft = left;
     this.dragStartTop = top;
@@ -47,7 +49,7 @@ export class PopUpWindow extends React.Component {
     window.removeEventListener('mouseup', this.stopDragging, false);
   };
 
-  render(){
+  render () {
     const left = (this.props.windowWidth * 0.5) - (this.state.dimensions.width * 0.5);
     const top = (this.props.windowHeight * 0.5) - (this.state.dimensions.height * 0.5);
 
@@ -62,27 +64,28 @@ export class PopUpWindow extends React.Component {
         borderColor: 'black',
         borderStyle: 'solid',
         borderWidth: 'thick',
-        borderRadius: '10px',
+        borderRadius: '10px'
       }}
       onMouseDown={this.initialiseDrag}
       ref={this.setHandleRef}
     >
       <h2
         id='popUpWindowHeader'
-      style={{
-        margin: '0px',
-        padding: '10px',
-        backgroundColor: 'grey',
-        color: 'white',
-        fontSize: 24,
-      }}
+        style={{
+          margin: '0px',
+          padding: '10px',
+          backgroundColor: 'grey',
+          color: 'white',
+          fontSize: 24
+        }}
       >WARNING</h2>
       <p
         id='popUpWindowParagraph'
         style={{
-        margin: '10px 10px 20px 10px',
-        fontSize: 16,
-      }}>Unauthorized access of forbidden files has been detected. Please stand by as we attempt to terminate your connection… <br/><br/>
+          margin: '10px 10px 20px 10px',
+          fontSize: 16
+        }}>
+        Unauthorized access of forbidden files has been detected. Please stand by as we attempt to terminate your connection… <br/><br/>
         Do not attempt to close this prompt by clicking X. <br/><br/>
         Do not move this box by clicking and dragging it.</p>
       <div style={{
@@ -90,29 +93,37 @@ export class PopUpWindow extends React.Component {
         color: 'darkgrey',
         borderStyle: 'solid',
         borderWidth: '1px',
-        borderColor: 'grey',
+        borderColor: 'grey'
       }}
       ></div>
       <div style={{
         backgroundColor: '#f1f1f1',
         borderStyle: 'inset',
-        margin: '20px 10px 10px 10px',
+        margin: '20px 10px 10px 10px'
       }}>
-        <div id="popUpWindowProgressBar"
-             style={{
-               height: "24px",
-               width: "0%",
-               backgroundColor: 'red'
-             }}>
+        <div
+          id="popUpWindowProgressBar"
+          style={{
+            height: '24px',
+            width: '0%',
+            backgroundColor: 'red'
+          }}>
         </div>
       </div>
 
-      <p id="popUpWindowLoadingBarSubtext" style={{
-        display: 'flex',
-        justifyContent: 'flex-end',
-        margin: '10px',
-        fontSize: 16,
-      }}>You have <span id="popUpWindowCounter" style={{margin: '0px 5px'}}>60</span> seconds remaining before you are disconnected</p>
-    </div>
+      <p
+        id="popUpWindowLoadingBarSubtext"
+        style={{
+          display: 'flex',
+          justifyContent: 'flex-end',
+          margin: '10px',
+          fontSize: 16
+        }}>You have <span id="popUpWindowCounter" style={{ margin: '0px 5px' }}>60</span> seconds remaining before you are disconnected</p>
+    </div>;
   }
-}
+};
+
+PopUpWindow.propTypes = {
+  windowWidth: PropTypes.string,
+  windowHeight: PropTypes.string
+};
