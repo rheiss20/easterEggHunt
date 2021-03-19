@@ -91,6 +91,11 @@ export const triggerRoomUnlock = (roomWhereKeyIsFound) => {
       maps.LIGHTSWITCHCORNER.down = 'BEDROOMCORNERMESSY';
       alert('You hear something... Are you sure you\'re alone?');
       controlAudio('play', '2nd');
+      maps.LIVINGROOMDARK.exitSecondHouse = {
+        transferTo: 'STAIRTOSECONDHOUSEX',
+        arrowX: 1782,
+        arrowY: 1226
+      };
       break;
     case 'KITCHENCUPBOARD':
       // CHANGE THIS AFTER PLAYTESTING CHANGE THIS AFTER PLAYTESTING CHANGE THIS AFTER PLAYTESTING
@@ -118,14 +123,16 @@ export const secondHouseTrigger = (direction, startCountdown, setStartCountdown)
 
 export const levelThreeTriggers = (startCountdown, setStartCountdown) => {
   if (startCountdown === false) {
-    setStartCountdown(true);
+    setTimeout(() => {
+      setStartCountdown(true);
+    }, 2000);
   }
 };
 
 export const generateCountdownClock = (setIsCountdownRunning) => {
   setIsCountdownRunning(true);
   const barWidth = 0;
-  const totalSecondsForCountdown = 30;
+  const totalSecondsForCountdown = 150;
   const barFrameRateInFPS = 10;
   const timeIncrement = 1000 / barFrameRateInFPS;
   const percentIncrement = (100 * timeIncrement) / (totalSecondsForCountdown * 1000);
@@ -148,7 +155,6 @@ export const clockCountdown = (barWidth, totalSecondsForCountdown, barFrameRateI
       clearInterval(countdown);
       document.getElementById('popUpWindowLoadingBarSubtext').innerHTML = 'ERROR: LOGOUT ATTEMPT HALTED';
       document.getElementById('giveUpButton').style.display = 'inline-block';
-      document.getElementById('stopClockButton').style.display = 'none';
       setTimeout(() => {
         document.getElementById('popUpWindowHeader').innerHTML = 'WATCH OUT';
       }, 60000);

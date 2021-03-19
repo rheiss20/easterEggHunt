@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.1.2",
     "immer": "^8.0.1",
     "konva": "^4.2.2",
+    "lint": "^0.7.0",
     "nodemon": "^2.0.3",
     "object-path": "^0.11.5",
     "react": "^16.13.1",

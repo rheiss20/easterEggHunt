@@ -43,6 +43,8 @@ export function App () {
   const [maxScore, setMaxScore] = useState(50);
   const [foundEggs, setFoundEggs] = useState([]);
   const [foundKeys, setFoundKeys] = useState([]);
+  const [foundExes, setFoundExes] = useState([]);
+  const [numberOfExesFound, setNumberOfExesFound] = useState(0);
   const [startTime, setStartTime] = useState('');
   const [startCountdown, setStartCountdown] = useState(false);
   const [isCountdownRunning, setIsCountdownRunning] = useState(false);
@@ -148,7 +150,7 @@ export function App () {
     setName('Doesn\'t matter');
     setStatus('hunting');
     HUNT_MODE = false;
-    setCurrentLocation(maps.LIVINGROOM);
+    setCurrentLocation(maps.STAIRTOSECONDHOUSEX);
   }
 
   // *******************************************************
@@ -156,6 +158,10 @@ export function App () {
   const changeLocation = (newLocationName) => {
     setCurrentLocation(maps[newLocationName]);
   };
+
+  if (numberOfExesFound === 15) {
+    stopCountdownClock();
+  }
 
   if (status === 'loading') {
     return (<div>
@@ -401,6 +407,38 @@ export function App () {
                     width={ scale * key.keyRadius * 2 }
                     height={ scale * key.keyRadius * 2 }
                     key={ `${currentLocation.name}key${i}` }
+                  />
+              )
+              ) : null
+          }
+          {
+            currentLocation.exes
+              ? currentLocation.exes.map((ex, i) => (
+                foundExes.indexOf(`${currentLocation.name}ex${i}`) === -1
+                  ? <Circle
+                    x={ imageX + (ex.exX * scale) }
+                    y={ (ex.exY * scale) }
+                    radius={ ex.exRadius * scale }
+                    onClick={ () => {
+                      if (numberOfExesFound === 0) {
+
+                      }
+                      setNumberOfExesFound(numberOfExesFound + 1);
+                      setFoundExes([`${currentLocation.name}ex${i}`, ...foundExes]);
+                    }}
+                    onTouchStart={ () => {
+                      setNumberOfExesFound(numberOfExesFound + 1);
+                      setFoundExes([`${currentLocation.name}ex${i}`, ...foundExes]);
+                    }}
+                    key={ `${currentLocation.name}ex${i}`}
+                  />
+                  : <Circle
+                    x={ imageX + (ex.exX * scale) }
+                    y={ (ex.exY * scale) }
+                    radius={ ex.exRadius * scale }
+                    key={ `${currentLocation.name}ex${i}`}
+                    stroke={ 'red' }
+                    strokeWidth={ 2 }
                   />
               )
               ) : null
