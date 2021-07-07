@@ -91,6 +91,11 @@ export const triggerRoomUnlock = (roomWhereKeyIsFound) => {
       maps.LIGHTSWITCHCORNER.down = 'BEDROOMCORNERMESSY';
       alert('You hear something... Are you sure you\'re alone?');
       controlAudio('play', '2nd');
+      maps.LIVINGROOMDARK.exitSecondHouse = {
+        transferTo: 'STAIRTOSECONDHOUSEX',
+        arrowX: 1782,
+        arrowY: 1226
+      };
       break;
     case 'KITCHENCUPBOARD':
       // CHANGE THIS AFTER PLAYTESTING CHANGE THIS AFTER PLAYTESTING CHANGE THIS AFTER PLAYTESTING
@@ -105,14 +110,85 @@ export const mysteryTrigger = () => {
   controlAudio('stop', 'hunting');
 };
 
-export const secondHouseTrigger = (direction) => {
+export const secondHouseTrigger = (direction, startCountdown, setStartCountdown) => {
   if (direction === 'in') {
     controlAudio('play', 'hunting');
     setImageForRoom(maps.STAIRTOSECONDHOUSE, maps.IMAGECHANGES.stairToSecondHouseLockedImage);
     delete maps.STAIRTOSECONDHOUSE.secondHouse;
   } else if (direction === 'out') {
     controlAudio('stop', '2nd');
+    levelThreeTriggers(startCountdown, setStartCountdown);
   }
+};
+
+export const levelThreeTriggers = (startCountdown, setStartCountdown) => {
+  if (startCountdown === false) {
+    setTimeout(() => {
+      setStartCountdown(true);
+    }, 2000);
+  }
+};
+
+export const generateCountdownClock = (setIsCountdownRunning) => {
+  setIsCountdownRunning(true);
+  const barWidth = 0;
+  const totalSecondsForCountdown = 150;
+  const barFrameRateInFPS = 10;
+  const timeIncrement = 1000 / barFrameRateInFPS;
+  const percentIncrement = (100 * timeIncrement) / (totalSecondsForCountdown * 1000);
+
+  clockCountdown(barWidth, totalSecondsForCountdown, barFrameRateInFPS, timeIncrement, percentIncrement);
+};
+
+let isCounting = true;
+
+export const clockCountdown = (barWidth, totalSecondsForCountdown, barFrameRateInFPS,
+  timeIncrement, percentIncrement) => {
+  const countdown = setInterval(() => {
+    if (barWidth >= 100) {
+      clearInterval(countdown);
+      document.getElementById('popUpWindowLoadingBarSubtext').innerHTML = 'Connection Successfully Terminated. Goodbye!';
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000);
+    } else if (!isCounting) {
+      clearInterval(countdown);
+      document.getElementById('popUpWindowLoadingBarSubtext').innerHTML = 'ERROR: LOGOUT ATTEMPT HALTED';
+      document.getElementById('giveUpButton').style.display = 'inline-block';
+      setTimeout(() => {
+        document.getElementById('popUpWindowHeader').innerHTML = 'WATCH OUT';
+      }, 60000);
+      setTimeout(() => {
+        document.getElementById('popUpWindowParagraph').innerHTML = `You don't know who you can trust! Not even Mrs. Tobias. Please stand by as we attempt to terminate your connection…<br>
+        Do not attempt to access files that were previously locked while this warning is active.<br>
+        Do not move this box by clicking and dragging it.`;
+      }, 120000);
+      setTimeout(() => {
+        document.getElementById('popUpWindowParagraph').innerHTML = `You don't know who you can trust! Not even Mrs. Tobias.<br>
+        She didn't tell the police or her husband.<br>
+        Do not attempt to access files that were previously locked while this warning is active.<br>
+        Do not move this box by clicking and dragging it.`;
+      }, 180000);
+      setTimeout(() => {
+        document.getElementById('popUpWindowParagraph').innerHTML = `You don't know who you can trust! Not even Mrs. Tobias.<br>
+        She didn't tell the police or her husband.<br>
+        And now he's gone... I don't know why you covered for me, Mrs. Tobias, but if you see this, try logging in as your name. There's something I've hidden for you. `;
+        document.getElementById('popUpWindowLoadingBarSubtext').innerHTML = 'IT WAS AN ACCIDENT';
+      }, 300000);
+    } else {
+      const progressBar = document.getElementById('popUpWindowProgressBar');
+      barWidth += percentIncrement;
+      progressBar.style.width = barWidth + '%';
+      const barPercentLeft = 100 - barWidth;
+      const secondsLeftInCountdown = ((timeIncrement * (barPercentLeft / percentIncrement)) / 1000).toFixed(0);
+      document.getElementById('popUpWindowCounter').innerHTML = secondsLeftInCountdown;
+    }
+  }, timeIncrement);
+};
+
+export const stopCountdownClock = () => {
+  console.log('stop the clock, chief');
+  isCounting = false;
 };
 
 export const playEggClickSound = () => {
@@ -136,46 +212,53 @@ export const playCongratulations2Sound = () => {
 };
 
 // revert all the changes that could be made in triggerRoomUnlock
-export const resetTriggers = (maxScore, setMaxScore) => {
-  setImageForRoom(maps.LIVINGROOM, maps.IMAGECHANGES.livingRoomLockedImage);
-  setImageForRoom(maps.BEDROOMCORNER, maps.IMAGECHANGES.bedroomCornerLockedImage);
-  setImageForRoom(maps.STAIRTOSECONDHOUSE, maps.IMAGECHANGES.stairToSecondHouseUnlockedImage);
-
-  if (maxScore === 250) {
-    setMaxScore(50);
-  }
-
-  if (maps.LIVINGROOM.up) {
-    delete maps.LIVINGROOM.up;
-  }
-  if (maps.BEDROOMCORNER.up) {
-    delete maps.BEDROOMCORNER.up;
-  }
-  if (maps.KITCHENCORNER.mystery) {
-    delete maps.KITCHENCORNER.mystery;
-  }
-  if (maps.BEDROOMCORNER2.turnLeft) {
-    delete maps.BEDROOMCORNER.turnLeft;
-  }
-  if (maps.LIGHTSWITCHCORNER.down) {
-    delete maps.LIGHTSWITCHCORNER.down;
-  }
-  if (!maps.STAIRTOSECONDHOUSE.secondHouse) {
-    maps.STAIRTOSECONDHOUSE.secondHouse = {
-      transferTo: 'LIVINGROOM2',
-      arrowX: 1069,
-      arrowY: 917
-    };
-  }
+// Bring all this back in if you want a cool feature where it saves when you give up, but otherwise, just have it refresh the game.
+export const resetTriggers = (maxScore, setMaxScore, startCountdown, setStartCountdown, setIsCountdownRunning) => {
+  // setImageForRoom(maps.LIVINGROOM, maps.IMAGECHANGES.livingRoomLockedImage);
+  // setImageForRoom(maps.BEDROOMCORNER, maps.IMAGECHANGES.bedroomCornerLockedImage);
+  // setImageForRoom(maps.STAIRTOSECONDHOUSE, maps.IMAGECHANGES.stairToSecondHouseUnlockedImage);
+  // if (startCountdown === true) {
+  //   setStartCountdown(false);
+  // }
+  // setIsCountdownRunning(false);
+  //
+  // if (maxScore === 250) {
+  //   setMaxScore(50);
+  // }
+  //
+  // if (maps.LIVINGROOM.up) {
+  //   delete maps.LIVINGROOM.up;
+  // }
+  // if (maps.BEDROOMCORNER.up) {
+  //   delete maps.BEDROOMCORNER.up;
+  // }
+  // if (maps.KITCHENCORNER.mystery) {
+  //   delete maps.KITCHENCORNER.mystery;
+  // }
+  // if (maps.BEDROOMCORNER2.turnLeft) {
+  //   delete maps.BEDROOMCORNER.turnLeft;
+  // }
+  // if (maps.LIGHTSWITCHCORNER.down) {
+  //   delete maps.LIGHTSWITCHCORNER.down;
+  // }
+  // if (!maps.STAIRTOSECONDHOUSE.secondHouse) {
+  //   maps.STAIRTOSECONDHOUSE.secondHouse = {
+  //     transferTo: 'LIVINGROOM2',
+  //     arrowX: 1069,
+  //     arrowY: 917
+  //   };
+  // }
+  window.location.reload();
 };
 
-export const generateGiveUpMessage = (score, name, level) => {
+export const generateGiveUpMessage = (score, name, level, startTime) => {
+  const totalTime = Date.now() - startTime;
   if (score === 50 && level === 1) {
     alert(`${name} is a super hunter who found all 50 eggs!\nWOW!! Thanks for playing, and hope to see you again, soon!`);
   } else if (level === 2) {
     alert(`${score + 50} EGGS\n1 HOUSE\nWhere did you go, ${name}?\nWhat did you see?`);
   } else if (score === 50 && level === 3) {
-    alert(`${score + 50} EGGS\n2 HOUSES\nWhere did you go, ${name}?\nWhat did you see?`);
+    alert(`${score + 50} EGGS\n2 HOUSES\nWhere did you go, ${name}?\nWhat did you see? ${totalTime}ms`);
   } else {
     alert(`${name} found ${score} out of 50 eggs!\nThanks for playing!`);
   }
@@ -197,3 +280,15 @@ export const renderLoadingScreen = () => {
   }
   return screen;
 };
+
+// some kind of function
+// when a certain number of X's are clicked, do blank
+// so if 1 x is clicked, change the header text of the pop up to: WARNING - 1 out of 5 close requests found
+// and if 2, 2 out of 5 , etc
+// they can't be triggered by specific ones, but simply need to be clicked on
+// need to keep a score of ones that have been clicked on
+// have it play NO sound for MVP
+// when all 5 are clicked, should run stopClock function
+// AND unlock 3rd house
+// first X should be covered up by the prompt, the player will need to move it in order to find it
+// but I need to make sure they can't click on it that way...

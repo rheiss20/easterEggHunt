@@ -6,14 +6,17 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "immer": "^8.0.1",
     "konva": "^4.2.2",
+    "lint": "^0.7.0",
     "nodemon": "^2.0.3",
     "object-path": "^0.11.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-konva": "^16.8.7-0",
     "react-modal": "3.11.2",
-    "react-scripts": "^3.4.3",
+    "react-portal": "^4.2.1",
+    "react-scripts": "^4.0.3",
     "use-image": "1.0.5"
   },
   "scripts": {
@@ -42,7 +45,6 @@
   },
   "homepage": ".",
   "devDependencies": {
-    "eslint": "^6.8.0",
     "eslint-config-standard": "^14.1.1",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-node": "^11.1.0",
