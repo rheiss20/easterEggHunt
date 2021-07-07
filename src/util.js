@@ -159,22 +159,22 @@ export const clockCountdown = (barWidth, totalSecondsForCountdown, barFrameRateI
         document.getElementById('popUpWindowHeader').innerHTML = 'WATCH OUT';
       }, 60000);
       setTimeout(() => {
-        document.getElementById('popUpWindowParagraph').innerHTML = `You don't know who you can trust! Not even Mrs. Tobias. Please stand by as we attempt to terminate your connection…
-        Do not attempt to access files that were previously locked while this warning is active.
-        Do not move this box by clicking and dragging it.`;
-      }, 90000);
-      setTimeout(() => {
-        document.getElementById('popUpWindowParagraph').innerHTML = `You don't know who you can trust! Not even Mrs. Tobias.
-        She didn't tell the police or her husband.
-        Do not attempt to access files that were previously locked while this warning is active.
+        document.getElementById('popUpWindowParagraph').innerHTML = `You don't know who you can trust! Not even Mrs. Tobias. Please stand by as we attempt to terminate your connection…<br>
+        Do not attempt to access files that were previously locked while this warning is active.<br>
         Do not move this box by clicking and dragging it.`;
       }, 120000);
       setTimeout(() => {
-        document.getElementById('popUpWindowParagraph').innerHTML = `You don't know who you can trust! Not even Mrs. Tobias.
-        She didn't tell the police or her husband.
+        document.getElementById('popUpWindowParagraph').innerHTML = `You don't know who you can trust! Not even Mrs. Tobias.<br>
+        She didn't tell the police or her husband.<br>
+        Do not attempt to access files that were previously locked while this warning is active.<br>
+        Do not move this box by clicking and dragging it.`;
+      }, 180000);
+      setTimeout(() => {
+        document.getElementById('popUpWindowParagraph').innerHTML = `You don't know who you can trust! Not even Mrs. Tobias.<br>
+        She didn't tell the police or her husband.<br>
         And now he's gone... I don't know why you covered for me, Mrs. Tobias, but if you see this, try logging in as your name. There's something I've hidden for you. `;
         document.getElementById('popUpWindowLoadingBarSubtext').innerHTML = 'IT WAS AN ACCIDENT';
-      }, 150000);
+      }, 300000);
     } else {
       const progressBar = document.getElementById('popUpWindowProgressBar');
       barWidth += percentIncrement;

@@ -123,34 +123,45 @@ export function App () {
   }, [status, currentLocation, landingPage]);
 
   // CHEATS ************************************************
-
-  if (name === 'CHEAT_howie') {
-    triggerRoomUnlock('MYSTERY');
-    setName('Howie, dear');
-    setStatus('hunting');
-    controlAudio('play', 'hunting');
-    setCurrentLocation(maps.LIVINGROOM);
-  } else if (name === 'CHEAT_quiz') {
-    setName('You little cheater, boy');
-    setStatus('quiz');
-  } else if (name === 'CHEAT_nick') {
-    setName('Nick Bruhnke');
-    setStatus('hunting');
-    setCurrentLocation(maps.LIVINGROOM2);
-    setLevel(2);
-    secondHouseTrigger('in');
-  } else if (name === 'CHEAT_clock') {
-    setName('Clockman');
-    setStatus('hunting');
-    levelThreeTriggers(startCountdown, setStartCountdown);
-    setRenderStopClockButton(true);
-    setCurrentLocation(maps.LIVINGROOM);
-  } else if (name === 'CHEAT_nohunt') {
-    triggerRoomUnlock('MYSTERY');
-    setName('Doesn\'t matter');
-    setStatus('hunting');
-    HUNT_MODE = false;
-    setCurrentLocation(maps.STAIRTOSECONDHOUSEX);
+  switch (name) {
+    case 'CHEAT_howie':
+      triggerRoomUnlock('MYSTERY');
+      setName('Howie, dear');
+      setStatus('hunting');
+      controlAudio('play', 'hunting');
+      setCurrentLocation(maps.LIVINGROOM);
+      break;
+    case 'CHEAT_quiz':
+      setName('You little cheater, boy');
+      setStatus('quiz');
+      break;
+    case 'CHEAT_nick':
+      setName('Nick Bruhnke');
+      setStatus('hunting');
+      setCurrentLocation(maps.LIVINGROOM2);
+      setLevel(2);
+      secondHouseTrigger('in');
+      break;
+    case 'CHEAT_clock':
+      setName('Clockman');
+      setStatus('hunting');
+      levelThreeTriggers(startCountdown, setStartCountdown);
+      setRenderStopClockButton(true);
+      setCurrentLocation(maps.LIVINGROOM);
+      break;
+    case 'CHEAT_nohunt':
+      triggerRoomUnlock('MYSTERY');
+      setName('Doesn\'t matter');
+      setStatus('hunting');
+      HUNT_MODE = false;
+      setCurrentLocation(maps.STAIRTOSECONDHOUSEX);
+      break;
+    case 'CHEAT_exes':
+      setName('Elle King');
+      setStatus('hunting');
+      levelThreeTriggers(startCountdown, setStartCountdown);
+      setCurrentLocation(maps.STAIRTOSECONDHOUSEX);
+      break;
   }
 
   // *******************************************************
@@ -314,27 +325,55 @@ export function App () {
           />
         </Layer>
         <Layer>
-          <Rect
-            x={ 5 * elementScale }
-            stroke={ '#555' }
-            strokeWidth={ 5 * elementScale }
-            fill={ '#ddd' }
-            width={ 280 * elementScale }
-            height={ 50 * elementScale }
-            shadowColor={ 'black' }
-            shadowBlur={ 10 }
-            shadowOffsetX={ 10 }
-            shadowOffsetY={ 10 }
-            shadowOpacity={ 0.2 }
-            cornerRadius={ 10 * elementScale }
-          />
-          <Text
-            x={ 15 * elementScale }
-            y={ 10 * elementScale }
-            wrap
-            text={ `Eggs Found: ${score}/50` }
-            fontSize={ 30 * elementScale }
-          />
+          {
+            (numberOfExesFound > 0 && numberOfExesFound < 15)
+              ? <>
+                <Rect
+                  x={ 5 * elementScale }
+                  stroke={ '#555' }
+                  strokeWidth={ 5 * elementScale }
+                  fill={ '#ddd' }
+                  width={ 280 * elementScale }
+                  height={ 50 * elementScale }
+                  shadowColor={ 'black' }
+                  shadowBlur={ 10 }
+                  shadowOffsetX={ 10 }
+                  shadowOffsetY={ 10 }
+                  shadowOpacity={ 0.2 }
+                  cornerRadius={ 10 * elementScale }
+                />
+                <Text
+                  x={ 15 * elementScale }
+                  y={ 10 * elementScale }
+                  wrap
+                  text={ `${numberOfExesFound}/15 X's found` }
+                  fontSize={ 30 * elementScale }
+                />
+              </>
+              : <>
+                <Rect
+                  x={ 5 * elementScale }
+                  stroke={ '#555' }
+                  strokeWidth={ 5 * elementScale }
+                  fill={ '#ddd' }
+                  width={ 280 * elementScale }
+                  height={ 50 * elementScale }
+                  shadowColor={ 'black' }
+                  shadowBlur={ 10 }
+                  shadowOffsetX={ 10 }
+                  shadowOffsetY={ 10 }
+                  shadowOpacity={ 0.2 }
+                  cornerRadius={ 10 * elementScale }
+                />
+                <Text
+                  x={ 15 * elementScale }
+                  y={ 10 * elementScale }
+                  wrap
+                  text={ `Eggs Found: ${score}/50` }
+                  fontSize={ 30 * elementScale }
+                />
+              </>
+          }
 
           {// If in HUNT_MODE, put invisible circles on unfound eggs and stars on found eggs
             HUNT_MODE

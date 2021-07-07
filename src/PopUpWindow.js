@@ -86,7 +86,7 @@ export class PopUpWindow extends React.Component {
           fontSize: 16
         }}>
         Unauthorized access of forbidden files has been detected. Please stand by as we attempt to terminate your connection… <br/><br/>
-        Do not attempt to close this prompt by clicking X. <br/><br/>
+        Do not attempt to close this prompt by clicking an X. <br/><br/>
         Do not move this box by clicking and dragging it.</p>
       <div style={{
         height: '2px',

@@ -1758,11 +1758,6 @@
         "imageName":"./images/tunnels_xed/stair_to_second_house_finished_locked.jpg",
         "fakeImageName":"./fake_images/stair_to_second_house_finished.jpg",
         "goBack":"BRIGHTCORNERX",
-        "secondHouse":{
-            "transferTo":"LIVINGROOM2",
-            "arrowX":1069,
-            "arrowY":917
-        },
         "eggs":[
             {
                 "eggX":0,
