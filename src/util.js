@@ -213,7 +213,9 @@ export const playCongratulations2Sound = () => {
 
 // revert all the changes that could be made in triggerRoomUnlock
 // Bring all this back in if you want a cool feature where it saves when you give up, but otherwise, just have it refresh the game.
-export const resetTriggers = (maxScore, setMaxScore, startCountdown, setStartCountdown, setIsCountdownRunning) => {
+export const resetTriggers = (
+  // maxScore, setMaxScore, startCountdown, setStartCountdown, setIsCountdownRunning
+) => {
   // setImageForRoom(maps.LIVINGROOM, maps.IMAGECHANGES.livingRoomLockedImage);
   // setImageForRoom(maps.BEDROOMCORNER, maps.IMAGECHANGES.bedroomCornerLockedImage);
   // setImageForRoom(maps.STAIRTOSECONDHOUSE, maps.IMAGECHANGES.stairToSecondHouseUnlockedImage);
@@ -280,15 +282,3 @@ export const renderLoadingScreen = () => {
   }
   return screen;
 };
-
-// some kind of function
-// when a certain number of X's are clicked, do blank
-// so if 1 x is clicked, change the header text of the pop up to: WARNING - 1 out of 5 close requests found
-// and if 2, 2 out of 5 , etc
-// they can't be triggered by specific ones, but simply need to be clicked on
-// need to keep a score of ones that have been clicked on
-// have it play NO sound for MVP
-// when all 5 are clicked, should run stopClock function
-// AND unlock 3rd house
-// first X should be covered up by the prompt, the player will need to move it in order to find it
-// but I need to make sure they can't click on it that way...

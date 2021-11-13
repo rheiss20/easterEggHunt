@@ -121,7 +121,7 @@ export class PopUpWindow extends React.Component {
         }}>You have <span id="popUpWindowCounter" style={{ margin: '0px 5px' }}>60</span> seconds remaining before you are disconnected</p>
     </div>;
   }
-};
+}
 
 PopUpWindow.propTypes = {
   windowWidth: PropTypes.string,

@@ -7,7 +7,7 @@ export default class Portal extends React.Component {
     this.renderPortal();
   }
 
-  componentDidUpdate (props) {
+  componentDidUpdate () {
     this.renderPortal();
   }
 
@@ -19,7 +19,7 @@ export default class Portal extends React.Component {
     this.defaultNode = null;
   }
 
-  renderPortal (props) {
+  renderPortal () {
     if (!this.props.node && !this.defaultNode) {
       this.defaultNode = document.createElement('div');
       document.body.appendChild(this.defaultNode);
