@@ -213,7 +213,9 @@ export const playCongratulations2Sound = () => {
 
 // revert all the changes that could be made in triggerRoomUnlock
 // Bring all this back in if you want a cool feature where it saves when you give up, but otherwise, just have it refresh the game.
-export const resetTriggers = (maxScore, setMaxScore, startCountdown, setStartCountdown, setIsCountdownRunning) => {
+export const resetTriggers = (
+  // maxScore, setMaxScore, startCountdown, setStartCountdown, setIsCountdownRunning
+) => {
   // setImageForRoom(maps.LIVINGROOM, maps.IMAGECHANGES.livingRoomLockedImage);
   // setImageForRoom(maps.BEDROOMCORNER, maps.IMAGECHANGES.bedroomCornerLockedImage);
   // setImageForRoom(maps.STAIRTOSECONDHOUSE, maps.IMAGECHANGES.stairToSecondHouseUnlockedImage);

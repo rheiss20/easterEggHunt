@@ -1,23 +1,20 @@
 {
   "name": "easter-egg-hunt",
-  "version": "0.2.0",
+  "version": "0.5.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "immer": "^8.0.1",
-    "konva": "^4.2.2",
+    "immer": "^9.0.6",
+    "konva": "^8.2.3",
     "lint": "^0.7.0",
-    "nodemon": "^2.0.3",
-    "object-path": "^0.11.5",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-konva": "^16.8.7-0",
-    "react-modal": "3.11.2",
+    "nodemon": "^2.0.15",
+    "object-path": "^0.11.8",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-konva": "^17.0.2-5",
+    "react-modal": "^3.14.4",
     "react-portal": "^4.2.1",
     "react-scripts": "^4.0.3",
-    "use-image": "1.0.5"
+    "use-image": "^1.0.8"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -45,12 +42,12 @@
   },
   "homepage": ".",
   "devDependencies": {
-    "eslint-config-standard": "^14.1.1",
-    "eslint-plugin-import": "^2.20.2",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-react": "^7.19.0",
-    "eslint-plugin-standard": "^4.0.1",
-    "gh-pages": "^2.2.0"
+    "eslint-plugin-promise": "^5.1.1",
+    "eslint-plugin-react": "^7.27.0",
+    "eslint-plugin-standard": "^5.0.0",
+    "gh-pages": "^3.2.3"
   }
 }

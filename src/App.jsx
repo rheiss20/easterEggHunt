@@ -459,9 +459,6 @@ export function App () {
                     y={ (ex.exY * scale) }
                     radius={ ex.exRadius * scale }
                     onClick={ () => {
-                      if (numberOfExesFound === 0) {
-
-                      }
                       setNumberOfExesFound(numberOfExesFound + 1);
                       setFoundExes([`${currentLocation.name}ex${i}`, ...foundExes]);
                     }}
@@ -702,7 +699,7 @@ export function App () {
     );
   } else {
     return (<div>Something done broke</div>);
-  };
+  }
 }
 
 export default App;
