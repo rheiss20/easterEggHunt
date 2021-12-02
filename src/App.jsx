@@ -1,94 +1,54 @@
-import React, { useState, useEffect } from 'react';
+import React, {
+  useState,
+  useEffect
+} from 'react';
 import {
-  Circle,
   Image,
   Layer,
-  Rect,
   Stage,
-  Star,
-  Text
 } from 'react-konva';
 import useImage from 'use-image';
 import maps from './maps.json';
-import Portal from './Portal';
 
 import { QuizSection } from './quiz/main';
 import {
+  cheatChecker,
   controlAudio,
-  generateGiveUpMessage,
-  levelThreeTriggers,
-  mysteryTrigger,
-  playCongratulations2Sound,
-  playCongratulationsSound,
-  playEggClickSound,
   renderLoadingScreen,
-  resetTriggers,
-  secondHouseTrigger,
-  generateCountdownClock,
-  triggerRoomUnlock,
-  stopCountdownClock
 } from './util';
-import { PopUpWindow } from './PopUpWindow';
+import { NavigationButtons } from './NavigationButtons';
 
 // this is the establishment of the profanity filter for the name entry
-const filter = require('leo-profanity');
-filter.add(["4r5e", "5h1t", "5hit", "a55", "anal", "anus", "ar5e", "arrse", "arse", "ass", "ass-fucker", "asses", "assfucker", "assfukka", "asshole", "assholes", "asswhole", "a_s_s", "b!tch", "b00bs", "b17ch", "b1tch", "ballbag", "balls", "ballsack", "bastard", "beastial", "beastiality", "bellend", "bestiality", "bi+ch", "biatch", "bitch", "bitcher", "bitchers", "bitches", "bitchin", "bitching", "bit.ly", "blow job", "blowjob", "blowjobs", "boiolas", "bollock", "bollok", "boner", "boob", "boobs", "booobs", "boooobs", "booooobs", "booooooobs", "breasts", "buceta", "bugger", "bum", "butt", "butthole", "buttmuch", "buttplug", "c0ck", "c0cksucker", "carpet muncher", "cawk", "chink", "cipa", "cl1t", "clit", "clitoris", "clits", "cnut", "cock", "cok", "coon", "crap", "cum", "cummer", "cumming", "cums", "cumshot", "cunilingus", "cunillingus", "cunnilingus", "cunt", "cyalis", "cialis", "d1ck", "damn", "dick", "dildo", "dirsa", "dlck", "donkeyribber", "doosh", "duche", "dyke", "ejaculat", "ejakulat", "f u c k", "f u c k e r", "f4nny", "fag", "fanny", "fanyy", "fcuk", "feck", "felching", "fellat", "flange", "fook", "fooker", "fuck", "fuck", "fudge packer", "fudgepacker", "fuk", "fux", "f_u_c_k", "gangbang", "gaysex", "goatse", "god-damn", "goddamn", "hell", "hore", "horny", "jack-off", "jackoff", "jap", "jerk-off", "jism", "jiz", "jizm", "jizz", "kawk", "kike", "kyke", "k1ke", "k1k3", "knob", "knobhead", "knobjocky", "knobjokey", "kock", "kum", "kunilingus", "l3i+ch", "l3itch", "labia", "lust", "m0f0", "m0fo", "m45terbate", "ma5terb8", "ma5terbate", "masochist", "master-bate", "masterb8", "masterbat*", "masterbat3", "masterbat", "masturbat", "mo-fo", "mof0", "mofo", "muff", "n1gga", "n1gger", "nazi", "nigg3r", "n1gg3r", "nigg4h", "n1gg4h", "nigga", "nigger", "n!gga", "n!gger", "naz!", "n!gg3r", "n!gg3r", "n!gg4h", "n!gg4h", "n!gga", "n!gger", "nutsack", "orgasim", "orgasm", "p0rn", "penis", "penor", "p3nor", "p3n0r", "phuck", "phuk", "phuq", "pigfucker", "piss", "poop", "porn", "prick", "pron", "pube", "pusse", "pussi", "s3x", "pussies", "pussy", "pussys", "rectum", "retard", "rimjaw", "rimming", "s hit", "s.o.b.", "schlong", "scroat", "scrote", "scrotum", "semen", "sex", "sh!+", "sh!t", "sh1t", "shemale", "shi+", "shit", "slut", "sluts", "smegma", "snatch", "spac", "s_h_i_t", "t1tt1e5", "t1tties", "t1ts", "teets", "teez", "testical", "testicle", "tit", "tinyurl", "tosser", "turd", "tw4t", "twat", "twunt", "v14gra", "v1gra", "vagina", "vag1na", "viagra", "vulva", "w00se", "wang", "wank", "whoar", "whore", "www", "xrated", "xxx"]);
-filter.remove(["ass", "bestial", "bloody"]);
-
-// *****************************************************
-
-// Turn off HUNT_MODE to enable tools to get the x/y/radius of the eggs
-let HUNT_MODE = true;
+import filter from 'leo-profanity';
+filter.add(["4r5e", "5h1t", "5hit", "anal", "anus", "ar5e", "arrse", "arse", "ass", "ass-fucker", "asses", "assfucker", "assfukka", "asshole", "assholes", "asswhole", "a_s_s", "b!tch", "b00bs", "b17ch", "b1tch", "ballbag", "balls", "ballsack", "bastard", "beastial", "beastiality", "bellend", "bestiality", "bi+ch", "biatch", "bitch", "bitcher", "bitchers", "bitches", "bitchin", "bitching", "bit.ly", "blow job", "blowjob", "blowjobs", "boiolas", "bollock", "bollok", "boner", "boob", "boobs", "booobs", "boooobs", "booooobs", "booooooobs", "breasts", "buceta", "bugger", "bum", "butt", "butthole", "buttmuch", "buttplug", "c0ck", "c0cksucker", "carpet muncher", "cawk", "chink", "cipa", "cl1t", "clit", "clitoris", "clits", "cnut", "cock", "cok", "coon", "crap", "cum", "cummer", "cumming", "cums", "cumshot", "cunilingus", "cunillingus", "cunnilingus", "cunt", "cyalis", "cialis", "d1ck", "damn", "dick", "dildo", "dirsa", "dlck", "donkeyribber", "doosh", "duche", "dyke", "ejaculat", "ejakulat", "f u c k", "f u c k e r", "f4nny", "fag", "fanny", "fanyy", "fcuk", "feck", "felching", "fellat", "flange", "fook", "fooker", "fuck", "fuck", "fudge packer", "fudgepacker", "fuk", "fux", "f_u_c_k", "gangbang", "gaysex", "goatse", "god-damn", "goddamn", "hell", "hore", "horny", "jack-off", "jackoff", "jap", "jerk-off", "jism", "jiz", "jizm", "jizz", "kawk", "kike", "kyke", "k1ke", "k1k3", "knob", "knobhead", "knobjocky", "knobjokey", "kock", "kum", "kunilingus", "l3i+ch", "l3itch", "labia", "lust", "m0f0", "m0fo", "m45terbate", "ma5terb8", "ma5terbate", "masochist", "master-bate", "masterb8", "masterbat*", "masterbat3", "masterbat", "masturbat", "mo-fo", "mof0", "mofo", "muff", "n1gga", "n1gger", "nazi", "nigg3r", "n1gg3r", "nigg4h", "n1gg4h", "nigga", "nigger", "n!gga", "n!gger", "naz!", "n!gg3r", "n!gg3r", "n!gg4h", "n!gg4h", "n!gga", "n!gger", "nutsack", "orgasim", "orgasm", "p0rn", "penis", "penor", "p3nor", "p3n0r", "phuck", "phuk", "phuq", "pigfucker", "piss", "poop", "porn", "prick", "pron", "pube", "pusse", "pussi", "s3x", "pussies", "pussy", "pussys", "rectum", "retard", "rimjaw", "rimming", "s hit", "s.o.b.", "schlong", "scroat", "scrote", "scrotum", "semen", "sex", "sh!+", "sh!t", "sh1t", "shemale", "shi+", "shit", "slut", "sluts", "smegma", "snatch", "spac", "s_h_i_t", "t1tt1e5", "t1tties", "t1ts", "teets", "teez", "testical", "testicle", "tit", "tinyurl", "tosser", "turd", "tw4t", "twat", "twunt", "v14gra", "v1gra", "vagina", "vag1na", "viagra", "vulva", "w00se", "wang", "wank", "whoar", "whore", "www", "xrated", "xxx"]);
+filter.remove(["ass", "bestial", "bloody", "hell"]);
 
 export function App () {
+  // Turn off HUNT_MODE to enable tools to get the x/y/radius of the eggs
+  const [HUNT_MODE, setHUNT_MODE] = useState('true');
   const [status, setStatus] = useState('loading');
   const [name, setName] = useState('');
-  const [score, setScore] = useState(0);
+  // eslint-disable-next-line no-unused-vars
   const [level, setLevel] = useState(1);
-  const [maxScore, setMaxScore] = useState(50);
-  const [foundEggs, setFoundEggs] = useState([]);
-  const [foundKeys, setFoundKeys] = useState([]);
-  const [foundExes, setFoundExes] = useState([]);
-  const [numberOfExesFound, setNumberOfExesFound] = useState(0);
-  const [startTime, setStartTime] = useState('');
   const [startCountdown, setStartCountdown] = useState(false);
-  const [isCountdownRunning, setIsCountdownRunning] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [renderStopClockButton, setRenderStopClockButton] = useState(false);
   const [image, setImage] = useState(useImage('SplashPage.jpg'));
-  const [width, setWidth] = React.useState(window.innerWidth);
-  const [height, setHeight] = React.useState(window.innerHeight);
+  const [width, setWidth] = useState(window.innerWidth);
+  const [height, setHeight] = useState(window.innerHeight);
   const [scale, setScale] = useState(Math.min((width / image.width), (height / image.height)));
   const [imageX, setImageX] = useState((width / 2) - (image.width * scale * 0.5));
   const [currentLocation, setCurrentLocation] = useState(maps.LIVINGROOM);
-  const [eggX, setEggX] = useState(500);
-  const [eggY, setEggY] = useState(500);
-  const [eggRadius, setEggRadius] = useState(30);
   const [landingPage] = useImage('SplashPage.jpg');
-  const [arrowUp] = useImage('ArrowUp.png');
-  const [arrowDown] = useImage('ArrowDown.png');
-  const [arrowLeft] = useImage('ArrowLeft.png');
-  const [arrowTurnLeft] = useImage('LeftTurnArrow.png');
-  const [arrowRight] = useImage('ArrowRight.png');
-  const [arrowTurnRight] = useImage('RightTurnArrow.png');
-  const [turnAroundArrow] = useImage('TurnAroundArrow.png');
-  const [goBack] = useImage('GoBack.png');
-  const [checkmark] = useImage('checkmark.gif');
-  const [congratulationsLevel1] = useImage('Congratulations.png');
-  const [congratulationsLevel2] = useImage('CongratulationsLevel2.jpg');
-  const elementScale = scale * 1.5;
 
-  const handleImageDrag = event => {
-    setEggX((event.target.attrs.x - imageX) / scale);
-    setEggY((event.target.attrs.y / scale));
-  };
+  cheatChecker(name, setName, setStatus, setCurrentLocation, setLevel, startCountdown, setStartCountdown, setRenderStopClockButton, setHUNT_MODE);
 
   const updateWidthAndHeight = () => {
     setWidth(window.innerWidth);
     setHeight(window.innerHeight);
   };
 
-  // On first mount, check if we need to load up a map
-
+  // // On first mount, check if we need to load up a map
   useEffect(() => {
     if (landingPage) {
       setStatus('landing');
@@ -108,76 +68,6 @@ export function App () {
     }
     return () => window.removeEventListener('resize', updateWidthAndHeight);
   }, [height, width, image]);
-
-  useEffect(() => {
-    if (status === 'hunting') {
-      alert('Have yourself an Easter egg hunt without leaving the safety and comfort of your own home! There are 50 eggs hidden inside this house. Click on the arrows to navigate, and click on an egg when you find it to add it to your score! Have fun, and try to collect them all!\n(Click "Give Up" when you are done playing.)');
-    }
-    setStartTime(Date.now());
-  }, [status]);
-
-  useEffect(() => {
-    switch (status) {
-      case 'landing':
-        setImage(landingPage);
-        break;
-      case 'hunting': setImage(currentLocation.image);
-        break;
-      default:
-    }
-  }, [status, currentLocation, landingPage]);
-
-  // CHEATS ************************************************
-  switch (name) {
-    case 'CHEAT_howie':
-      triggerRoomUnlock('MYSTERY');
-      setName('Howie, dear');
-      setStatus('hunting');
-      controlAudio('play', 'hunting');
-      setCurrentLocation(maps.LIVINGROOM);
-      break;
-    case 'CHEAT_quiz':
-      setName('You little cheater, boy');
-      setStatus('quiz');
-      break;
-    case 'CHEAT_nick':
-      setName('Nick Bruhnke');
-      setStatus('hunting');
-      setCurrentLocation(maps.LIVINGROOM2);
-      setLevel(2);
-      secondHouseTrigger('in');
-      break;
-    case 'CHEAT_clock':
-      setName('Clockman');
-      setStatus('hunting');
-      levelThreeTriggers(startCountdown, setStartCountdown);
-      setRenderStopClockButton(true);
-      setCurrentLocation(maps.LIVINGROOM);
-      break;
-    case 'CHEAT_nohunt':
-      triggerRoomUnlock('MYSTERY');
-      setName('Doesn\'t matter');
-      setStatus('hunting');
-      HUNT_MODE = false;
-      setCurrentLocation(maps.STAIRTOSECONDHOUSEX);
-      break;
-    case 'CHEAT_exes':
-      setName('Elle King');
-      setStatus('hunting');
-      levelThreeTriggers(startCountdown, setStartCountdown);
-      setCurrentLocation(maps.STAIRTOSECONDHOUSEX);
-      break;
-  }
-
-  // *******************************************************
-
-  const changeLocation = (newLocationName) => {
-    setCurrentLocation(maps[newLocationName]);
-  };
-
-  if (numberOfExesFound === 15) {
-    stopCountdownClock();
-  }
 
   // this is the function that actually checks the entire name string and sees if any of the words
   // in the profanity list are anywhere in the string
@@ -248,463 +138,15 @@ export function App () {
       </>
     );
   } else if (status === 'hunting') {
-    return (<>
-      { HUNT_MODE
-        ? <>
-          <input
-            type='Button'
-            value='Give Up'
-            id='giveUpButton'
-            style={{
-              position: 'absolute',
-              top: `${60 * elementScale}px`,
-              left: `${5 * elementScale}px`,
-              zIndex: 999,
-              height: `${60 * elementScale}px`,
-              width: `${200 * elementScale}px`,
-              fontSize: `${30 * elementScale}px`,
-              background: 'yellow'
-            }}
-            onClick={() => {
-              controlAudio('stop', 'hunting');
-              controlAudio('stop', '2nd');
-              generateCountdownClock(setIsCountdownRunning, true);
-              generateGiveUpMessage(score, name, level, startTime);
-              setStatus('landing');
-              setName('');
-              setScore(0);
-              setLevel(1);
-              setFoundEggs([]);
-              setFoundKeys([]);
-              // Bring back the next line if you want to add something upon quitting
-              resetTriggers(maxScore, setMaxScore);
-              setCurrentLocation(maps.LIVINGROOM);
-            }
-            }
-          />
-          { renderStopClockButton
-            ? <input
-              type='Button'
-              value='Stop Clock'
-              id='stopClockButton'
-              style={{
-                position: 'absolute',
-                top: `${120 * elementScale}px`,
-                left: `${5 * elementScale}px`,
-                zIndex: 999,
-                height: `${60 * elementScale}px`,
-                width: `${200 * elementScale}px`,
-                fontSize: `${30 * elementScale}px`,
-                background: 'yellow'
-              }}
-              onClick={() => {
-                stopCountdownClock();
-              }
-              }
-            />
-            : null}
-        </>
-        : <>
-          <textarea
-            style={{ position: 'absolute', top: '0px', left: '0px', zIndex: 999 }}
-            rows='4' cols='13' readOnly
-            value={`{'eggX': ${eggX.toFixed(0)},\n'eggY': ${eggY.toFixed(0)},\n'eggRadius': ${eggRadius}}`}
-          />
-          <input
-            type='range'
-            min='1'
-            max='1000'
-            value={ eggRadius }
-            style={{ position: 'absolute', top: '70px', left: '0px', zIndex: 999 }}
-            onChange={ (e) => setEggRadius(e.target.value) }
-          />
-        </>
-      }
-      <Stage
-        width={ width }
-        height={ height }
-      >
-        <Layer>
-          <Rect
-            width={ width }
-            height={ height }
-            fill='#999999'
-          />
-          <Image
-            image={ image }
-            x={ imageX }
-
-            scaleX={ scale }
-            scaleY={ scale }
-          />
-        </Layer>
-        <Layer>
-          {
-            (numberOfExesFound > 0 && numberOfExesFound < 15)
-              ? <>
-                <Rect
-                  x={ 5 * elementScale }
-                  stroke={ '#555' }
-                  strokeWidth={ 5 * elementScale }
-                  fill={ '#ddd' }
-                  width={ 280 * elementScale }
-                  height={ 50 * elementScale }
-                  shadowColor={ 'black' }
-                  shadowBlur={ 10 }
-                  shadowOffsetX={ 10 }
-                  shadowOffsetY={ 10 }
-                  shadowOpacity={ 0.2 }
-                  cornerRadius={ 10 * elementScale }
-                />
-                <Text
-                  x={ 15 * elementScale }
-                  y={ 10 * elementScale }
-                  wrap
-                  text={ `${numberOfExesFound}/15 X's found` }
-                  fontSize={ 30 * elementScale }
-                />
-              </>
-              : <>
-                <Rect
-                  x={ 5 * elementScale }
-                  stroke={ '#555' }
-                  strokeWidth={ 5 * elementScale }
-                  fill={ '#ddd' }
-                  width={ 280 * elementScale }
-                  height={ 50 * elementScale }
-                  shadowColor={ 'black' }
-                  shadowBlur={ 10 }
-                  shadowOffsetX={ 10 }
-                  shadowOffsetY={ 10 }
-                  shadowOpacity={ 0.2 }
-                  cornerRadius={ 10 * elementScale }
-                />
-                <Text
-                  x={ 15 * elementScale }
-                  y={ 10 * elementScale }
-                  wrap
-                  text={ `Eggs Found: ${score}/50` }
-                  fontSize={ 30 * elementScale }
-                />
-              </>
-          }
-
-          {// If in HUNT_MODE, put invisible circles on unfound eggs and stars on found eggs
-            HUNT_MODE
-              ? currentLocation.eggs.map((egg, i) => (
-                foundEggs.indexOf(`${currentLocation.name}egg${i}`) === -1
-                  ? <Circle
-                    x={ imageX + (egg.eggX * scale)}
-                    y={ (egg.eggY * scale)}
-                    radius={ egg.eggRadius * scale}
-                    onClick={() => {
-                      playEggClickSound();
-                      setScore(score + 1);
-                      setFoundEggs([`${currentLocation.name}egg${i}`, ...foundEggs]);
-                    }}
-                    onTouchStart={ () => {
-                      playEggClickSound();
-                      setScore(score + 1);
-                      setFoundEggs([`${currentLocation.name}egg${i}`, ...foundEggs]);
-                    }}
-                    key={ `${currentLocation.name}egg${i}` }
-                  />
-                  : <Star
-                    x={ imageX + (egg.eggX * scale)}
-                    y={ (egg.eggY * scale)}
-                    innerRadius={ egg.eggRadius * scale * 0.7}
-                    outerRadius={ egg.eggRadius * scale * 1.5}
-                    rotation={ 10 * egg.eggRadius }
-                    numPoints={ 5 }
-                    fill='#F7BEA0'
-                    stroke='black'
-                    strokeWidth={ 2 * scale }
-                    key={ `${currentLocation.name}egg${i}` }
-                  />
-              )
-              )
-              : <Circle
-                x={ imageX + (eggX * scale)}
-                y={ (eggY * scale)}
-                radius={ eggRadius * scale}
-
-                draggable
-                onDragMove={ handleImageDrag }
-
-                stroke={ 'red' }
-                strokeWidth={ 2 }
-              />
-          }
-          {
-            currentLocation.keys
-              ? currentLocation.keys.map((key, i) => (
-                foundKeys.indexOf(`${currentLocation.name}key${i}`) === -1
-                  ? <Circle
-                    x={ imageX + (key.keyX * scale) }
-                    y={ (key.keyY * scale) }
-                    radius={ key.keyRadius * scale }
-                    onClick={ () => {
-                      triggerRoomUnlock(currentLocation.name);
-                      setFoundKeys([`${currentLocation.name}key${i}`, ...foundKeys]);
-                    }}
-                    onTouchStart={ () => {
-                      triggerRoomUnlock(currentLocation.name);
-                      setFoundKeys([`${currentLocation.name}key${i}`, ...foundKeys]);
-                    }}
-                    key={ `${currentLocation.name}key${i}`}
-                  />
-                  : <Image
-                    image={ checkmark }
-                    x={ imageX + (key.keyX * scale) - (scale * key.keyRadius) }
-                    y={ (key.keyY * scale) - (scale * key.keyRadius) }
-                    width={ scale * key.keyRadius * 2 }
-                    height={ scale * key.keyRadius * 2 }
-                    key={ `${currentLocation.name}key${i}` }
-                  />
-              )
-              ) : null
-          }
-          {
-            currentLocation.exes
-              ? currentLocation.exes.map((ex, i) => (
-                foundExes.indexOf(`${currentLocation.name}ex${i}`) === -1
-                  ? <Circle
-                    x={ imageX + (ex.exX * scale) }
-                    y={ (ex.exY * scale) }
-                    radius={ ex.exRadius * scale }
-                    onClick={ () => {
-                      setNumberOfExesFound(numberOfExesFound + 1);
-                      setFoundExes([`${currentLocation.name}ex${i}`, ...foundExes]);
-                    }}
-                    onTouchStart={ () => {
-                      setNumberOfExesFound(numberOfExesFound + 1);
-                      setFoundExes([`${currentLocation.name}ex${i}`, ...foundExes]);
-                    }}
-                    key={ `${currentLocation.name}ex${i}`}
-                  />
-                  : <Circle
-                    x={ imageX + (ex.exX * scale) }
-                    y={ (ex.exY * scale) }
-                    radius={ ex.exRadius * scale }
-                    key={ `${currentLocation.name}ex${i}`}
-                    stroke={ 'red' }
-                    strokeWidth={ 2 }
-                  />
-              )
-              ) : null
-          }
-          { currentLocation.up &&
-          <Image
-            image={ arrowUp }
-            x={ (imageX + (currentLocation.up.arrowX * scale)) - 30 }
-            y={ currentLocation.up.arrowY * scale }
-            scaleX={ 0.1 }
-            scaleY={ 0.1 }
-            onClick={ () => changeLocation(currentLocation.up.transferTo) }
-            onTouchStart={ () => changeLocation(currentLocation.up.transferTo) }
-          />}
-          { currentLocation.upTwo &&
-          <Image
-            image={ arrowUp }
-            x={ (imageX + (currentLocation.upTwo.arrowX * scale)) - 30 }
-            y={ currentLocation.upTwo.arrowY * scale }
-            scaleX={ 0.1 }
-            scaleY={ 0.1 }
-            onClick={ () => changeLocation(currentLocation.upTwo.transferTo) }
-            onTouchStart={ () => changeLocation(currentLocation.upTwo.transferTo) }
-          />}
-          { currentLocation.down &&
-          <Image
-            image={ arrowDown }
-            x={ (width * 0.5 - arrowDown.width * 0.05) - 30 }
-            y={ height * 0.8 + arrowDown.height * 0.05 }
-            scaleX={ 0.1 }
-            scaleY={ 0.1 }
-            onClick={ () => changeLocation(currentLocation.down) }
-            onTouchStart={ () => changeLocation(currentLocation.down) }
-          />}
-          { currentLocation.goBack &&
-          <Image
-            image={ goBack }
-            x={ (width * 0.5 - arrowDown.width * 0.05) - 30 }
-            y={ height * 0.8 + arrowDown.height * 0.05 }
-            scaleX={ 0.1 }
-            scaleY={ 0.1 }
-            onClick={ () => changeLocation(currentLocation.goBack) }
-            onTouchStart={ () => changeLocation(currentLocation.goBack) }
-          />}
-          { currentLocation.left &&
-          <Image
-            image={ arrowLeft }
-            x={ (imageX + (currentLocation.left.arrowX * scale)) - 30 }
-            y={ currentLocation.left.arrowY * scale }
-            scaleX={ 0.1 }
-            scaleY={ 0.1 }
-            onClick={ () => changeLocation(currentLocation.left.transferTo) }
-            onTouchStart={ () => changeLocation(currentLocation.left.transferTo) }
-          />}
-          { currentLocation.turnLeft &&
-          <Image
-            image={ arrowTurnLeft }
-            x={ (imageX + (currentLocation.turnLeft.arrowX * scale)) - 30 }
-            y={ currentLocation.turnLeft.arrowY * scale }
-            scaleX={ 0.1 }
-            scaleY={ 0.1 }
-            onClick={ () => changeLocation(currentLocation.turnLeft.transferTo) }
-            onTouchStart={ () => changeLocation(currentLocation.turnLeft.transferTo) }
-          />}
-          { currentLocation.right &&
-          <Image
-            image={ arrowRight }
-            x={ (imageX + (currentLocation.right.arrowX * scale)) - 30 }
-            y={ currentLocation.right.arrowY * scale }
-            scaleX={ 0.1 }
-            scaleY={ 0.1 }
-            onClick={ () => changeLocation(currentLocation.right.transferTo) }
-            onTouchStart={ () => changeLocation(currentLocation.right.transferTo) }
-          /> }
-          { currentLocation.turnRight &&
-          <Image
-            image={ arrowTurnRight }
-            x={ (imageX + (currentLocation.turnRight.arrowX * scale)) - 30 }
-            y={ currentLocation.turnRight.arrowY * scale }
-            scaleX={ 0.1 }
-            scaleY={ 0.1 }
-            onClick={ () => changeLocation(currentLocation.turnRight.transferTo) }
-            onTouchStart={ () => changeLocation(currentLocation.turnRight.transferTo) }
-          /> }
-          { currentLocation.turnAroundRight &&
-          <Image
-            image={ turnAroundArrow }
-            x={ (imageX + (currentLocation.turnAroundRight.arrowX * scale)) - 30 }
-            y={ currentLocation.turnAroundRight.arrowY * scale }
-            scaleX={ -0.1 }
-            scaleY={ 0.1 }
-            onClick={ () => changeLocation(currentLocation.turnAroundRight.transferTo) }
-            onTouchStart={ () => changeLocation(currentLocation.turnAroundRight.transferTo) }
-          />}
-          { currentLocation.turnAroundLeft &&
-          <Image
-            image={ turnAroundArrow }
-            x={ (imageX + (currentLocation.turnAroundLeft.arrowX * scale)) - 30 }
-            y={ currentLocation.turnAroundLeft.arrowY * scale }
-            scaleX={ 0.1 }
-            scaleY={ 0.1 }
-            onClick={ () => changeLocation(currentLocation.turnAroundLeft.transferTo) }
-            onTouchStart={ () => changeLocation(currentLocation.turnAroundLeft.transferTo) }
-          />}
-          { currentLocation.mystery &&
-          <Image
-            image={ arrowRight }
-            x={ (imageX + (currentLocation.mystery.arrowX * scale)) - 30 }
-            y={ currentLocation.mystery.arrowY * scale }
-            scaleX={ 0.1 }
-            scaleY={ 0.1 }
-            onClick={ () => {
-              mysteryTrigger();
-              changeLocation(currentLocation.mystery.transferTo);
-            }}
-            onTouchStart={ () => {
-              mysteryTrigger();
-              changeLocation(currentLocation.mystery.transferTo);
-            }}
-          />}
-          { currentLocation.secondHouse &&
-          <Image
-            image={ arrowUp }
-            x={ (imageX + (currentLocation.secondHouse.arrowX * scale)) - 30 }
-            y={ currentLocation.secondHouse.arrowY * scale }
-            scaleX={ 0.1 }
-            scaleY={ 0.1 }
-            onClick={ () => {
-              setLevel(2);
-              changeLocation(currentLocation.secondHouse.transferTo);
-              secondHouseTrigger('in');
-              setScore(0);
-              setMaxScore(50);
-            }}
-            onTouchStart={ () => {
-              setLevel(2);
-              changeLocation(currentLocation.secondHouse.transferTo);
-              secondHouseTrigger('in');
-              setScore(0);
-              setMaxScore(50);
-            }}
-          />}
-          { currentLocation.exitSecondHouse &&
-          <Image
-            image={ arrowRight }
-            x={ (imageX + (currentLocation.exitSecondHouse.arrowX * scale)) - 30 }
-            y={ currentLocation.exitSecondHouse.arrowY * scale }
-            scaleX={ 0.1 }
-            scaleY={ 0.1 }
-            onClick={ () => {
-              changeLocation(currentLocation.exitSecondHouse.transferTo);
-              secondHouseTrigger('out', startCountdown, setStartCountdown);
-            }}
-            onTouchStart={ () => {
-              changeLocation(currentLocation.exitSecondHouse.transferTo);
-              secondHouseTrigger('out', startCountdown, setStartCountdown);
-            }}
-          /> }
-          { currentLocation.quiz &&
-          <Image
-            image={ arrowUp }
-            x={ (imageX + (currentLocation.quiz.arrowX * scale)) - 30 }
-            y={ currentLocation.quiz.arrowY * scale }
-            scaleX={ 0.1 }
-            scaleY={ 0.1 }
-            onClick={ () => { setStatus('quiz'); }}
-            onTouchStart={ () => { setStatus('quiz'); }}
-          /> }
-          { currentLocation.end &&
-          <Image
-            image={ arrowUp }
-            x={ (imageX + (currentLocation.end.arrowX * scale)) - 30 }
-            y={ currentLocation.end.arrowY * scale }
-            scaleX={ 0.1 }
-            scaleY={ 0.1 }
-            onClick={ () => { alert('That\'s all we got for now! Tune in next time to see more about this project and where its going! Make sure you tell Ryan that you got here when you get the chance'); }}
-            onTouchStart={ () => { alert('That\'s all we got for now! Tune in next time to see more about this project and where its going! Make sure you tell Ryan that you got here when you get the chance'); }}
-          /> }
-          { score === maxScore && level === 1
-            ? <Image
-              image={ congratulationsLevel1 }
-              x={ (width * 0.5) - (congratulationsLevel1.width * 0.375 * elementScale) }
-              y={ (height * 0.5) - (congratulationsLevel1.height * 0.375 * elementScale) }
-              scaleX={ elementScale * 0.75 }
-              scaleY={ elementScale * 0.75 }
-              onClick={ () => {
-                triggerRoomUnlock('MYSTERY');
-                setMaxScore(250);
-              }}
-              onTouchStart={ playCongratulationsSound() }
-            /> : null
-          }
-          { score === maxScore && level === 2
-            ? <Image
-              image={ congratulationsLevel2 }
-              x={ (width * 0.5) - (congratulationsLevel2.width * 0.375 * elementScale) }
-              y={ (height * 0.5) - (congratulationsLevel2.height * 0.375 * elementScale) }
-              scaleX={ elementScale * 0.75 }
-              scaleY={ elementScale * 0.75 }
-              onClick={ () => {
-                triggerRoomUnlock('SECONDMYSTERY');
-                setLevel(3);
-                setMaxScore(250);
-              }}
-              onTouchStart={ playCongratulations2Sound() }
-            /> : null
-          }
-          { startCountdown === true
-            ? <Portal isOpened={ true }>
-              {isCountdownRunning ? null : generateCountdownClock(setIsCountdownRunning)}
-              <PopUpWindow id='popUpWindow' windowHeight={ height } windowWidth={ width } elementScale={ elementScale }/>
-            </Portal> : null
-          }
-        </Layer>
-      </Stage>
-    </>);
+    return (<NavigationButtons
+      name={name}
+      HUNT_MODE={HUNT_MODE}
+      setHUNT_MODE={setHUNT_MODE}
+      currentLocation={currentLocation}
+      width={ width }
+      height={ height }
+      status={status}
+    />);
   } else if (status === 'quiz') {
     return (
       <div className={ 'quiz' }>

@@ -270,6 +270,7 @@ export const renderLoadingScreen = () => {
   const screen = [];
   for (let i = 0; i < 13; i++) {
     screen.push(<div
+      key={i}
       style={{
         position: 'absolute',
         top: `${Math.floor((Math.random() * 1000))}px`,
@@ -281,4 +282,47 @@ export const renderLoadingScreen = () => {
     </div>);
   }
   return screen;
+};
+
+export const cheatChecker = (name, setName, setStatus, setCurrentLocation, setLevel, startCountdown, setStartCountdown, setRenderStopClockButton, setHUNT_MODE) => {
+  switch (name) {
+    case 'CHEAT_howie':
+      triggerRoomUnlock('MYSTERY');
+      setName('Howie, dear');
+      setStatus('hunting');
+      controlAudio('play', 'hunting');
+      setCurrentLocation(maps.LIVINGROOM);
+      break;
+    case 'CHEAT_quiz':
+      setName('You little cheater, boy');
+      setStatus('quiz');
+      break;
+    case 'CHEAT_nick':
+      setName('Nick Bruhnke');
+      setStatus('hunting');
+      setCurrentLocation(maps.LIVINGROOM2);
+      setLevel(2);
+      secondHouseTrigger('in');
+      break;
+    case 'CHEAT_clock':
+      setName('Clockman');
+      setStatus('hunting');
+      setRenderStopClockButton(true);
+      setCurrentLocation(maps.LIVINGROOM);
+      levelThreeTriggers(startCountdown, setStartCountdown);
+      break;
+    case 'CHEAT_nohunt':
+      triggerRoomUnlock('MYSTERY');
+      setName('Doesn\'t matter');
+      setStatus('hunting');
+      setHUNT_MODE(false);
+      setCurrentLocation(maps.LIVINGROOM);
+      break;
+    case 'CHEAT_exes':
+      setName('Elle King');
+      setStatus('hunting');
+      setCurrentLocation(maps.STAIRTOSECONDHOUSEX);
+      levelThreeTriggers(startCountdown, setStartCountdown);
+      break;
+  }
 };
