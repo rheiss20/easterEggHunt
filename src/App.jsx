@@ -13,7 +13,7 @@ import maps from './maps.json';
 import { QuizSection } from './quiz/main';
 import {
   cheatChecker,
-  controlAudio,
+  controlAudio, randomRoom,
   renderLoadingScreen,
 } from './util';
 import { NavigationButtons } from './NavigationButtons';
@@ -42,6 +42,8 @@ export function App () {
   const [landingPage] = useImage('SplashPage.jpg');
 
   cheatChecker(name, setName, setStatus, setCurrentLocation, setLevel, startCountdown, setStartCountdown, setRenderStopClockButton, setHUNT_MODE);
+
+  randomRoom();
 
   const updateWidthAndHeight = () => {
     setWidth(window.innerWidth);

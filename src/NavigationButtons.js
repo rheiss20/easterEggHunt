@@ -97,8 +97,6 @@ export function NavigationButtons (props) {
       setScale(scale);
       setImageX(imageX);
     }
-    console.log('------------ arrowDown: ', arrowDown);
-    // console.log('------------ arrowDown.width: ', arrowDown.width);
     return () => window.removeEventListener('resize', updateWidthAndHeight);
   }, [height, width, currentLocation.image]);
 

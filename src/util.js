@@ -324,5 +324,52 @@ export const cheatChecker = (name, setName, setStatus, setCurrentLocation, setLe
       setCurrentLocation(maps.STAIRTOSECONDHOUSEX);
       levelThreeTriggers(startCountdown, setStartCountdown);
       break;
+    case 'CHEAT_random':
+      setName('lol so random');
+      randomRoom();
+      setStatus('hunting');
+      setCurrentLocation(maps.RANDOMROOM);
+      break;
   }
+};
+
+export const randomRoom = () => {
+  const randomCoordinates = (min, max) => {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min);
+  };
+
+  const randomLocation = function () {
+    var keys = Object.keys(maps);
+    return maps[keys[ keys.length * Math.random() << 0]];
+  };
+
+  maps.RANDOMROOM = {
+    image: randomLocation().image,
+    name: "RANDOMROOM",
+    up:{
+      transferTo: randomLocation().name,
+        arrowX:randomCoordinates(0,1325),
+        arrowY:randomCoordinates(0,1162),
+    },
+    left:{
+      transferTo: randomLocation().name,
+        arrowX:randomCoordinates(0,1325),
+        arrowY:randomCoordinates(0,1162),
+    },
+    right:{
+      transferTo: randomLocation().name,
+      arrowX:randomCoordinates(0,1325),
+      arrowY:randomCoordinates(0,1162),
+    },
+    goBack:"RANDOMROOM",
+      eggs:[
+      {
+        eggX:0,
+        egg:0,
+        eggRadius:0
+      }
+    ],
+  };
 };
