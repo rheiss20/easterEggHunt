@@ -1,4 +1,5 @@
 import maps from './maps';
+import glitchMaps from './glitchMaps';
 import huntingMusicFile from './sounds/huntingMusic.mp3';
 import secondHouseSoundsFile from './sounds/secondHouseSounds.mp3';
 import eggPopSoundFile from './sounds/pop1.mp3';
@@ -25,6 +26,13 @@ Object.keys(maps).forEach(key => {
   // Fake images for populating the inspect element with junk
   setImageForRoom(maps[key], maps[key].fakeImageName);
   setImageForRoom(maps[key], maps[key].imageName);
+});
+
+// Preload all the glitched maps, also how the images are generated
+Object.keys(glitchMaps).forEach(key => {
+  // Fake images for populating the inspect element with junk
+  setImageForRoom(glitchMaps[key], glitchMaps[key].fakeImageName);
+  setImageForRoom(glitchMaps[key], glitchMaps[key].imageName);
 });
 
 export const controlAudio = (command, file) => {
@@ -270,6 +278,7 @@ export const renderLoadingScreen = () => {
   const screen = [];
   for (let i = 0; i < 13; i++) {
     screen.push(<div
+      key={i}
       style={{
         position: 'absolute',
         top: `${Math.floor((Math.random() * 1000))}px`,
@@ -281,4 +290,58 @@ export const renderLoadingScreen = () => {
     </div>);
   }
   return screen;
+};
+
+export const cheatChecker = (name, setName, setStatus, setCurrentLocation, setLevel, startCountdown, setStartCountdown, setRenderStopClockButton, setHUNT_MODE) => {
+  switch (name) {
+    case 'CHEAT_howie':
+      triggerRoomUnlock('MYSTERY');
+      setName('Howie, dear');
+      setStatus('hunting');
+      controlAudio('play', 'hunting');
+      setCurrentLocation(maps.LIVINGROOM);
+      break;
+    case 'CHEAT_quiz':
+      setName('You little cheater, boy');
+      setStatus('quiz');
+      break;
+    case 'CHEAT_nick':
+      setName('Nick Bruhnke');
+      setStatus('hunting');
+      setCurrentLocation(maps.LIVINGROOM2);
+      setLevel(2);
+      secondHouseTrigger('in');
+      break;
+    case 'CHEAT_clock':
+      setName('Clockman');
+      setStatus('hunting');
+      setRenderStopClockButton(true);
+      setCurrentLocation(maps.LIVINGROOM);
+      levelThreeTriggers(startCountdown, setStartCountdown);
+      break;
+    case 'CHEAT_nohunt':
+      triggerRoomUnlock('MYSTERY');
+      setName('Doesn\'t matter');
+      setStatus('hunting');
+      setHUNT_MODE(false);
+      setCurrentLocation(maps.THIRDHOUSE6);
+      break;
+    case 'CHEAT_exes':
+      setName('Elle King');
+      setStatus('hunting');
+      setCurrentLocation(maps.STAIRTOSECONDHOUSEX);
+      levelThreeTriggers(startCountdown, setStartCountdown);
+      break;
+    case 'CHEAT_tim':
+      setName('Tim Paolino');
+      setStatus('hunting');
+      setCurrentLocation(maps.THIRDHOUSE6);
+      break;
+  }
+};
+
+export const randomNumberGenerator = (min, max) => {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min) + min);
 };
