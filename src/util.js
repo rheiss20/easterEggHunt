@@ -1,4 +1,5 @@
 import maps from './maps';
+import glitchMaps from './glitchMaps';
 import huntingMusicFile from './sounds/huntingMusic.mp3';
 import secondHouseSoundsFile from './sounds/secondHouseSounds.mp3';
 import eggPopSoundFile from './sounds/pop1.mp3';
@@ -25,6 +26,13 @@ Object.keys(maps).forEach(key => {
   // Fake images for populating the inspect element with junk
   setImageForRoom(maps[key], maps[key].fakeImageName);
   setImageForRoom(maps[key], maps[key].imageName);
+});
+
+// Preload all the glitched maps, also how the images are generated
+Object.keys(glitchMaps).forEach(key => {
+  // Fake images for populating the inspect element with junk
+  setImageForRoom(glitchMaps[key], glitchMaps[key].fakeImageName);
+  setImageForRoom(glitchMaps[key], glitchMaps[key].imageName);
 });
 
 export const controlAudio = (command, file) => {
@@ -316,7 +324,7 @@ export const cheatChecker = (name, setName, setStatus, setCurrentLocation, setLe
       setName('Doesn\'t matter');
       setStatus('hunting');
       setHUNT_MODE(false);
-      setCurrentLocation(maps.LIVINGROOM);
+      setCurrentLocation(maps.THIRDHOUSE6);
       break;
     case 'CHEAT_exes':
       setName('Elle King');
@@ -324,52 +332,16 @@ export const cheatChecker = (name, setName, setStatus, setCurrentLocation, setLe
       setCurrentLocation(maps.STAIRTOSECONDHOUSEX);
       levelThreeTriggers(startCountdown, setStartCountdown);
       break;
-    case 'CHEAT_random':
-      setName('lol so random');
-      randomRoom();
+    case 'CHEAT_tim':
+      setName('Tim Paolino');
       setStatus('hunting');
-      setCurrentLocation(maps.RANDOMROOM);
+      setCurrentLocation(maps.THIRDHOUSE6);
       break;
   }
 };
 
-export const randomRoom = () => {
-  const randomCoordinates = (min, max) => {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min) + min);
-  };
-
-  const randomLocation = function () {
-    var keys = Object.keys(maps);
-    return maps[keys[ keys.length * Math.random() << 0]];
-  };
-
-  maps.RANDOMROOM = {
-    image: randomLocation().image,
-    name: "RANDOMROOM",
-    up:{
-      transferTo: randomLocation().name,
-        arrowX:randomCoordinates(0,1325),
-        arrowY:randomCoordinates(0,1162),
-    },
-    left:{
-      transferTo: randomLocation().name,
-        arrowX:randomCoordinates(0,1325),
-        arrowY:randomCoordinates(0,1162),
-    },
-    right:{
-      transferTo: randomLocation().name,
-      arrowX:randomCoordinates(0,1325),
-      arrowY:randomCoordinates(0,1162),
-    },
-    goBack:"RANDOMROOM",
-      eggs:[
-      {
-        eggX:0,
-        egg:0,
-        eggRadius:0
-      }
-    ],
-  };
+export const randomNumberGenerator = (min, max) => {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min) + min);
 };

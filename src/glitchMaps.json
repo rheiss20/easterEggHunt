@@ -1,0 +1,377 @@
+{
+  "THIRDHOUSE10": {
+    "name": "THIRDHOUSE10",
+    "imageName": "./images/third_house/glitched/third_house_10.jpg",
+    "fakeImageName": "./fake_images/bedroom_2_finished.jpg",
+    "randomArrows": "TRUE",
+    "eggs": [
+      {
+        "eggX": 0,
+        "eggY": 0,
+        "eggRadius": 0
+      }
+    ]
+  },
+  "THIRDHOUSE11": {
+    "name": "THIRDHOUSE11",
+    "imageName": "./images/third_house/glitched/third_house_11.jpg",
+    "fakeImageName": "./fake_images/bedroom_2_finished.jpg",
+    "randomArrows": "TRUE",
+    "eggs": [
+      {
+        "eggX": 0,
+        "eggY": 0,
+        "eggRadius": 0
+      }
+    ]
+  },
+  "THIRDHOUSE12": {
+    "name": "THIRDHOUSE12",
+    "imageName": "./images/third_house/glitched/third_house_12.jpg",
+    "fakeImageName": "./fake_images/bedroom_2_finished.jpg",
+    "randomArrows": "TRUE",
+    "eggs": [
+      {
+        "eggX": 0,
+        "eggY": 0,
+        "eggRadius": 0
+      }
+    ]
+  },
+  "THIRDHOUSE13": {
+    "name": "THIRDHOUSE13",
+    "imageName": "./images/third_house/glitched/third_house_13.jpg",
+    "fakeImageName": "./fake_images/bedroom_2_finished.jpg",
+    "randomArrows": "TRUE",
+    "eggs": [
+      {
+        "eggX": 0,
+        "eggY": 0,
+        "eggRadius": 0
+      }
+    ]
+  },
+  "THIRDHOUSE14": {
+    "name": "THIRDHOUSE14",
+    "imageName": "./images/third_house/glitched/third_house_14.jpg",
+    "fakeImageName": "./fake_images/bedroom_2_finished.jpg",
+    "randomArrows": "TRUE",
+    "eggs": [
+      {
+        "eggX": 0,
+        "eggY": 0,
+        "eggRadius": 0
+      }
+    ]
+  },
+  "THIRDHOUSE15": {
+    "name": "THIRDHOUSE15",
+    "imageName": "./images/third_house/glitched/third_house_15.jpg",
+    "fakeImageName": "./fake_images/bedroom_2_finished.jpg",
+    "randomArrows": "TRUE",
+    "eggs": [
+      {
+        "eggX": 0,
+        "eggY": 0,
+        "eggRadius": 0
+      }
+    ]
+  },
+  "THIRDHOUSE16": {
+    "name": "THIRDHOUSE16",
+    "imageName": "./images/third_house/glitched/third_house_16.jpg",
+    "fakeImageName": "./fake_images/bedroom_2_finished.jpg",
+    "randomArrows": "TRUE",
+    "eggs": [
+      {
+        "eggX": 0,
+        "eggY": 0,
+        "eggRadius": 0
+      }
+    ]
+  },
+  "THIRDHOUSE17": {
+    "name": "THIRDHOUSE17",
+    "imageName": "./images/third_house/glitched/third_house_17.jpg",
+    "fakeImageName": "./fake_images/bedroom_2_finished.jpg",
+    "randomArrows": "TRUE",
+    "eggs": [
+      {
+        "eggX": 0,
+        "eggY": 0,
+        "eggRadius": 0
+      }
+    ]
+  },  "THIRDHOUSE18": {
+  "name": "THIRDHOUSE18",
+  "imageName": "./images/third_house/glitched/third_house_18.jpg",
+  "fakeImageName": "./fake_images/bedroom_2_finished.jpg",
+  "randomArrows": "TRUE",
+  "eggs": [
+    {
+      "eggX": 0,
+      "eggY": 0,
+      "eggRadius": 0
+    }
+  ]
+},  "THIRDHOUSE19": {
+  "name": "THIRDHOUSE19",
+  "imageName": "./images/third_house/glitched/third_house_19.jpg",
+  "fakeImageName": "./fake_images/bedroom_2_finished.jpg",
+  "randomArrows": "TRUE",
+  "eggs": [
+    {
+      "eggX": 0,
+      "eggY": 0,
+      "eggRadius": 0
+    }
+  ]
+},
+  "THIRDHOUSE20": {
+    "name": "THIRDHOUSE20",
+    "imageName": "./images/third_house/glitched/third_house_20.jpg",
+    "fakeImageName": "./fake_images/bedroom_2_finished.jpg",
+    "randomArrows": "TRUE",
+    "eggs": [
+      {
+        "eggX": 0,
+        "eggY": 0,
+        "eggRadius": 0
+      }
+    ]
+  },
+  "THIRDHOUSE21": {
+    "name": "THIRDHOUSE21",
+    "imageName": "./images/third_house/glitched/third_house_21.jpg",
+    "fakeImageName": "./fake_images/bedroom_2_finished.jpg",
+    "randomArrows": "TRUE",
+    "eggs": [
+      {
+        "eggX": 0,
+        "eggY": 0,
+        "eggRadius": 0
+      }
+    ]
+  },
+  "THIRDHOUSE22": {
+    "name": "THIRDHOUSE22",
+    "imageName": "./images/third_house/glitched/third_house_22.jpg",
+    "fakeImageName": "./fake_images/bedroom_2_finished.jpg",
+    "randomArrows": "TRUE",
+    "eggs": [
+      {
+        "eggX": 0,
+        "eggY": 0,
+        "eggRadius": 0
+      }
+    ]
+  },
+  "THIRDHOUSE23": {
+    "name": "THIRDHOUSE23",
+    "imageName": "./images/third_house/glitched/third_house_23.jpg",
+    "fakeImageName": "./fake_images/bedroom_2_finished.jpg",
+    "randomArrows": "TRUE",
+    "eggs": [
+      {
+        "eggX": 0,
+        "eggY": 0,
+        "eggRadius": 0
+      }
+    ]
+  },
+  "THIRDHOUSE24": {
+    "name": "THIRDHOUSE24",
+    "imageName": "./images/third_house/glitched/third_house_24.jpg",
+    "fakeImageName": "./fake_images/bedroom_2_finished.jpg",
+    "randomArrows": "TRUE",
+    "eggs": [
+      {
+        "eggX": 0,
+        "eggY": 0,
+        "eggRadius": 0
+      }
+    ]
+  },
+  "THIRDHOUSE25": {
+    "name": "THIRDHOUSE25",
+    "imageName": "./images/third_house/glitched/third_house_25.jpg",
+    "fakeImageName": "./fake_images/bedroom_2_finished.jpg",
+    "randomArrows": "TRUE",
+    "eggs": [
+      {
+        "eggX": 0,
+        "eggY": 0,
+        "eggRadius": 0
+      }
+    ]
+  },
+  "THIRDHOUSE26": {
+    "name": "THIRDHOUSE26",
+    "imageName": "./images/third_house/glitched/third_house_26.jpg",
+    "fakeImageName": "./fake_images/bedroom_2_finished.jpg",
+    "randomArrows": "TRUE",
+    "eggs": [
+      {
+        "eggX": 0,
+        "eggY": 0,
+        "eggRadius": 0
+      }
+    ]
+  },
+  "THIRDHOUSE27": {
+    "name": "THIRDHOUSE27",
+    "imageName": "./images/third_house/glitched/third_house_27.jpg",
+    "fakeImageName": "./fake_images/bedroom_2_finished.jpg",
+    "randomArrows": "TRUE",
+    "eggs": [
+      {
+        "eggX": 0,
+        "eggY": 0,
+        "eggRadius": 0
+      }
+    ]
+  },
+  "THIRDHOUSE28": {
+    "name": "THIRDHOUSE28",
+    "imageName": "./images/third_house/glitched/third_house_28.jpg",
+    "fakeImageName": "./fake_images/bedroom_2_finished.jpg",
+    "randomArrows": "TRUE",
+    "eggs": [
+      {
+        "eggX": 0,
+        "eggY": 0,
+        "eggRadius": 0
+      }
+    ]
+  },
+  "THIRDHOUSE29": {
+    "name": "THIRDHOUSE29",
+    "imageName": "./images/third_house/glitched/third_house_29.jpg",
+    "fakeImageName": "./fake_images/bedroom_2_finished.jpg",
+    "randomArrows": "TRUE",
+    "eggs": [
+      {
+        "eggX": 0,
+        "eggY": 0,
+        "eggRadius": 0
+      }
+    ]
+  },
+  "THIRDHOUSE30": {
+    "name": "THIRDHOUSE30",
+    "imageName": "./images/third_house/glitched/third_house_30.jpg",
+    "fakeImageName": "./fake_images/bedroom_2_finished.jpg",
+    "randomArrows": "TRUE",
+    "eggs": [
+      {
+        "eggX": 0,
+        "eggY": 0,
+        "eggRadius": 0
+      }
+    ]
+  },
+  "THIRDHOUSE31": {
+    "name": "THIRDHOUSE31",
+    "imageName": "./images/third_house/glitched/third_house_31.jpg",
+    "fakeImageName": "./fake_images/bedroom_2_finished.jpg",
+    "randomArrows": "TRUE",
+    "eggs": [
+      {
+        "eggX": 0,
+        "eggY": 0,
+        "eggRadius": 0
+      }
+    ]
+  },
+  "THIRDHOUSE32": {
+    "name": "THIRDHOUSE32",
+    "imageName": "./images/third_house/glitched/third_house_32.jpg",
+    "fakeImageName": "./fake_images/bedroom_2_finished.jpg",
+    "randomArrows": "TRUE",
+    "eggs": [
+      {
+        "eggX": 0,
+        "eggY": 0,
+        "eggRadius": 0
+      }
+    ]
+  },
+  "THIRDHOUSE33": {
+    "name": "THIRDHOUSE33",
+    "imageName": "./images/third_house/glitched/third_house_33.jpg",
+    "fakeImageName": "./fake_images/bedroom_2_finished.jpg",
+    "randomArrows": "TRUE",
+    "eggs": [
+      {
+        "eggX": 0,
+        "eggY": 0,
+        "eggRadius": 0
+      }
+    ]
+  },
+  "THIRDHOUSE34": {
+    "name": "THIRDHOUSE34",
+    "imageName": "./images/third_house/glitched/third_house_34.jpg",
+    "fakeImageName": "./fake_images/bedroom_2_finished.jpg",
+    "randomArrows": "TRUE",
+    "eggs": [
+      {
+        "eggX": 0,
+        "eggY": 0,
+        "eggRadius": 0
+      }
+    ]
+  },
+  "THIRDHOUSE35": {
+    "name": "THIRDHOUSE35",
+    "imageName": "./images/third_house/glitched/third_house_35.jpg",
+    "fakeImageName": "./fake_images/bedroom_2_finished.jpg",
+    "randomArrows": "TRUE",
+    "eggs": [
+      {
+        "eggX": 0,
+        "eggY": 0,
+        "eggRadius": 0
+      }
+    ]
+  },
+  "THIRDHOUSE36": {
+    "name": "THIRDHOUSE36",
+    "imageName": "./images/third_house/glitched/third_house_36.jpg",
+    "fakeImageName": "./fake_images/bedroom_2_finished.jpg",
+    "randomArrows": "TRUE",
+    "eggs": [
+      {
+        "eggX": 0,
+        "eggY": 0,
+        "eggRadius": 0
+      }
+    ]
+  },
+  "THIRDHOUSE37": {
+    "name": "THIRDHOUSE37",
+    "imageName": "./images/third_house/glitched/third_house_37.jpg",
+    "fakeImageName": "./fake_images/bedroom_2_finished.jpg",
+    "randomArrows": "TRUE",
+    "eggs": [
+      {
+        "eggX": 0,
+        "eggY": 0,
+        "eggRadius": 0
+      }
+    ]
+  },
+  "THIRDHOUSE38": {
+    "name": "THIRDHOUSE38",
+    "imageName": "./images/third_house/glitched/third_house_38.jpg",
+    "fakeImageName": "./fake_images/bedroom_2_finished.jpg",
+    "randomArrows": "TRUE",
+    "eggs": [
+      {
+        "eggX": 0,
+        "eggY": 0,
+        "eggRadius": 0
+      }
+    ]
+  }
+}

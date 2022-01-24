@@ -793,6 +793,11 @@
         "imageName":"./images/tunnels/stair_to_third_house_finished.jpg",
         "fakeImageName":"./fake_images/stair_to_third_house_finished.jpg",
         "goBack":"DIRTYCORNER",
+        "up":{
+            "transferTo":"THIRDHOUSE6",
+            "arrowX":1581,
+            "arrowY":1063
+        },
         "eggs":[
             {
                 "eggX":0,
@@ -1770,6 +1775,156 @@
                 "exX":1001,
                 "exY":668,
                 "exRadius":65
+            }
+        ]
+    },
+    "THIRDHOUSE6":{
+        "name":"THIRDHOUSE6",
+        "imageName":"./images/third_house/third_house_6.jpg",
+        "fakeImageName":"./fake_images/bedroom_2_finished.jpg",
+        "turnRight":{
+            "transferTo":"THIRDHOUSE1",
+            "arrowX":3639,
+            "arrowY":1890
+        },
+        "up":{
+            "transferTo":"THIRDHOUSE8",
+            "arrowX":3391,
+            "arrowY":860
+        },
+        "turnAroundLeft":{
+            "transferTo":"THIRDHOUSE9",
+            "arrowX":2661,
+            "arrowY":673
+        },
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ]
+    },
+    "THIRDHOUSE1":{
+        "name":"THIRDHOUSE1",
+        "imageName":"./images/third_house/third_house_1.jpg",
+        "fakeImageName":"./fake_images/bedroom_2_finished.jpg",
+        "randomArrow": "TRUE",
+        "down":"THIRDHOUSE9",
+        "turnAroundRight":{
+            "transferTo":"THIRDHOUSE6",
+            "arrowX":3368,
+            "arrowY":1783
+        },
+        "turnRight":{
+            "transferTo":"THIRDHOUSE5",
+            "arrowX":1490,
+            "arrowY":1086
+        },
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ]
+    },
+    "THIRDHOUSE8":{
+        "name":"THIRDHOUSE8",
+        "imageName":"./images/third_house/third_house_8.jpg",
+        "fakeImageName":"./fake_images/bedroom_2_finished.jpg",
+        "randomArrow": "TRUE",
+        "down":"THIRDHOUSE6",
+        "turnAroundLeft":{
+            "transferTo":"THIRDHOUSE9",
+            "arrowX":1080,
+            "arrowY":2061
+        },
+        "turnRight":{
+            "transferTo":"THIRDHOUSE3",
+            "arrowX":2696,
+            "arrowY":1602
+        },
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ]
+    },
+    "THIRDHOUSE3":{
+        "name":"THIRDHOUSE3",
+        "imageName":"./images/third_house/third_house_3.jpg",
+        "fakeImageName":"./fake_images/bedroom_2_finished.jpg",
+        "randomArrow": "TRUE",
+        "goBack":"THIRDHOUSE8",
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ]
+    },
+    "THIRDHOUSE9":{
+        "name":"THIRDHOUSE9",
+        "imageName":"./images/third_house/third_house_9.jpg",
+        "fakeImageName":"./fake_images/bedroom_2_finished.jpg",
+        "randomArrow": "TRUE",
+        "turnAroundLeft":{
+            "transferTo":"THIRDHOUSE8",
+            "arrowX":2336,
+            "arrowY":1880
+        },
+        "turnAroundRight":{
+            "transferTo":"THIRDHOUSE6",
+            "arrowX":1053,
+            "arrowY":1478
+        },
+        "turnLeft":{
+            "transferTo":"THIRDHOUSE1",
+            "arrowX":453,
+            "arrowY":1274
+        },
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ]
+    },
+    "THIRDHOUSE5":{
+        "name":"THIRDHOUSE5",
+        "imageName":"./images/third_house/third_house_5.jpg",
+        "fakeImageName":"./fake_images/bedroom_2_finished.jpg",
+        "randomArrow": "TRUE",
+        "down":"THIRDHOUSE1",
+        "up":{
+            "transferTo":"THIRDHOUSE4",
+            "arrowX":1165,
+            "arrowY":947
+        },
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ]
+    },
+    "THIRDHOUSE4":{
+        "name":"THIRDHOUSE4",
+        "imageName":"./images/third_house/third_house_4.jpg",
+        "fakeImageName":"./fake_images/bedroom_2_finished.jpg",
+        "randomArrow": "TRUE",
+        "goBack":"THIRDHOUSE5",
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
             }
         ]
     },

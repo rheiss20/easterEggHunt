@@ -12,6 +12,7 @@ import {
   generateCountdownClock,
   triggerRoomUnlock,
   stopCountdownClock,
+  randomNumberGenerator,
 } from './util';
 import maps from './maps.json';
 import { Circle, Image, Layer, Rect, Stage, Star, Text } from 'react-konva';
@@ -19,6 +20,7 @@ import Portal from './Portal';
 import { PopUpWindow } from './PopUpWindow';
 import useImage from 'use-image';
 import PropTypes from 'prop-types';
+import glitchMaps from './glitchMaps.json';
 
 export function NavigationButtons (props) {
   const [status, setStatus] = useState(props.status);
@@ -51,10 +53,21 @@ export function NavigationButtons (props) {
   const [arrowTurnRight] = useImage('RightTurnArrow.png');
   const [turnAroundArrow] = useImage('TurnAroundArrow.png');
   const [goBack] = useImage('GoBack.png');
+  const [glitchedArrow] = useImage(`GlitchedArrow${randomNumberGenerator(1,5)}.png`);
   const [checkmark] = useImage('checkmark.gif');
   const [congratulationsLevel1] = useImage('Congratulations.png');
   const [congratulationsLevel2] = useImage('CongratulationsLevel2.jpg');
   const elementScale = scale * 1.5;
+
+  const randomGlitchLocation = function () {
+    var keys = Object.keys(glitchMaps);
+    return glitchMaps[keys[ keys.length * Math.random() << 0]];
+  };
+
+  const randomDirectionArrow = function () {
+    const arrayOfArrows = [arrowUp, arrowDown, arrowLeft, arrowTurnLeft, arrowRight, arrowTurnRight, turnAroundArrow, goBack];
+    return arrayOfArrows[randomNumberGenerator(0,7)];
+  };
 
   const handleImageDrag = event => {
     setEggX((event.target.attrs.x - imageX) / scale);
@@ -67,11 +80,20 @@ export function NavigationButtons (props) {
   };
 
   const changeLocation = (newLocationName) => {
-    setCurrentLocation(maps[newLocationName]);
+    if (maps[newLocationName]) {
+      setCurrentLocation(maps[newLocationName]);
+    } else {
+      setCurrentLocation(glitchMaps[newLocationName]);
+    }
   };
 
   if (numberOfExesFound === 15) {
     stopCountdownClock();
+    maps.DIRTYCORNERX.up = {
+      transferTo: 'STAIRTOTHIRDHOUSE',
+      arrowX:515,
+      arrowY:849
+    };
   }
 
   useEffect(() => {
@@ -343,6 +365,60 @@ export function NavigationButtons (props) {
                 />
             )
             ) : null
+        }
+        { currentLocation.randomArrow &&
+        <Image
+          image={ glitchedArrow }
+          x={ randomNumberGenerator(75, 1940)}
+          y={ randomNumberGenerator(34, 1297) }
+          scaleX={ 0.1 }
+          scaleY={ 0.1 }
+          onClick={ () => {
+            changeLocation(randomGlitchLocation().name);
+          }}
+          onTouchStart={ () => {
+            changeLocation(randomGlitchLocation().name);
+          }}/>
+        }
+        { currentLocation.randomArrows &&
+        <div>
+          <Image
+            image={ randomDirectionArrow() }
+            x={ randomNumberGenerator(75, 1940)}
+            y={ randomNumberGenerator(34, 1297) }
+            scaleX={ 0.1 }
+            scaleY={ 0.1 }
+            onClick={ () => {
+              changeLocation(randomGlitchLocation().name);
+            }}
+            onTouchStart={ () => {
+              changeLocation(randomGlitchLocation().name);
+            }}/>
+          <Image
+            image={ randomDirectionArrow() }
+            x={ randomNumberGenerator(75, 1940)}
+            y={ randomNumberGenerator(34, 1297) }
+            scaleX={ 0.1 }
+            scaleY={ 0.1 }
+            onClick={ () => {
+              changeLocation(randomGlitchLocation().name);
+            }}
+            onTouchStart={ () => {
+              changeLocation(randomGlitchLocation().name);
+            }}/>
+          <Image
+            image={ randomDirectionArrow() }
+            x={ randomNumberGenerator(75, 1940)}
+            y={ randomNumberGenerator(34, 1297) }
+            scaleX={ 0.1 }
+            scaleY={ 0.1 }
+            onClick={ () => {
+              changeLocation(randomGlitchLocation().name);
+            }}
+            onTouchStart={ () => {
+              changeLocation(randomGlitchLocation().name);
+            }}/>
+        </div>
         }
         { currentLocation.up &&
         <Image
