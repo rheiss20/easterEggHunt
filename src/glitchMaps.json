@@ -1,4 +1,30 @@
 {
+  "THIRDHOUSE2": {
+    "name": "THIRDHOUSE2",
+    "imageName": "./images/third_house/glitched/third_house_2.jpg",
+    "fakeImageName": "./fake_images/bedroom_2_finished.jpg",
+    "randomArrows": "TRUE",
+    "eggs": [
+      {
+        "eggX": 596,
+        "eggY": 381,
+        "eggRadius": 56
+      }
+    ]
+  },
+  "THIRDHOUSE7": {
+    "name": "THIRDHOUSE7",
+    "imageName": "./images/third_house/glitched/third_house_7.jpg",
+    "fakeImageName": "./fake_images/bedroom_2_finished.jpg",
+    "randomArrows": "TRUE",
+    "eggs": [
+      {
+        "eggX": 1178,
+        "eggY": 128,
+        "eggRadius": 37
+      }
+    ]
+  },
   "THIRDHOUSE10": {
     "name": "THIRDHOUSE10",
     "imageName": "./images/third_house/glitched/third_house_10.jpg",
@@ -6,9 +32,9 @@
     "randomArrows": "TRUE",
     "eggs": [
       {
-        "eggX": 0,
-        "eggY": 0,
-        "eggRadius": 0
+        "eggX": 143,
+        "eggY": 696,
+        "eggRadius": 26
       }
     ]
   },
@@ -19,9 +45,9 @@
     "randomArrows": "TRUE",
     "eggs": [
       {
-        "eggX": 0,
-        "eggY": 0,
-        "eggRadius": 0
+        "eggX": 872,
+        "eggY": 852,
+        "eggRadius": 30
       }
     ]
   },
@@ -32,9 +58,9 @@
     "randomArrows": "TRUE",
     "eggs": [
       {
-        "eggX": 0,
-        "eggY": 0,
-        "eggRadius": 0
+        "eggX": 1829,
+        "eggY": 889,
+        "eggRadius": 30
       }
     ]
   },
@@ -45,9 +71,9 @@
     "randomArrows": "TRUE",
     "eggs": [
       {
-        "eggX": 0,
-        "eggY": 0,
-        "eggRadius": 0
+        "eggX": 180,
+        "eggY": 1382,
+        "eggRadius": 30
       }
     ]
   },
@@ -58,9 +84,9 @@
     "randomArrows": "TRUE",
     "eggs": [
       {
-        "eggX": 0,
-        "eggY": 0,
-        "eggRadius": 0
+        "eggX": 583,
+        "eggY": 1211,
+        "eggRadius": 40
       }
     ]
   },
@@ -71,9 +97,9 @@
     "randomArrows": "TRUE",
     "eggs": [
       {
-        "eggX": 0,
-        "eggY": 0,
-        "eggRadius": 0
+        "eggX": 1286,
+        "eggY": 1419,
+        "eggRadius": 30
       }
     ]
   },
@@ -84,9 +110,9 @@
     "randomArrows": "TRUE",
     "eggs": [
       {
-        "eggX": 0,
-        "eggY": 0,
-        "eggRadius": 0
+        "eggX": 1784,
+        "eggY": 1374,
+        "eggRadius": 30
       }
     ]
   },
@@ -97,36 +123,38 @@
     "randomArrows": "TRUE",
     "eggs": [
       {
-        "eggX": 0,
-        "eggY": 0,
-        "eggRadius": 0
+        "eggX": 1085,
+        "eggY": 554,
+        "eggRadius": 30
       }
     ]
-  },  "THIRDHOUSE18": {
-  "name": "THIRDHOUSE18",
-  "imageName": "./images/third_house/glitched/third_house_18.jpg",
-  "fakeImageName": "./fake_images/bedroom_2_finished.jpg",
-  "randomArrows": "TRUE",
-  "eggs": [
-    {
-      "eggX": 0,
-      "eggY": 0,
-      "eggRadius": 0
-    }
-  ]
-},  "THIRDHOUSE19": {
-  "name": "THIRDHOUSE19",
-  "imageName": "./images/third_house/glitched/third_house_19.jpg",
-  "fakeImageName": "./fake_images/bedroom_2_finished.jpg",
-  "randomArrows": "TRUE",
-  "eggs": [
-    {
-      "eggX": 0,
-      "eggY": 0,
-      "eggRadius": 0
-    }
-  ]
-},
+  },
+  "THIRDHOUSE18": {
+    "name": "THIRDHOUSE18",
+    "imageName": "./images/third_house/glitched/third_house_18.jpg",
+    "fakeImageName": "./fake_images/bedroom_2_finished.jpg",
+    "randomArrows": "TRUE",
+    "eggs": [
+      {
+        "eggX": 1181,
+        "eggY": 715,
+        "eggRadius": 50
+      }
+    ]
+  },
+  "THIRDHOUSE19": {
+    "name": "THIRDHOUSE19",
+    "imageName": "./images/third_house/glitched/third_house_19.jpg",
+    "fakeImageName": "./fake_images/bedroom_2_finished.jpg",
+    "randomArrows": "TRUE",
+    "eggs": [
+      {
+        "eggX": 858,
+        "eggY": 491,
+        "eggRadius": 28
+      }
+    ]
+  },
   "THIRDHOUSE20": {
     "name": "THIRDHOUSE20",
     "imageName": "./images/third_house/glitched/third_house_20.jpg",
@@ -134,9 +162,9 @@
     "randomArrows": "TRUE",
     "eggs": [
       {
-        "eggX": 0,
-        "eggY": 0,
-        "eggRadius": 0
+        "eggX": 925,
+        "eggY": 525,
+        "eggRadius": 42
       }
     ]
   },
@@ -147,9 +175,9 @@
     "randomArrows": "TRUE",
     "eggs": [
       {
-        "eggX": 0,
-        "eggY": 0,
-        "eggRadius": 0
+        "eggX": 1415,
+        "eggY": 957,
+        "eggRadius": 29
       }
     ]
   },
@@ -160,9 +188,9 @@
     "randomArrows": "TRUE",
     "eggs": [
       {
-        "eggX": 0,
-        "eggY": 0,
-        "eggRadius": 0
+        "eggX": 1258,
+        "eggY": 449,
+        "eggRadius": 29
       }
     ]
   },
@@ -173,9 +201,9 @@
     "randomArrows": "TRUE",
     "eggs": [
       {
-        "eggX": 0,
-        "eggY": 0,
-        "eggRadius": 0
+        "eggX": 1357,
+        "eggY": 1333,
+        "eggRadius": 29
       }
     ]
   },
@@ -186,9 +214,9 @@
     "randomArrows": "TRUE",
     "eggs": [
       {
-        "eggX": 0,
-        "eggY": 0,
-        "eggRadius": 0
+        "eggX": 1242,
+        "eggY": 1081,
+        "eggRadius": 29
       }
     ]
   },
@@ -199,9 +227,9 @@
     "randomArrows": "TRUE",
     "eggs": [
       {
-        "eggX": 0,
-        "eggY": 0,
-        "eggRadius": 0
+        "eggX": 384,
+        "eggY": 1299,
+        "eggRadius": 29
       }
     ]
   },
@@ -212,9 +240,9 @@
     "randomArrows": "TRUE",
     "eggs": [
       {
-        "eggX": 0,
-        "eggY": 0,
-        "eggRadius": 0
+        "eggX": 916,
+        "eggY": 798,
+        "eggRadius": 29
       }
     ]
   },
@@ -225,9 +253,9 @@
     "randomArrows": "TRUE",
     "eggs": [
       {
-        "eggX": 0,
-        "eggY": 0,
-        "eggRadius": 0
+        "eggX": 1795,
+        "eggY": 556,
+        "eggRadius": 29
       }
     ]
   },
@@ -238,9 +266,9 @@
     "randomArrows": "TRUE",
     "eggs": [
       {
-        "eggX": 0,
-        "eggY": 0,
-        "eggRadius": 0
+        "eggX": 1798,
+        "eggY": 967,
+        "eggRadius": 29
       }
     ]
   },
@@ -251,9 +279,9 @@
     "randomArrows": "TRUE",
     "eggs": [
       {
-        "eggX": 0,
-        "eggY": 0,
-        "eggRadius": 0
+        "eggX": 780,
+        "eggY": 188,
+        "eggRadius": 29
       }
     ]
   },
@@ -264,9 +292,9 @@
     "randomArrows": "TRUE",
     "eggs": [
       {
-        "eggX": 0,
-        "eggY": 0,
-        "eggRadius": 0
+        "eggX": 744,
+        "eggY": 123,
+        "eggRadius": 29
       }
     ]
   },
@@ -277,9 +305,9 @@
     "randomArrows": "TRUE",
     "eggs": [
       {
-        "eggX": 0,
-        "eggY": 0,
-        "eggRadius": 0
+        "eggX": 687,
+        "eggY": 400,
+        "eggRadius": 29
       }
     ]
   },
@@ -290,35 +318,9 @@
     "randomArrows": "TRUE",
     "eggs": [
       {
-        "eggX": 0,
-        "eggY": 0,
-        "eggRadius": 0
-      }
-    ]
-  },
-  "THIRDHOUSE33": {
-    "name": "THIRDHOUSE33",
-    "imageName": "./images/third_house/glitched/third_house_33.jpg",
-    "fakeImageName": "./fake_images/bedroom_2_finished.jpg",
-    "randomArrows": "TRUE",
-    "eggs": [
-      {
-        "eggX": 0,
-        "eggY": 0,
-        "eggRadius": 0
-      }
-    ]
-  },
-  "THIRDHOUSE34": {
-    "name": "THIRDHOUSE34",
-    "imageName": "./images/third_house/glitched/third_house_34.jpg",
-    "fakeImageName": "./fake_images/bedroom_2_finished.jpg",
-    "randomArrows": "TRUE",
-    "eggs": [
-      {
-        "eggX": 0,
-        "eggY": 0,
-        "eggRadius": 0
+        "eggX": 1438,
+        "eggY": 1028,
+        "eggRadius": 29
       }
     ]
   },
@@ -329,9 +331,9 @@
     "randomArrows": "TRUE",
     "eggs": [
       {
-        "eggX": 0,
-        "eggY": 0,
-        "eggRadius": 0
+        "eggX": 1164,
+        "eggY": 596,
+        "eggRadius": 37
       }
     ]
   },
@@ -342,9 +344,9 @@
     "randomArrows": "TRUE",
     "eggs": [
       {
-        "eggX": 0,
-        "eggY": 0,
-        "eggRadius": 0
+        "eggX": 128,
+        "eggY": 877,
+        "eggRadius": 33
       }
     ]
   },
@@ -355,22 +357,9 @@
     "randomArrows": "TRUE",
     "eggs": [
       {
-        "eggX": 0,
-        "eggY": 0,
-        "eggRadius": 0
-      }
-    ]
-  },
-  "THIRDHOUSE38": {
-    "name": "THIRDHOUSE38",
-    "imageName": "./images/third_house/glitched/third_house_38.jpg",
-    "fakeImageName": "./fake_images/bedroom_2_finished.jpg",
-    "randomArrows": "TRUE",
-    "eggs": [
-      {
-        "eggX": 0,
-        "eggY": 0,
-        "eggRadius": 0
+        "eggX": 1546,
+        "eggY": 1368,
+        "eggRadius": 37
       }
     ]
   }

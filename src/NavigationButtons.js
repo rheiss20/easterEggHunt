@@ -57,10 +57,11 @@ export function NavigationButtons (props) {
   const [checkmark] = useImage('checkmark.gif');
   const [congratulationsLevel1] = useImage('Congratulations.png');
   const [congratulationsLevel2] = useImage('CongratulationsLevel2.jpg');
+  const [insideGlitchMap, setInsideGlitchMap] = useState(false);
   const elementScale = scale * 1.5;
 
   const randomGlitchLocation = function () {
-    var keys = Object.keys(glitchMaps);
+    const keys = Object.keys(glitchMaps);
     return glitchMaps[keys[ keys.length * Math.random() << 0]];
   };
 
@@ -94,6 +95,12 @@ export function NavigationButtons (props) {
       arrowX:515,
       arrowY:849
     };
+  }
+
+  if (insideGlitchMap && score === 15) {
+    setCurrentLocation(maps.DOORHALLWAYX);
+    setInsideGlitchMap(false);
+    setScore(0);
   }
 
   useEffect(() => {
@@ -237,7 +244,31 @@ export function NavigationButtons (props) {
                 fontSize={ 30 * elementScale }
               />
             </>
-            : <>
+            : (insideGlitchMap) ?
+            <>
+              <Rect
+                x={ 5 * elementScale }
+                stroke={ '#555' }
+                strokeWidth={ 5 * elementScale }
+                fill={ '#ddd' }
+                width={ 280 * elementScale }
+                height={ 50 * elementScale }
+                shadowColor={ 'black' }
+                shadowBlur={ 10 }
+                shadowOffsetX={ 10 }
+                shadowOffsetY={ 10 }
+                shadowOpacity={ 0.2 }
+                cornerRadius={ 10 * elementScale }
+              />
+              <Text
+                x={ 15 * elementScale }
+                y={ 10 * elementScale }
+                wrap
+                text={ `EGGs Found: ${score}/15` }
+                fontSize={ 30 * elementScale }
+              />
+            </> :
+            <>
               <Rect
                 x={ 5 * elementScale }
                 stroke={ '#555' }
@@ -348,10 +379,12 @@ export function NavigationButtons (props) {
                   onClick={ () => {
                     setNumberOfExesFound(numberOfExesFound + 1);
                     setFoundExes([`${currentLocation.name}ex${i}`, ...foundExes]);
+                    setScore(0);
                   }}
                   onTouchStart={ () => {
                     setNumberOfExesFound(numberOfExesFound + 1);
                     setFoundExes([`${currentLocation.name}ex${i}`, ...foundExes]);
+                    setScore(0);
                   }}
                   key={ `${currentLocation.name}ex${i}`}
                 />
@@ -369,23 +402,25 @@ export function NavigationButtons (props) {
         { currentLocation.randomArrow &&
         <Image
           image={ glitchedArrow }
-          x={ randomNumberGenerator(75, 1940)}
-          y={ randomNumberGenerator(34, 1297) }
+          x={ randomNumberGenerator(275, 1340)}
+          y={ randomNumberGenerator(634, 1097) }
           scaleX={ 0.1 }
           scaleY={ 0.1 }
           onClick={ () => {
             changeLocation(randomGlitchLocation().name);
+            setInsideGlitchMap(true);
           }}
           onTouchStart={ () => {
             changeLocation(randomGlitchLocation().name);
+            setInsideGlitchMap(true);
           }}/>
         }
         { currentLocation.randomArrows &&
         <div>
           <Image
             image={ randomDirectionArrow() }
-            x={ randomNumberGenerator(75, 1940)}
-            y={ randomNumberGenerator(34, 1297) }
+            x={ randomNumberGenerator(275, 1340)}
+            y={ randomNumberGenerator(0, 897) }
             scaleX={ 0.1 }
             scaleY={ 0.1 }
             onClick={ () => {
@@ -396,8 +431,8 @@ export function NavigationButtons (props) {
             }}/>
           <Image
             image={ randomDirectionArrow() }
-            x={ randomNumberGenerator(75, 1940)}
-            y={ randomNumberGenerator(34, 1297) }
+            x={ randomNumberGenerator(275, 1340)}
+            y={ randomNumberGenerator(0, 897) }
             scaleX={ 0.1 }
             scaleY={ 0.1 }
             onClick={ () => {
@@ -408,8 +443,8 @@ export function NavigationButtons (props) {
             }}/>
           <Image
             image={ randomDirectionArrow() }
-            x={ randomNumberGenerator(75, 1940)}
-            y={ randomNumberGenerator(34, 1297) }
+            x={ randomNumberGenerator(275, 1340)}
+            y={ randomNumberGenerator(0, 897) }
             scaleX={ 0.1 }
             scaleY={ 0.1 }
             onClick={ () => {
