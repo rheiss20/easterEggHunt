@@ -403,400 +403,9 @@
         "imageName":"./images/tunnels/stairs_door.jpg",
         "fakeImageName":"./fake_images/secret_stairs2.jpg",
         "up":{
-            "transferTo":"BASEMENT",
+            "transferTo":"SEWERENTRANCE",
             "arrowX":1001,
             "arrowY":1294
-        },
-        "eggs":[
-            {
-                "eggX":0,
-                "eggY":0,
-                "eggRadius":0
-            }
-        ]
-    },
-    "BASEMENT":{
-        "name":"BASEMENT",
-        "imageName":"./images/tunnels/basement.jpg",
-        "fakeImageName":"./fake_images/secret1.jpg",
-        "up":{
-            "transferTo":"BASEMENTPATH",
-            "arrowX":1001,
-            "arrowY":1294
-        },
-        "eggs":[
-            {
-                "eggX":0,
-                "eggY":0,
-                "eggRadius":0
-            }
-        ]
-    },
-    "BASEMENTPATH":{
-        "name":"BASEMENTPATH",
-        "imageName":"./images/tunnels/basement_path.jpg",
-        "fakeImageName":"./fake_images/secret2.jpg",
-        "up":{
-            "transferTo":"DARKPATH",
-            "arrowX":1503,
-            "arrowY":1800
-        },
-        "eggs":[
-            {
-                "eggX":0,
-                "eggY":0,
-                "eggRadius":0
-            }
-        ]
-    },
-    "DARKPATH":{
-        "name":"DARKPATH",
-        "imageName":"./images/tunnels/dark_path.jpg",
-        "fakeImageName":"./fake_images/secret3.jpg",
-        "right":{
-            "transferTo":"DOORINDARK",
-            "arrowX":1001,
-            "arrowY":1294
-        },
-        "eggs":[
-            {
-                "eggX":0,
-                "eggY":0,
-                "eggRadius":0
-            }
-        ]
-    },
-    "DOORINDARK":{
-        "name":"DOORINDARK",
-        "imageName":"./images/tunnels/door_in_dark.jpg",
-        "fakeImageName":"./fake_images/secret4.jpg",
-        "up":{
-            "transferTo":"TUNNELSTART",
-            "arrowX":1203,
-            "arrowY":1260
-        },
-        "eggs":[
-            {
-                "eggX":0,
-                "eggY":0,
-                "eggRadius":0
-            }
-        ]
-    },
-    "TUNNELSTART":{
-        "name":"TUNNELSTART",
-        "imageName":"./images/tunnels/tunnel_start_finished.jpg",
-        "fakeImageName":"./fake_images/tunnel_start_finished.jpg",
-        "up":{
-            "transferTo":"WINDOWHALL",
-            "arrowX":984,
-            "arrowY":835
-        },
-        "turnLeft":{
-            "transferTo":"MAINHALLWAY",
-            "arrowX":712,
-            "arrowY":937
-        },
-        "eggs":[
-            {
-                "eggX":0,
-                "eggY":0,
-                "eggRadius":0
-            }
-        ]
-    },
-    "WINDOWHALL":{
-        "name":"WINDOWHALL",
-        "imageName":"./images/tunnels/window_hall_finished.jpg",
-        "fakeImageName":"./fake_images/window_hall_finished.jpg",
-        "turnRight":{
-            "transferTo":"OPENCEILING",
-            "arrowX":888,
-            "arrowY":992
-        },
-        "down":"TUNNELSTART",
-        "eggs":[
-            {
-                "eggX":0,
-                "eggY":0,
-                "eggRadius":0
-            }
-        ]
-    },
-    "OPENCEILING":{
-        "name":"OPENCEILING",
-        "imageName":"./images/tunnels/open_ceiling_finished.jpg",
-        "fakeImageName":"./fake_images/open_ceiling_finished.jpg",
-        "goBack":"WINDOWHALL",
-        "eggs":[
-            {
-                "eggX":0,
-                "eggY":0,
-                "eggRadius":0
-            }
-        ]
-    },
-    "MAINHALLWAY":{
-        "name":"MAINHALLWAY",
-        "imageName":"./images/tunnels/main_hallway_finished.jpg",
-        "fakeImageName":"./fake_images/main_hallway_finished.jpg",
-        "up":{
-            "transferTo":"DOORHALLWAY",
-            "arrowX":929,
-            "arrowY":699
-        },
-        "goBack":"TUNNELSTART",
-        "turnLeft":{
-            "transferTo":"DOUBLEDOOR",
-            "arrowX":985,
-            "arrowY":890
-        },
-        "eggs":[
-            {
-                "eggX":0,
-                "eggY":0,
-                "eggRadius":0
-            }
-        ]
-    },
-    "DOORHALLWAY":{
-        "name":"DOORHALLWAY",
-        "imageName":"./images/tunnels/door_hallway_finished.jpg",
-        "fakeImageName":"./fake_images/door_hallway_finished.jpg",
-        "up":{
-            "transferTo":"DEADEND",
-            "arrowX":979,
-            "arrowY":794
-        },
-        "down":"MAINHALLWAY",
-        "turnRight":{
-            "transferTo":"DOWNSTAIRS",
-            "arrowX":1225,
-            "arrowY":879
-        },
-        "eggs":[
-            {
-                "eggX":0,
-                "eggY":0,
-                "eggRadius":0
-            }
-        ]
-    },
-    "DOUBLEDOOR":{
-        "name":"DOUBLEDOOR",
-        "imageName":"./images/tunnels/double_door_finished.jpg",
-        "fakeImageName":"./fake_images/double_door_finished.jpg",
-        "up":{
-            "transferTo":"BROKENLIGHT",
-            "arrowX":628,
-            "arrowY":1162
-        },
-        "upTwo":{
-            "transferTo":"CHAIRHALLWAY",
-            "arrowX":1325,
-            "arrowY":1004
-        },
-        "goBack":"MAINHALLWAY",
-        "eggs":[
-            {
-                "eggX":0,
-                "eggY":0,
-                "eggRadius":0
-            }
-        ]
-    },
-    "DEADEND":{
-        "name":"DEADEND",
-        "imageName":"./images/tunnels/dead_end_finished.jpg",
-        "fakeImageName":"./fake_images/dead_end_finished.jpg",
-        "down":"DOORHALLWAY",
-        "eggs":[
-            {
-                "eggX":0,
-                "eggY":0,
-                "eggRadius":0
-            }
-        ]
-    },
-    "DOWNSTAIRS":{
-        "name":"DOWNSTAIRS",
-        "imageName":"./images/tunnels/downstairs_finished.jpg",
-        "fakeImageName":"./fake_images/downstairs_finished.jpg",
-        "goBack":"DOORHALLWAY",
-        "turnLeft":{
-            "transferTo":"STAIRCORNER",
-            "arrowX":858,
-            "arrowY":914
-        },
-        "eggs":[
-            {
-                "eggX":0,
-                "eggY":0,
-                "eggRadius":0
-            }
-        ]
-    },
-    "BROKENLIGHT":{
-        "name":"BROKENLIGHT",
-        "imageName":"./images/tunnels/broken_light_finished.jpg",
-        "fakeImageName":"./fake_images/broken_light_finished.jpg",
-        "goBack":"DOUBLEDOOR",
-        "eggs":[
-            {
-                "eggX":0,
-                "eggY":0,
-                "eggRadius":0
-            }
-        ]
-    },
-    "CHAIRHALLWAY":{
-        "name":"CHAIRHALLWAY",
-        "imageName":"./images/tunnels/chair_hallway_finished.jpg",
-        "fakeImageName":"./fake_images/chair_hallway_finished.jpg",
-        "up":{
-            "transferTo":"REDHALLWAY",
-            "arrowX":995,
-            "arrowY":733
-        },
-        "down":"DOUBLEDOOR",
-        "turnRight":{
-            "transferTo":"DIRTYHALLWAY",
-            "arrowX":1360,
-            "arrowY":1047
-        },
-        "eggs":[
-            {
-                "eggX":0,
-                "eggY":0,
-                "eggRadius":0
-            }
-        ]
-    },
-    "STAIRCORNER":{
-        "name":"STAIRCORNER",
-        "imageName":"./images/tunnels/stair_corner_finished.jpg",
-        "fakeImageName":"./fake_images/stair_corner_finished.jpg",
-        "turnLeft":{
-            "transferTo":"FINALDOOR",
-            "arrowX":806,
-            "arrowY":889
-        },
-        "goBack":"DOWNSTAIRS",
-        "eggs":[
-            {
-                "eggX":0,
-                "eggY":0,
-                "eggRadius":0
-            }
-        ]
-    },
-    "REDHALLWAY":{
-        "name":"REDHALLWAY",
-        "imageName":"./images/tunnels/red_hallway_finished.jpg",
-        "fakeImageName":"./fake_images/red_hallway_finished.jpg",
-        "up":{
-            "transferTo":"BRIGHTCORNER",
-            "arrowX":940,
-            "arrowY":955
-        },
-        "down":"CHAIRHALLWAY",
-        "eggs":[
-            {
-                "eggX":0,
-                "eggY":0,
-                "eggRadius":0
-            }
-        ]
-    },
-    "DIRTYHALLWAY":{
-        "name":"DIRTYHALLWAY",
-        "imageName":"./images/tunnels/dirty_hallway_finished.jpg",
-        "fakeImageName":"./fake_images/dirty_hallway_finished.jpg",
-        "up":{
-            "transferTo":"DIRTYCORNER",
-            "arrowX":986,
-            "arrowY":850
-        },
-        "goBack":"CHAIRHALLWAY",
-        "eggs":[
-            {
-                "eggX":0,
-                "eggY":0,
-                "eggRadius":0
-            }
-        ]
-    },
-    "FINALDOOR":{
-        "name":"FINALDOOR",
-        "imageName":"./images/tunnels/final_door_locked_finished.jpg",
-        "fakeImageName":"./fake_images/final_door_locked_finished.jpg",
-        "goBack":"STAIRCORNER",
-        "eggs":[
-            {
-                "eggX":0,
-                "eggY":0,
-                "eggRadius":0
-            }
-        ]
-    },
-    "BRIGHTCORNER":{
-        "name":"BRIGHTCORNER",
-        "imageName":"./images/tunnels/bright_corner_finished.jpg",
-        "fakeImageName":"./fake_images/bright_corner_finished.jpg",
-        "down":"REDHALLWAY",
-        "up":{
-            "transferTo":"STAIRTOSECONDHOUSE",
-            "arrowX":1581,
-            "arrowY":1063
-        },
-        "eggs":[
-            {
-                "eggX":0,
-                "eggY":0,
-                "eggRadius":0
-            }
-        ]
-    },
-    "DIRTYCORNER":{
-        "name":"DIRTYCORNER",
-        "imageName":"./images/tunnels/dirty_corner_locked_finished.jpg",
-        "fakeImageName":"./fake_images/dirty_corner_locked_finished.jpg",
-        "down":"DIRTYHALLWAY",
-        "eggs":[
-            {
-                "eggX":0,
-                "eggY":0,
-                "eggRadius":0
-            }
-        ]
-    },
-    "STAIRTOSECONDHOUSE":{
-        "name":"STAIRTOSECONDHOUSE",
-        "imageName":"./images/tunnels/stair_to_second_house_finished.jpg",
-        "fakeImageName":"./fake_images/stair_to_second_house_finished.jpg",
-        "goBack":"BRIGHTCORNER",
-        "secondHouse":{
-            "transferTo":"LIVINGROOM2",
-            "arrowX":1069,
-            "arrowY":917
-        },
-        "eggs":[
-            {
-                "eggX":0,
-                "eggY":0,
-                "eggRadius":0
-            }
-        ]
-    },
-    "STAIRTOTHIRDHOUSE":{
-        "name":"STAIRTOTHIRDHOUSE",
-        "imageName":"./images/tunnels/stair_to_third_house_finished.jpg",
-        "fakeImageName":"./fake_images/stair_to_third_house_finished.jpg",
-        "goBack":"DIRTYCORNER",
-        "up":{
-            "transferTo":"THIRDHOUSE6",
-            "arrowX":1581,
-            "arrowY":1063
         },
         "eggs":[
             {
@@ -1366,20 +975,34 @@
             }
         ]
     },
-    "TUNNELSTARTX":{
-        "name":"TUNNELSTARTX",
-        "imageName":"./images/tunnels_xed/tunnel_start_finished.jpg",
+    "ARCHEDTUNNEL":{
+        "name":"ARCHEDTUNNEL",
+        "imageName":"./images/tunnels/arched_tunnel.jpg",
         "fakeImageName":"./fake_images/tunnel_start_finished.jpg",
         "up":{
-            "transferTo":"WINDOWHALLX",
+            "transferTo":"TUNNELSTAIRUP",
             "arrowX":984,
             "arrowY":835
         },
-        "turnLeft":{
-            "transferTo":"MAINHALLWAYX",
-            "arrowX":712,
-            "arrowY":937
+        "goBack":"DOORWAYHALLWAYLIGHT",
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ]
+    },
+    "ARCHEDTUNNELX":{
+        "name":"ARCHEDTUNNELX",
+        "imageName":"./images/tunnels/xed/arched_tunnel_xed.jpg",
+        "fakeImageName":"./fake_images/tunnel_start_finished.jpg",
+        "up":{
+            "transferTo":"TUNNELSTAIRUPX",
+            "arrowX":984,
+            "arrowY":835
         },
+        "goBack":"DOORWAYHALLWAYLIGHTX",
         "eggs":[
             {
                 "eggX":0,
@@ -1395,16 +1018,34 @@
             }
         ]
     },
-    "WINDOWHALLX":{
-        "name":"WINDOWHALLX",
-        "imageName":"./images/tunnels_xed/window_hall_finished.jpg",
+    "CREEPYHALLWAY":{
+        "name":"CREEPYHALLWAY",
+        "imageName":"./images/tunnels/creepy_hallway.jpg",
         "fakeImageName":"./fake_images/window_hall_finished.jpg",
-        "turnRight":{
-            "transferTo":"OPENCEILINGX",
+        "up":{
+            "transferTo":"JUNKCORNER",
             "arrowX":888,
             "arrowY":992
         },
-        "down":"TUNNELSTARTX",
+        "goBack":"ROCKYWALL",
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ]
+    },
+    "CREEPYHALLWAYX":{
+        "name":"CREEPYHALLWAYX",
+        "imageName":"./images/tunnels/xed/creepy_hallway_xed.jpg",
+        "fakeImageName":"./fake_images/window_hall_finished.jpg",
+        "up":{
+            "transferTo":"JUNKCORNERX",
+            "arrowX":888,
+            "arrowY":992
+        },
+        "goBack":"ROCKYWALLX",
         "eggs":[
             {
                 "eggX":0,
@@ -1420,101 +1061,82 @@
             }
         ]
     },
-    "OPENCEILINGX":{
-        "name":"OPENCEILINGX",
-        "imageName":"./images/tunnels_xed/open_ceiling_finished.jpg",
+    "DARKPATH":{
+        "name":"DARKPATH",
+        "imageName":"./images/tunnels/dark_path.jpg",
         "fakeImageName":"./fake_images/open_ceiling_finished.jpg",
-        "goBack":"WINDOWHALLX",
+        "right":"DARKSHAFT",
         "eggs":[
             {
                 "eggX":0,
                 "eggY":0,
                 "eggRadius":0
             }
-        ],
-        "exes":[
-            {
-                "exX":998,
-                "exY":303,
-                "exRadius":101
-            }
         ]
     },
-    "MAINHALLWAYX":{
-        "name":"MAINHALLWAYX",
-        "imageName":"./images/tunnels_xed/main_hallway_finished.jpg",
+    "DARKSHAFT":{
+        "name":"DARKSHAFT",
+        "imageName":"./images/tunnels/dark_shaft.jpg",
         "fakeImageName":"./fake_images/main_hallway_finished.jpg",
         "up":{
-            "transferTo":"DOORHALLWAYX",
+            "transferTo":"GRAFFITIDOORWAY",
             "arrowX":929,
             "arrowY":699
         },
-        "goBack":"TUNNELSTARTX",
-        "turnLeft":{
-            "transferTo":"DOUBLEDOORX",
-            "arrowX":985,
-            "arrowY":890
-        },
         "eggs":[
             {
                 "eggX":0,
                 "eggY":0,
                 "eggRadius":0
             }
-        ],
-        "exes":[
-            {
-                "exX":948,
-                "exY":547,
-                "exRadius":12
-            }
         ]
     },
-    "DOORHALLWAYX":{
-        "name":"DOORHALLWAYX",
-        "imageName":"./images/tunnels_xed/door_hallway_finished.jpg",
+    "DARKSTAIRDOWN":{
+        "name":"DARKSTAIRDOWN",
+        "imageName":"./images/tunnels/dark_stair_down.jpg",
         "fakeImageName":"./fake_images/door_hallway_finished.jpg",
         "up":{
-            "transferTo":"DEADENDX",
+            "transferTo":"GRAFFITITUNNEL",
             "arrowX":979,
             "arrowY":794
         },
-        "down":"MAINHALLWAYX",
-        "turnRight":{
-            "transferTo":"DOWNSTAIRSX",
-            "arrowX":1225,
-            "arrowY":879
-        },
+        "goBack":"LONGSTRAIGHTTUNNEL",
         "eggs":[
             {
                 "eggX":0,
                 "eggY":0,
                 "eggRadius":0
             }
-        ],
-        "exes":[
-            {
-                "exX":1734,
-                "exY":303,
-                "exRadius":83
-            }
         ]
     },
-    "DOUBLEDOORX":{
-        "name":"DOUBLEDOORX",
-        "imageName":"./images/tunnels_xed/double_door_finished.jpg",
+    "DARKSTAIRUP":{
+        "name":"DARKSTAIRUP",
+        "imageName":"./images/tunnels/dark_stair_up.jpg",
         "fakeImageName":"./fake_images/double_door_finished.jpg",
         "up":{
-            "transferTo":"BROKENLIGHTX",
+            "transferTo":"EXITTOTHIRDHOUSE",
             "arrowX":628,
             "arrowY":1162
         },
-        "upTwo":{
-            "transferTo":"CHAIRHALLWAYX",
-            "arrowX":1325,
-            "arrowY":1004
+        "goBack":"TALLROOM",
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ]
+    },
+    "DARKSTAIRUPX":{
+        "name":"DARKSTAIRUPX",
+        "imageName":"./images/tunnels/xed/dark_stair_up_xed.jpg",
+        "fakeImageName":"./fake_images/double_door_finished.jpg",
+        "up":{
+            "transferTo":"EXITTOTHIRDHOUSEX",
+            "arrowX":628,
+            "arrowY":1162
         },
-        "goBack":"MAINHALLWAYX",
+        "goBack":"TALLROOMX",
         "eggs":[
             {
                 "eggX":0,
@@ -1530,11 +1152,24 @@
             }
         ]
     },
+    "DEADEND":{
+        "name":"DEADEND",
+        "imageName":"./images/tunnels/dead_end.jpg",
+        "fakeImageName":"./fake_images/dead_end_finished.jpg",
+        "down":"DOORWAYHALLWAYDARK",
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ]
+    },
     "DEADENDX":{
         "name":"DEADENDX",
-        "imageName":"./images/tunnels_xed/dead_end_finished.jpg",
+        "imageName":"./images/tunnels/xed/dead_end_xed.jpg",
         "fakeImageName":"./fake_images/dead_end_finished.jpg",
-        "down":"DOORHALLWAYX",
+        "down":"DOORWAYHALLWAYDARKX",
         "eggs":[
             {
                 "eggX":0,
@@ -1550,13 +1185,41 @@
             }
         ]
     },
-    "DOWNSTAIRSX":{
-        "name":"DOWNSTAIRSX",
-        "imageName":"./images/tunnels_xed/downstairs_finished.jpg",
+    "DOORWAYHALLWAYDARK":{
+        "name":"DOORWAYHALLWAYDARK",
+        "imageName":"./images/tunnels/doorway_hallway_dark.jpg",
         "fakeImageName":"./fake_images/downstairs_finished.jpg",
-        "goBack":"DOORHALLWAYX",
+        "up":{
+            "transferTo":"DEADEND",
+            "arrowX":858,
+            "arrowY":914
+        },
+        "goBack":"DOUBLESTAIR",
         "turnLeft":{
-            "transferTo":"STAIRCORNERX",
+            "transferTo":"PIPECORNER",
+            "arrowX":858,
+            "arrowY":914
+        },
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ]
+    },
+    "DOORWAYHALLWAYDARKX":{
+        "name":"DOORWAYHALLWAYDARKX",
+        "imageName":"./images/tunnels/xed/doorway_hallway_dark_xed.jpg",
+        "fakeImageName":"./fake_images/downstairs_finished.jpg",
+        "up":{
+            "transferTo":"DEADENDX",
+            "arrowX":858,
+            "arrowY":914
+        },
+        "goBack":"DOUBLESTAIRX",
+        "turnLeft":{
+            "transferTo":"PIPECORNERX",
             "arrowX":858,
             "arrowY":914
         },
@@ -1575,11 +1238,21 @@
             }
         ]
     },
-    "BROKENLIGHTX":{
-        "name":"BROKENLIGHTX",
-        "imageName":"./images/tunnels/broken_light_finished.jpg",
+    "DOORWAYHALLWAYLIGHT":{
+        "name":"DOORWAYHALLWAYLIGHT",
+        "imageName":"./images/tunnels/doorway_hallway_light.jpg",
         "fakeImageName":"./fake_images/broken_light_finished.jpg",
-        "goBack":"DOUBLEDOORX",
+        "up":{
+            "transferTo":"ARCHEDTUNNEL",
+            "arrowX":995,
+            "arrowY":733
+        },
+        "goback":"GRAFFITIDOORWAY",
+        "turnLeft":{
+            "transferTo":"LONGLIGHTTUNNEL",
+            "arrowX":1360,
+            "arrowY":1047
+        },
         "eggs":[
             {
                 "eggX":0,
@@ -1588,21 +1261,64 @@
             }
         ]
     },
-    "CHAIRHALLWAYX":{
-        "name":"CHAIRHALLWAYX",
-        "imageName":"./images/tunnels_xed/chair_hallway_finished.jpg",
-        "fakeImageName":"./fake_images/chair_hallway_finished.jpg",
+    "DOORWAYHALLWAYLIGHTX":{
+        "name":"DOORWAYHALLWAYLIGHTX",
+        "imageName":"./images/tunnels/xed/doorway_hallway_lightxed.jpg",
+        "fakeImageName":"./fake_images/broken_light_finished.jpg",
         "up":{
-            "transferTo":"REDHALLWAYX",
+            "transferTo":"ARCHEDTUNNELX",
             "arrowX":995,
             "arrowY":733
         },
-        "down":"DOUBLEDOORX",
-        "turnRight":{
-            "transferTo":"DIRTYHALLWAYX",
+        "goback":"GRAFFITIDOORWAYX",
+        "turnLeft":{
+            "transferTo":"LONGLIGHTTUNNELX",
             "arrowX":1360,
             "arrowY":1047
         },
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ],
+        "exes":[
+            {
+                "exX":994,
+                "exY":649,
+                "exRadius":728
+            }
+        ]
+    },
+    "DOUBLESTAIR":{
+        "name":"DOUBLESTAIR",
+        "imageName":"./images/tunnels/double_stair.jpg",
+        "fakeImageName":"./fake_images/chair_hallway_finished.jpg",
+        "up":{
+            "transferTo":"DOORWAYHALLWAYDARK",
+            "arrowX":995,
+            "arrowY":733
+        },
+        "goBack":"GRAFFITIDOORWAY",
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ]
+    },
+    "DOUBLESTAIRX":{
+        "name":"DOUBLESTAIRX",
+        "imageName":"./images/tunnels/xed/double_stair_xed.jpg",
+        "fakeImageName":"./fake_images/chair_hallway_finished.jpg",
+        "up":{
+            "transferTo":"DOORWAYHALLWAYDARKX",
+            "arrowX":995,
+            "arrowY":733
+        },
+        "goBack":"GRAFFITIDOORWAYX",
         "eggs":[
             {
                 "eggX":0,
@@ -1618,16 +1334,24 @@
             }
         ]
     },
-    "STAIRCORNERX":{
-        "name":"STAIRCORNERX",
-        "imageName":"./images/tunnels_xed/stair_corner_finished.jpg",
+    "EXITTOTHIRDHOUSE":{
+        "name":"EXITTOTHIRDHOUSE",
+        "imageName":"./images/tunnels/exit_to_third_house_locked.jpg",
         "fakeImageName":"./fake_images/stair_corner_finished.jpg",
-        "turnLeft":{
-            "transferTo":"FINALDOORX",
-            "arrowX":806,
-            "arrowY":889
-        },
-        "goBack":"DOWNSTAIRSX",
+        "goBack":"DARKSTAIRUP",
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ]
+    },
+    "EXITTOTHIRDHOUSEX":{
+        "name":"EXITTOTHIRDHOUSEX",
+        "imageName":"./images/tunnels/xed/exit_to_third_house_xed.jpg",
+        "fakeImageName":"./fake_images/stair_corner_finished.jpg",
+        "goBack":"DARKSTAIRUPX",
         "eggs":[
             {
                 "eggX":0,
@@ -1643,16 +1367,24 @@
             }
         ]
     },
-    "REDHALLWAYX":{
-        "name":"REDHALLWAYX",
-        "imageName":"./images/tunnels_xed/red_hallway_finished.jpg",
+    "FINALSTAIRDOWN":{
+        "name":"FINALSTAIRDOWN",
+        "imageName":"./images/tunnels/final_stair_down_locked.jpg",
         "fakeImageName":"./fake_images/red_hallway_finished.jpg",
-        "up":{
-            "transferTo":"BRIGHTCORNERX",
-            "arrowX":940,
-            "arrowY":955
-        },
-        "down":"CHAIRHALLWAYX",
+        "goBack":"PIPECORNER",
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ]
+    },
+    "FINALSTAIRDOWNX":{
+        "name":"FINALSTAIRDOWNX",
+        "imageName":"./images/tunnels/xed/final_stair_down_locked_xed.jpg",
+        "fakeImageName":"./fake_images/red_hallway_finished.jpg",
+        "goBack":"PIPECORNERX",
         "eggs":[
             {
                 "eggX":0,
@@ -1668,16 +1400,52 @@
             }
         ]
     },
-    "DIRTYHALLWAYX":{
-        "name":"DIRTYHALLWAYX",
-        "imageName":"./images/tunnels_xed/dirty_hallway_finished.jpg",
+    "GRAFFITIDOORWAY":{
+        "name":"GRAFFITIDOORWAY",
+        "imageName":"./images/tunnels/graffiti_doorway.jpg",
         "fakeImageName":"./fake_images/dirty_hallway_finished.jpg",
         "up":{
-            "transferTo":"DIRTYCORNERX",
-            "arrowX":986,
-            "arrowY":850
+            "transferTo":"DOUBLESTAIR",
+            "arrowX":995,
+            "arrowY":733
         },
-        "goBack":"CHAIRHALLWAYX",
+        "turnLeft":{
+            "transferTo":"ROCKYWALL",
+            "arrowX":1360,
+            "arrowY":1047
+        },
+        "turnRight":{
+            "transferTo":"DOORWAYHALLWAYLIGHT",
+            "arrowX":400,
+            "arrowY":1047
+        },
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ]
+    },
+    "GRAFFITIDOORWAYX":{
+        "name":"GRAFFITIDOORWAYX",
+        "imageName":"./images/tunnels/xed/graffiti_doorway_xed.jpg",
+        "fakeImageName":"./fake_images/dirty_hallway_finished.jpg",
+        "up":{
+            "transferTo":"DOUBLESTAIRX",
+            "arrowX":995,
+            "arrowY":733
+        },
+        "turnLeft":{
+            "transferTo":"ROCKYWALLX",
+            "arrowX":1360,
+            "arrowY":1047
+        },
+        "turnRight":{
+            "transferTo":"DOORWAYHALLWAYLIGHTX",
+            "arrowX":400,
+            "arrowY":1047
+        },
         "eggs":[
             {
                 "eggX":0,
@@ -1693,33 +1461,48 @@
             }
         ]
     },
-    "FINALDOORX":{
-        "name":"FINALDOORX",
-        "imageName":"./images/tunnels_xed/final_door_locked_finished.jpg",
+    "LONGSTRAIGHTTUNNEL":{
+        "name":"LONGSTRAIGHTTUNNEL",
+        "imageName":"./images/tunnels/long_straight_tunnel.jpg",
         "fakeImageName":"./fake_images/final_door_locked_finished.jpg",
-        "goBack":"STAIRCORNERX",
+        "up":{
+            "transferTo":"DARKSTAIRDOWN",
+            "arrowX":995,
+            "arrowY":733
+        },
         "eggs":[
             {
                 "eggX":0,
                 "eggY":0,
                 "eggRadius":0
             }
-        ],
-        "exes":[
+        ]
+    },
+    "PIPECORNER":{
+        "name":"PIPECORNER",
+        "imageName":"./images/tunnels/pipe_corner.jpg",
+        "fakeImageName":"./fake_images/bright_corner_finished.jpg",
+        "goBack":"DOORWAYHALLWAYDARK",
+        "up":{
+            "transferTo":"FINALSTAIRDOWN",
+            "arrowX":1581,
+            "arrowY":1063
+        },
+        "eggs":[
             {
-                "exX":929,
-                "exY":190,
-                "exRadius":58
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
             }
         ]
     },
-    "BRIGHTCORNERX":{
-        "name":"BRIGHTCORNERX",
-        "imageName":"./images/tunnels_xed/bright_corner_finished.jpg",
+    "PIPECORNERX":{
+        "name":"PIPECORNERX",
+        "imageName":"./images/tunnels/xed/pipe_corner_xed.jpg",
         "fakeImageName":"./fake_images/bright_corner_finished.jpg",
-        "down":"REDHALLWAYX",
+        "goBack":"DOORWAYHALLWAYDARKX",
         "up":{
-            "transferTo":"STAIRTOSECONDHOUSEX",
+            "transferTo":"FINALSTAIRDOWNX",
             "arrowX":1581,
             "arrowY":1063
         },
@@ -1738,11 +1521,34 @@
             }
         ]
     },
-    "DIRTYCORNERX":{
-        "name":"DIRTYCORNERX",
-        "imageName":"./images/tunnels_xed/dirty_corner_locked_finished.jpg",
+    "ROCKYWALL":{
+        "name":"ROCKYWALL",
+        "imageName":"./images/tunnels/rocky_wall.jpg",
         "fakeImageName":"./fake_images/dirty_corner_locked_finished.jpg",
-        "down":"DIRTYHALLWAYX",
+        "goBack":"GRAFFITIDOORWAY",
+        "up":{
+            "transferTo":"CREEPYHALLWAY",
+            "arrowX":1581,
+            "arrowY":1063
+        },
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ]
+    },
+    "ROCKYWALLX":{
+        "name":"ROCKYWALLX",
+        "imageName":"./images/tunnels/xed/rocky_wall_xed.jpg",
+        "fakeImageName":"./fake_images/dirty_corner_locked_finished.jpg",
+        "goBack":"GRAFFITIDOORWAYX",
+        "up":{
+            "transferTo":"CREEPYHALLWAYX",
+            "arrowX":1581,
+            "arrowY":1063
+        },
         "eggs":[
             {
                 "eggX":0,
@@ -1758,11 +1564,839 @@
             }
         ]
     },
-    "STAIRTOSECONDHOUSEX":{
-        "name":"STAIRTOSECONDHOUSEX",
-        "imageName":"./images/tunnels_xed/stair_to_second_house_finished_locked.jpg",
+    "SEWERENTRANCE":{
+        "name":"SEWERENTRANCE",
+        "imageName":"./images/tunnels/sewer_entrance.jpg",
         "fakeImageName":"./fake_images/stair_to_second_house_finished.jpg",
-        "goBack":"BRIGHTCORNERX",
+        "up":{
+            "transferTo":"DARKPATH",
+            "arrowX":1581,
+            "arrowY":1063
+        },
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ],
+        "exes":[
+            {
+                "exX":1001,
+                "exY":668,
+                "exRadius":65
+            }
+        ]
+    },
+    "TALLROOM":{
+        "name":"TALLROOM",
+        "imageName":"./images/tunnels/tall_room.jpg",
+        "fakeImageName":"./fake_images/stair_to_second_house_finished.jpg",
+        "goBack":"LONGLIGHTTUNNEL",
+        "up":{
+            "transferTo":"DARKSTAIRUP",
+            "arrowX":1581,
+            "arrowY":1063
+        },
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ]
+    },
+    "TALLROOMX":{
+        "name":"TALLROOMX",
+        "imageName":"./images/tunnels/xed/tall_room_xed.jpg",
+        "fakeImageName":"./fake_images/stair_to_second_house_finished.jpg",
+        "goBack":"LONGLIGHTTUNNELX",
+        "up":{
+            "transferTo":"DARKSTAIRUPX",
+            "arrowX":1581,
+            "arrowY":1063
+        },
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ],
+        "exes":[
+            {
+                "exX":1001,
+                "exY":668,
+                "exRadius":65
+            }
+        ]
+    },
+    "TUNNELSTAIRUP":{
+        "name":"TUNNELSTAIRUP",
+        "imageName":"./images/tunnels/tunnel_stair_up.jpg",
+        "fakeImageName":"./fake_images/stair_to_second_house_finished.jpg",
+        "goBack":"ARCHEDTUNNEL",
+        "up":{
+            "transferTo":"WEIRDDOORDEADEND",
+            "arrowX":1581,
+            "arrowY":1063
+        },
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ]
+    },
+    "TUNNELSTAIRUPX":{
+        "name":"TUNNELSTAIRUPX",
+        "imageName":"./images/tunnels/xed/tunnel_stair_up_xed.jpg",
+        "fakeImageName":"./fake_images/stair_to_second_house_finished.jpg",
+        "goBack":"ARCHEDTUNNELX",
+        "up":{
+            "transferTo":"WEIRDDOORDEADENDX",
+            "arrowX":1581,
+            "arrowY":1063
+        },
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ],
+        "exes":[
+            {
+                "exX":1001,
+                "exY":668,
+                "exRadius":65
+            }
+        ]
+    },
+    "WEIRDDOORDEADEND":{
+        "name":"WEIRDDOORDEADEND",
+        "imageName":"./images/tunnels/weird_door_dead_end.jpg",
+        "fakeImageName":"./fake_images/stair_to_second_house_finished.jpg",
+        "goBack":"TUNNELSTAIRUP",
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ]
+    },
+    "WEIRDDOORDEADENDX":{
+        "name":"WEIRDDOORDEADENDX",
+        "imageName":"./images/tunnels/xed/weird_door_dead_end_xed.jpg",
+        "fakeImageName":"./fake_images/stair_to_second_house_finished.jpg",
+        "goBack":"TUNNELSTAIRUPX",
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ],
+        "exes":[
+            {
+                "exX":1001,
+                "exY":668,
+                "exRadius":65
+            }
+        ]
+    },
+    "WOODENSHAFT":{
+        "name":"WOODENSHAFT",
+        "imageName":"./images/tunnels/wooden_shaft.jpg",
+        "fakeImageName":"./fake_images/stair_to_second_house_finished.jpg",
+        "goBack":"GRAVELCAVE",
+        "up":{
+            "transferTo":"LADDERTOSECONDHOUSE",
+            "arrowX":1581,
+            "arrowY":1063
+        },
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ]
+    },
+    "WOODENSHAFTX":{
+        "name":"WOODENSHAFTX",
+        "imageName":"./images/tunnels/xed/wooden_shaft_xed.jpg",
+        "fakeImageName":"./fake_images/stair_to_second_house_finished.jpg",
+        "goBack":"GRAVELCAVEX",
+        "up":{
+            "transferTo":"LADDERTOSECONDHOUSEX",
+            "arrowX":1581,
+            "arrowY":1063
+        },
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ],
+        "exes":[
+            {
+                "exX":1001,
+                "exY":668,
+                "exRadius":65
+            }
+        ]
+    },
+    "GRAFFITITUNNEL":{
+        "name":"GRAFFITITUNNEL",
+        "imageName":"./images/tunnels/graffiti_tunnel.jpg",
+        "fakeImageName":"./fake_images/stair_to_second_house_finished.jpg",
+        "turnRight":{
+            "transferTo":"FINALHOUSE",
+            "arrowX":1581,
+            "arrowY":1063
+        },
+        "goBack":"DARKSTAIRDOWN",
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ]
+    },
+    "GRAVELCAVE":{
+        "name":"GRAVELCAVE",
+        "imageName":"./images/tunnels/gravel_cave.jpg",
+        "fakeImageName":"./fake_images/stair_to_second_house_finished.jpg",
+        "up":{
+            "transferTo":"WOODENSHAFT",
+            "arrowX":1581,
+            "arrowY":1063
+        },
+        "goBack":"JUNKCORNER",
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ]
+    },
+    "GRAVELCAVEX":{
+        "name":"GRAVELCAVEX",
+        "imageName":"./images/tunnels/xed/gravel_cave_xed.jpg",
+        "fakeImageName":"./fake_images/stair_to_second_house_finished.jpg",
+        "up":{
+            "transferTo":"WOODENSHAFTX",
+            "arrowX":1581,
+            "arrowY":1063
+        },
+        "goBack":"JUNKCORNERX",
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ],
+        "exes":[
+            {
+                "exX":1001,
+                "exY":668,
+                "exRadius":65
+            }
+        ]
+    },
+    "JUNKCORNER":{
+        "name":"JUNKCORNER",
+        "imageName":"./images/tunnels/junk_corner.jpg",
+        "fakeImageName":"./fake_images/stair_to_second_house_finished.jpg",
+        "turnRight":{
+            "transferTo":"GRAVELCAVE",
+            "arrowX":1581,
+            "arrowY":1063
+        },
+        "goBack":"CREEPYHALLWAY",
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ]
+    },
+    "JUNKCORNERX":{
+        "name":"JUNKCORNER",
+        "imageName":"./images/tunnels/xed/junk_corner_xed.jpg",
+        "fakeImageName":"./fake_images/stair_to_second_house_finished.jpg",
+        "turnRight":{
+            "transferTo":"GRAVELCAVEX",
+            "arrowX":1581,
+            "arrowY":1063
+        },
+        "goBack":"CREEPYHALLWAYX",
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ],
+        "exes":[
+            {
+                "exX":1001,
+                "exY":668,
+                "exRadius":65
+            }
+        ]
+    },
+    "LADDERTOSECONDHOUSE":{
+        "name":"LADDERTOSECONDHOUSE",
+        "imageName":"./images/tunnels/ladder_to_second_house_unlocked.jpg",
+        "fakeImageName":"./fake_images/stair_to_second_house_finished.jpg",
+        "secondHouse":{
+            "transferTo":"LIVINGROOM2",
+            "arrowX":1069,
+            "arrowY":917
+        },
+        "goBack":"WOODENSHAFT",
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ]
+    },
+    "LADDERTOSECONDHOUSEX":{
+        "name":"LADDERTOSECONDHOUSEX",
+        "imageName":"./images/tunnels/xed/ladder_to_second_house_locked.jpg",
+        "fakeImageName":"./fake_images/stair_to_second_house_finished.jpg",
+        "down":"WOODENSHAFTX",
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ]
+    },
+    "LONGLIGHTTUNNEL":{
+        "name":"LONGLIGHTTUNNEL",
+        "imageName":"./images/tunnels/long_light_tunnel.jpg",
+        "fakeImageName":"./fake_images/stair_to_second_house_finished.jpg",
+        "up":{
+            "transferTo":"TALLROOM",
+            "arrowX":1581,
+            "arrowY":1063
+        },
+        "goBack":"DOORHALLWAYLIGHT",
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ]
+    },
+    "LONGLIGHTTUNNELX":{
+        "name":"LONGLIGHTTUNNELX",
+        "imageName":"./images/tunnels/xed/long_light_tunnel_xed.jpg",
+        "fakeImageName":"./fake_images/stair_to_second_house_finished.jpg",
+        "up":{
+            "transferTo":"TALLROOMX",
+            "arrowX":1581,
+            "arrowY":1063
+        },
+        "goBack":"DOORHALLWAYLIGHTX",
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ],
+        "exes":[
+            {
+                "exX":1001,
+                "exY":668,
+                "exRadius":65
+            }
+        ]
+    },
+    "ARCHEDTUNNELBROKEN":{
+        "name":"ARCHEDTUNNELBROKEN",
+        "imageName":"./images/tunnels/broken/arched_tunnel_broken.jpg",
+        "fakeImageName":"./fake_images/tunnel_start_finished.jpg",
+        "up":{
+            "transferTo":"TUNNELSTAIRUPBROKEN",
+            "arrowX":984,
+            "arrowY":835
+        },
+        "goBack":"DOORWAYHALLWAYLIGHTBROKEN",
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ],
+        "exes":[
+            {
+                "exX":1309,
+                "exY":436,
+                "exRadius":83
+            }
+        ]
+    },
+    "CREEPYHALLWAYBROKEN":{
+        "name":"CREEPYHALLWAYBROKEN",
+        "imageName":"./images/tunnels/broken/creepy_hallway_broken.jpg",
+        "fakeImageName":"./fake_images/window_hall_finished.jpg",
+        "up":{
+            "transferTo":"JUNKCORNERBROKEN",
+            "arrowX":888,
+            "arrowY":992
+        },
+        "goBack":"ROCKYWALLBROKEN",
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ],
+        "exes":[
+            {
+                "exX":867,
+                "exY":929,
+                "exRadius":58
+            }
+        ]
+    },
+    "DARKSHAFTBROKEN":{
+        "name":"DARKSHAFTBROKEN",
+        "imageName":"./images/tunnels/broken/dark_shaft_broken.jpg",
+        "fakeImageName":"./fake_images/main_hallway_finished.jpg",
+        "up":{
+            "transferTo":"GRAFFITIDOORWAYBROKEN",
+            "arrowX":929,
+            "arrowY":699
+        },
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ]
+    },
+    "DARKSTAIRUPBROKEN":{
+        "name":"DARKSTAIRUPBROKEN",
+        "imageName":"./images/tunnels/broken/dark_stair_up_broken.jpg",
+        "fakeImageName":"./fake_images/double_door_finished.jpg",
+        "up":{
+            "transferTo":"EXITTOTHIRDHOUSEBROKEN",
+            "arrowX":628,
+            "arrowY":1162
+        },
+        "goBack":"TALLROOMBROKEN",
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ],
+        "exes":[
+            {
+                "exX":1882,
+                "exY":459,
+                "exRadius":117
+            }
+        ]
+    },
+    "DEADENDBROKEN":{
+        "name":"DEADENDBROKEN",
+        "imageName":"./images/tunnels/broken/dead_end_broken.jpg",
+        "fakeImageName":"./fake_images/dead_end_finished.jpg",
+        "down":"DOORWAYHALLWAYDARKBROKEN",
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ],
+        "exes":[
+            {
+                "exX":1864,
+                "exY":98,
+                "exRadius":58
+            }
+        ]
+    },
+    "DOORWAYHALLWAYDARKBROKEN":{
+        "name":"DOORWAYHALLWAYDARKBROKEN",
+        "imageName":"./images/tunnels/broken/doorway_hallway_dark_broken.jpg",
+        "fakeImageName":"./fake_images/downstairs_finished.jpg",
+        "up":{
+            "transferTo":"DEADENDBROKEN",
+            "arrowX":858,
+            "arrowY":914
+        },
+        "goBack":"DOUBLESTAIRBROKEN",
+        "turnLeft":{
+            "transferTo":"PIPECORNERBROKEN",
+            "arrowX":858,
+            "arrowY":914
+        },
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ],
+        "exes":[
+            {
+                "exX":994,
+                "exY":649,
+                "exRadius":728
+            }
+        ]
+    },
+    "DOORWAYHALLWAYLIGHTBROKEN":{
+        "name":"DOORWAYHALLWAYLIGHTBROKEN",
+        "imageName":"./images/tunnels/broken/doorway_hallway_lightbroken.jpg",
+        "fakeImageName":"./fake_images/broken_light_finished.jpg",
+        "up":{
+            "transferTo":"ARCHEDTUNNELBROKEN",
+            "arrowX":995,
+            "arrowY":733
+        },
+        "goback":"GRAFFITIDOORWAYBROKEN",
+        "turnLeft":{
+            "transferTo":"LONGLIGHTTUNNELBROKEN",
+            "arrowX":1360,
+            "arrowY":1047
+        },
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ],
+        "exes":[
+            {
+                "exX":994,
+                "exY":649,
+                "exRadius":728
+            }
+        ]
+    },
+    "DOUBLESTAIRBROKEN":{
+        "name":"DOUBLESTAIRBROKEN",
+        "imageName":"./images/tunnels/broken/double_stair_broken.jpg",
+        "fakeImageName":"./fake_images/chair_hallway_finished.jpg",
+        "up":{
+            "transferTo":"DOORWAYHALLWAYDARKBROKEN",
+            "arrowX":995,
+            "arrowY":733
+        },
+        "goBack":"GRAFFITIDOORWAYBROKEN",
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ],
+        "exes":[
+            {
+                "exX":982,
+                "exY":355,
+                "exRadius":12
+            }
+        ]
+    },
+    "EXITTOTHIRDHOUSEBROKEN":{
+        "name":"EXITTOTHIRDHOUSEBROKEN",
+        "imageName":"./images/tunnels/broken/exit_to_third_house_locked_broken.jpg",
+        "fakeImageName":"./fake_images/stair_corner_finished.jpg",
+        "goBack":"DARKSTAIRUPBROKEN",
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ],
+        "exes":[
+            {
+                "exX":1791,
+                "exY":747,
+                "exRadius":37
+            }
+        ]
+    },
+    "GRAFFITIDOORWAYBROKEN":{
+        "name":"GRAFFITIDOORWAYBROKEN",
+        "imageName":"./images/tunnels/broken/graffiti_doorway_broken.jpg",
+        "fakeImageName":"./fake_images/dirty_hallway_finished.jpg",
+        "up":{
+            "transferTo":"DOUBLESTAIRBROKEN",
+            "arrowX":995,
+            "arrowY":733
+        },
+        "turnLeft":{
+            "transferTo":"ROCKYWALLBROKEN",
+            "arrowX":1360,
+            "arrowY":1047
+        },
+        "turnRight":{
+            "transferTo":"DOORWAYHALLWAYLIGHTBROKEN",
+            "arrowX":400,
+            "arrowY":1047
+        },
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ],
+        "exes":[
+            {
+                "exX":583,
+                "exY":906,
+                "exRadius":61
+            }
+        ]
+    },
+    "PIPECORNERBROKEN":{
+        "name":"PIPECORNERBROKEN",
+        "imageName":"./images/tunnels/broken/pipe_corner_broken.jpg",
+        "fakeImageName":"./fake_images/bright_corner_finished.jpg",
+        "goBack":"DOORWAYHALLWAYDARKBROKEN",
+        "up":{
+            "transferTo":"FINALSTAIRDOWNBROKEN",
+            "arrowX":1581,
+            "arrowY":1063
+        },
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ],
+        "exes":[
+            {
+                "exX":1001,
+                "exY":668,
+                "exRadius":69
+            }
+        ]
+    },
+    "ROCKYWALLBROKEN":{
+        "name":"ROCKYWALLBROKEN",
+        "imageName":"./images/tunnels/broken/rocky_wall_broken.jpg",
+        "fakeImageName":"./fake_images/dirty_corner_locked_finished.jpg",
+        "goBack":"GRAFFITIDOORWAYBROKEN",
+        "up":{
+            "transferTo":"CREEPYHALLWAYBROKEN",
+            "arrowX":1581,
+            "arrowY":1063
+        },
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ],
+        "exes":[
+            {
+                "exX":1020,
+                "exY":826,
+                "exRadius":51
+            }
+        ]
+    },
+    "TALLROOMBROKEN":{
+        "name":"TALLROOMBROKEN",
+        "imageName":"./images/tunnels/broken/tall_room_broken.jpg",
+        "fakeImageName":"./fake_images/stair_to_second_house_finished.jpg",
+        "goBack":"LONGLIGHTTUNNELBROKEN",
+        "up":{
+            "transferTo":"DARKSTAIRUPBROKEN",
+            "arrowX":1581,
+            "arrowY":1063
+        },
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ],
+        "exes":[
+            {
+                "exX":1001,
+                "exY":668,
+                "exRadius":65
+            }
+        ]
+    },
+    "TUNNELSTAIRUPBROKEN":{
+        "name":"TUNNELSTAIRUPBROKEN",
+        "imageName":"./images/tunnels/broken/tunnel_stair_up_broken.jpg",
+        "fakeImageName":"./fake_images/stair_to_second_house_finished.jpg",
+        "goBack":"ARCHEDTUNNELBROKEN",
+        "up":{
+            "transferTo":"WEIRDDOORDEADENDBROKEN",
+            "arrowX":1581,
+            "arrowY":1063
+        },
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ],
+        "exes":[
+            {
+                "exX":1001,
+                "exY":668,
+                "exRadius":65
+            }
+        ]
+    },
+    "WEIRDDOORDEADENDBROKEN":{
+        "name":"WEIRDDOORDEADENDBROKEN",
+        "imageName":"./images/tunnels/broken/weird_door_dead_end_broken.jpg",
+        "fakeImageName":"./fake_images/stair_to_second_house_finished.jpg",
+        "goBack":"TUNNELSTAIRUPBROKEN",
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ],
+        "exes":[
+            {
+                "exX":1001,
+                "exY":668,
+                "exRadius":65
+            }
+        ]
+    },
+    "WOODENSHAFTBROKEN":{
+        "name":"WOODENSHAFTBROKEN",
+        "imageName":"./images/tunnels/broken/wooden_shaft_broken.jpg",
+        "fakeImageName":"./fake_images/stair_to_second_house_finished.jpg",
+        "goBack":"GRAVELCAVEBROKEN",
+        "up":{
+            "transferTo":"LADDERTOSECONDHOUSEBROKEN",
+            "arrowX":1581,
+            "arrowY":1063
+        },
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ],
+        "exes":[
+            {
+                "exX":1001,
+                "exY":668,
+                "exRadius":65
+            }
+        ]
+    },
+    "GRAVELCAVEBROKEN":{
+        "name":"GRAVELCAVEBROKEN",
+        "imageName":"./images/tunnels/broken/gravel_cave_broken.jpg",
+        "fakeImageName":"./fake_images/stair_to_second_house_finished.jpg",
+        "up":{
+            "transferTo":"WOODENSHAFTBROKEN",
+            "arrowX":1581,
+            "arrowY":1063
+        },
+        "goBack":"JUNKCORNERBROKEN",
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ],
+        "exes":[
+            {
+                "exX":1001,
+                "exY":668,
+                "exRadius":65
+            }
+        ]
+    },
+    "JUNKCORNERBROKEN":{
+        "name":"JUNKCORNER",
+        "imageName":"./images/tunnels/broken/junk_corner_broken.jpg",
+        "fakeImageName":"./fake_images/stair_to_second_house_finished.jpg",
+        "turnRight":{
+            "transferTo":"GRAVELCAVEBROKEN",
+            "arrowX":1581,
+            "arrowY":1063
+        },
+        "goBack":"CREEPYHALLWAYBROKEN",
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ],
+        "exes":[
+            {
+                "exX":1001,
+                "exY":668,
+                "exRadius":65
+            }
+        ]
+    },
+    "LADDERTOSECONDHOUSEBROKEN":{
+        "name":"LADDERTOSECONDHOUSEBROKEN",
+        "imageName":"./images/tunnels/broken/ladder_to_second_house_locked.jpg",
+        "fakeImageName":"./fake_images/stair_to_second_house_finished.jpg",
+        "down":"WOODENSHAFTBROKEN",
+        "eggs":[
+            {
+                "eggX":0,
+                "eggY":0,
+                "eggRadius":0
+            }
+        ]
+    },
+    "LONGLIGHTTUNNELBROKEN":{
+        "name":"LONGLIGHTTUNNELBROKEN",
+        "imageName":"./images/tunnels/broken/long_light_tunnel_broken.jpg",
+        "fakeImageName":"./fake_images/stair_to_second_house_finished.jpg",
+        "up":{
+            "transferTo":"TALLROOMBROKEN",
+            "arrowX":1581,
+            "arrowY":1063
+        },
+        "goBack":"DOORHALLWAYLIGHTBROKEN",
         "eggs":[
             {
                 "eggX":0,
@@ -1809,7 +2443,7 @@
         "name":"THIRDHOUSE1",
         "imageName":"./images/third_house/third_house_1.jpg",
         "fakeImageName":"./fake_images/bedroom_2_finished.jpg",
-        "randomArrow": "TRUE",
+        "randomArrow":"TRUE",
         "down":"THIRDHOUSE9",
         "turnAroundRight":{
             "transferTo":"THIRDHOUSE6",
@@ -1833,7 +2467,7 @@
         "name":"THIRDHOUSE8",
         "imageName":"./images/third_house/third_house_8.jpg",
         "fakeImageName":"./fake_images/bedroom_2_finished.jpg",
-        "randomArrow": "TRUE",
+        "randomArrow":"TRUE",
         "down":"THIRDHOUSE6",
         "turnAroundLeft":{
             "transferTo":"THIRDHOUSE9",
@@ -1857,7 +2491,7 @@
         "name":"THIRDHOUSE3",
         "imageName":"./images/third_house/third_house_3.jpg",
         "fakeImageName":"./fake_images/bedroom_2_finished.jpg",
-        "randomArrow": "TRUE",
+        "randomArrow":"TRUE",
         "goBack":"THIRDHOUSE8",
         "eggs":[
             {
@@ -1871,7 +2505,7 @@
         "name":"THIRDHOUSE9",
         "imageName":"./images/third_house/third_house_9.jpg",
         "fakeImageName":"./fake_images/bedroom_2_finished.jpg",
-        "randomArrow": "TRUE",
+        "randomArrow":"TRUE",
         "turnAroundLeft":{
             "transferTo":"THIRDHOUSE8",
             "arrowX":2336,
@@ -1899,7 +2533,7 @@
         "name":"THIRDHOUSE5",
         "imageName":"./images/third_house/third_house_5.jpg",
         "fakeImageName":"./fake_images/bedroom_2_finished.jpg",
-        "randomArrow": "TRUE",
+        "randomArrow":"TRUE",
         "down":"THIRDHOUSE1",
         "up":{
             "transferTo":"THIRDHOUSE4",
@@ -1918,7 +2552,7 @@
         "name":"THIRDHOUSE4",
         "imageName":"./images/third_house/third_house_4.jpg",
         "fakeImageName":"./fake_images/bedroom_2_finished.jpg",
-        "randomArrow": "TRUE",
+        "randomArrow":"TRUE",
         "goBack":"THIRDHOUSE5",
         "eggs":[
             {
