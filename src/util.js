@@ -100,7 +100,7 @@ export const triggerRoomUnlock = (roomWhereKeyIsFound) => {
       alert('You hear something... Are you sure you\'re alone?');
       controlAudio('play', '2nd');
       maps.LIVINGROOMDARK.exitSecondHouse = {
-        transferTo: 'STAIRTOSECONDHOUSEX',
+        transferTo: 'LADDERTOSECONDHOUSEX',
         arrowX: 1782,
         arrowY: 1226
       };
@@ -121,8 +121,8 @@ export const mysteryTrigger = () => {
 export const secondHouseTrigger = (direction, startCountdown, setStartCountdown) => {
   if (direction === 'in') {
     controlAudio('play', 'hunting');
-    setImageForRoom(maps.STAIRTOSECONDHOUSE, maps.IMAGECHANGES.stairToSecondHouseLockedImage);
-    delete maps.STAIRTOSECONDHOUSE.secondHouse;
+    setImageForRoom(maps.LADDERTOSECONDHOUSE, maps.IMAGECHANGES.stairToSecondHouseLockedImage);
+    delete maps.LADDERTOSECONDHOUSE.secondHouse;
   } else if (direction === 'out') {
     controlAudio('stop', '2nd');
     levelThreeTriggers(startCountdown, setStartCountdown);
@@ -179,8 +179,8 @@ export const clockCountdown = (barWidth, totalSecondsForCountdown, barFrameRateI
       }, 180000);
       setTimeout(() => {
         document.getElementById('popUpWindowParagraph').innerHTML = `You don't know who you can trust! Not even Mrs. Tobias.<br>
-        She didn't tell the police or her husband.<br>
-        And now he's gone... I don't know why you covered for me, Mrs. Tobias, but if you see this, try logging in as your name. There's something I've hidden for you. `;
+        She didn't tell the police or her husband. And she saw EVERYTHING.<br>
+        What was she doing at the Olegário's? And why was she so calm? FUCK, I really liked living there... Maybe Mom will let me live with her again?`;
         document.getElementById('popUpWindowLoadingBarSubtext').innerHTML = 'IT WAS AN ACCIDENT';
       }, 300000);
     } else {
@@ -195,7 +195,6 @@ export const clockCountdown = (barWidth, totalSecondsForCountdown, barFrameRateI
 };
 
 export const stopCountdownClock = () => {
-  console.log('stop the clock, chief');
   isCounting = false;
 };
 
@@ -263,6 +262,8 @@ export const resetTriggers = (
 
 export const generateGiveUpMessage = (score, name, level, startTime) => {
   const totalTime = Date.now() - startTime;
+  console.log('how much time you have played: ', totalTime);
+  // come back to this later
   if (score === 50 && level === 1) {
     alert(`${name} is a super hunter who found all 50 eggs!\nWOW!! Thanks for playing, and hope to see you again, soon!`);
   } else if (level === 2) {
@@ -324,18 +325,31 @@ export const cheatChecker = (name, setName, setStatus, setCurrentLocation, setLe
       setName('Doesn\'t matter');
       setStatus('hunting');
       setHUNT_MODE(false);
-      setCurrentLocation(maps.THIRDHOUSE6);
+      setCurrentLocation(maps.LONGSTRAIGHTTUNNEL);
       break;
     case 'CHEAT_exes':
       setName('Elle King');
       setStatus('hunting');
-      setCurrentLocation(maps.STAIRTOSECONDHOUSEX);
+      setCurrentLocation(maps.LADDERTOSECONDHOUSEX);
+      setLevel(3);
       levelThreeTriggers(startCountdown, setStartCountdown);
       break;
     case 'CHEAT_tim':
       setName('Tim Paolino');
       setStatus('hunting');
       setCurrentLocation(maps.THIRDHOUSE6);
+      break;
+    case 'CHEAT_broken':
+      setName('Damon Albarn');
+      setStatus('hunting');
+      setCurrentLocation(maps.EXITTOTHIRDHOUSEBROKEN);
+      break;
+    case 'CHEAT_final':
+      setName('Ryan Heiss');
+      setStatus('hunting');
+      setCurrentLocation(maps.LONGSTRAIGHTTUNNEL);
+      break;
+    default:
       break;
   }
 };

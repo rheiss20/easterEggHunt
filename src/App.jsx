@@ -40,6 +40,7 @@ export function App () {
   const [imageX, setImageX] = useState((width / 2) - (image.width * scale * 0.5));
   const [currentLocation, setCurrentLocation] = useState(maps.LIVINGROOM);
   const [landingPage] = useImage('SplashPage.jpg');
+  const [startTime, setStartTime] = useState('');
 
   cheatChecker(name, setName, setStatus, setCurrentLocation, setLevel, startCountdown, setStartCountdown, setRenderStopClockButton, setHUNT_MODE);
 
@@ -118,6 +119,8 @@ export function App () {
           onClick={ () => {
             setStatus('hunting');
             controlAudio('play', 'hunting');
+            alert('Have yourself an Easter egg hunt without leaving the safety and comfort of your own home! There are 50 eggs hidden inside this house. Click on the arrows to navigate, and click on an egg when you find it to add it to your score! Have fun, and try to collect them all!\n(Click "Give Up" when you are done playing.)');
+            setStartTime(Date.now());
           }
           }
         />
@@ -141,11 +144,14 @@ export function App () {
     return (<NavigationButtons
       name={name}
       HUNT_MODE={HUNT_MODE}
-      setHUNT_MODE={setHUNT_MODE}
       currentLocation={currentLocation}
       width={ width }
       height={ height }
       status={status}
+      setStatus={setStatus}
+      startCountdown={startCountdown}
+      setStartCountdown={setStartCountdown}
+      startTime={startTime}
     />);
   } else if (status === 'quiz') {
     return (
@@ -153,6 +159,25 @@ export function App () {
         { QuizSection(name, setStatus) }
       </div>
     );
+  } else if (status === 'after quiz') {
+    delete maps.FINALSTAIRDOWNBROKEN.quiz;
+    maps.FINALSTAIRDOWNBROKEN.up = {
+      transferTo:"DARKSTAIRDOWN",
+      arrowX:995,
+      arrowY:733
+    };
+
+    return (<NavigationButtons
+      name={name}
+      HUNT_MODE={HUNT_MODE}
+      currentLocation={maps.LONGSTRAIGHTTUNNEL}
+      width={ width }
+      height={ height }
+      status={'hunting'}
+      setStatus={setStatus}
+      startCountdown={false}
+      setStartCountdown={setStartCountdown}
+    />);
   } else {
     return (<div>Something done broke</div>);
   }

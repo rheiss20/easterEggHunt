@@ -11,8 +11,8 @@ import {
   secondHouseTrigger,
   generateCountdownClock,
   triggerRoomUnlock,
-  stopCountdownClock,
   randomNumberGenerator,
+  stopCountdownClock
 } from './util';
 import maps from './maps.json';
 import { Circle, Image, Layer, Rect, Stage, Star, Text } from 'react-konva';
@@ -23,6 +23,7 @@ import PropTypes from 'prop-types';
 import glitchMaps from './glitchMaps.json';
 
 export function NavigationButtons (props) {
+  // eslint-disable-next-line no-unused-vars
   const [status, setStatus] = useState(props.status);
   const [name, setName] = useState(props.name);
   const [score, setScore] = useState(0);
@@ -32,8 +33,6 @@ export function NavigationButtons (props) {
   const [foundKeys, setFoundKeys] = useState([]);
   const [foundExes, setFoundExes] = useState([]);
   const [numberOfExesFound, setNumberOfExesFound] = useState(0);
-  const [startTime, setStartTime] = useState('');
-  const [startCountdown, setStartCountdown] = useState(false);
   const [isCountdownRunning, setIsCountdownRunning] = useState(false);
   const [currentLocation, setCurrentLocation] = useState(props.currentLocation);
   const [renderStopClockButton] = useState(false);
@@ -61,8 +60,13 @@ export function NavigationButtons (props) {
   const elementScale = scale * 1.5;
 
   const randomGlitchLocation = function () {
-    const keys = Object.keys(glitchMaps);
-    return glitchMaps[keys[ keys.length * Math.random() << 0]];
+    if (score === 15) {
+      setInsideGlitchMap(false);
+      return maps.EXITTOTHIRDHOUSEBROKEN;
+    } else {
+      const keys = Object.keys(glitchMaps);
+      return glitchMaps[keys[keys.length * Math.random() << 0]];
+    }
   };
 
   const randomDirectionArrow = function () {
@@ -88,27 +92,22 @@ export function NavigationButtons (props) {
     }
   };
 
-  if (numberOfExesFound === 15) {
-    stopCountdownClock();
-    maps.DIRTYCORNERX.up = {
-      transferTo: 'STAIRTOTHIRDHOUSE',
-      arrowX:515,
-      arrowY:849
-    };
-  }
-
-  if (insideGlitchMap && score === 15) {
-    setCurrentLocation(maps.DOORHALLWAYX);
-    setInsideGlitchMap(false);
-    setScore(0);
-  }
-
   useEffect(() => {
-    if (status === 'hunting') {
-      alert('Have yourself an Easter egg hunt without leaving the safety and comfort of your own home! There are 50 eggs hidden inside this house. Click on the arrows to navigate, and click on an egg when you find it to add it to your score! Have fun, and try to collect them all!\n(Click "Give Up" when you are done playing.)');
+    if (numberOfExesFound >= 20) {
+      stopCountdownClock();
+      maps.EXITTOTHIRDHOUSEX.up = {
+        transferTo: 'THIRDHOUSE6',
+        arrowX:579,
+        arrowY:908
+      };
     }
-    setStartTime(Date.now());
-  }, [status]);
+  }, [numberOfExesFound]);
+
+  const changeXLocationToBroken = (currentLocation) => {
+    const currentLocationString = currentLocation.name;
+    const convertedString = currentLocationString.slice(0, -1);
+    return `${convertedString}BROKEN`;
+  };
 
   useEffect(() => {
     if (status === 'hunting') {
@@ -149,9 +148,9 @@ export function NavigationButtons (props) {
           onClick={() => {
             controlAudio('stop', 'hunting');
             controlAudio('stop', '2nd');
-            generateCountdownClock(setIsCountdownRunning, true);
-            generateGiveUpMessage(score, name, level, startTime);
-            setStatus('landing');
+            generateCountdownClock(setIsCountdownRunning);
+            generateGiveUpMessage(score, name, level, props.startTime);
+            props.setStatus('landing');
             setName('');
             setScore(0);
             setLevel(1);
@@ -220,7 +219,8 @@ export function NavigationButtons (props) {
       </Layer>
       <Layer>
         {
-          (numberOfExesFound > 0 && numberOfExesFound < 15)
+          // this is why the x's always show up, can modify this later
+          (numberOfExesFound > 0 && numberOfExesFound < 20)
             ? <>
               <Rect
                 x={ 5 * elementScale }
@@ -240,7 +240,7 @@ export function NavigationButtons (props) {
                 x={ 15 * elementScale }
                 y={ 10 * elementScale }
                 wrap
-                text={ `${numberOfExesFound}/15 X's found` }
+                text={ `${numberOfExesFound}/20 X's found` }
                 fontSize={ 30 * elementScale }
               />
             </>
@@ -378,12 +378,12 @@ export function NavigationButtons (props) {
                   radius={ ex.exRadius * scale }
                   onClick={ () => {
                     setNumberOfExesFound(numberOfExesFound + 1);
-                    setFoundExes([`${currentLocation.name}ex${i}`, ...foundExes]);
+                    setFoundExes([`${currentLocation.name}ex${i}`, `${changeXLocationToBroken(currentLocation)}ex${i}`, ...foundExes]);
                     setScore(0);
                   }}
                   onTouchStart={ () => {
                     setNumberOfExesFound(numberOfExesFound + 1);
-                    setFoundExes([`${currentLocation.name}ex${i}`, ...foundExes]);
+                    setFoundExes([`${currentLocation.name}ex${i}`, `${changeXLocationToBroken(currentLocation)}ex${i}`, ...foundExes]);
                     setScore(0);
                   }}
                   key={ `${currentLocation.name}ex${i}`}
@@ -402,15 +402,19 @@ export function NavigationButtons (props) {
         { currentLocation.randomArrow &&
         <Image
           image={ glitchedArrow }
-          x={ randomNumberGenerator(275, 1340)}
-          y={ randomNumberGenerator(634, 1097) }
+          x={ randomNumberGenerator(225, 1775)}
+          y={ randomNumberGenerator(150, 1200) }
           scaleX={ 0.1 }
           scaleY={ 0.1 }
           onClick={ () => {
+            setScore(0);
+            setLevel(4);
             changeLocation(randomGlitchLocation().name);
             setInsideGlitchMap(true);
           }}
           onTouchStart={ () => {
+            setScore(0);
+            setLevel(4);
             changeLocation(randomGlitchLocation().name);
             setInsideGlitchMap(true);
           }}/>
@@ -464,16 +468,6 @@ export function NavigationButtons (props) {
           scaleY={ 0.1 }
           onClick={ () => changeLocation(currentLocation.up.transferTo) }
           onTouchStart={ () => changeLocation(currentLocation.up.transferTo) }
-        />}
-        { currentLocation.upTwo &&
-        <Image
-          image={ arrowUp }
-          x={ (imageX + (currentLocation.upTwo.arrowX * scale)) - 30 }
-          y={ currentLocation.upTwo.arrowY * scale }
-          scaleX={ 0.1 }
-          scaleY={ 0.1 }
-          onClick={ () => changeLocation(currentLocation.upTwo.transferTo) }
-          onTouchStart={ () => changeLocation(currentLocation.upTwo.transferTo) }
         />}
         { currentLocation.down &&
         <Image
@@ -602,11 +596,11 @@ export function NavigationButtons (props) {
           scaleY={ 0.1 }
           onClick={ () => {
             changeLocation(currentLocation.exitSecondHouse.transferTo);
-            secondHouseTrigger('out', startCountdown, setStartCountdown);
+            secondHouseTrigger('out', props.startCountdown, props.setStartCountdown);
           }}
           onTouchStart={ () => {
             changeLocation(currentLocation.exitSecondHouse.transferTo);
-            secondHouseTrigger('out', startCountdown, setStartCountdown);
+            secondHouseTrigger('out', props.startCountdown, props.setStartCountdown);
           }}
         /> }
         { currentLocation.quiz &&
@@ -616,8 +610,8 @@ export function NavigationButtons (props) {
           y={ currentLocation.quiz.arrowY * scale }
           scaleX={ 0.1 }
           scaleY={ 0.1 }
-          onClick={ () => { setStatus('quiz'); }}
-          onTouchStart={ () => { setStatus('quiz'); }}
+          onClick={ () => { props.setStatus('quiz'); }}
+          onTouchStart={ () => { props.setStatus('quiz'); }}
         /> }
         { currentLocation.end &&
         <Image
@@ -658,7 +652,7 @@ export function NavigationButtons (props) {
             onTouchStart={ playCongratulations2Sound() }
           /> : null
         }
-        { startCountdown === true
+        { props.startCountdown === true
           ? <Portal isOpened={ true }>
             {isCountdownRunning ? null : generateCountdownClock(setIsCountdownRunning)}
             <PopUpWindow id='popUpWindow' windowHeight={ height } windowWidth={ width } elementScale={ elementScale }/>
@@ -676,4 +670,8 @@ NavigationButtons.propTypes = {
   width: PropTypes.number,
   height: PropTypes.number,
   status: PropTypes.string,
+  setStatus: PropTypes.func,
+  startCountdown: PropTypes.boolean,
+  setStartCountdown: PropTypes.func,
+  startTime: PropTypes.number,
 };
