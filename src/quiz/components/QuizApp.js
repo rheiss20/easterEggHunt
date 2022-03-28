@@ -99,7 +99,6 @@ class QuizApp extends Component {
     if (step >= totalQuestions + 1) {
       return (
         <Results
-          restartQuiz={this.restartQuiz}
           userAnswers={userAnswers}
           name={this.props.name}
           setStatus={this.props.setStatus}
