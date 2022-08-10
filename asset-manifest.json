@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "./static/css/main.28299a49.chunk.css",
+    "main.js": "./static/js/main.f7710c54.chunk.js",
+    "runtime-main.js": "./static/js/runtime-main.a958b96d.js",
+    "static/js/2.444002c4.chunk.js": "./static/js/2.444002c4.chunk.js",
+    "index.html": "./index.html",
+    "static/js/2.444002c4.chunk.js.LICENSE.txt": "./static/js/2.444002c4.chunk.js.LICENSE.txt",
+    "static/media/congratulations.a0014b1b.mp3": "./static/media/congratulations.a0014b1b.mp3",
+    "static/media/congratulations2.a98e847e.mp3": "./static/media/congratulations2.a98e847e.mp3",
+    "static/media/huntingMusic.5cb777f7.mp3": "./static/media/huntingMusic.5cb777f7.mp3",
+    "static/media/key.4db64fc3.mp3": "./static/media/key.4db64fc3.mp3",
+    "static/media/pop1.4a1f890d.mp3": "./static/media/pop1.4a1f890d.mp3",
+    "static/media/secondHouseSounds.20a55cde.mp3": "./static/media/secondHouseSounds.20a55cde.mp3"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a958b96d.js",
+    "static/js/2.444002c4.chunk.js",
+    "static/css/main.28299a49.chunk.css",
+    "static/js/main.f7710c54.chunk.js"
+  ]
+}

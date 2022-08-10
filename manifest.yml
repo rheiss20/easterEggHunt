@@ -1,5 +1,0 @@
-applications:
-  - name: ATN-Egg-Hunt
-    path: build
-    memory: 64m
-    buildpack: staticfile_buildpack
