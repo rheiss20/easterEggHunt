@@ -1,44 +1,39 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 
 export default class Portal extends React.Component {
-  componentDidMount () {
-    this.renderPortal();
-  }
+  state = {
+    defaultNode: null,
+  };
 
-  componentDidUpdate () {
-    this.renderPortal();
-  }
-
-  componentWillUnmount () {
-    ReactDOM.unmountComponentAtNode(this.defaultNode || this.props.node);
-    if (this.defaultNode) {
-      document.body.removeChild(this.defaultNode);
+  componentDidMount() {
+    if (!this.props.node) {
+      const defaultNode = document.createElement('div');
+      document.body.appendChild(defaultNode);
+      this.setState({ defaultNode });
     }
-    this.defaultNode = null;
   }
 
-  renderPortal () {
-    if (!this.props.node && !this.defaultNode) {
-      this.defaultNode = document.createElement('div');
-      document.body.appendChild(this.defaultNode);
+  componentWillUnmount() {
+    if (this.state.defaultNode) {
+      document.body.removeChild(this.state.defaultNode);
     }
+  }
 
-    let children = this.props.children;
-    if (typeof children.type === 'function') {
-      children = React.cloneElement(children);
+  render() {
+    const targetNode = this.props.node || this.state.defaultNode;
+
+    if (!targetNode) {
+      return null;
     }
 
-    ReactDOM.render(children, this.props.node || this.defaultNode);
-  }
-
-  render () {
-    return null;
+    return createPortal(this.props.children, targetNode);
   }
 }
 
 Portal.propTypes = {
-  node: PropTypes.string,
-  children: PropTypes.string
+  node: PropTypes.any,
+  children: PropTypes.node,
+  isOpened: PropTypes.bool,
 };
