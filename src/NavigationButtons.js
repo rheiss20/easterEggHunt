@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
+  clearFourthHouseRoom,
   controlAudio,
   generateGiveUpMessage,
   mysteryTrigger,
@@ -11,23 +12,28 @@ import {
   generateCountdownClock,
   triggerRoomUnlock,
   randomNumberGenerator,
+  resetFourthHouse,
   stopCountdownClock,
+  unlockFourthHouse,
 } from './util';
 import maps from './maps.json';
-import { Circle, Image, Layer, Rect, Stage, Star, Text } from 'react-konva';
+import { Circle, Group, Image, Layer, Rect, Stage, Star, Text } from 'react-konva';
 import Portal from './Portal';
 import { PopUpWindow } from './PopUpWindow';
 import useImage from 'use-image';
 import PropTypes from 'prop-types';
 import glitchMaps from './glitchMaps.json';
+import { ComputerDesktop } from './fourth-house/ComputerDesktop';
 
 export function NavigationButtons(props) {
   // eslint-disable-next-line no-unused-vars
   const [status, setStatus] = useState(props.status);
   const [name, setName] = useState(props.name);
   const [score, setScore] = useState(0);
-  const [level, setLevel] = useState(1);
-  const [maxScore, setMaxScore] = useState(50);
+  const [level, setLevel] = useState(props.currentLocation.fourthHouse ? 4 : 1);
+  const [maxScore, setMaxScore] = useState(
+    props.currentLocation.fourthHouse ? 10 : 50,
+  );
   const [foundEggs, setFoundEggs] = useState([]);
   const [foundKeys, setFoundKeys] = useState([]);
   const [foundExes, setFoundExes] = useState([]);
@@ -59,7 +65,16 @@ export function NavigationButtons(props) {
   const [checkmark] = useImage('checkmark.gif');
   const [congratulationsLevel1] = useImage('Congratulations.png');
   const [congratulationsLevel2] = useImage('CongratulationsLevel2.jpg');
+  const [congratulationsLevel3] = useImage('CongratulationsLevel3.jpg');
   const [insideGlitchMap, setInsideGlitchMap] = useState(false);
+  const [showLevel3Congratulations, setShowLevel3Congratulations] = useState(false);
+  const [clearedFourthHouseRooms, setClearedFourthHouseRooms] = useState([]);
+  const [isFourthHouseUnlocked, setIsFourthHouseUnlocked] = useState(false);
+  const [isComputerOpen, setIsComputerOpen] = useState(false);
+  const [desktopClickCount, setDesktopClickCount] = useState(0);
+  const playedLevel1CongratulationsRef = useRef(false);
+  const playedLevel2CongratulationsRef = useRef(false);
+  const dismissingLevel3CongratulationsRef = useRef(false);
   const elementScale = scale * 1.5;
   const directionScale = Math.max(0.05, Math.min(0.12, height / 8000));
   const renderedImageWidth = image ? image.width * scale : width;
@@ -126,6 +141,41 @@ export function NavigationButtons(props) {
     }
   };
 
+  const openComputer = (includeOpeningClick = true) => {
+    setDesktopClickCount(props.onDesktopOpen(includeOpeningClick));
+    setIsComputerOpen(true);
+  };
+
+  const collectEgg = (eggIndex) => {
+    const eggId = `${currentLocation.name}egg${eggIndex}`;
+    if (foundEggs.includes(eggId)) return;
+
+    playEggClickSound();
+    const nextFoundEggs = [eggId, ...foundEggs];
+    setFoundEggs(nextFoundEggs);
+    setScore((currentScore) => currentScore + 1);
+
+    if (!currentLocation.fourthHouse || currentLocation.eggs.length === 0) {
+      return;
+    }
+
+    const roomEggPrefix = `${currentLocation.name}egg`;
+    const roomEggsFound = nextFoundEggs.filter((foundEgg) =>
+      foundEgg.startsWith(roomEggPrefix),
+    ).length;
+    if (roomEggsFound === currentLocation.eggs.length) {
+      const emptyImage = clearFourthHouseRoom(currentLocation.name);
+      setClearedFourthHouseRooms((clearedRooms) =>
+        clearedRooms.includes(currentLocation.name)
+          ? clearedRooms
+          : [...clearedRooms, currentLocation.name],
+      );
+      if (emptyImage) {
+        emptyImage.onload = () => setImage(emptyImage);
+      }
+    }
+  };
+
   useEffect(() => {
     if (numberOfExesFound >= 20) {
       stopCountdownClock();
@@ -145,7 +195,12 @@ export function NavigationButtons(props) {
 
   useEffect(() => {
     if (status === 'hunting') {
-      setImage(currentLocation.image);
+      const nextImage = currentLocation.image;
+      if (nextImage && nextImage.width && nextImage.height) {
+        setImage(nextImage);
+      } else if (nextImage) {
+        nextImage.onload = () => setImage(nextImage);
+      }
     }
   }, [status, currentLocation]);
 
@@ -156,17 +211,68 @@ export function NavigationButtons(props) {
   }, [props.startCountdown, isCountdownRunning]);
 
   useEffect(() => {
+    if (props.startComputerOpen) {
+      openComputer(false);
+    }
+  }, [props.startComputerOpen]);
+
+  useEffect(() => {
+    if (level === 4 && score === 10 && !isFourthHouseUnlocked) {
+      unlockFourthHouse();
+      setIsFourthHouseUnlocked(true);
+      setMaxScore(10);
+    }
+  }, [level, score, isFourthHouseUnlocked]);
+
+  useEffect(() => {
+    if (insideGlitchMap && score >= 15 && !showLevel3Congratulations) {
+      dismissingLevel3CongratulationsRef.current = false;
+      setShowLevel3Congratulations(true);
+      playCongratulations2Sound();
+    }
+  }, [insideGlitchMap, score, showLevel3Congratulations]);
+
+  useEffect(() => {
+    if (
+      score === maxScore &&
+      level === 1 &&
+      !playedLevel1CongratulationsRef.current
+    ) {
+      playedLevel1CongratulationsRef.current = true;
+      playCongratulationsSound();
+    }
+    if (
+      score === maxScore &&
+      level === 2 &&
+      !playedLevel2CongratulationsRef.current
+    ) {
+      playedLevel2CongratulationsRef.current = true;
+      playCongratulations2Sound();
+    }
+  }, [score, maxScore, level]);
+
+  const dismissLevel3Congratulations = () => {
+    if (dismissingLevel3CongratulationsRef.current) return;
+    dismissingLevel3CongratulationsRef.current = true;
+    setShowLevel3Congratulations(false);
+    setInsideGlitchMap(false);
+    setScore(0);
+    setLevel(3);
+    changeLocation('EXITTOTHIRDHOUSEBROKEN');
+  };
+
+  useEffect(() => {
     window.addEventListener('resize', updateWidthAndHeight);
-    if (currentLocation.image) {
-      const scaleX = width / currentLocation.image.width;
-      const scaleY = height / currentLocation.image.height;
+    if (image && image.width && image.height) {
+      const scaleX = width / image.width;
+      const scaleY = height / image.height;
       const scale = Math.min(scaleX, scaleY);
-      const imageX = width / 2 - currentLocation.image.width * scale * 0.5;
+      const imageX = width / 2 - image.width * scale * 0.5;
       setScale(scale);
       setImageX(imageX);
     }
     return () => window.removeEventListener('resize', updateWidthAndHeight);
-  }, [height, width, currentLocation.image]);
+  }, [height, width, image]);
 
   return (
     <>
@@ -256,7 +362,31 @@ export function NavigationButtons(props) {
       <Stage width={width} height={height}>
         <Layer>
           <Rect width={width} height={height} fill='#999999' />
+          {currentLocation.fourthHouse &&
+          !clearedFourthHouseRooms.includes(currentLocation.name) ? (
+            <Rect
+              x={Math.max(0, imageX - 14)}
+              y={0}
+              width={Math.min(width, renderedImageWidth + 28)}
+              height={Math.min(height, renderedImageHeight + 24)}
+              fill='#eee9d8'
+              shadowColor='#000'
+              shadowBlur={18}
+              shadowOpacity={0.55}
+            />
+          ) : null}
           <Image image={image} x={imageX} scaleX={scale} scaleY={scale} />
+          {currentLocation.fourthHouse &&
+          !clearedFourthHouseRooms.includes(currentLocation.name) ? (
+            <Rect
+              x={imageX}
+              y={0}
+              width={renderedImageWidth}
+              height={renderedImageHeight}
+              fill='rgba(160, 102, 46, 0.12)'
+              listening={false}
+            />
+          ) : null}
         </Layer>
         <Layer>
           {// this is why the x's always show up, can modify this later
@@ -328,7 +458,7 @@ export function NavigationButtons(props) {
                 x={15 * elementScale}
                 y={10 * elementScale}
                 wrap
-                text={`Eggs Found: ${score}/50`}
+                text={`Eggs Found: ${score}/${currentLocation.fourthHouse ? 10 : 50}`}
                 fontSize={30 * elementScale}
               />
             </>
@@ -342,25 +472,13 @@ export function NavigationButtons(props) {
                   x={imageX + egg.eggX * scale}
                   y={egg.eggY * scale}
                   radius={egg.eggRadius * scale}
-                  onClick={() => {
-                    playEggClickSound();
-                    setScore(score + 1);
-                    setFoundEggs([
-                      `${currentLocation.name}egg${i}`,
-                      ...foundEggs,
-                    ]);
-                  }}
-                  onTouchStart={() => {
-                    playEggClickSound();
-                    setScore(score + 1);
-                    setFoundEggs([
-                      `${currentLocation.name}egg${i}`,
-                      ...foundEggs,
-                    ]);
-                  }}
+                  fill='rgba(0, 0, 0, 0.001)'
+                  onClick={() => collectEgg(i)}
+                  onTouchStart={() => collectEgg(i)}
                   key={`${currentLocation.name}egg${i}`}
                 />
-              ) : (
+              ) : currentLocation.fourthHouse &&
+                clearedFourthHouseRooms.includes(currentLocation.name) ? null : (
                 <Star
                   x={imageX + egg.eggX * scale}
                   y={egg.eggY * scale}
@@ -393,8 +511,12 @@ export function NavigationButtons(props) {
                     x={imageX + key.keyX * scale}
                     y={key.keyY * scale}
                     radius={key.keyRadius * scale}
+                    fill='rgba(0, 0, 0, 0.001)'
                     onClick={() => {
                       triggerRoomUnlock(currentLocation.name);
+                      if (currentLocation.name === 'KITCHENCUPBOARD') {
+                        props.setFoundKitchenCupboard(true);
+                      }
                       setFoundKeys([
                         `${currentLocation.name}key${i}`,
                         ...foundKeys,
@@ -402,6 +524,9 @@ export function NavigationButtons(props) {
                     }}
                     onTouchStart={() => {
                       triggerRoomUnlock(currentLocation.name);
+                      if (currentLocation.name === 'KITCHENCUPBOARD') {
+                        props.setFoundKitchenCupboard(true);
+                      }
                       setFoundKeys([
                         `${currentLocation.name}key${i}`,
                         ...foundKeys,
@@ -428,6 +553,7 @@ export function NavigationButtons(props) {
                     x={imageX + ex.exX * scale}
                     y={ex.exY * scale}
                     radius={ex.exRadius * scale}
+                    fill='rgba(0, 0, 0, 0.001)'
                     onClick={() => {
                       setNumberOfExesFound(numberOfExesFound + 1);
                       setFoundExes([
@@ -460,6 +586,12 @@ export function NavigationButtons(props) {
                 ),
               )
             : null}
+          <Group
+            visible={
+              !showLevel3Congratulations &&
+              currentLocation.name !== 'FOURTHBASEMENT'
+            }
+          >
           {currentLocation.randomArrow && (
             <Image
               image={glitchedArrow}
@@ -485,7 +617,7 @@ export function NavigationButtons(props) {
             />
           )}
           {currentLocation.randomArrows && (
-            <div>
+            <>
               <Image
                 image={randomDirectionArrow()}
                 {...getArrowPosition(
@@ -534,7 +666,7 @@ export function NavigationButtons(props) {
                   changeLocation(randomGlitchLocation().name);
                 }}
               />
-            </div>
+            </>
           )}
           {currentLocation.up && (
             <Image
@@ -786,17 +918,91 @@ export function NavigationButtons(props) {
               scaleX={directionScale}
               scaleY={directionScale}
               onClick={() => {
-                alert(
-                  'That\'s all we got for now! Tune in next time to see more about this project and where its going! Make sure you tell Ryan that you got here when you get the chance',
-                );
+                resetFourthHouse();
+                setClearedFourthHouseRooms([]);
+                setIsFourthHouseUnlocked(false);
+                setLevel(4);
+                setScore(0);
+                setMaxScore(10);
+                setFoundEggs([]);
+                changeLocation(currentLocation.end.transferTo);
               }}
               onTouchStart={() => {
-                alert(
-                  'That\'s all we got for now! Tune in next time to see more about this project and where its going! Make sure you tell Ryan that you got here when you get the chance',
-                );
+                resetFourthHouse();
+                setClearedFourthHouseRooms([]);
+                setIsFourthHouseUnlocked(false);
+                setLevel(4);
+                setScore(0);
+                setMaxScore(10);
+                setFoundEggs([]);
+                changeLocation(currentLocation.end.transferTo);
               }}
             />
           )}
+          </Group>
+          {currentLocation.computer ? (
+            <>
+              <Rect
+                x={imageX + 940 * scale}
+                y={650 * scale}
+                width={610 * scale}
+                height={300 * scale}
+                fill='#9a9a92'
+                stroke='#d6d5ca'
+                strokeWidth={12 * scale}
+                cornerRadius={10 * scale}
+              />
+              <Rect
+                x={imageX + 1510 * scale}
+                y={780 * scale}
+                width={210 * scale}
+                height={250 * scale}
+                fill='#52504b'
+                stroke='#aaa9a1'
+                strokeWidth={10 * scale}
+                cornerRadius={28 * scale}
+              />
+              <Rect
+                x={imageX + 1540 * scale}
+                y={1010 * scale}
+                width={22 * scale}
+                height={250 * scale}
+                fill='#888983'
+              />
+              <Rect
+                x={imageX + 1665 * scale}
+                y={1010 * scale}
+                width={22 * scale}
+                height={250 * scale}
+                fill='#888983'
+              />
+              <Rect
+                x={imageX + 1110 * scale}
+                y={520 * scale}
+                width={300 * scale}
+                height={220 * scale}
+                fill='#151719'
+                stroke='#c7c8c5'
+                strokeWidth={18 * scale}
+                cornerRadius={12 * scale}
+              />
+              <Text
+                x={imageX + 1170 * scale}
+                y={600 * scale}
+                text='hello'
+                fill='#e8e8df'
+                fontSize={46 * scale}
+              />
+              <Circle
+                x={imageX + currentLocation.computer.computerX * scale}
+                y={currentLocation.computer.computerY * scale}
+                radius={currentLocation.computer.computerRadius * scale}
+                fill='rgba(0, 0, 0, 0.001)'
+                onClick={() => openComputer()}
+                onTouchStart={() => openComputer()}
+              />
+            </>
+          ) : null}
           {score === maxScore && level === 1 && congratulationsLevel1 ? (
             <Image
               image={congratulationsLevel1}
@@ -814,7 +1020,6 @@ export function NavigationButtons(props) {
                 setMaxScore(250);
               }}
               onTouchStart={() => {
-                playCongratulationsSound();
                 triggerRoomUnlock('MYSTERY');
                 setMaxScore(250);
               }}
@@ -833,18 +1038,36 @@ export function NavigationButtons(props) {
               scaleX={elementScale * 0.75}
               scaleY={elementScale * 0.75}
               onClick={() => {
-                playCongratulations2Sound();
                 triggerRoomUnlock('SECONDMYSTERY');
                 setLevel(3);
                 setMaxScore(250);
               }}
               onTouchStart={() => {
-                playCongratulations2Sound();
                 triggerRoomUnlock('SECONDMYSTERY');
                 setLevel(3);
                 setMaxScore(250);
               }}
             />
+          ) : null}
+          {showLevel3Congratulations && congratulationsLevel3 ? (
+            <>
+              <Rect
+                width={width}
+                height={height}
+                fill='#000'
+                onClick={dismissLevel3Congratulations}
+                onTouchStart={dismissLevel3Congratulations}
+              />
+              <Image
+                image={congratulationsLevel3}
+                x={imageX}
+                y={0}
+                width={renderedImageWidth}
+                height={renderedImageHeight}
+                onClick={dismissLevel3Congratulations}
+                onTouchStart={dismissLevel3Congratulations}
+              />
+            </>
           ) : null}
         </Layer>
       </Stage>
@@ -857,6 +1080,23 @@ export function NavigationButtons(props) {
             elementScale={elementScale}
           />
         </Portal>
+      ) : null}
+      {isComputerOpen ? (
+        <ComputerDesktop
+          onClose={() => setIsComputerOpen(false)}
+          canPlayShellHouse={
+            props.foundKitchenCupboard &&
+            props.perfectQuizScore &&
+            desktopClickCount < 450
+          }
+          foundKitchenCupboard={props.foundKitchenCupboard}
+          perfectQuizScore={props.perfectQuizScore}
+          playerName={props.leaderboardName}
+          startTime={props.startTime}
+          isCheatRun={props.isCheatRun}
+          startLeaderboardOpen={props.startLeaderboardOpen}
+          sessionClickCount={desktopClickCount}
+        />
       ) : null}
     </>
   );
@@ -873,4 +1113,13 @@ NavigationButtons.propTypes = {
   startCountdown: PropTypes.bool,
   setStartCountdown: PropTypes.func,
   startTime: PropTypes.number,
+  foundKitchenCupboard: PropTypes.bool,
+  perfectQuizScore: PropTypes.bool,
+  setFoundKitchenCupboard: PropTypes.func,
+  leaderboardName: PropTypes.string,
+  isCheatRun: PropTypes.bool,
+  startComputerOpen: PropTypes.bool,
+  startLeaderboardOpen: PropTypes.bool,
+  sessionClickCount: PropTypes.number,
+  onDesktopOpen: PropTypes.func,
 };

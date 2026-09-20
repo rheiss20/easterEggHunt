@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Image, Layer, Stage } from 'react-konva';
 import useImage from 'use-image';
 import maps from './maps.json';
@@ -282,6 +282,16 @@ export function App() {
   // eslint-disable-next-line no-unused-vars
   const [level, setLevel] = useState(1);
   const [startCountdown, setStartCountdown] = useState(false);
+  const [foundKitchenCupboard, setFoundKitchenCupboard] = useState(false);
+  const [perfectQuizScore, setPerfectQuizScore] = useState(false);
+  const [leaderboardName, setLeaderboardName] = useState('');
+  const [isCheatRun, setIsCheatRun] = useState(false);
+  const [startComputerOpen, setStartComputerOpen] = useState(false);
+  const [startLeaderboardOpen, setStartLeaderboardOpen] = useState(false);
+  const [sessionClickCount, setSessionClickCount] = useState(0);
+  const clickCountRef = useRef(0);
+  const isClickTrackingRef = useRef(false);
+  const hasRunStartedRef = useRef(false);
   // eslint-disable-next-line no-unused-vars
   const [renderStopClockButton, setRenderStopClockButton] = useState(false);
   const [landingPage] = useImage('SplashPage.jpg');
@@ -291,32 +301,76 @@ export function App() {
   const [scale, setScale] = useState(1);
   const [imageX, setImageX] = useState(width / 2);
   const [currentLocation, setCurrentLocation] = useState(maps.LIVINGROOM);
-  const [startTime, setStartTime] = useState('');
+  const [startTime, setStartTime] = useState(0);
   const renderedImageWidth = image ? image.width * scale : width;
   const renderedImageHeight = image ? image.height * scale : height;
   const inputWidth = Math.min(360, renderedImageWidth * 0.62);
   const inputHeight = Math.min(52, renderedImageHeight * 0.065);
   const buttonWidth = Math.min(240, renderedImageWidth * 0.42);
   const buttonHeight = Math.min(72, renderedImageHeight * 0.09);
+  const mobileLandingOffset = width <= 600 ? 50 : 0;
   const landingInputLeft = imageX + renderedImageWidth / 2 - inputWidth / 2;
-  const landingInputTop = Math.max(16, renderedImageHeight * 0.62 - 150);
+  const landingInputTop = Math.max(
+    16,
+    renderedImageHeight * 0.62 - 150 + mobileLandingOffset,
+  );
   const landingButtonLeft = imageX + renderedImageWidth / 2 - buttonWidth / 2;
   const landingButtonTop = Math.max(
     landingInputTop + inputHeight + 12,
-    renderedImageHeight * 0.71 - 150,
+    renderedImageHeight * 0.71 - 150 + mobileLandingOffset,
   );
 
-  cheatChecker(
-    name,
-    setName,
-    setStatus,
-    setCurrentLocation,
-    setLevel,
-    startCountdown,
-    setStartCountdown,
-    setRenderStopClockButton,
-    setHUNT_MODE,
-  );
+  useEffect(() => {
+    cheatChecker(
+      name,
+      setName,
+      setStatus,
+      setCurrentLocation,
+      setLevel,
+      startCountdown,
+      setStartCountdown,
+      setRenderStopClockButton,
+      setHUNT_MODE,
+      setFoundKitchenCupboard,
+      setPerfectQuizScore,
+      setLeaderboardName,
+      setIsCheatRun,
+      setStartTime,
+      setStartComputerOpen,
+      setStartLeaderboardOpen,
+    );
+  }, [name, startCountdown]);
+
+  useEffect(() => {
+    if (
+      !hasRunStartedRef.current &&
+      (status === 'hunting' || status === 'quiz')
+    ) {
+      clickCountRef.current = 0;
+      isClickTrackingRef.current = true;
+      hasRunStartedRef.current = true;
+    }
+  }, [status]);
+
+  useEffect(() => {
+    const trackClick = () => {
+      if (isClickTrackingRef.current) {
+        clickCountRef.current += 1;
+      }
+    };
+    document.addEventListener('click', trackClick);
+    return () => document.removeEventListener('click', trackClick);
+  }, []);
+
+  const finishClickTracking = (includeOpeningClick = false) => {
+    if (!isClickTrackingRef.current) return clickCountRef.current;
+    if (includeOpeningClick) {
+      clickCountRef.current += 1;
+    }
+    isClickTrackingRef.current = false;
+    setSessionClickCount(clickCountRef.current);
+    return clickCountRef.current;
+  };
 
   const updateWidthAndHeight = () => {
     setWidth(window.innerWidth);
@@ -373,9 +427,8 @@ export function App() {
           }}
           onChange={(e) => setName(e.target.value)}
         />
-        <input
-          type='Button'
-          value='Start!'
+        <button
+          type='button'
           style={{
             position: 'absolute',
             top: `${landingButtonTop}px`,
@@ -388,6 +441,8 @@ export function App() {
           }}
           disabled={name === '' || nameCheck(name)}
           onClick={() => {
+            setLeaderboardName(name);
+            setIsCheatRun(false);
             setStatus('hunting');
             controlAudio('play', 'hunting');
             alert(
@@ -395,7 +450,9 @@ export function App() {
             );
             setStartTime(Date.now());
           }}
-        />
+        >
+          Start!
+        </button>
         <Stage width={width} height={height}>
           <Layer>
             <Image image={image} x={imageX} scaleX={scale} scaleY={scale} />
@@ -416,10 +473,23 @@ export function App() {
         startCountdown={startCountdown}
         setStartCountdown={setStartCountdown}
         startTime={startTime}
+        foundKitchenCupboard={foundKitchenCupboard}
+        perfectQuizScore={perfectQuizScore}
+        setFoundKitchenCupboard={setFoundKitchenCupboard}
+        leaderboardName={leaderboardName || name}
+        isCheatRun={isCheatRun}
+        startComputerOpen={startComputerOpen}
+        startLeaderboardOpen={startLeaderboardOpen}
+        sessionClickCount={sessionClickCount}
+        onDesktopOpen={finishClickTracking}
       />
     );
   } else if (status === 'quiz') {
-    return <main className='quiz'>{QuizSection(name, setStatus)}</main>;
+    return (
+      <main className='quiz'>
+        {QuizSection(name, setStatus, setPerfectQuizScore)}
+      </main>
+    );
   } else if (status === 'after quiz') {
     delete maps.FINALSTAIRDOWNBROKEN.quiz;
     maps.FINALSTAIRDOWNBROKEN.up = {
@@ -439,6 +509,16 @@ export function App() {
         setStatus={setStatus}
         startCountdown={false}
         setStartCountdown={setStartCountdown}
+        foundKitchenCupboard={foundKitchenCupboard}
+        perfectQuizScore={perfectQuizScore}
+        setFoundKitchenCupboard={setFoundKitchenCupboard}
+        leaderboardName={leaderboardName || name}
+        isCheatRun={isCheatRun}
+        startTime={startTime}
+        startComputerOpen={startComputerOpen}
+        startLeaderboardOpen={startLeaderboardOpen}
+        sessionClickCount={sessionClickCount}
+        onDesktopOpen={finishClickTracking}
       />
     );
   } else {

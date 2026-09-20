@@ -19,6 +19,7 @@ export const setImageForRoom = (roomToChange, imageToChangeTo) => {
   const image = new window.Image();
   image.src = imageToChangeTo;
   roomToChange.image = image;
+  return image;
 };
 
 // Preload all the maps, also how the images are generated
@@ -34,6 +35,13 @@ Object.keys(glitchMaps).forEach((key) => {
   setImageForRoom(glitchMaps[key], glitchMaps[key].fakeImageName);
   setImageForRoom(glitchMaps[key], glitchMaps[key].imageName);
 });
+
+const initialFourthHouseImages = {
+  FINALHOUSE: maps.FINALHOUSE.image,
+  FOURTHKITCHEN: maps.FOURTHKITCHEN.image,
+  FOURTHBEDROOM: maps.FOURTHBEDROOM.image,
+  FOURTHDINING: maps.FOURTHDINING.image,
+};
 
 export const controlAudio = (command, file) => {
   if (file === 'hunting') {
@@ -116,9 +124,8 @@ export const triggerRoomUnlock = (roomWhereKeyIsFound) => {
       };
       break;
     case 'KITCHENCUPBOARD':
-      // CHANGE THIS AFTER PLAYTESTING CHANGE THIS AFTER PLAYTESTING CHANGE THIS AFTER PLAYTESTING
       alert(
-        'If you found this, tell Ryan. He\'s trying to track how many people find this by accident.',
+        'It all happened so fast. I grabbed the nearest thing I could find. I knew it was in the cupboard. I\'m so fucking sorry',
       );
       break;
     default:
@@ -126,6 +133,34 @@ export const triggerRoomUnlock = (roomWhereKeyIsFound) => {
         'You have found the test trigger. This alert is all that happens because of it. You really shouldn\'t be seeing this.',
       );
   }
+};
+
+export const unlockFourthHouse = () => {
+  maps.FINALHOUSE.up = {
+    transferTo: 'FOURTHBASEMENT',
+    arrowX: 1020,
+    arrowY: 920,
+  };
+  delete maps.FINALHOUSE.lockedBasement;
+};
+
+export const clearFourthHouseRoom = (roomName) => {
+  const emptyRoomImages = {
+    FINALHOUSE: maps.IMAGECHANGES.fourthLivingRoomEmptyImage,
+    FOURTHKITCHEN: maps.IMAGECHANGES.fourthKitchenEmptyImage,
+    FOURTHBEDROOM: maps.IMAGECHANGES.fourthBedroomEmptyImage,
+    FOURTHDINING: maps.IMAGECHANGES.fourthDiningRoomEmptyImage,
+  };
+  const emptyImage = emptyRoomImages[roomName];
+  return emptyImage ? setImageForRoom(maps[roomName], emptyImage) : null;
+};
+
+export const resetFourthHouse = () => {
+  Object.keys(initialFourthHouseImages).forEach((roomName) => {
+    maps[roomName].image = initialFourthHouseImages[roomName];
+  });
+  maps.FINALHOUSE.lockedBasement = true;
+  delete maps.FINALHOUSE.up;
 };
 
 export const mysteryTrigger = () => {
@@ -401,7 +436,32 @@ export const cheatChecker = (
   setStartCountdown,
   setRenderStopClockButton,
   setHUNT_MODE,
+  setFoundKitchenCupboard,
+  setPerfectQuizScore,
+  setLeaderboardName,
+  setIsCheatRun,
+  setStartTime,
+  setStartComputerOpen,
+  setStartLeaderboardOpen,
 ) => {
+  const cheatNames = [
+    'CHEAT_howie',
+    'CHEAT_quiz',
+    'CHEAT_nick',
+    'CHEAT_clock',
+    'CHEAT_nohunt',
+    'CHEAT_exes',
+    'CHEAT_tim',
+    'CHEAT_broken',
+    'CHEAT_final',
+    'CHEAT_fourth',
+    'CHEAT_desktop',
+    'CHEAT_leaderboard',
+  ];
+  if (cheatNames.includes(name)) {
+    setLeaderboardName(name);
+    setIsCheatRun(true);
+  }
   switch (name) {
     case 'CHEAT_howie':
       triggerRoomUnlock('MYSTERY');
@@ -456,6 +516,34 @@ export const cheatChecker = (
       setName('Ryan Heiss');
       setStatus('hunting');
       setCurrentLocation(maps.LONGSTRAIGHTTUNNEL);
+      break;
+    case 'CHEAT_fourth':
+      resetFourthHouse();
+      setName('Instant Hunter');
+      setStatus('hunting');
+      setCurrentLocation(maps.FINALHOUSE);
+      setLevel(4);
+      setFoundKitchenCupboard(true);
+      setPerfectQuizScore(true);
+      break;
+    case 'CHEAT_desktop':
+      setName('Desktop Operator');
+      setStatus('hunting');
+      setCurrentLocation(maps.FOURTHBASEMENT);
+      setLevel(4);
+      setFoundKitchenCupboard(true);
+      setPerfectQuizScore(true);
+      setStartTime(Date.now());
+      setStartComputerOpen(true);
+      break;
+    case 'CHEAT_leaderboard':
+      setName('Leaderboard Viewer');
+      setStatus('hunting');
+      setCurrentLocation(maps.FOURTHBASEMENT);
+      setLevel(4);
+      setStartTime(Date.now());
+      setStartComputerOpen(true);
+      setStartLeaderboardOpen(true);
       break;
     default:
       break;

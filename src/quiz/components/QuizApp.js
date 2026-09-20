@@ -102,6 +102,7 @@ class QuizApp extends Component {
           userAnswers={userAnswers}
           name={this.props.name}
           setStatus={this.props.setStatus}
+          setPerfectQuizScore={this.props.setPerfectQuizScore}
         />
       );
     } else {
@@ -124,7 +125,8 @@ class QuizApp extends Component {
 
 QuizApp.propTypes = {
   name: PropTypes.string.isRequired,
-  setStatus: PropTypes.func.isRequired
+  setStatus: PropTypes.func.isRequired,
+  setPerfectQuizScore: PropTypes.func.isRequired
 };
 
 export default QuizApp;
