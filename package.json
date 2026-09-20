@@ -6,7 +6,7 @@
     "immer": "^9.0.6",
     "konva": "^8.2.3",
     "leo-profanity": "^1.5.0",
-    "lint": "^0.7.0",
+    "lint": "^1.2.2",
     "nodemon": "^2.0.15",
     "object-path": "^0.11.8",
     "react": "^17.0.2",
