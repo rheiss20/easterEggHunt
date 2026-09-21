@@ -6,6 +6,7 @@ import {
   mysteryTrigger,
   playCongratulations2Sound,
   playCongratulationsSound,
+  playKeyClickSound,
   playEggClickSound,
   resetTriggers,
   secondHouseTrigger,
@@ -14,7 +15,6 @@ import {
   randomNumberGenerator,
   resetFourthHouse,
   stopCountdownClock,
-  unlockFourthHouse,
 } from './util';
 import maps from './maps.json';
 import { Circle, Group, Image, Layer, Rect, Stage, Star, Text } from 'react-konva';
@@ -69,7 +69,7 @@ export function NavigationButtons(props) {
   const [insideGlitchMap, setInsideGlitchMap] = useState(false);
   const [showLevel3Congratulations, setShowLevel3Congratulations] = useState(false);
   const [clearedFourthHouseRooms, setClearedFourthHouseRooms] = useState([]);
-  const [isFourthHouseUnlocked, setIsFourthHouseUnlocked] = useState(false);
+  const [isFourthStairUnlocked, setIsFourthStairUnlocked] = useState(false);
   const [isComputerOpen, setIsComputerOpen] = useState(false);
   const [desktopClickCount, setDesktopClickCount] = useState(0);
   const playedLevel1CongratulationsRef = useRef(false);
@@ -217,12 +217,24 @@ export function NavigationButtons(props) {
   }, [props.startComputerOpen]);
 
   useEffect(() => {
-    if (level === 4 && score === 10 && !isFourthHouseUnlocked) {
-      unlockFourthHouse();
-      setIsFourthHouseUnlocked(true);
-      setMaxScore(10);
+    if (
+      level === 4 &&
+      currentLocation.digiRoom &&
+      score >= 10 &&
+      !isFourthStairUnlocked
+    ) {
+      playKeyClickSound();
+      alert('');
+      const giveUpButton = document.getElementById('giveUpButton');
+      if (giveUpButton) giveUpButton.style.display = 'none';
+      maps.DIGISTAIR.up = {
+        transferTo: 'EMPTYSTAIRDOWN',
+        arrowX: 1000,
+        arrowY: 750,
+      };
+      setIsFourthStairUnlocked(true);
     }
-  }, [level, score, isFourthHouseUnlocked]);
+  }, [level, score, currentLocation.digiRoom, isFourthStairUnlocked]);
 
   useEffect(() => {
     if (insideGlitchMap && score >= 15 && !showLevel3Congratulations) {
@@ -361,36 +373,20 @@ export function NavigationButtons(props) {
       )}
       <Stage width={width} height={height}>
         <Layer>
-          <Rect width={width} height={height} fill='#999999' />
-          {currentLocation.fourthHouse &&
-          !clearedFourthHouseRooms.includes(currentLocation.name) ? (
-            <Rect
-              x={Math.max(0, imageX - 14)}
-              y={0}
-              width={Math.min(width, renderedImageWidth + 28)}
-              height={Math.min(height, renderedImageHeight + 24)}
-              fill='#eee9d8'
-              shadowColor='#000'
-              shadowBlur={18}
-              shadowOpacity={0.55}
-            />
-          ) : null}
-          <Image image={image} x={imageX} scaleX={scale} scaleY={scale} />
-          {currentLocation.fourthHouse &&
-          !clearedFourthHouseRooms.includes(currentLocation.name) ? (
-            <Rect
-              x={imageX}
-              y={0}
-              width={renderedImageWidth}
-              height={renderedImageHeight}
-              fill='rgba(160, 102, 46, 0.12)'
-              listening={false}
-            />
+          <Rect
+            width={width}
+            height={height}
+            fill={currentLocation.blackScreen ? '#000000' : '#999999'}
+          />
+          {!currentLocation.blackScreen ? (
+            <Image image={image} x={imageX} scaleX={scale} scaleY={scale} />
           ) : null}
         </Layer>
         <Layer>
-          {// this is why the x's always show up, can modify this later
-          numberOfExesFound > 0 && numberOfExesFound < 20 ? (
+          {currentLocation.name !== 'EMPTYSTAIRDOWN' &&
+          currentLocation.name !== 'FOURTHBASEMENT' &&
+          !currentLocation.blackScreen &&
+          (numberOfExesFound > 0 && numberOfExesFound < 20 ? (
             <>
               <Rect
                 x={5 * elementScale}
@@ -462,7 +458,7 @@ export function NavigationButtons(props) {
                 fontSize={30 * elementScale}
               />
             </>
-          )}
+          ))}
 
           {// If in HUNT_MODE, put invisible circles on unfound eggs and stars on found eggs
           props.HUNT_MODE ? (
@@ -920,7 +916,6 @@ export function NavigationButtons(props) {
               onClick={() => {
                 resetFourthHouse();
                 setClearedFourthHouseRooms([]);
-                setIsFourthHouseUnlocked(false);
                 setLevel(4);
                 setScore(0);
                 setMaxScore(10);
@@ -930,7 +925,6 @@ export function NavigationButtons(props) {
               onTouchStart={() => {
                 resetFourthHouse();
                 setClearedFourthHouseRooms([]);
-                setIsFourthHouseUnlocked(false);
                 setLevel(4);
                 setScore(0);
                 setMaxScore(10);
@@ -941,67 +935,13 @@ export function NavigationButtons(props) {
           )}
           </Group>
           {currentLocation.computer ? (
-            <>
-              <Rect
-                x={imageX + 940 * scale}
-                y={650 * scale}
-                width={610 * scale}
-                height={300 * scale}
-                fill='#9a9a92'
-                stroke='#d6d5ca'
-                strokeWidth={12 * scale}
-                cornerRadius={10 * scale}
-              />
-              <Rect
-                x={imageX + 1510 * scale}
-                y={780 * scale}
-                width={210 * scale}
-                height={250 * scale}
-                fill='#52504b'
-                stroke='#aaa9a1'
-                strokeWidth={10 * scale}
-                cornerRadius={28 * scale}
-              />
-              <Rect
-                x={imageX + 1540 * scale}
-                y={1010 * scale}
-                width={22 * scale}
-                height={250 * scale}
-                fill='#888983'
-              />
-              <Rect
-                x={imageX + 1665 * scale}
-                y={1010 * scale}
-                width={22 * scale}
-                height={250 * scale}
-                fill='#888983'
-              />
-              <Rect
-                x={imageX + 1110 * scale}
-                y={520 * scale}
-                width={300 * scale}
-                height={220 * scale}
-                fill='#151719'
-                stroke='#c7c8c5'
-                strokeWidth={18 * scale}
-                cornerRadius={12 * scale}
-              />
-              <Text
-                x={imageX + 1170 * scale}
-                y={600 * scale}
-                text='hello'
-                fill='#e8e8df'
-                fontSize={46 * scale}
-              />
               <Circle
                 x={imageX + currentLocation.computer.computerX * scale}
                 y={currentLocation.computer.computerY * scale}
                 radius={currentLocation.computer.computerRadius * scale}
-                fill='rgba(0, 0, 0, 0.001)'
                 onClick={() => openComputer()}
                 onTouchStart={() => openComputer()}
               />
-            </>
           ) : null}
           {score === maxScore && level === 1 && congratulationsLevel1 ? (
             <Image

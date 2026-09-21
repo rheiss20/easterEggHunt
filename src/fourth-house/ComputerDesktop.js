@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { EggDoom } from './EggDoom';
 import { RecoveryTerminal } from './RecoveryTerminal';
@@ -48,10 +48,14 @@ const housePhotos = [
   'third_house/third_house_6.jpg',
   'third_house/third_house_8.jpg',
   'third_house/third_house_9.jpg',
-  'fourth_house/instant_living_room.jpg',
-  'fourth_house/instant_kitchen.jpg',
-  'fourth_house/instant_bedroom.jpg',
-  'fourth_house/instant_dining_room.jpg',
+  'fourth_house/empty_bedroom.jpg',
+  'fourth_house/empty_guest_room.jpg',
+  'fourth_house/empty_hallway.jpg',
+  'fourth_house/empty_kitchen.jpg',
+  'fourth_house/empty_living_room.jpg',
+  'fourth_house/empty_living_room_2.jpg',
+  'fourth_house/empty_office.jpg',
+  'fourth_house/empty_stair.jpg'
 ];
 
 const windowContent = {
@@ -62,7 +66,7 @@ const windowContent = {
         {housePhotos.map((photo) => (
           <figure key={photo}>
             <img src={`images/${photo}`} alt='' loading='lazy' />
-            <figcaption>{photo.split('/').pop()}</figcaption>
+            <figcaption>{String(housePhotos.indexOf(photo) + 1).padStart(2, '0')}</figcaption>
           </figure>
         ))}
       </div>
@@ -93,13 +97,10 @@ export function ComputerDesktop({
     hour: 'numeric',
     minute: '2-digit',
   });
-  useEffect(() => {
-    alert(`Session clicks: ${sessionClickCount}`);
-  }, [sessionClickCount]);
   const availableItems = [
     ...desktopItems.slice(0, 2),
     ...(canPlayShellHouse
-      ? [{ id: 'game', icon: 'SH', label: 'Shell House' }]
+      ? [{ id: 'game', icon: 'SH', label: 'Egg Hunter' }]
       : []),
     ...(shellHouseWon
       ? [{ id: 'recovered', icon: 'RF', label: 'Recovered Files' }]
@@ -202,7 +203,7 @@ export function ComputerDesktop({
         body: (
           <div className='trash-folder'>
             <button type='button' onClick={() => setActiveWindow('video')}>
-              <span>MOV</span>LAST_WALKTHROUGH.mov
+              FINAL_WALKTHROUGH.mp4
             </button>
           </div>
         ),
@@ -210,13 +211,13 @@ export function ComputerDesktop({
     }
     if (activeWindow === 'video') {
       return {
-        title: 'LAST_WALKTHROUGH.mov',
+        title: 'FINAL_WALKTHROUGH.mp4',
         body: (
           <div className='desktop-video-player'>
-            <video controls autoPlay src='videos/LAST_WALKTHROUGH.mov'>
+            <video controls autoPlay src='videos/FINAL_WALKTHROUGH.mp4'>
               Your browser does not support embedded video.
             </video>
-            <span>LAST_WALKTHROUGH.mov</span>
+            <span>FINAL_WALKTHROUGH.mp4</span>
           </div>
         ),
       };
@@ -240,7 +241,7 @@ export function ComputerDesktop({
       };
     }
     if (activeWindow === 'game') {
-      return { title: 'Shell House', body: <EggDoom onWin={() => setShellHouseWon(true)} /> };
+      return { title: 'Egg Hunter', body: <EggDoom onWin={() => setShellHouseWon(true)} /> };
     }
     if (activeWindow === 'recovered') {
       return {

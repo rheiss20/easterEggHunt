@@ -5,7 +5,7 @@ import congratulationsSoundFile from '../sounds/congratulations2.mp3';
 
 const LEVELS = [
   {
-    name: 'The Burrows',
+    name: 'El Zahir',
     world: [
       '111111111111',
       '100000000001',
@@ -23,7 +23,7 @@ const LEVELS = [
     enemies: [[9.5, 1.5], [5.5, 3.5], [9.5, 5.5], [2.5, 7.5], [7.5, 8.5], [10.2, 10.2], [4.5, 10.2], [10.5, 7.5], [6.5, 8.5], [10.5, 3.5]],
   },
   {
-    name: 'Crosshatch',
+    name: 'Dark Bramble',
     world: [
       '111111111111',
       '100000100001',
@@ -41,7 +41,7 @@ const LEVELS = [
     enemies: [[10.5, 1.5], [10.5, 2.5], [3.5, 5.5], [8.5, 5.5], [2.5, 7.5], [9.5, 9.5], [5.5, 10.5], [1.5, 9.5], [6.5, 5.5], [10.5, 7.5]],
   },
   {
-    name: 'Spiral',
+    name: 'Arsenal Gear',
     world: [
       '111111111111',
       '100000000001',
@@ -59,7 +59,7 @@ const LEVELS = [
     enemies: [[8.5, 1.5], [10.5, 4.5], [8.5, 8.5], [3.5, 8.5], [6.5, 1.5], [8.5, 7.5], [2.5, 10.5], [6.5, 3.5], [1.5, 6.5], [9.5, 10.5]],
   },
   {
-    name: 'Split House',
+    name: 'Wylesol, 2120',
     world: [
       '111111111111',
       '100001000001',
@@ -77,7 +77,7 @@ const LEVELS = [
     enemies: [[6.5, 1.5], [7.5, 1.5], [6.5, 3.5], [2.5, 5.5], [8.5, 6.5], [5.5, 9.5], [9.5, 10.5], [1.5, 8.5], [10.5, 3.5], [3.5, 10.5]],
   },
   {
-    name: 'The Gallery',
+    name: 'The Navidson Record',
     world: [
       '111111111111',
       '100000000001',
@@ -501,7 +501,7 @@ export function EggDoom({ onWin }) {
           onClick={shoot}
           aria-label='Egg Hunt 3D game viewport'
         />
-        <div className='egg-doom-title'>SHELL HOUSE · {levelName}</div>
+        <div className='egg-doom-title'>EGG HUNTER · {levelName}</div>
         <div className='egg-doom-hud'>
           <span>HEALTH {hud.health}</span>
           <span>EGGS {hud.score}/{levelRef.current.enemies.length}</span>

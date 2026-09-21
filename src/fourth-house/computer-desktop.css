@@ -504,6 +504,16 @@
   box-shadow: 1px 3px 6px rgba(0, 0, 0, 0.24);
 }
 
+.trash-folder button {
+  width: auto;
+  height: auto;
+  padding: 14px;
+  color: #222;
+  font-size: 14px;
+  background: transparent;
+  border: 0;
+}
+
 .journal-file {
   min-height: 300px;
   margin: 0;
