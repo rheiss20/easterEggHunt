@@ -37,10 +37,14 @@ Object.keys(glitchMaps).forEach((key) => {
 });
 
 const initialFourthHouseImages = {
-  FINALHOUSE: maps.FINALHOUSE.image,
-  FOURTHKITCHEN: maps.FOURTHKITCHEN.image,
-  FOURTHBEDROOM: maps.FOURTHBEDROOM.image,
-  FOURTHDINING: maps.FOURTHDINING.image,
+  DIGILIVINGROOM: maps.DIGILIVINGROOM.image,
+  DIGILIVINGROOM2: maps.DIGILIVINGROOM2.image,
+  DIGIKITCHEN: maps.DIGIKITCHEN.image,
+  DIGISTAIR: maps.DIGISTAIR.image,
+  DIGIHALLWAY: maps.DIGIHALLWAY.image,
+  DIGIOFFICE: maps.DIGIOFFICE.image,
+  DIGIGUESTROOM: maps.DIGIGUESTROOM.image,
+  DIGIBEDROOM: maps.DIGIBEDROOM.image,
 };
 
 export const controlAudio = (command, file) => {
@@ -145,13 +149,7 @@ export const unlockFourthHouse = () => {
 };
 
 export const clearFourthHouseRoom = (roomName) => {
-  const emptyRoomImages = {
-    FINALHOUSE: maps.IMAGECHANGES.fourthLivingRoomEmptyImage,
-    FOURTHKITCHEN: maps.IMAGECHANGES.fourthKitchenEmptyImage,
-    FOURTHBEDROOM: maps.IMAGECHANGES.fourthBedroomEmptyImage,
-    FOURTHDINING: maps.IMAGECHANGES.fourthDiningRoomEmptyImage,
-  };
-  const emptyImage = emptyRoomImages[roomName];
+  const emptyImage = maps[roomName] && maps[roomName].emptyImageName;
   return emptyImage ? setImageForRoom(maps[roomName], emptyImage) : null;
 };
 
@@ -159,8 +157,7 @@ export const resetFourthHouse = () => {
   Object.keys(initialFourthHouseImages).forEach((roomName) => {
     maps[roomName].image = initialFourthHouseImages[roomName];
   });
-  maps.FINALHOUSE.lockedBasement = true;
-  delete maps.FINALHOUSE.up;
+  delete maps.DIGISTAIR.up;
 };
 
 export const mysteryTrigger = () => {
@@ -493,7 +490,7 @@ export const cheatChecker = (
       setName('Doesn\'t matter');
       setStatus('hunting');
       setHUNT_MODE(false);
-      setCurrentLocation(maps.LONGSTRAIGHTTUNNEL);
+      setCurrentLocation(maps.DIGILIVINGROOM);
       break;
     case 'CHEAT_exes':
       setName('Elle King');
@@ -521,7 +518,7 @@ export const cheatChecker = (
       resetFourthHouse();
       setName('Instant Hunter');
       setStatus('hunting');
-      setCurrentLocation(maps.FINALHOUSE);
+      setCurrentLocation(maps.DIGILIVINGROOM);
       setLevel(4);
       setFoundKitchenCupboard(true);
       setPerfectQuizScore(true);
